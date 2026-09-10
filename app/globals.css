@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: auto;
+  overscroll-behavior-x: none;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 1px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+}
+
+/**
+ * TOKEN SET: "Field & Frame" — carried over VERBATIM from the approved C4
+ * Brand Continuity concept (clients/pasadena-hypnosis/creative/c4/10-palette-correction.md).
+ * Do not reintroduce profile.ts's `brand.primary` (#df3131, a red) — that
+ * field is explicitly provisional there; a rendered screenshot of the real
+ * site showed red isn't visually present anywhere, and the approved concept
+ * (revision 3 onward, what Jason saw and approved on Call 2) uses none of it.
+ *
+ * Contrast, verified in the concept (not re-derived here):
+ *   #FFFFFF on #454659 ........... 9.24:1  (every button fill)
+ *   #FFFFFF on #33344A .......... 12.13:1  (button hover)
+ *   #D9E1F0 on #2E2F3D ........... 7.03:1  (body copy inside the dark band)
+ *   #2E2F3D on #FFFFFF .......... 13.21:1  (ink on white)
+ *   #2E2F3D on #E6EFFF .......... 11.42:1  (ink on light-blue tint)
+ *   #2E2F3D on #E9F3EF .......... 11.65:1  (ink on mint)
+ *   #2E2F3D on #F09D8B ........... 6.23:1  (ink on coral)
+ *   #46699F on #E6EFFF ........... 4.80:1  (accent AS running text, tint ground)
+ *   #A9C4EE on #2E2F3D ........... 7.43:1  (accent text inside the dark band)
+ *
+ * GOVERNING CONSTRAINTS, carried from the concept's own comments — breaking
+ * any of these silently fails contrast:
+ *   1. #567FC0 (the raw brand blue) FAILS AA as body text on every ground
+ *      here (4.04:1 white, 3.50:1 tint, 3.57:1 mint). Never use it for body
+ *      copy — --primary-text (#46699F) is the same hue darkened past 4.5:1.
+ *      #567FC0 is reserved for non-text marks / large display (24px+, 3:1).
+ *   2. Coral (#F09D8B) is a GROUND ONLY, never a mark or text color on a
+ *      light background — it measures ~2:1 there. The only legal text tone
+ *      ON a coral block is --foreground (ink).
+ *   3. The charcoal-navy (--primary-solid) is BOTH the button fill and the
+ *      full-bleed dark-band ground. A button placed inside the dark band
+ *      must invert (light fill, dark text) and use the white/--deep-ring
+ *      focus ring, not --ring.
+ */
+:root {
+  --radius: 12px;
+  --font-heading: 'Lora', 'Georgia', serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --background: #ffffff; /* dominant page ground */
+  --foreground: #2e2f3d; /* ink */
+  --card: #e6efff; /* light-blue section tint — the dominant section fill */
+  --card-foreground: #2e2f3d;
+  --popover: #ffffff;
+  --popover-foreground: #2e2f3d;
+
+  --primary: #567fc0; /* raw brand blue — marks / large display (24px+) ONLY, fails as body text */
+  --primary-solid: #454659; /* button fill, everywhere */
+  --primary-solid-hover: #33344a;
+  --primary-foreground: #ffffff;
+  --primary-text: #46699f; /* running text / links on white or light-blue tint */
+
+  --secondary: #e9f3ef; /* mint — footer band + one content block */
+  --secondary-foreground: #2e2f3d;
+
+  --muted: #e6efff;
+  --muted-foreground: #4b5468;
+
+  --accent: #f09d8b; /* coral — GROUND ONLY, never text/marks on a light bg */
+  --accent-foreground: #2e2f3d;
+
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+
+  --border: #d7deea; /* hairline divider, decorative only */
+  --input: #454659; /* every focusable control edge */
+  --ph-ring: #454659; /* this frame's own ring token — never the scaffold's failing default */
+  --ring: var(--ph-ring);
+
+  /* The full-bleed dark band (deep differentiator/CTA sections, footer). */
+  --deep: #2e2f3d;
+  --deep-foreground: #d9e1f0; /* body copy inside the band */
+  --deep-heading: #ffffff;
+  --deep-accent-text: #a9c4ee; /* accent-as-text inside the band */
+  --deep-ring: #a9c4ee; /* focus ring for controls inside the band */
+
+  --chart-1: #454659;
+  --chart-2: #46699f;
+  --chart-3: #4b5468;
+  --chart-4: #2e2f3d;
+  --chart-5: #f09d8b;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #2e2f3d;
+  --sidebar-primary: #454659;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e6efff;
+  --sidebar-accent-foreground: #2e2f3d;
+  --sidebar-border: #d7deea;
+  --sidebar-ring: #454659;
+}
+
+.dark {
+  /* This concept ships light-mode only — dark values mirror light closely to
+     avoid an unstyled flash if .dark is ever toggled by a host shell. */
+  --background: #2e2f3d;
+  --foreground: #e6efff;
+  --card: #3a3b4d;
+  --card-foreground: #e6efff;
+  --popover: #3a3b4d;
+  --popover-foreground: #e6efff;
+  --primary: #a9c4ee;
+  --primary-solid: #a9c4ee;
+  --primary-foreground: #2e2f3d;
+  --primary-text: #a9c4ee;
+  --secondary: #3a3b4d;
+  --secondary-foreground: #e6efff;
+  --muted: #3a3b4d;
+  --muted-foreground: #c3cbe0;
+  --accent: #f09d8b;
+  --accent-foreground: #2e2f3d;
+  --destructive: #e5867e;
+  --destructive-foreground: #2e2f3d;
+  --border: #454659;
+  --input: #c3cbe0;
+  --ph-ring: #a9c4ee;
+  --ring: var(--ph-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-x: none;
+  }
+}
+
+/* Broken Image Fallback Styles */
+img.broken-image-fallback {
+  position: relative;
+  display: inline-block;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  object-fit: none;
+  object-position: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dark img.broken-image-fallback {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
