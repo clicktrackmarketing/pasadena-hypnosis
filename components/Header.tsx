@@ -54,7 +54,9 @@ export const Header = () => {
             className="flex items-center gap-2.5 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2 rounded-[12px]"
             aria-label="Pasadena Hypnosis — go to homepage"
           >
-            <img src={LOGO} alt="Pasadena Hypnosis" width={LOGO_W} height={LOGO_H} className="h-9 sm:h-10 w-auto object-contain" />
+            <span className="inline-flex items-center rounded-[8px] bg-black px-2.5 py-1.5">
+              <img src={LOGO} alt="Pasadena Hypnosis" width={LOGO_W} height={LOGO_H} className="h-9 sm:h-10 w-auto object-contain" />
+            </span>
           </Link>
 
           <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">
