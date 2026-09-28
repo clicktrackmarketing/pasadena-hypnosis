@@ -171,8 +171,8 @@ export const PageHero = ({
     size === 'sm'
       ? 'text-[2.3rem] sm:text-[3rem]'
       : size === 'lg'
-        ? 'text-[2.6rem] sm:text-[3.7rem] lg:text-[4.2rem]'
-        : 'text-[2.5rem] sm:text-[3.4rem] lg:text-[3.7rem]';
+        ? 'text-[2.6rem] sm:text-[3.6rem] lg:text-[3.7rem] xl:text-[4.2rem]'
+        : 'text-[2.5rem] sm:text-[3.3rem] lg:text-[3.4rem] xl:text-[3.7rem]';
 
   return (
     <section className="relative isolate -mt-20 overflow-hidden bg-[#1F2030] ph-grain sm:-mt-24">
@@ -197,7 +197,7 @@ export const PageHero = ({
       {scene ? (
         <>
           <div
-            className={`pointer-events-none absolute inset-x-0 top-0 h-[75%] opacity-40 lg:inset-y-0 lg:h-auto lg:opacity-100 ${
+            className={`pointer-events-none absolute inset-x-0 top-0 h-[75%] opacity-[0.65] lg:inset-y-0 lg:h-auto lg:opacity-100 ${
               media ? 'lg:left-[38%] lg:opacity-60' : 'lg:left-auto lg:right-0 lg:w-[54%]'
             }`}
           >
@@ -241,7 +241,7 @@ export const PageHero = ({
               >
                 <Link
                   href={breadcrumb.href}
-                  className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[13px] font-medium text-[#A9C4EE] backdrop-blur-sm transition-colors hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
+                  className="ph-tap group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[13px] font-medium text-[#A9C4EE] backdrop-blur-sm transition-colors hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
                 >
                   <ArrowRightIcon className="h-3.5 w-3.5 rotate-180 transition-transform duration-300 group-hover:-translate-x-1" />
                   {breadcrumb.label}
@@ -360,7 +360,7 @@ export const PageHero = ({
                     variants={{ hidden: { scaleY: 0 }, shown: { scaleY: 1, transition: { duration: 0.8, ease: EASE_OUT_SOFT } } }}
                   />
                 ) : null}
-                <dt className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#A9C4EE]">{f.k}</dt>
+                <dt className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#A9C4EE]">{f.k}</dt>
                 <dd className="mt-1.5 font-heading text-[1.2rem] text-white sm:text-[1.35rem]">{f.v}</dd>
               </motion.div>
             ))}

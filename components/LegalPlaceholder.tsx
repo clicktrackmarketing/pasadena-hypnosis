@@ -47,7 +47,7 @@ export const LegalPlaceholder = ({ title, intro, sections }: Props) => (
       lede={<p>{intro}</p>}
     />
 
-    <section className="relative bg-white pb-20 pt-14 sm:pb-28 sm:pt-20">
+    <section className="relative bg-white pb-16 pt-14 sm:pb-28 sm:pt-20">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8"><div className="max-w-[820px]">
         <Reveal distance={14}>
           <div className="relative mb-14 overflow-hidden rounded-[18px] border-2 border-dashed border-[#46699F]/50 bg-[#E6EFFF] p-6 sm:p-8">

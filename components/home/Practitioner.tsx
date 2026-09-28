@@ -32,7 +32,7 @@ import { ScrubText, DepthField, Depth } from '../MotionFx';
 import { Rings } from '../Spiral';
 
 export const Practitioner = () => (
-  <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+  <section className="relative overflow-hidden bg-white py-16 sm:py-28">
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
@@ -104,7 +104,7 @@ export const Practitioner = () => (
         <div className="lg:col-span-5">
           {/* Pointer-depth layers: the rings sit behind and drift further
               than the photograph, so the frame reads as an object in space. */}
-          <DepthField className="relative">
+          <DepthField className="relative mx-auto max-w-[26rem] lg:max-w-none">
           <Depth depth={-26} className="pointer-events-none absolute -right-16 -top-16 hidden lg:block">
             <Rings className="h-72 w-72 text-[#46699F]/25 ph-spin-slow" count={6} />
           </Depth>

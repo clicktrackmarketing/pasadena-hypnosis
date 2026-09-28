@@ -49,7 +49,7 @@ export const HowItWorks = () => {
   const scaleY = useTransform(progress, [0, 1], [0, 1]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-[#E9F3EF] py-20 sm:py-28">
+    <section ref={ref} className="relative overflow-hidden bg-[#E9F3EF] py-16 sm:py-28">
       <Parallax speed={40} className="pointer-events-none absolute inset-0">
         <img
           src={TEXTURE_FLOW.src}

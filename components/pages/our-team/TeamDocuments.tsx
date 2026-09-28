@@ -57,7 +57,7 @@ export const TeamDocuments = () => {
   const gap = vw >= 640 ? 22 : 12;
 
   return (
-    <section className="relative overflow-x-clip bg-[#E6EFFF] py-24 sm:py-32">
+    <section className="relative overflow-x-clip bg-[#E6EFFF] py-16 sm:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-40 top-20 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.9),transparent)]"
@@ -84,7 +84,7 @@ export const TeamDocuments = () => {
         {/* The arbitrary variant rounds StickyStack's inner scaling wrapper,
             so the dimming overlay (border-radius: inherit) follows the card's
             corners instead of drawing square ones outside them. */}
-        <StickyStack top={top} gap={gap} className="mx-auto max-w-[1100px] [&>div>div]:rounded-[26px]">
+        <StickyStack top={top} gap={gap} className="mx-auto max-w-[34rem] lg:max-w-[1100px] [&>div>div]:rounded-[26px]">
           {items.map((c, i) => {
             const img = credentialImage(c.img);
             return (
@@ -115,7 +115,7 @@ export const TeamDocuments = () => {
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
                     <div>
                       {c.featured ? (
-                        <span className="mb-2.5 inline-flex items-center rounded-full bg-[#5DBA47] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
+                        <span className="mb-2.5 inline-flex items-center rounded-full bg-[#5DBA47] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
                           The diploma
                         </span>
                       ) : null}

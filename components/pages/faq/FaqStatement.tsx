@@ -34,7 +34,7 @@ const SMALL_A = GALLERY[1];
 const SMALL_B = GALLERY[4];
 
 export const FaqStatement = () => (
-  <section className="relative isolate overflow-x-clip bg-[#E9F3EF] pb-24 pt-16 sm:pb-32 sm:pt-24">
+  <section className="relative isolate overflow-x-clip bg-[#E9F3EF] pb-16 pt-16 sm:pb-32 sm:pt-24">
     <WaveSeam color="#E9F3EF" className="absolute inset-x-0 bottom-full" />
 
     <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-16 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">

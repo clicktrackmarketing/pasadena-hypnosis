@@ -38,7 +38,7 @@ export const ServicesGrid = () => {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative bg-white pt-20 sm:pt-28">
+    <section className="relative bg-white pt-16 sm:pt-28">
       <PinnedRail
         header={
           <div className="mx-auto mb-10 w-full max-w-[1280px] px-4 sm:px-6 lg:mb-0 lg:px-8">
@@ -63,7 +63,7 @@ export const ServicesGrid = () => {
             />
           </div>
         }
-        className="pb-20 sm:pb-28"
+        className="pb-16 sm:pb-28"
         trackClassName="flex gap-6 px-4 sm:px-6 lg:px-8 pb-4"
       >
         {SERVICES.map((s, i) => {
@@ -92,7 +92,7 @@ export const ServicesGrid = () => {
                       className="h-full w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.09]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2E2F3D]/55 via-transparent to-transparent" />
-                    <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/92 px-3 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
+                    <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/92 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
                       {s.tag ?? s.category}
                     </span>
                     <span className="absolute bottom-4 right-4 inline-flex items-center rounded-full bg-[#2E2F3D]/85 px-3 py-1 text-[11.5px] font-semibold text-white backdrop-blur-sm">

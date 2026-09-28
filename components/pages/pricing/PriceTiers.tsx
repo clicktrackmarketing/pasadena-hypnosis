@@ -127,11 +127,11 @@ const TierCard = ({ t, i }: { t: Tier; i: number }) => {
               <li key={s.slug} className="max-w-full">
                 <Link
                   href={`/services/${s.slug}`}
-                  className={`group inline-flex max-w-full items-center gap-2 rounded-full border px-4 py-2.5 text-[14px] font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${skin.chip} ${skin.ring}`}
+                  className={`ph-tap group inline-flex max-w-full items-center gap-2 rounded-full border px-4 py-2.5 text-[14px] font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${skin.chip} ${skin.ring}`}
                 >
                   <span className="min-w-0">{s.name}</span>
                   {s.tag ? (
-                    <span className={`hidden whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.08em] sm:inline ${skin.accent}`}>
+                    <span className={`hidden whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.08em] sm:inline ${skin.accent}`}>
                       {s.tag}
                     </span>
                   ) : null}
@@ -156,7 +156,7 @@ export const PriceTiers = () => {
   });
 
   return (
-    <section className="relative bg-white py-20 sm:py-28">
+    <section className="relative bg-white py-16 sm:py-28">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
         {/* Pinned heading column */}
         <div className="lg:col-span-4">

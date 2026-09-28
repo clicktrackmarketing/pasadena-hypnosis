@@ -62,7 +62,7 @@ const Card = ({ t, i, variant }: { t: TopicCard; i: number; variant: 'feature' |
             className="absolute inset-0 h-full w-full object-cover grayscale-[35%] transition-[transform,filter] duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.09] group-hover:grayscale-0"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#2E2F3D]/60 via-transparent to-transparent" />
-          <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/92 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
+          <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/92 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#5DBA47]" aria-hidden="true" />
             Not written yet
           </span>
@@ -102,7 +102,7 @@ const Card = ({ t, i, variant }: { t: TopicCard; i: number; variant: 'feature' |
 export const TopicGrid = ({ topics }: { topics: TopicCard[] }) => {
   const last = topics.length - 1;
   return (
-    <section className="relative isolate overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
+    <section className="relative isolate overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <ScrollRotate degrees={-160} className="absolute -right-64 -top-56 h-[44rem] w-[44rem]">
           <Rings className="h-full w-full text-[#46699F]/12" count={9} />

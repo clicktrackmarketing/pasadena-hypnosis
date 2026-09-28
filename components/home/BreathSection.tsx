@@ -89,7 +89,7 @@ export const BreathSection = () => {
   });
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-[#2E2F3D] py-20 ph-grain sm:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden bg-[#2E2F3D] py-16 ph-grain sm:py-28">
       <img
         src={HANDS_RESTING.src}
         {...responsive(HANDS_RESTING.src, 'full')}

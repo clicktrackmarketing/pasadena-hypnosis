@@ -71,7 +71,7 @@ export const AreaServices = ({ slug, city }: { slug: string; city: string }) => 
   );
 
   return (
-    <section className="relative overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         {portrait ? (
           <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-12 lg:gap-16">
@@ -85,7 +85,7 @@ export const AreaServices = ({ slug, city }: { slug: string; city: string }) => 
           </>
         )}
 
-        <Stagger className="mt-14 grid auto-rows-fr grid-cols-1 gap-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3" gap={0.08}>
+        <Stagger className="mt-14 grid auto-rows-fr grid-cols-2 gap-3 sm:mt-16 sm:gap-6 lg:grid-cols-3" gap={0.08}>
           {featured.map((s) => (
             <PopItem key={s.slug} className="h-full">
               <ServiceCard service={s} variant="brief" />
@@ -119,7 +119,7 @@ export const VisitBand = ({ city }: { city: string }) => (
         <Rings className="absolute -bottom-48 -right-40 h-[34rem] w-[34rem] text-[#A9C4EE]/10 ph-spin-slow" count={8} />
       </div>
 
-      <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-12 lg:gap-16 lg:px-8">
+      <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-4 py-16 sm:px-6 sm:py-28 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-5">
           {/* The practice's own consulting room, at its native portrait
               ratio — cropping it to a banner would lose the shelf or the
@@ -235,7 +235,7 @@ const IndexRow = ({ a, i }: { a: string; i: number }) => {
 export const AlsoServing = ({ slug }: { slug: string }) => {
   const others = SERVICE_AREAS.filter((a) => areaSlug(a) !== slug);
   return (
-    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-28">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <p className="mb-6 inline-flex items-center gap-3 text-[12.5px] font-semibold uppercase tracking-[0.18em] text-[#46699F]">

@@ -63,7 +63,7 @@ export const CredentialTimeline = ({ items }: { items: TimelineItem[] }) => {
   const yearLabel = years.length === 1 ? years[0] : `${years[0]}–${years[years.length - 1]}`;
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-[#F7F9FC] py-20 sm:py-28">
+    <section ref={ref} className="relative overflow-hidden bg-[#F7F9FC] py-16 sm:py-28">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <SectionHeading
           className="mb-14 sm:mb-16"
@@ -113,7 +113,7 @@ export const CredentialTimeline = ({ items }: { items: TimelineItem[] }) => {
                     }`}
                   >
                     <span className="font-heading text-[1.15rem] leading-none sm:text-[1.5rem]">{d.day}</span>
-                    <span className="mt-0.5 text-[9.5px] font-bold uppercase tracking-[0.12em] sm:text-[10.5px]">
+                    <span className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.12em] sm:text-[11px]">
                       {d.month}
                     </span>
                   </div>
@@ -131,7 +131,7 @@ export const CredentialTimeline = ({ items }: { items: TimelineItem[] }) => {
                         {it.award}
                       </p>
                       {isLast ? (
-                        <span className="inline-flex items-center rounded-full bg-[#E9F3EF] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
+                        <span className="inline-flex items-center rounded-full bg-[#E9F3EF] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
                           Diploma
                         </span>
                       ) : null}

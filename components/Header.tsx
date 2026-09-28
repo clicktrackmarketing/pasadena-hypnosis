@@ -190,7 +190,7 @@ export const Header = () => {
                       <div className="grid max-h-[72vh] grid-cols-2 gap-x-6 gap-y-5 overflow-y-auto p-6" data-lenis-prevent>
                         {GROUPED.map((g, gi) => (
                           <div key={g.c}>
-                            <p className="mb-2 px-2 text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#46699F]">{g.c}</p>
+                            <p className="mb-2 px-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#46699F]">{g.c}</p>
                             <ul className="flex flex-col gap-0.5">
                               {g.items.map((s, si) => {
                                 const img = serviceImage(s.slug);
@@ -227,7 +227,7 @@ export const Header = () => {
                       <div className="relative flex flex-col justify-between overflow-hidden bg-[#2E2F3D] p-6 text-white">
                         <div aria-hidden="true" className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#46699F]/40 blur-3xl" />
                         <div className="relative">
-                          <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#A9C4EE]">Start here</p>
+                          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#A9C4EE]">Start here</p>
                           <p className="mt-3 font-heading text-[1.35rem] leading-snug">A free discovery call</p>
                           <p className="mt-2 text-[13px] leading-relaxed text-[#D9E1F0]">
                             Talk it through with Jason directly. No charge, no commitment.

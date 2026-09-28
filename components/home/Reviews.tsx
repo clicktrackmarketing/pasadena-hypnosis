@@ -38,7 +38,7 @@ const SRC: Record<string, string> = {
 };
 
 export const Reviews = () => (
-  <section className="relative overflow-hidden bg-[#F7F9FC] py-20 sm:py-28">
+  <section className="relative overflow-hidden bg-[#F7F9FC] py-16 sm:py-28">
     <img
       src={FOG_FOREST.src}
         {...responsive(FOG_FOREST.src, 'full')}

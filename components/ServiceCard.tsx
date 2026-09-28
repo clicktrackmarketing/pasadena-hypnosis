@@ -57,7 +57,7 @@ export const ServiceCard = ({
         href={`/services/${s.slug}`}
         className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-[#D7DEEA] bg-white transition-all duration-500 hover:-translate-y-1.5 hover:border-[#46699F]/40 hover:shadow-[0_28px_60px_-28px_rgba(46,47,61,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
       >
-        <div className="relative aspect-[16/9] overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/9]">
           <img
             src={img.src}
             alt={img.alt}
@@ -67,12 +67,12 @@ export const ServiceCard = ({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#2E2F3D]/50 via-transparent to-transparent" />
           {s.tag ? (
-            <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/92 px-3 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
+            <span className="absolute left-4 top-4 hidden items-center rounded-full bg-white/92 sm:inline-flex px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
               {s.tag}
             </span>
           ) : null}
           {price ? (
-            <span className="absolute bottom-4 right-4 inline-flex items-center rounded-full bg-[#2E2F3D]/85 px-3 py-1 text-[11.5px] font-semibold text-white backdrop-blur-sm">
+            <span className="absolute bottom-2.5 right-2.5 inline-flex items-center rounded-full bg-[#2E2F3D]/85 px-2.5 py-0.5 sm:bottom-4 sm:right-4 sm:px-3 sm:py-1 text-[11.5px] font-semibold text-white backdrop-blur-sm">
               {price}
             </span>
           ) : null}
@@ -95,14 +95,14 @@ export const ServiceCard = ({
           text is on the service's own page one click away — which is where
           someone reading past four lines is heading anyway.
         */}
-        <div className="flex flex-1 flex-col p-6">
-          <h3 className="mb-2.5 line-clamp-2 min-h-[3.75rem] font-heading text-[1.35rem] leading-snug text-[#2E2F3D]">
+        <div className="flex flex-1 flex-col p-4 sm:p-6">
+          <h3 className="mb-2 line-clamp-3 min-h-[4.1rem] font-heading text-[1.02rem] leading-snug text-[#2E2F3D] sm:mb-2.5 sm:line-clamp-2 sm:min-h-[3.75rem] sm:text-[1.35rem]">
             {s.name}
           </h3>
-          <p className="mb-5 line-clamp-4 min-h-[6rem] flex-1 text-[14.5px] leading-[1.65] text-[#4B5468]">
+          <p className="mb-5 line-clamp-4 min-h-[6rem] flex-1 text-[14.5px] leading-[1.65] text-[#4B5468] max-sm:hidden">
             {variant === 'full' ? s.answer : s.summary}
           </p>
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#46699F]">
+          <span className="mt-auto inline-flex items-center gap-2 text-[13px] font-semibold text-[#46699F] sm:text-sm">
             Learn more
             <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
           </span>

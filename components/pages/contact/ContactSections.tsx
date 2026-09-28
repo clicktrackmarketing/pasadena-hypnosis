@@ -156,7 +156,7 @@ const PIN_Y = 38 / 96;
 export const OfficeBlock = () => {
   const reduce = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-28">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-20 lg:px-8">
         <div className="lg:col-span-5">
           {/* The practice's own room, at its native portrait ratio. */}
@@ -241,7 +241,7 @@ export const OfficeBlock = () => {
 /* --------------------------------------------------------------- Form -- */
 
 export const ContactForm = () => (
-  <section className="relative isolate overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
+  <section className="relative isolate overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
     {/* The rings turn with the page scroll. They live in the ground, never
         in the form — nothing near a field moves while someone types. */}
     <ScrollRotate

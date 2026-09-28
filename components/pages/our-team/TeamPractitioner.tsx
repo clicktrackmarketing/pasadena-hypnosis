@@ -34,7 +34,7 @@ const Badge = ({ tag, label, strong }: { tag: string; label: string; strong?: bo
       strong ? 'border-[#5DBA47]/50 bg-white' : 'border-[#D7DEEA] bg-white/95'
     }`}
   >
-    <span className="text-[9.5px] font-bold uppercase tracking-[0.16em] text-[#46699F]">{tag}</span>
+    <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#46699F]">{tag}</span>
     <span className="mt-0.5 text-[12.5px] font-semibold leading-snug text-[#2E2F3D]">{label}</span>
   </span>
 );
@@ -69,7 +69,7 @@ export const TeamPractitioner = () => {
   }));
 
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-32 top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(230,239,255,0.95),transparent)]"
@@ -108,7 +108,7 @@ export const TeamPractitioner = () => {
         </div>
 
         {/* ORBIT (640px and up) ------------------------------------------ */}
-        <div className="hidden justify-center sm:flex lg:col-span-6">
+        <div className="hidden justify-center lg:col-span-6 lg:flex">
           <div className="relative" style={{ width: radius * 2, height: radius * 2 }}>
             {/* Track + glow. Decorative. */}
             <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 h-full w-full text-[#46699F]">
@@ -133,12 +133,11 @@ export const TeamPractitioner = () => {
           </div>
         </div>
 
-        {/* PHONES: the same labels, in a row ----------------------------- */}
-        <div className="sm:hidden">
-          <TiltCard className="mx-auto w-[74%] max-w-[300px]">
-            <Portrait />
-          </TiltCard>
-          <ul className="mt-7 flex flex-wrap justify-center gap-2.5">
+        {/* PHONES: the same labels, in a row. No second portrait here — on a
+            phone the hero's portrait is the screen directly above, and the
+            same face twice in a row read as a layout error. */}
+        <div className="lg:hidden">
+          <ul className="flex flex-wrap justify-center gap-2.5 sm:justify-start">
             {badges.map((b) => (
               <li key={b.label}>
                 <Badge {...b} />

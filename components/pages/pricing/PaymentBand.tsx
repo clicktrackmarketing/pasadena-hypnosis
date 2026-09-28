@@ -30,7 +30,7 @@ const TAGS = [
 export const PaymentBand = () => {
   const reduce = useReducedMotion();
   return (
-    <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-20 ph-grain sm:py-28">
+    <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-16 ph-grain sm:py-28">
       <CursorGlow />
       <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-6">

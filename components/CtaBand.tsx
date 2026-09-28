@@ -46,7 +46,7 @@ export const CtaBand = ({
 }) => (
   <section className="relative isolate bg-[#1F2030] ph-grain">
     <WaveSeam color="#1F2030" className="absolute bottom-full left-0" />
-    <div className="relative overflow-hidden py-20 sm:py-28">
+    <div className="relative overflow-hidden py-16 sm:py-28">
       <CursorGlow />
       <div
         aria-hidden="true"

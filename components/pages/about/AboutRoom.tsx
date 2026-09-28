@@ -50,7 +50,7 @@ export const AboutRoom = () => {
   const shotImg = reviewImage(shot.img);
 
   return (
-    <section className="relative overflow-hidden bg-[#E6EFFF] py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-[#E6EFFF] py-16 sm:py-32">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-16 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
         {/* COLLAGE ------------------------------------------------------ */}
         <DepthField className="relative mx-auto aspect-[5/6] w-full max-w-[560px] lg:col-span-6 lg:max-w-none">
@@ -91,7 +91,7 @@ export const AboutRoom = () => {
               <figure className="overflow-hidden rounded-[16px] border border-[#D7DEEA] bg-white">
                 <div className="flex items-center gap-2 px-4 py-2.5">
                   <QuoteIcon className="h-4 w-4 flex-shrink-0 text-[#46699F]" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#46699F]">Google review</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#46699F]">Google review</span>
                 </div>
                 <div className="aspect-[16/9] w-full overflow-hidden">
                   <img

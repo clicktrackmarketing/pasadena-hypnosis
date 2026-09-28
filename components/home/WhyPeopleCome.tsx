@@ -52,7 +52,7 @@ const REASONS = [
 ];
 
 export const WhyPeopleCome = () => (
-  <section className="relative overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
+  <section className="relative overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <SectionHeading
         className="mb-12 sm:mb-16"
@@ -90,7 +90,7 @@ export const WhyPeopleCome = () => (
                 imgClassName="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
               />
               <div className="p-6">
-                <p className="mb-2.5 text-[10.5px] font-bold uppercase tracking-[0.14em] text-[#46699F]">
+                <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#46699F]">
                   Came in for
                 </p>
                 <h3 className="mb-2.5 font-heading text-[1.3rem] leading-snug text-[#2E2F3D]">{r.topic}</h3>

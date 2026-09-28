@@ -111,7 +111,7 @@ export const CityBento = () => {
   }).sort((x, y) => order[x.kind] - order[y.kind]);
 
   return (
-    <section className="relative overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
       <div className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] text-[#46699F]/[0.07]" aria-hidden="true">
         <Rings className="h-full w-full ph-spin-slower" count={8} />
       </div>
@@ -151,7 +151,7 @@ export const CityBento = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1F2030]/45 via-transparent to-[#1F2030]/10" />
                     {c.isHome ? (
-                      <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/92 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.12em] text-[#2E2F3D] backdrop-blur-sm">
+                      <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/92 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#2E2F3D] backdrop-blur-sm">
                         <span className="h-1.5 w-1.5 rounded-full bg-[#5DBA47]" aria-hidden="true" />
                         The office
                       </span>
@@ -189,7 +189,7 @@ export const CityBento = () => {
 export const OnlineDepth = () => {
   const video = serviceImage('online-hypnotherapy');
   return (
-    <section className="relative isolate overflow-hidden bg-[#E9F3EF] py-20 sm:py-28">
+    <section className="relative isolate overflow-hidden bg-[#E9F3EF] py-16 sm:py-28">
       <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-5">
           <Reveal>

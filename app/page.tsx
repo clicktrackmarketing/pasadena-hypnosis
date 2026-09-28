@@ -71,7 +71,7 @@ export default function HomePage() {
 
       {/* FAQ TEASER — the accordion leaf is shared with /faq and the service
           pages, so the height animation added to it there arrives here too. */}
-      <section className="relative bg-[#E6EFFF] py-20 sm:py-28">
+      <section className="relative bg-[#E6EFFF] py-16 sm:py-28">
         <WaveSeam color="#E6EFFF" className="absolute bottom-full left-0" />
         <div className="mx-auto max-w-[800px] px-4 sm:px-6">
           <div className="mb-10 text-center sm:mb-12">

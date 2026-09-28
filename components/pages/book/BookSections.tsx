@@ -48,7 +48,7 @@ import { DepthField, Depth, ScrollDraw, ScrubText } from '../../MotionFx';
 
 export const BookFormBand = ({ reassurances }: { reassurances: string[] }) => (
   <section className="relative isolate overflow-hidden bg-[#2E2F3D] ph-grain">
-    <DepthField className="relative py-20 sm:py-28">
+    <DepthField className="relative py-16 sm:py-28">
       {/* DECORATION ONLY. Each plane shifts by its depth in px at the edges. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <Depth depth={-26} className="absolute -left-48 -top-32">
@@ -168,7 +168,7 @@ export const StepsPath = () => {
   return (
     /* overflow-x-CLIP, not hidden: hidden would make this section a scroll
        container and silently stop the sticky heading from sticking. */
-    <section className="relative overflow-x-clip bg-white py-20 sm:py-28">
+    <section className="relative overflow-x-clip bg-white py-16 sm:py-28">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-32">
@@ -227,7 +227,7 @@ export const StepsPath = () => {
 /* --------------------------------------------------------------- Scope -- */
 
 export const ScopeScrub = () => (
-  <section className="relative overflow-hidden bg-[#E9F3EF] py-20 sm:py-28">
+  <section className="relative overflow-hidden bg-[#E9F3EF] py-16 sm:py-28">
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <Reveal>
         <span className="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#454659] shadow-[0_14px_30px_-16px_rgba(46,47,61,0.5)]">

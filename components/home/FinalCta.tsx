@@ -33,7 +33,7 @@ export const FinalCta = () => {
 
   return (
     <RiseIn className="relative isolate bg-[#454659] ph-grain">
-    <section className="relative isolate overflow-hidden py-20 sm:py-32">
+    <section className="relative isolate overflow-hidden py-16 sm:py-32">
       <img
         src={OPEN_WATER.src}
         {...responsive(OPEN_WATER.src, 'full')}

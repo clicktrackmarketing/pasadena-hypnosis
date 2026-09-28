@@ -26,7 +26,7 @@ import { VelocityMarquee } from '../MotionFx';
 const slug = (a: string) => a.split(',')[0].trim().toLowerCase().replace(/\s+/g, '-');
 
 export const AreasStrip = () => (
-  <section className="relative overflow-hidden bg-white pb-20 pt-14 sm:pb-28 sm:pt-20">
+  <section className="relative overflow-hidden bg-white pb-16 pt-14 sm:pb-28 sm:pt-20">
     {/* City ticker — decorative (the same five cities are real links below),
         drifting on its own and leaning with the scroll wheel. */}
     <div aria-hidden="true" className="mb-14 border-y border-[#D7DEEA] py-5 sm:mb-20">

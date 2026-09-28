@@ -39,7 +39,7 @@ export const AboutReviews = () => {
   const wide = useMinWidth(1024);
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-20 ph-grain sm:py-28">
+    <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-16 ph-grain sm:py-28">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-40 top-0 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(70,105,159,0.35),transparent)] blur-2xl"
@@ -107,7 +107,7 @@ export const AboutReviews = () => {
                   <figure className="flex flex-col overflow-hidden rounded-[18px] border border-white/10 bg-white">
                     <div className="flex items-center gap-2.5 px-5 py-4">
                       <QuoteIcon className="h-5 w-5 flex-shrink-0 text-[#46699F]" />
-                      <span className="text-[10.5px] font-bold uppercase tracking-[0.12em] text-[#46699F]">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#46699F]">
                         Google review
                       </span>
                     </div>

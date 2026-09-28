@@ -33,7 +33,7 @@ export const TeamFigures = () => {
   const docs = chronological();
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#1F2030] py-24 ph-grain sm:py-32">
+    <section className="relative isolate overflow-hidden bg-[#1F2030] py-16 ph-grain sm:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-40 top-10 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(70,105,159,0.32),transparent)] blur-2xl"

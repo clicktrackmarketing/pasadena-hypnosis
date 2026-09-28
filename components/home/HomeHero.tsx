@@ -88,7 +88,7 @@ export const HomeHero = () => {
       <CursorGlow />
 
       {/* THE FIGURE ------------------------------------------------------ */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] opacity-45 sm:h-[78vh] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-auto lg:w-[56%] lg:opacity-100">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] opacity-[0.68] sm:h-[78vh] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-auto lg:w-[56%] lg:opacity-100">
         <Rings className="absolute left-1/2 top-1/2 h-[46rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 text-[#A9C4EE]/[0.07] ph-spin-slower" count={9} />
         <MindScene
           shape="brain"
@@ -123,7 +123,7 @@ export const HomeHero = () => {
               South Pasadena, CA &middot; in person or by video statewide
             </motion.p>
 
-            <h1 className="max-w-[16ch] font-heading text-[2.55rem] leading-[1.04] tracking-[-0.02em] text-white sm:text-[3.4rem] lg:text-[4.1rem]">
+            <h1 className="max-w-[16ch] font-heading text-[2.55rem] leading-[1.04] tracking-[-0.02em] text-white sm:text-[3.4rem] lg:text-[3.6rem] xl:text-[4.1rem]">
               <SplitHeading as="p" text={H1_CLAUSE} className="block" stagger={0.034} duration={0.7} />
               <SplitHeading
                 as="p"

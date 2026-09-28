@@ -20,7 +20,7 @@ import { FlipItem, RollText } from '../../MotionFx';
 export const TeamServices = () => {
   const top = SERVICES.slice(0, 3);
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-32">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <SectionHeading
           className="mb-12 sm:mb-14"
@@ -43,7 +43,7 @@ export const TeamServices = () => {
           }
         />
 
-        <Stagger className="grid auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" gap={0.12}>
+        <Stagger className="grid auto-rows-fr grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3" gap={0.12}>
           {top.map((s) => (
             <FlipItem key={s.slug} className="h-full">
               <ServiceCard service={s} variant="brief" />

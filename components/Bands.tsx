@@ -45,7 +45,7 @@ export const SplitFeature = ({
     tint === 'blue' ? 'bg-[#E6EFFF]' : tint === 'mint' ? 'bg-[#E9F3EF]' : tint === 'pale' ? 'bg-[#F7F9FC]' : 'bg-white';
 
   return (
-    <section className={`relative overflow-hidden ${bg} py-20 sm:py-28`}>
+    <section className={`relative overflow-hidden ${bg} py-16 sm:py-28`}>
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className={`grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20 ${flip ? 'lg:[direction:rtl]' : ''}`}>
           <div className="lg:[direction:ltr]">
@@ -133,7 +133,7 @@ export const FeatureGrid = ({
     columns === 2 ? 'sm:grid-cols-2' : columns === 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3';
 
   return (
-    <section className={`relative overflow-hidden ${bg} py-20 sm:py-28`}>
+    <section className={`relative overflow-hidden ${bg} py-16 sm:py-28`}>
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <SectionHeading className="mb-12 sm:mb-14" eyebrow={eyebrow} title={title} lede={lede} aside={aside} />
 
@@ -151,7 +151,7 @@ export const FeatureGrid = ({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2E2F3D]/50 via-transparent to-transparent" />
                   {it.tag ? (
-                    <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/92 px-3 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
+                    <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/92 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
                       {it.tag}
                     </span>
                   ) : null}

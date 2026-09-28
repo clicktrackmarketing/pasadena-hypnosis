@@ -53,8 +53,8 @@ export const Footer = () => {
 
       {/* COLUMNS ---------------------------------------------------------- */}
       <div className="relative mx-auto max-w-[1280px] px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-12 lg:gap-8">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-4">
             <span className="mb-5 inline-flex items-center rounded-[10px] bg-black px-3 py-2">
               <img
                 src={LOGO}
@@ -74,7 +74,7 @@ export const Footer = () => {
             </p>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-2 sm:col-span-1 lg:col-span-3">
             <h2 className={heading}>Visit</h2>
             <address className="flex flex-col gap-3.5 not-italic">
               <span className="flex items-start gap-2.5 text-[14px] text-[#D9E1F0]/85">
@@ -106,9 +106,9 @@ export const Footer = () => {
             </address>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2">
             <h2 className={heading}>Explore</h2>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-1 sm:gap-2.5">
               {EXPLORE.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className={navLink}>
@@ -119,9 +119,9 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-1 lg:col-span-3">
             <h2 className={heading}>Service areas</h2>
-            <ul className="mb-8 flex flex-col gap-2.5">
+            <ul className="mb-8 flex flex-col gap-1 sm:gap-2.5">
               {SERVICE_AREAS.map((a) => (
                 <li key={a}>
                   <Link href={`/service-areas/${areaSlug(a)}`} className={navLink}>
@@ -131,7 +131,7 @@ export const Footer = () => {
               ))}
             </ul>
             <h2 className={heading}>Legal</h2>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-1 sm:gap-2.5">
               {LEGAL.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className={navLink}>

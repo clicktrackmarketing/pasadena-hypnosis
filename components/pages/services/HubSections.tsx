@@ -68,7 +68,7 @@ export const NameTicker = () => {
 /* ---------------------------------------------------------------- grid -- */
 
 export const CatalogueGrid = ({ eyebrow, title }: { eyebrow: string; title: string }) => (
-  <section className="relative bg-[#E6EFFF] pb-24 pt-20 sm:pb-32 sm:pt-28">
+  <section className="relative bg-[#E6EFFF] pb-16 pt-16 sm:pb-32 sm:pt-28">
     <WaveSeam color="#E6EFFF" className="absolute inset-x-0 bottom-full" />
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <SectionHeading
@@ -86,11 +86,11 @@ export const CatalogueGrid = ({ eyebrow, title }: { eyebrow: string; title: stri
           would flip while still off screen. Delay by column keeps each row a
           left-to-right cascade. Flex-wrap rather than grid so the last,
           short row (14 = 4 x 3 + 2) sits centred instead of orphaned left. */}
-      <div className="flex flex-wrap justify-center gap-6" style={{ perspective: 1400 }}>
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-6" style={{ perspective: 1400 }}>
         {SERVICES.map((s, i) => (
           <Stagger
             key={s.slug}
-            className="w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
+            className="w-[calc((100%-0.75rem)/2)] sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
             delay={(i % 3) * 0.09}
           >
             <FlipItem className="h-full">
@@ -120,7 +120,7 @@ export const ChooseBand = ({
 }) => {
   const wide = useWide();
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-32">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
           <SectionHeading className="lg:col-span-7" size="lg" eyebrow={eyebrow} title={title} lede={lede} />
@@ -138,7 +138,7 @@ export const ChooseBand = ({
         </div>
 
         <DepthField className="mt-14 sm:mt-16">
-          <Stagger className="grid grid-cols-1 gap-6 lg:grid-cols-3" gap={0.14}>
+          <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6" gap={0.14}>
             {cards.map((c, i) => {
               const img = serviceImage(c.slug);
               return (

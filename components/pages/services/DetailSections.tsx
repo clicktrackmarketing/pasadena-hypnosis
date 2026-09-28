@@ -123,7 +123,7 @@ export const InShort = ({ slug }: { slug: string }) => {
   return (
     /* Clipped on x: the scope card enters from 60px to the right and would
        otherwise push a phone's page sideways while it travels. */
-    <section className="relative overflow-x-clip bg-white py-24 sm:py-32">
+    <section className="relative overflow-x-clip bg-white py-16 sm:py-32">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-start gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-7">
           <Reveal>
@@ -242,7 +242,7 @@ const useStepsGeometry = () => {
 export const StepsPath = () => {
   const [olRef, geo] = useStepsGeometry();
   return (
-  <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-24 ph-grain sm:py-32">
+  <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-16 ph-grain sm:py-32">
     <CursorGlow />
     <div
       aria-hidden="true"
@@ -310,7 +310,7 @@ export const StepsPath = () => {
 export const OfficeSetting = () => {
   const reduce = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-[#E9F3EF] py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-[#E9F3EF] py-16 sm:py-32">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-20 lg:px-8">
         <div className="lg:col-span-5">
           <CurtainReveal
@@ -405,7 +405,7 @@ export const RelatedRise = ({ slug }: { slug: string }) => {
     <div className="bg-[#E9F3EF]">
       <RiseIn className="relative isolate bg-[#1F2030] ph-grain">
         <CursorGlow />
-        <div className="relative mx-auto max-w-[1280px] px-4 py-24 sm:px-6 sm:py-28 lg:px-8">
+        <div className="relative mx-auto max-w-[1280px] px-4 py-16 sm:px-6 sm:py-28 lg:px-8">
           <div className="mb-12 flex flex-col gap-5 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
             <SplitHeading
               text="Other work Jason takes"
@@ -421,7 +421,7 @@ export const RelatedRise = ({ slug }: { slug: string }) => {
               </Link>
             </Reveal>
           </div>
-          <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" gap={0.1}>
+          <Stagger className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3" gap={0.1}>
             {related.map((s, i) => (
               <SlideItem key={s.slug} from={i % 2 === 0 ? 'left' : 'right'} className="h-full">
                 <ServiceCard service={s} variant="brief" />
@@ -441,7 +441,7 @@ export const FaqEcho = ({ scene, hover }: { scene: ShapeName; hover?: ShapeName 
   return (
     /* overflow-x-clip, not overflow-hidden: `hidden` makes the section a
        scroll container and the sticky column would stop sticking. */
-    <section className="relative overflow-x-clip bg-[#E6EFFF] py-24 sm:py-32">
+    <section className="relative overflow-x-clip bg-[#E6EFFF] py-16 sm:py-32">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
           <Reveal>

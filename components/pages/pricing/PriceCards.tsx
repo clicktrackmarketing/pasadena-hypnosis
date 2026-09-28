@@ -89,7 +89,7 @@ const CardBody = ({ c }: { c: PriceCard }) => {
         </h2>
         {c.tag ? (
           <span
-            className={`whitespace-nowrap rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] ${
+            className={`whitespace-nowrap rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.1em] ${
               dark ? 'bg-white/10 text-[#A9C4EE]' : 'bg-[#E6EFFF] text-[#46699F]'
             }`}
           >
@@ -125,7 +125,7 @@ const CardBody = ({ c }: { c: PriceCard }) => {
 
       <Link
         href={`/services/${c.slug}`}
-        className={`group/link relative mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+        className={`ph-tap group/link relative mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
           dark
             ? 'text-white hover:text-[#A9C4EE] focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-[#2E2F3D]'
             : 'text-[#46699F] hover:text-[#2E2F3D] focus-visible:ring-[#454659]'
@@ -139,7 +139,7 @@ const CardBody = ({ c }: { c: PriceCard }) => {
 };
 
 export const PriceCards = ({ cards }: { cards: PriceCard[] }) => (
-  <section className="relative isolate overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
+  <section className="relative isolate overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
     {/* Ground: concentric rings that turn with the scroll, and a soft light
         behind the featured card. Decorative. */}
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">

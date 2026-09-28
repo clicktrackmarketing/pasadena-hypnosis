@@ -99,7 +99,7 @@ export default function ServicesHubPage() {
       <NameTicker />
 
       {/* CATEGORIES — expanding panels ------------------------------------ */}
-      <section className="relative isolate overflow-hidden bg-[#1F2030] py-20 ph-grain sm:py-28">
+      <section className="relative isolate overflow-hidden bg-[#1F2030] py-16 ph-grain sm:py-28">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -left-40 top-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(closest-side,rgba(70,105,159,0.28),transparent)] blur-2xl"

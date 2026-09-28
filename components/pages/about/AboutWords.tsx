@@ -25,7 +25,7 @@ export const AboutWords = () => {
   const diploma = CREDENTIALS.find((c) => c.featured) ?? CREDENTIALS[0];
 
   return (
-    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-28">
       {/* Decorative: the logo's spiral, turning with the page. */}
       <div aria-hidden="true" className="pointer-events-none absolute -right-48 top-8 hidden md:block">
         <ScrollRotate degrees={140}>
@@ -73,7 +73,7 @@ export const AboutWords = () => {
 
           <SlideItem from="right">
             <div className="rounded-[20px] border border-[#D7DEEA] bg-[#F7F9FC] p-6 sm:p-7">
-              <span className="inline-flex items-center rounded-full bg-[#5DBA47] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
+              <span className="inline-flex items-center rounded-full bg-[#5DBA47] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
                 The diploma
               </span>
               <p className="mt-4 font-heading text-[1.3rem] leading-snug text-[#2E2F3D]">{diploma.award}</p>

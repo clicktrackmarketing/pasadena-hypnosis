@@ -27,7 +27,7 @@ import { SectionHeading } from '../SectionHeading';
 import { Reveal, Parallax, ClipReveal } from '../Motion';
 
 export const Gallery = () => (
-  <section className="relative overflow-hidden bg-[#F7F9FC] py-20 sm:py-28">
+  <section className="relative overflow-hidden bg-[#F7F9FC] py-16 sm:py-28">
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <SectionHeading
         className="mb-12 sm:mb-16"
@@ -112,7 +112,7 @@ export const Gallery = () => (
 
         {/* THE REAL ROOM. Largest tile, captioned, and the only one in the
             band that is a photograph of this practice. */}
-        <Parallax speed={-14} className="col-span-2 pt-4 lg:col-span-1 lg:pt-16">
+        <Parallax speed={-14} className="col-span-2 mx-auto w-full max-w-[26rem] pt-4 lg:col-span-1 lg:max-w-none lg:pt-16">
           <Reveal>
             <figure className="relative overflow-hidden rounded-[16px] border border-[#46699F]/35 shadow-[0_28px_64px_-34px_rgba(46,47,61,0.5)]">
               <img
@@ -122,7 +122,7 @@ export const Gallery = () => (
                 className="aspect-[3/4] w-full object-cover"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2E2F3D] via-[#2E2F3D]/80 to-transparent p-5 pt-14">
-                <span className="mb-2 inline-flex items-center rounded-full bg-[#5DBA47] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
+                <span className="mb-2 inline-flex items-center rounded-full bg-[#5DBA47] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
                   The real room
                 </span>
                 <p className="text-[13px] leading-[1.6] text-[#D9E1F0]">

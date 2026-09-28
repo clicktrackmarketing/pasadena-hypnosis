@@ -51,7 +51,7 @@ export const TeamTimeline = () => {
   const yearLabel = years.length === 1 ? years[0] : `${years[0]}–${years[years.length - 1]}`;
 
   return (
-    <section className="relative overflow-hidden bg-[#F7F9FC] py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-[#F7F9FC] py-16 sm:py-32">
       <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <SectionHeading
           className="mb-14 sm:mb-20"
@@ -104,7 +104,7 @@ export const TeamTimeline = () => {
                       }`}
                     >
                       <span className="font-heading text-[1.2rem] leading-none sm:text-[1.6rem]">{d.day}</span>
-                      <span className="mt-0.5 text-[9.5px] font-bold uppercase tracking-[0.12em] sm:text-[10.5px]">
+                      <span className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.12em] sm:text-[11px]">
                         {d.month}
                       </span>
                     </motion.div>
@@ -121,7 +121,7 @@ export const TeamTimeline = () => {
                           {it.award}
                         </p>
                         {isLast ? (
-                          <span className="inline-flex items-center rounded-full bg-[#E9F3EF] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
+                          <span className="inline-flex items-center rounded-full bg-[#E9F3EF] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
                             Diploma
                           </span>
                         ) : null}

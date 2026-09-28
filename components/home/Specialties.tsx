@@ -104,7 +104,7 @@ export const Specialties = () => {
   const scaleY = useTransform(progress, [0, 1], [0, 1]);
 
   return (
-    <section id="specialties" ref={ref} className="relative overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
+    <section id="specialties" ref={ref} className="relative overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
       <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-16 gap-y-12 lg:grid-cols-12">
           {/* PINNED CLAIM ------------------------------------------------- */}
@@ -117,7 +117,7 @@ export const Specialties = () => {
               </Reveal>
               <SplitHeading
                 text="Most hypnotherapists stop at phobias."
-                className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
+                className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[2.7rem] xl:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
               />
               <Reveal delay={0.1}>
                 <p className="mt-6 max-w-[42ch] text-[16.5px] leading-[1.72] text-[#4B5468]">
@@ -240,7 +240,7 @@ export const Specialties = () => {
                           <p className="mt-1.5 line-clamp-2 min-h-[2.6rem] text-[13.5px] leading-[1.55] text-[#4B5468]">
                             {c.note}
                           </p>
-                          <span className="mt-2.5 inline-flex items-center rounded-full bg-[#E6EFFF] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#46699F]">
+                          <span className="mt-2.5 inline-flex items-center rounded-full bg-[#E6EFFF] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[#46699F]">
                             {service?.tag ?? service?.category ?? 'Service'}
                           </span>
                         </div>
