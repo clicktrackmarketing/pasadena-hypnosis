@@ -89,16 +89,16 @@ export const TeamTimeline = () => {
                     key={it.img}
                     initial={reduce ? false : { opacity: 0, x: -34, rotateY: -14 }}
                     whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                    viewport={{ once: true, margin: '0px 0px -18% 0px' }}
-                    transition={{ duration: 0.9, ease: EASE_OUT_SOFT }}
+                    viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                    transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
                     style={{ transformPerspective: 1000, transformOrigin: '0% 50%' }}
                     className="flex items-stretch gap-5 sm:gap-7"
                   >
                     <motion.div
                       initial={reduce ? false : { scale: 0.55 }}
                       whileInView={{ scale: 1 }}
-                      viewport={{ once: true, margin: '0px 0px -18% 0px' }}
-                      transition={{ duration: 0.8, delay: 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+                      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                      transition={{ duration: 0.6, delay: 0.1, ease: [0.34, 1.56, 0.64, 1] }}
                       className={`relative z-10 flex h-16 w-16 flex-shrink-0 flex-col items-center justify-center self-center rounded-full border text-center shadow-[0_12px_28px_-16px_rgba(31,32,48,0.5)] sm:h-[5.5rem] sm:w-[5.5rem] ${
                         isLast ? 'border-[#5DBA47] bg-[#5DBA47] text-[#2E2F3D]' : 'border-[#D7DEEA] bg-white text-[#46699F]'
                       }`}

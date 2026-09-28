@@ -27,8 +27,8 @@ export const TeamScope = () => {
               className="absolute inset-x-0 top-0 h-[3px] origin-left bg-gradient-to-r from-[#46699F] via-[#5DBA47] to-[#46699F]"
               initial={reduce ? false : { scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-              transition={{ duration: 1.4, delay: 0.2, ease: EASE_OUT_SOFT }}
+              viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+              transition={{ duration: 0.65, delay: 0.2, ease: EASE_OUT_SOFT }}
             />
             <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#E9F3EF] ring-1 ring-[#2E2F3D]/10">
               <ShieldCheckIcon className="h-7 w-7 text-[#2E2F3D]" />

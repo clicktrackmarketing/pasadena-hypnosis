@@ -85,8 +85,8 @@ export const FinalCta = () => {
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 26 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-            transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT_SOFT }}
+            viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+            transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT_SOFT }}
             className="lg:col-span-5"
           >
             <div className="rounded-[20px] border border-white/15 bg-white/[0.07] p-7 backdrop-blur-md">

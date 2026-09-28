@@ -71,7 +71,7 @@ const phaseAt = (elapsed: number): Phase => {
 export const BreathSection = () => {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const inView = useInView(sectionRef, { margin: '0px 0px -15% 0px' });
+  const inView = useInView(sectionRef, { margin: '0px 0px 5% 0px' });
 
   const ringRef = useRef<HTMLDivElement | null>(null);
   const [label, setLabel] = useState('Breathe in');
@@ -132,7 +132,7 @@ export const BreathSection = () => {
             initial={reduce ? false : { opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex h-[19rem] w-[19rem] items-center justify-center sm:h-[23rem] sm:w-[23rem]"
           >
             <Rings className="absolute inset-0 h-full w-full text-[#A9C4EE]/20 ph-spin-slower" count={7} />

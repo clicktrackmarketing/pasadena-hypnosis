@@ -83,7 +83,7 @@ export const AnswerZoom = ({ slug }: { slug: string }) => {
             <motion.p
               initial={reduce ? false : { opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '0px 0px -18% 0px' }}
+              viewport={{ once: true, margin: '0px 0px 5% 0px' }}
               transition={{ duration: 0.7, ease: EASE_OUT_SOFT }}
               className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] font-bold uppercase tracking-[0.18em] text-[#A9C4EE]"
             >
@@ -100,8 +100,8 @@ export const AnswerZoom = ({ slug }: { slug: string }) => {
               id="answer-first"
               initial={reduce ? false : { opacity: 0, y: 40, filter: 'blur(12px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, margin: '0px 0px -18% 0px' }}
-              transition={{ duration: 1.2, delay: 0.1, ease: EASE_OUT_SOFT }}
+              viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+              transition={{ duration: 0.65, delay: 0.1, ease: EASE_OUT_SOFT }}
               className="max-w-[42ch] font-heading text-[1.28rem] leading-[1.48] tracking-[-0.005em] text-white sm:text-[1.75rem] lg:text-[2.05rem]"
             >
               {service.answer}
@@ -150,8 +150,8 @@ export const InShort = ({ slug }: { slug: string }) => {
             role="note"
             initial={reduce ? false : { opacity: 0, x: 60, rotateY: -14 }}
             whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-            transition={{ duration: 1, ease: EASE_OUT_SOFT }}
+            viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+            transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
             className="relative overflow-hidden rounded-[24px] border border-[#2E2F3D]/12 bg-[#E9F3EF] p-7 pl-9 shadow-[0_30px_60px_-40px_rgba(46,47,61,0.45)] sm:p-9 sm:pl-11"
           >
             <motion.span
@@ -160,7 +160,7 @@ export const InShort = ({ slug }: { slug: string }) => {
               initial={reduce ? false : { scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.35, ease: EASE_OUT_SOFT }}
+              transition={{ duration: 0.65, delay: 0.15, ease: EASE_OUT_SOFT }}
             />
             <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_8px_20px_-12px_rgba(46,47,61,0.5)]">
               <ShieldCheckIcon className="h-6 w-6 text-[#2E2F3D]" aria-hidden="true" />
@@ -325,8 +325,8 @@ export const OfficeSetting = () => {
                 className="aspect-[760/1131] w-full object-cover"
                 initial={reduce ? false : { scale: 1.18 }}
                 whileInView={{ scale: 1 }}
-                viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-                transition={{ duration: 1.8, delay: 0.45, ease: EASE_OUT_SOFT }}
+                viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                transition={{ duration: 0.65, delay: 0.15, ease: EASE_OUT_SOFT }}
               />
             </div>
           </CurtainReveal>

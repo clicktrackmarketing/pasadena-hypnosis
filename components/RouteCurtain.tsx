@@ -41,7 +41,7 @@ export const RouteCurtain = () => {
       className="pointer-events-none fixed inset-0 z-[90] flex items-center justify-center bg-[#2E2F3D]"
       initial={{ clipPath: 'inset(0% 0% 0% 0%)' }}
       animate={{ clipPath: 'inset(0% 0% 100% 0%)' }}
-      transition={{ duration: 0.8, delay: 0.12, ease: [0.76, 0, 0.24, 1] }}
+      transition={{ duration: 0.6, delay: 0.12, ease: [0.76, 0, 0.24, 1] }}
     >
       <motion.div
         initial={{ opacity: 1, scale: 1, rotate: 0 }}

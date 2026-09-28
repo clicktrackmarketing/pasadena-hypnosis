@@ -45,8 +45,8 @@ export const AboutZoom = () => {
             className="mx-auto w-full max-w-[1000px] text-center"
             initial={reduce ? false : { opacity: 0, scale: 0.94, filter: 'blur(14px)' }}
             whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: '0px 0px -30% 0px' }}
-            transition={{ duration: 1.3, ease: EASE_OUT_SOFT }}
+            viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+            transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
           >
             <blockquote className="mx-auto max-w-[17ch] font-heading text-[2.05rem] leading-[1.1] tracking-[-0.02em] text-white sm:text-[3.4rem] lg:text-[4.3rem]">
               &ldquo;{REAL_COPY.tagline}&rdquo;

@@ -130,8 +130,8 @@ export const SessionJourney = () => {
                     <motion.div
                       initial={reduce ? false : { opacity: 0, y: 60, filter: 'blur(8px)' }}
                       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      viewport={{ once: true, margin: '0px 0px -15% 0px' }}
-                      transition={{ duration: 0.9, ease: EASE_OUT_SOFT }}
+                      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                      transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
                       className={`w-full rounded-[24px] border p-6 backdrop-blur-md transition-colors duration-700 sm:p-8 ${
                         on ? 'border-[#A9C4EE]/35 bg-white/[0.07]' : 'border-white/10 bg-[#1F2030]/70'
                       }`}

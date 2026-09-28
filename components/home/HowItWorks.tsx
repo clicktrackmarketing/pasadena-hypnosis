@@ -99,15 +99,15 @@ export const HowItWorks = () => {
                     <motion.div
                       initial={reduce ? false : { opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-                      transition={{ duration: 0.75, ease: EASE_OUT_SOFT }}
+                      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                      transition={{ duration: 0.6, ease: EASE_OUT_SOFT }}
                       className="flex gap-5 lg:[direction:ltr]"
                     >
                       <motion.span
                         aria-hidden="true"
                         initial={reduce ? false : { scale: 0.6, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+                        viewport={{ once: true, margin: '0px 0px 5% 0px' }}
                         transition={{ duration: 0.6, delay: 0.1, ease: EASE_OUT_SOFT }}
                         className="relative z-10 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border border-[#2E2F3D]/12 bg-white font-heading text-lg text-[#46699F] shadow-[0_8px_24px_-12px_rgba(46,47,61,0.4)] lg:hidden"
                       >

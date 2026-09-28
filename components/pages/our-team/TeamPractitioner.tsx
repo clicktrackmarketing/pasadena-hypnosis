@@ -94,8 +94,8 @@ export const TeamPractitioner = () => {
                 className="absolute bottom-0 left-0 top-0 w-[3px] origin-top rounded-full bg-gradient-to-b from-[#5DBA47] to-[#46699F]"
                 initial={reduce ? false : { scaleY: 0 }}
                 whileInView={{ scaleY: 1 }}
-                viewport={{ once: true, margin: '0px 0px -15% 0px' }}
-                transition={{ duration: 1.1, delay: 0.25, ease: EASE_OUT_SOFT }}
+                viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                transition={{ duration: 0.65, delay: 0.25, ease: EASE_OUT_SOFT }}
               />
               <p className="font-heading text-[1.35rem] leading-[1.5] text-[#2E2F3D] sm:text-[1.6rem]">
                 &ldquo;{REAL_COPY.about.training}&rdquo;

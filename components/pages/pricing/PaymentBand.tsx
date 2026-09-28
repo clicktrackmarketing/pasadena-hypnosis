@@ -39,7 +39,7 @@ export const PaymentBand = () => {
             initial={reduce ? false : { opacity: 0, scale: 0.5, rotate: -30 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: EASE_OUT_SOFT }}
+            transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
             className="mb-8 flex h-16 w-16 items-center justify-center rounded-full border border-[#A9C4EE]/35 bg-white/[0.04]"
           >
             <ShieldCheckIcon className="h-7 w-7 text-[#A9C4EE]" />

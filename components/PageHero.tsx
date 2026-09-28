@@ -74,7 +74,7 @@ const HeroTitle = ({ text, intro, className }: { text: string; intro: HeroIntro;
                 className="inline-block"
                 initial={{ y: '112%' }}
                 animate={{ y: '0%' }}
-                transition={{ duration: 0.85, delay: 0.05 + i * 0.045, ease: [0.76, 0, 0.24, 1] }}
+                transition={{ duration: 0.6, delay: 0.05 + i * 0.045, ease: [0.76, 0, 0.24, 1] }}
               >
                 {w}
               </motion.span>
@@ -91,7 +91,7 @@ const HeroTitle = ({ text, intro, className }: { text: string; intro: HeroIntro;
         className={className}
         initial={{ opacity: 0, filter: 'blur(18px)', letterSpacing: '0.04em' }}
         animate={{ opacity: 1, filter: 'blur(0px)', letterSpacing: '-0.015em' }}
-        transition={{ duration: 1.1, ease: EASE_OUT_SOFT }}
+        transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
       >
         {text}
       </motion.h1>
@@ -102,7 +102,7 @@ const HeroTitle = ({ text, intro, className }: { text: string; intro: HeroIntro;
       className={`${className} origin-left`}
       initial={{ opacity: 0, scale: 1.12, y: 18 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 1, ease: EASE_OUT_SOFT }}
+      transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
     >
       {text}
     </motion.h1>
@@ -262,7 +262,7 @@ export const PageHero = ({
                 className="inline-block h-px w-8 origin-left bg-[#A9C4EE]/70"
                 initial={reduce ? false : { scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT_SOFT }}
+                transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT_SOFT }}
               />
               {eyebrow}
             </motion.p>
@@ -302,7 +302,7 @@ export const PageHero = ({
             <motion.div
               initial={reduce ? false : { opacity: 0, scale: 0.94, y: 26, rotateY: -8 }}
               animate={{ opacity: 1, scale: 1, y: 0, rotateY: 0 }}
-              transition={{ duration: 1.05, delay: 0.2, ease: EASE_OUT_SOFT }}
+              transition={{ duration: 0.65, delay: 0.2, ease: EASE_OUT_SOFT }}
               style={{ transformPerspective: 1200 }}
               className="lg:col-span-5"
             >
@@ -357,7 +357,7 @@ export const PageHero = ({
                   <motion.span
                     aria-hidden="true"
                     className="absolute left-0 top-0 hidden h-full w-px origin-top bg-white/12 lg:block"
-                    variants={{ hidden: { scaleY: 0 }, shown: { scaleY: 1, transition: { duration: 0.8, ease: EASE_OUT_SOFT } } }}
+                    variants={{ hidden: { scaleY: 0 }, shown: { scaleY: 1, transition: { duration: 0.6, ease: EASE_OUT_SOFT } } }}
                   />
                 ) : null}
                 <dt className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#A9C4EE]">{f.k}</dt>

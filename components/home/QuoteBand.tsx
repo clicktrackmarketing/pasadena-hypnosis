@@ -35,7 +35,7 @@ export const QuoteBand = () => {
           initial={reduce ? false : { opacity: 0, scale: 0.6, rotate: -20 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: EASE_OUT_SOFT }}
+          transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
         >
           <QuoteIcon className="mx-auto mb-10 h-11 w-11 text-[#A9C4EE]" />
         </motion.div>
@@ -57,7 +57,7 @@ export const QuoteBand = () => {
           initial={reduce ? false : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9, delay: 0.4 }}
+          transition={{ duration: 0.65, delay: 0.4 }}
           className="mt-10 text-[13px] tracking-wide text-[#D9E1F0]/60"
         >
           Quoted on pasadenahypnosis.com today &mdash; carried across unchanged

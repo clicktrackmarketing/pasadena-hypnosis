@@ -7,6 +7,7 @@ import { ScrollProgress } from '../components/Motion';
 import { SmoothScroll } from '../components/SmoothScroll';
 import { CursorRing } from '../components/CursorRing';
 import { RouteCurtain } from '../components/RouteCurtain';
+import { ImageWarmup } from '../components/ImageWarmup';
 import { buildJsonLd } from '../components/content';
 
 /* ---------------------------------------------------------------------------
@@ -95,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll />
         <CursorRing />
         <RouteCurtain />
+        <ImageWarmup />
         <div className="w-full min-h-screen flex flex-col bg-white text-[#2E2F3D]">
           <Header />
           <main className="flex-1">{children}</main>

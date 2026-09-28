@@ -32,10 +32,9 @@ import { priceLabel } from '../price';
 import { responsive } from '../responsive';
 import { ArrowRightIcon } from '../Icons';
 import { SectionHeading } from '../SectionHeading';
-import { motion, useReducedMotion, PinnedRail, TiltCard, EASE_OUT_SOFT } from '../Motion';
+import { PinnedRail, TiltCard } from '../Motion';
 
 export const ServicesGrid = () => {
-  const reduce = useReducedMotion();
 
   return (
     <section className="relative bg-white pt-16 sm:pt-28">
@@ -66,18 +65,14 @@ export const ServicesGrid = () => {
         className="pb-16 sm:pb-28"
         trackClassName="flex gap-6 px-4 sm:px-6 lg:px-8 pb-4"
       >
-        {SERVICES.map((s, i) => {
+        {SERVICES.map((s) => {
           const img = serviceImage(s.slug);
           const price = priceLabel(s);
           return (
-            <motion.div
-              key={s.slug}
-              initial={reduce ? false : { opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '0px 0px -8% 0px' }}
-              transition={{ duration: 0.7, delay: Math.min(i, 5) * 0.05, ease: EASE_OUT_SOFT }}
-              className="w-[19rem] flex-shrink-0 sm:w-[21rem]"
-            >
+            /* No per-card entrance: in a sideways rail each card would start
+               blank and fade in as it slid into view, which reads as photos
+               loading late. The section heading carries the entrance. */
+            <div key={s.slug} className="w-[19rem] flex-shrink-0 sm:w-[21rem]">
               <TiltCard className="h-full" max={5}>
                 <Link
                   href={`/services/${s.slug}`}
@@ -118,7 +113,7 @@ export const ServicesGrid = () => {
                   </div>
                 </Link>
               </TiltCard>
-            </motion.div>
+            </div>
           );
         })}
       </PinnedRail>

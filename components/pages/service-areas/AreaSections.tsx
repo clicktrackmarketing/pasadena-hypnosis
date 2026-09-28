@@ -225,8 +225,8 @@ const IndexRow = ({ a, i }: { a: string; i: number }) => {
         className="absolute bottom-0 left-0 block h-px w-full origin-left bg-[#2E2F3D]/15"
         initial={reduce ? false : { scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: '0px 0px -8% 0px' }}
-        transition={{ duration: 1.2, delay: i * 0.08, ease: EASE_OUT_SOFT }}
+        viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+        transition={{ duration: 0.65, delay: i * 0.08, ease: EASE_OUT_SOFT }}
       />
     </li>
   );

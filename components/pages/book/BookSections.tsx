@@ -144,7 +144,7 @@ const Node = ({ n, lit, reduce }: { n: string; lit: boolean; reduce: boolean }) 
         className="absolute -inset-1.5 rounded-full border border-[#5DBA47]"
         initial={{ scale: 1, opacity: 0.8 }}
         animate={{ scale: 1.7, opacity: 0 }}
-        transition={{ duration: 1.4, ease: 'easeOut' }}
+        transition={{ duration: 0.65, ease: 'easeOut' }}
       />
     ) : null}
     {n}
@@ -209,8 +209,8 @@ export const StepsPath = () => {
                 <motion.div
                   initial={reduce ? false : { opacity: 0, x: 36 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '0px 0px -18% 0px' }}
-                  transition={{ duration: 0.9, ease: EASE_OUT_SOFT }}
+                  viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                  transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
                 >
                   <h3 className="font-heading text-[1.6rem] leading-[1.15] text-[#2E2F3D] sm:text-[2.2rem]">{s.title}</h3>
                   <p className="mt-3 max-w-[50ch] text-[16px] leading-[1.72] text-[#4B5468] sm:text-[17px]">{s.body}</p>

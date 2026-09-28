@@ -417,7 +417,7 @@ export const FlipItem = ({ children, className, as = 'div' }: { children: ReactN
       style={{ transformPerspective: 1200, transformOrigin: '50% 0%' }}
       variants={{
         hidden: { opacity: 0, rotateX: -58, y: 46 },
-        shown: { opacity: 1, rotateX: 0, y: 0, transition: { duration: 1, ease: EASE_OUT_SOFT } },
+        shown: { opacity: 1, rotateX: 0, y: 0, transition: { duration: 0.65, ease: EASE_OUT_SOFT } },
       }}
     >
       {children}
@@ -438,7 +438,7 @@ export const PopItem = ({ children, className, as = 'div' }: { children: ReactNo
       className={className}
       variants={{
         hidden: { opacity: 0, scale: 0.86, filter: 'blur(10px)' },
-        shown: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 0.9, ease: EASE_OUT_SOFT } },
+        shown: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 0.65, ease: EASE_OUT_SOFT } },
       }}
     >
       {children}
@@ -471,7 +471,7 @@ export const SlideItem = ({
       style={{ transformPerspective: 1200 }}
       variants={{
         hidden: { opacity: 0, x: 70 * s, rotateY: 16 * s },
-        shown: { opacity: 1, x: 0, rotateY: 0, transition: { duration: 0.95, ease: EASE_OUT_SOFT } },
+        shown: { opacity: 1, x: 0, rotateY: 0, transition: { duration: 0.65, ease: EASE_OUT_SOFT } },
       }}
     >
       {children}
@@ -503,10 +503,10 @@ export const CurtainReveal = ({
       className={`relative overflow-hidden ${className ?? ''}`}
       initial="hidden"
       whileInView="shown"
-      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
     >
       <motion.div
-        variants={{ hidden: { opacity: 0 }, shown: { opacity: 1, transition: { delay: delay + 0.45, duration: 0.01 } } }}
+        variants={{ hidden: { opacity: 0 }, shown: { opacity: 1, transition: { delay: delay + 0.24, duration: 0.01 } } }}
       >
         {children}
       </motion.div>
@@ -518,7 +518,7 @@ export const CurtainReveal = ({
           hidden: { x: '-101%' },
           shown: {
             x: ['-101%', '0%', '0%', '101%'],
-            transition: { duration: 1.25, delay, times: [0, 0.36, 0.46, 1], ease: [0.76, 0, 0.24, 1] },
+            transition: { duration: 0.65, delay, times: [0, 0.36, 0.46, 1], ease: [0.76, 0, 0.24, 1] },
           },
         }}
       />

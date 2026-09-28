@@ -102,7 +102,7 @@ export const CategoryPanels = ({ groups }: { groups: CategoryGroup[] }) => {
         className="svc-acc"
         initial={reduce ? false : 'hidden'}
         whileInView="shown"
-        viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+        viewport={{ once: true, margin: '0px 0px 5% 0px' }}
         variants={{ shown: { transition: { staggerChildren: 0.075 } } }}
       >
         {groups.map((g, i) => {
@@ -126,7 +126,7 @@ export const CategoryPanels = ({ groups }: { groups: CategoryGroup[] }) => {
                         opacity: 1,
                         y: 0,
                         clipPath: 'inset(0% 0% 0% 0% round 22px)',
-                        transition: { duration: 1.1, ease: EASE_OUT_SOFT },
+                        transition: { duration: 0.65, ease: EASE_OUT_SOFT },
                       },
                     }
               }

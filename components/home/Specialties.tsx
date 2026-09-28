@@ -202,8 +202,8 @@ export const Specialties = () => {
                     }}
                     initial={reduce ? false : { opacity: 0, x: i % 2 === 0 ? -40 : 40, rotateY: i % 2 === 0 ? -10 : 10 }}
                     whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                    viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-                    transition={{ duration: 0.85, ease: EASE_OUT_SOFT }}
+                    viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+                    transition={{ duration: 0.6, ease: EASE_OUT_SOFT }}
                     style={{ transformPerspective: 1200 }}
                   >
                     <Link

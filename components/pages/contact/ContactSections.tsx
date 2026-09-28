@@ -195,7 +195,7 @@ export const OfficeBlock = () => {
               style={{ left: `calc(${PIN_X * 100}% - 18px)`, top: `calc(${PIN_Y * 100}% - 18px)` }}
               initial={reduce ? false : { scale: 0, y: -14 }}
               whileInView={{ scale: 1, y: 0 }}
-              viewport={{ once: true, margin: '0px 0px -30% 0px' }}
+              viewport={{ once: true, margin: '0px 0px 5% 0px' }}
               transition={{ duration: 0.7, delay: 0.5, ease: EASE_OUT_SOFT }}
             >
               <MapPinIcon className="h-4 w-4" />

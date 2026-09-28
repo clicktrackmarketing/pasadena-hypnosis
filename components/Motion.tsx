@@ -68,7 +68,7 @@ const offsetFor = (dir: Dir, distance: number) => {
 export const Reveal = ({
   children,
   delay = 0,
-  duration = 0.75,
+  duration = 0.6,
   dir = 'up',
   distance = 26,
   className,
@@ -93,7 +93,7 @@ export const Reveal = ({
       className={className}
       initial={{ opacity: 0, ...offsetFor(dir, distance) }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
       transition={{ duration, delay, ease: EASE_OUT_SOFT }}
     >
       {children}
@@ -130,7 +130,7 @@ export const Stagger = ({
       className={className}
       initial="hidden"
       whileInView="shown"
-      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
       variants={{ shown: { transition: { staggerChildren: gap, delayChildren: delay } } }}
     >
       {children}
@@ -181,8 +181,8 @@ export const SplitHeading = ({
   text,
   className,
   delay = 0,
-  stagger = 0.055,
-  duration = 0.95,
+  stagger = 0.045,
+  duration = 0.7,
   as: Tag = 'h2',
 }: {
   text: string;
@@ -203,7 +203,7 @@ export const SplitHeading = ({
         aria-hidden="true"
         initial="hidden"
         whileInView="shown"
-        viewport={{ once: true, margin: '0px 0px -15% 0px' }}
+        viewport={{ once: true, margin: '0px 0px 5% 0px' }}
         variants={{ shown: { transition: { staggerChildren: stagger, delayChildren: delay } } }}
         style={{ display: 'inline' }}
       >
@@ -287,8 +287,8 @@ export const ScaleInImage = ({
       className={className}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-      transition={{ duration: 0.9, ease: EASE_OUT_SOFT }}
+      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+      transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
     >
       <motion.img
         src={src}
@@ -297,8 +297,8 @@ export const ScaleInImage = ({
         className={imgClassName}
         initial={{ scale: 1.16 }}
         whileInView={{ scale: 1 }}
-        viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-        transition={{ duration: 1.5, ease: EASE_OUT_SOFT }}
+        viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+        transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
       />
     </motion.div>
   );
@@ -414,7 +414,7 @@ export const Counter = ({
 }) => {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLSpanElement | null>(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
+  const inView = useInView(ref, { once: true, margin: '0px 0px 5% 0px' });
   const [n, setN] = useState(0);
   const final = `${prefix}${to.toFixed(decimals)}${suffix}`;
 
@@ -562,8 +562,8 @@ export const ClipReveal = ({
       className={className}
       initial={{ clipPath: hidden }}
       whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-      transition={{ duration: 1.15, delay, ease: EASE_OUT_SOFT }}
+      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+      transition={{ duration: 0.65, delay, ease: EASE_OUT_SOFT }}
     >
       {/* The inner image counter-scales so the picture does not appear to
           stretch out of the mask as the mask opens. */}
@@ -575,8 +575,8 @@ export const ClipReveal = ({
         {...responsive(src, 'half')}
         initial={{ scale: 1.22 }}
         whileInView={{ scale: 1 }}
-        viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-        transition={{ duration: 1.5, delay, ease: EASE_OUT_SOFT }}
+        viewport={{ once: true, margin: '0px 0px 5% 0px' }}
+        transition={{ duration: 0.65, delay, ease: EASE_OUT_SOFT }}
       />
     </motion.div>
   );
@@ -614,7 +614,7 @@ export const LineReveal = ({
       aria-label={lines.join(' ')}
       initial="hidden"
       whileInView="shown"
-      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+      viewport={{ once: true, margin: '0px 0px 5% 0px' }}
       variants={{ shown: { transition: { staggerChildren: 0.075, delayChildren: delay } } }}
     >
       {lines.map((l, i) => (
@@ -623,7 +623,7 @@ export const LineReveal = ({
             className={`block ${lineClassName ?? ''}`}
             variants={{
               hidden: { y: '110%' },
-              shown: { y: '0%', transition: { duration: 0.85, ease: EASE_OUT_SOFT } },
+              shown: { y: '0%', transition: { duration: 0.6, ease: EASE_OUT_SOFT } },
             }}
           >
             {l}
