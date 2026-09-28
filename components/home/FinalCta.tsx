@@ -14,7 +14,9 @@
    objection of someone reading this at the end of a workday.
 
    MOTION: magnetic primary button (capped at 6px so the target never runs
-   away), soft reveal on the copy, drifting backdrop.
+   away), soft reveal on the copy. Since 2026-09-28 the band rises into place
+   as a rounded card that grows to full width, and a field of rippling rings
+   (a voice, travelling outward) sits behind the glass hours card.
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';
@@ -22,24 +24,26 @@ import { NAP, HOURS } from '../content';
 import { OPEN_WATER } from '../unsplash';
 import { ArrowRightIcon, PhoneIcon, ClockIcon, MailIcon } from '../Icons';
 import { responsive } from '../responsive';
-import { Rings } from '../Spiral';
+import { MindScene } from '../scene/MindScene';
+import { RiseIn, RollText } from '../MotionFx';
 import { Reveal, SplitHeading, Magnetic, motion, useReducedMotion, EASE_OUT_SOFT } from '../Motion';
 
 export const FinalCta = () => {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#454659] py-20 ph-grain sm:py-28">
+    <RiseIn className="relative isolate bg-[#454659] ph-grain">
+    <section className="relative isolate overflow-hidden py-20 sm:py-32">
       <img
         src={OPEN_WATER.src}
         {...responsive(OPEN_WATER.src, 'full')}
         alt=""
         aria-hidden="true"
         loading="lazy"
-        className={`pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25 ${reduce ? '' : 'ph-drift'}`}
+        className={`pointer-events-none absolute inset-0 h-full w-full object-cover opacity-15 ${reduce ? '' : 'ph-drift'}`}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-[#454659] via-[#454659]/90 to-[#2E2F3D]/95" />
-      <Rings className="pointer-events-none absolute -right-32 -top-24 h-[32rem] w-[32rem] text-white/10 ph-spin-slow" count={8} />
+      <MindScene shape="rings" tone="dark" intro={false} intensity={0.9} className="absolute inset-y-0 right-[-8%] w-full lg:w-[62%]" />
 
       <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
@@ -62,7 +66,7 @@ export const FinalCta = () => {
                     href="/book"
                     className="group inline-flex items-center gap-2.5 rounded-[12px] bg-white px-7 py-4 text-[15px] font-semibold text-[#454659] shadow-[0_14px_36px_-16px_rgba(0,0,0,0.8)] transition-colors duration-300 hover:bg-[#E6EFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#454659] sm:text-base"
                   >
-                    Book a Free Discovery Call
+                    <RollText>Book a Free Discovery Call</RollText>
                     <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </Magnetic>
@@ -110,5 +114,6 @@ export const FinalCta = () => {
         </div>
       </div>
     </section>
+    </RiseIn>
   );
 };

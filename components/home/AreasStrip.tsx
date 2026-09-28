@@ -21,11 +21,24 @@ import { SERVICE_AREAS, ONLINE_AREA, NAP } from '../content';
 import { PASADENA_CITY_HALL } from '../unsplash';
 import { MapPinIcon, ArrowRightIcon } from '../Icons';
 import { Reveal, SplitHeading, Stagger, StaggerItem, Parallax } from '../Motion';
+import { VelocityMarquee } from '../MotionFx';
 
 const slug = (a: string) => a.split(',')[0].trim().toLowerCase().replace(/\s+/g, '-');
 
 export const AreasStrip = () => (
-  <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+  <section className="relative overflow-hidden bg-white pb-20 pt-14 sm:pb-28 sm:pt-20">
+    {/* City ticker — decorative (the same five cities are real links below),
+        drifting on its own and leaning with the scroll wheel. */}
+    <div aria-hidden="true" className="mb-14 border-y border-[#D7DEEA] py-5 sm:mb-20">
+      <VelocityMarquee baseVelocity={1.4}>
+        {SERVICE_AREAS.map((a) => (
+          <span key={a} className="mx-8 inline-flex items-center gap-8 font-heading text-[2.6rem] italic text-[#2E2F3D]/85 sm:text-[4.2rem]">
+            {a.replace(', CA', '')}
+            <span className="inline-block h-3 w-3 rounded-full border-2 border-[#46699F]" />
+          </span>
+        ))}
+      </VelocityMarquee>
+    </div>
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">

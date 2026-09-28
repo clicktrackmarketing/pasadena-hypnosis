@@ -4,10 +4,11 @@ import { HOME_ANSWER, FAQS } from '../components/content';
 import { ArrowRightIcon } from '../components/Icons';
 import { FaqAccordion } from '../components/FaqAccordion';
 import { Reveal, SplitHeading } from '../components/Motion';
+import { WaveSeam } from '../components/MotionFx';
 import { HomeHero } from '../components/home/HomeHero';
 import { Specialties } from '../components/home/Specialties';
 import { ServicesGrid } from '../components/home/ServicesGrid';
-import { HowItWorks } from '../components/home/HowItWorks';
+import { SessionJourney } from '../components/home/SessionJourney';
 import { BreathSection } from '../components/home/BreathSection';
 import { Practitioner } from '../components/home/Practitioner';
 import { Reviews } from '../components/home/Reviews';
@@ -60,7 +61,7 @@ export default function HomePage() {
       <Specialties />
       <ServicesGrid />
       <Gallery />
-      <HowItWorks />
+      <SessionJourney />
       <BreathSection />
       <WhyPeopleCome />
       <Practitioner />
@@ -70,7 +71,8 @@ export default function HomePage() {
 
       {/* FAQ TEASER — the accordion leaf is shared with /faq and the service
           pages, so the height animation added to it there arrives here too. */}
-      <section className="bg-[#E6EFFF] py-20 sm:py-28">
+      <section className="relative bg-[#E6EFFF] py-20 sm:py-28">
+        <WaveSeam color="#E6EFFF" className="absolute bottom-full left-0" />
         <div className="mx-auto max-w-[800px] px-4 sm:px-6">
           <div className="mb-10 text-center sm:mb-12">
             <Reveal>

@@ -403,3 +403,154 @@ html { scroll-behavior: smooth; }
     min-width: 44px;
   }
 }
+
+/* ===========================================================================
+   MOTION + 3D LAYER — added 2026-09-28 (components/MotionFx.tsx,
+   components/scene/*, components/SmoothScroll.tsx, components/CursorRing.tsx).
+   Same palette rules as above: #5DBA47 / #0E75BB / #F09D8B appear only as
+   glow and gradient stops, never as text on a light ground.
+   =========================================================================== */
+
+/* Lenis smooth scrolling. The library adds these classes to <html>; the
+   `scroll-behavior: auto` override matters — native smooth scrolling on top
+   of Lenis's own interpolation makes anchor jumps stutter. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* <Spotlight>: a soft light under the cursor plus a border that brightens
+   nearest to it. Driven by --mx / --my set on pointermove. */
+.ph-spot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 50%), var(--spot), transparent 62%);
+}
+.ph-spot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(169, 196, 238, 0.9), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.ph-spot:hover::before,
+.ph-spot:hover::after {
+  opacity: 1;
+}
+
+/* <RollText>: the label rolls up to its duplicate on hover or keyboard focus. */
+.ph-roll-a,
+.ph-roll-b {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .ph-roll-a,
+.group:hover .ph-roll-b,
+.group:focus-visible .ph-roll-a,
+.group:focus-visible .ph-roll-b {
+  transform: translateY(-100%);
+}
+
+/* Slow-moving light across a short run of display type. Use on a plain span
+   containing text directly — background-clip:text does not survive
+   transformed children. Dark grounds only. */
+@keyframes ph-shimmer {
+  to {
+    background-position: -300% 0;
+  }
+}
+.ph-shimmer {
+  background-image: linear-gradient(100deg, #a9c4ee 0%, #ffffff 20%, #cfe8c7 38%, #a9c4ee 56%, #ffffff 78%, #a9c4ee 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ph-shimmer 10s linear infinite;
+}
+
+/* A light that travels round a card's border — reserved for the one card on a
+   page that deserves the eye (the free discovery call, the featured price). */
+@property --ph-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes ph-angle {
+  to {
+    --ph-angle: 360deg;
+  }
+}
+.ph-glow-border {
+  position: relative;
+}
+.ph-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: conic-gradient(from var(--ph-angle), transparent 0 52%, #a9c4ee 68%, #5dba47 80%, #f09d8b 90%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: ph-angle 6s linear infinite;
+}
+
+/* <Orbit> pauses as a whole when the pointer is over it. */
+.ph-orbit:hover *,
+.ph-orbit:hover {
+  animation-play-state: paused !important;
+}
+
+/* Gentle vertical bob for small decorative marks (CSS, no JS). */
+@keyframes ph-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.ph-bob { animation: ph-bob 6s ease-in-out infinite; }
+
+/* Travelling wave along a section seam (see <WaveSeam>). */
+@keyframes ph-wave-x {
+  to { transform: translateX(-50%); }
+}
+.ph-wave-x { animation: ph-wave-x 18s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-shimmer,
+  .ph-glow-border::before,
+  .ph-bob,
+  .ph-wave-x {
+    animation: none !important;
+  }
+  .ph-shimmer {
+    color: #ffffff;
+    background: none;
+  }
+  .ph-roll-a,
+  .ph-roll-b,
+  .ph-spot::before,
+  .ph-spot::after {
+    transition: none;
+  }
+}

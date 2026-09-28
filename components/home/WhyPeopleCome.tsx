@@ -28,7 +28,8 @@ import { REVIEW_SHOTS, RATING } from '../content';
 import { OUT_BENCH, OUT_SLEEP, OUT_WALK } from '../unsplash';
 import { ArrowRightIcon, StarIcon } from '../Icons';
 import { SectionHeading } from '../SectionHeading';
-import { Reveal, Stagger, StaggerItem, ClipReveal } from '../Motion';
+import { Reveal, Stagger, ClipReveal } from '../Motion';
+import { FlipItem, Spotlight } from '../MotionFx';
 
 /* Three of the six real review topics, paired with a frame. The remaining
    three appear on the reviews rail below; nothing is invented to fill a slot. */
@@ -77,10 +78,10 @@ export const WhyPeopleCome = () => (
         }
       />
 
-      <Stagger className="grid grid-cols-1 gap-6 md:grid-cols-3" gap={0.1}>
+      <Stagger className="grid grid-cols-1 gap-6 md:grid-cols-3" gap={0.14}>
         {REASONS.map((r) => (
-          <StaggerItem key={r.topic} distance={30}>
-            <article className="group h-full overflow-hidden rounded-[20px] border border-[#D7DEEA] bg-white transition-all duration-500 hover:-translate-y-1.5 hover:border-[#46699F]/40 hover:shadow-[0_30px_66px_-32px_rgba(46,47,61,0.45)]">
+          <FlipItem key={r.topic}>
+            <Spotlight as="article" color="rgba(70,105,159,0.12)" className="group h-full overflow-hidden rounded-[20px] border border-[#D7DEEA] bg-white transition-all duration-500 hover:-translate-y-1.5 hover:border-[#46699F]/40 hover:shadow-[0_30px_66px_-32px_rgba(46,47,61,0.45)]">
               <ClipReveal
                 src={r.image.src}
                 alt={r.image.alt}
@@ -95,8 +96,8 @@ export const WhyPeopleCome = () => (
                 <h3 className="mb-2.5 font-heading text-[1.3rem] leading-snug text-[#2E2F3D]">{r.topic}</h3>
                 <p className="text-[14.5px] leading-[1.62] text-[#4B5468]">{r.detail}</p>
               </div>
-            </article>
-          </StaggerItem>
+            </Spotlight>
+          </FlipItem>
         ))}
       </Stagger>
 

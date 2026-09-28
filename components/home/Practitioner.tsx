@@ -27,7 +27,9 @@ import Link from 'next/link';
 import { PRACTITIONER, CREDENTIALS, RATING } from '../content';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../assets';
 import { ArrowRightIcon, ShieldCheckIcon, StarIcon } from '../Icons';
-import { Reveal, SplitHeading, Parallax, Counter, Marquee, Stagger, StaggerItem } from '../Motion';
+import { Reveal, SplitHeading, Parallax, Counter, Marquee, Stagger, StaggerItem, TiltCard } from '../Motion';
+import { ScrubText, DepthField, Depth } from '../MotionFx';
+import { Rings } from '../Spiral';
 
 export const Practitioner = () => (
   <section className="relative overflow-hidden bg-white py-20 sm:py-28">
@@ -46,11 +48,13 @@ export const Practitioner = () => (
           <Reveal delay={0.12}>
             <p className="mt-3 text-[15px] font-medium text-[#46699F]">{PRACTITIONER.role}</p>
           </Reveal>
-          <Reveal delay={0.16}>
-            <p className="mt-6 max-w-[60ch] text-[16.5px] leading-[1.72] text-[#4B5468]">
-              {PRACTITIONER.bio}
-            </p>
-          </Reveal>
+          {/* The bio reads itself in as it scrolls through view (2026-09-28). */}
+          <ScrubText
+            text={PRACTITIONER.bio}
+            dim={0.22}
+            offset={['start 88%', 'end 60%']}
+            className="mt-6 max-w-[60ch] text-[17.5px] leading-[1.72] text-[#2E2F3D]"
+          />
 
           {/* Two figures, both site-verified: the decade in practice and the
               Google rating. Nothing else on this page counts up. */}
@@ -98,7 +102,15 @@ export const Practitioner = () => (
 
         {/* THE ROOM ------------------------------------------------------- */}
         <div className="lg:col-span-5">
+          {/* Pointer-depth layers: the rings sit behind and drift further
+              than the photograph, so the frame reads as an object in space. */}
+          <DepthField className="relative">
+          <Depth depth={-26} className="pointer-events-none absolute -right-16 -top-16 hidden lg:block">
+            <Rings className="h-72 w-72 text-[#46699F]/25 ph-spin-slow" count={6} />
+          </Depth>
           <Parallax speed={34}>
+          <Depth depth={12}>
+          <TiltCard max={4}>
             <figure className="relative overflow-hidden rounded-[20px] border border-[#D7DEEA] shadow-[0_30px_70px_-34px_rgba(46,47,61,0.55)]">
               <img
                 src={OFFICE_INTERIOR}
@@ -110,7 +122,10 @@ export const Practitioner = () => (
                 The consulting room in South Pasadena. Sessions also run by video, anywhere in California.
               </figcaption>
             </figure>
+          </TiltCard>
+          </Depth>
           </Parallax>
+          </DepthField>
         </div>
       </div>
     </div>

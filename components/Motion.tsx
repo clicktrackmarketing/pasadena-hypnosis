@@ -432,8 +432,12 @@ export const Counter = ({
     return () => cancelAnimationFrame(raf);
   }, [inView, reduce, to, duration]);
 
+  // The final value is real text in an sr-only span (aria-label on a plain
+  // span is ignored by several screen readers); the ticking digits are
+  // aria-hidden so they are never narrated.
   return (
-    <span ref={ref} className={className} aria-label={final}>
+    <span ref={ref} className={className}>
+      <span className="sr-only">{final}</span>
       <span aria-hidden="true">
         {reduce ? final : `${prefix}${n.toFixed(decimals)}${suffix}`}
       </span>

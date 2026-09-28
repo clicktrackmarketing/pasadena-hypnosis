@@ -23,9 +23,18 @@
    Pinning is desktop-only and is skipped entirely under reduced motion; the
    section then reads as an ordinary stacked list, which is what it is
    underneath.
+
+   THE SPECIMEN WINDOW (2026-09-28). The pinned column carries a dark panel
+   holding one particle figure that re-forms into whichever condition is
+   being read — the row crossing the middle of the viewport, or the row under
+   the mouse: a brain, a storm, a spine, the gut-brain knot, a heart, a pair
+   of lungs. One canvas, six figures. Desktop only; aria-hidden, because the
+   list beside it already says everything the figure shows.
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { MindScene, type ShapeName } from '../scene/MindScene';
 import { REAL_COPY, SERVICES } from '../content';
 import { serviceImage } from '../unsplash';
 import { ShieldCheckIcon, ArrowRightIcon } from '../Icons';
@@ -63,8 +72,34 @@ const CONDITIONS: { slug: string; label: string; note: string }[] = [
   { slug: 'smoking-cessation', label: 'Smoking cessation', note: 'The proven, high-close service.' },
 ];
 
+const FIGURE: Record<string, ShapeName> = {
+  'depression-bipolar-support': 'brain',
+  'stress-and-anxiety': 'storm',
+  'chronic-pain': 'spine',
+  ibs: 'knot',
+  'grief-and-loss': 'heart',
+  'smoking-cessation': 'lungs',
+};
+
 export const Specialties = () => {
   const reduce = useReducedMotion();
+  const [active, setActive] = useState(0);
+  const rows = useRef<Array<HTMLLIElement | null>>([]);
+  const hovering = useRef(false);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (hovering.current) return;
+        for (const e of entries) {
+          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.i));
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    );
+    rows.current.forEach((r) => r && io.observe(r));
+    return () => io.disconnect();
+  }, []);
+  const activeCondition = CONDITIONS[active] ?? CONDITIONS[0];
   const [ref, progress] = useSectionProgress();
   const scaleY = useTransform(progress, [0, 1], [0, 1]);
 
@@ -91,13 +126,39 @@ export const Specialties = () => {
                 </p>
               </Reveal>
 
-              {/* The drawing rule. Its height is tied to this section's own
-                  scroll progress, so it fills as the argument is read. */}
-              <div className="mt-9 hidden h-28 w-px bg-[#2E2F3D]/12 lg:block">
-                <motion.div
-                  className="h-full w-full origin-top bg-gradient-to-b from-[#46699F] to-[#5DBA47]"
-                  style={reduce ? { scaleY: 1 } : { scaleY }}
+              {/* THE SPECIMEN WINDOW — see the header note. The rule down its
+                  left edge still fills with the section's own scroll
+                  progress, so it keeps the job the old drawing rule did. */}
+              <div aria-hidden="true" className="relative mt-8 hidden h-[17rem] overflow-hidden rounded-[22px] bg-[#1F2030] shadow-[0_30px_70px_-34px_rgba(46,47,61,0.7)] lg:block">
+                <div className="absolute inset-0 bg-[radial-gradient(closest-side,rgba(70,105,159,0.45),transparent)]" />
+                <MindScene
+                  shape={FIGURE[activeCondition.slug] ?? 'brain'}
+                  tone="dark"
+                  intro={false}
+                  density={0.7}
+                  zoom={0.86}
+                  className="absolute inset-0"
                 />
+                <div className="absolute bottom-5 left-5 top-5 w-px bg-white/10">
+                  <motion.div
+                    className="h-full w-full origin-top bg-gradient-to-b from-[#A9C4EE] to-[#5DBA47]"
+                    style={reduce ? { scaleY: 1 } : { scaleY }}
+                  />
+                </div>
+                <div className="absolute bottom-4 left-9 right-5 flex items-end justify-between gap-4">
+                  <motion.p
+                    key={activeCondition.slug}
+                    initial={reduce ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: EASE_OUT_SOFT }}
+                    className="font-heading text-[1.05rem] leading-snug text-white"
+                  >
+                    {activeCondition.label}
+                  </motion.p>
+                  <span className="text-[11px] font-semibold tabular-nums tracking-[0.16em] text-[#A9C4EE]">
+                    {String(active + 1).padStart(2, '0')} / {String(CONDITIONS.length).padStart(2, '0')}
+                  </span>
+                </div>
               </div>
 
               <Reveal delay={0.15}>
@@ -128,14 +189,29 @@ export const Specialties = () => {
                 return (
                   <motion.li
                     key={c.slug}
-                    initial={reduce ? false : { opacity: 0, y: 34 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    ref={(el) => {
+                      rows.current[i] = el;
+                    }}
+                    data-i={i}
+                    onMouseEnter={() => {
+                      hovering.current = true;
+                      setActive(i);
+                    }}
+                    onMouseLeave={() => {
+                      hovering.current = false;
+                    }}
+                    initial={reduce ? false : { opacity: 0, x: i % 2 === 0 ? -40 : 40, rotateY: i % 2 === 0 ? -10 : 10 }}
+                    whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
                     viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-                    transition={{ duration: 0.75, delay: (i % 2) * 0.06, ease: EASE_OUT_SOFT }}
+                    transition={{ duration: 0.85, ease: EASE_OUT_SOFT }}
+                    style={{ transformPerspective: 1200 }}
                   >
                     <Link
                       href={`/services/${c.slug}`}
-                      className="group flex items-stretch gap-0 overflow-hidden rounded-[18px] border border-[#2E2F3D]/10 bg-white transition-all duration-500 hover:-translate-y-1 hover:border-[#46699F]/40 hover:shadow-[0_26px_56px_-30px_rgba(46,47,61,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+                      onFocus={() => setActive(i)}
+                      className={`group flex items-stretch gap-0 overflow-hidden rounded-[18px] border bg-white transition-all duration-500 hover:-translate-y-1 hover:border-[#46699F]/40 hover:shadow-[0_26px_56px_-30px_rgba(46,47,61,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2 ${
+                        active === i ? 'border-[#46699F]/45 shadow-[0_26px_56px_-30px_rgba(46,47,61,0.45)] lg:translate-x-2' : 'border-[#2E2F3D]/10'
+                      }`}
                     >
                       <ClipReveal
                         src={img.src}

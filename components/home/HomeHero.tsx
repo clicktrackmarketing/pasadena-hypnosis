@@ -1,55 +1,53 @@
 'use client';
 
 /* ---------------------------------------------------------------------------
-   HERO — the dark cinematic opener.
+   HERO — the dark cinematic opener, rebuilt 2026-09-28 around a 3D figure.
 
-   THE ONE JUDGEMENT CALL WORTH RECORDING. The previous hero put the H1 and
-   Jason's portrait side by side on plain white. It was honest and it was
-   forgettable. This version sets the same words and the same photograph over a
-   still-water photograph darkened to the approved #2E2F3D, which is the
-   palette's own dark-band ground — so nothing here invents a colour.
+   THE FIGURE. The right half of the hero is a live particle field in the
+   shape of a human brain, seen in three-quarter profile (see
+   components/scene). It turns gently, leans toward the cursor, and on hover
+   — or every few seconds on its own — dissolves into the hypnotic spiral and
+   re-forms. That single loop, mind → spiral → mind, is the whole practice in
+   one image without a pocket watch in sight, and it is the reason the
+   portrait moved out of this column.
 
-   WHAT DID NOT CHANGE, deliberately: the H1 string, the answer paragraph, the
-   phone number, the rating and the price are all still read from content.ts.
-   The redesign is allowed to restage the facts; it is not allowed to edit them,
-   and a hero is exactly where an overstatement would do the most damage.
+   THE PORTRAIT still opens the page: it sits in the trust row as a real
+   photograph with name and role, and appears at full size in the Practitioner
+   section further down. No stock image stands in for Jason anywhere.
 
-   HERO TIMINGS ARE DELIBERATELY FASTER than every other section, and should
-   stay that way. Motion applies its initial state during SSR, so the H1 is
-   transparent until hydration finishes — which makes it the LCP element and
-   makes every tenth of a second of entrance animation a tenth of a second of
-   blank hero. Sections further down are past the fold and can afford the full
-   0.95s word reveal; this one settles in about 1.1s after hydration.
+   WHAT DID NOT CHANGE: the H1 string, the answer paragraph, the phone number,
+   the rating and the price are all still read from content.ts. The redesign
+   restages the facts; it does not edit them.
 
-   CONTRAST, measured against the composited ground rather than assumed. The
-   scrim below takes the photograph to at least #2E2F3D-at-88% over black in
-   the text column, so white display type clears 13:1 and the #D9E1F0 body copy
-   clears the 7.03:1 the token set already verified for that pairing. The
-   scrim is not decoration — remove it and the type fails.
+   PERFORMANCE: the figure's code is fetched only when the browser is idle,
+   after the H1 has painted, and the canvas fades in over its first frames.
+   The H1 remains the LCP element. Hero entrance timings stay faster than the
+   rest of the page for the same reason as before — motion hides the H1 until
+   hydration, so every tenth of a second here is a tenth of a blank hero.
 
-   The image rail across the bottom edge is the transition into the page: it
-   shows the work at thumbnail size before the services grid says it in words.
-   It is aria-hidden — every one of those pictures appears again, captioned, in
-   the sections below, and announcing a decorative strip of fourteen unlabelled
-   images to a screen reader would be pure noise.
+   CONTRAST: the text column sits on the palette's own #2E2F3D. The particle
+   field is confined to the right half on desktop; on phones it sits behind
+   the copy at reduced strength with a scrim, and the copy clears the same
+   7:1+ ratios as before.
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';
 import { H1_CLAUSE, H1_TAIL, HOME_ANSWER, RATING, NAP, SERVICES } from '../content';
 import { PORTRAIT, PORTRAIT_ALT } from '../assets';
-import { HERO_STILL_WATER, serviceImage } from '../unsplash';
+import { HERO_STILL_WATER } from '../unsplash';
 import { ArrowRightIcon, PhoneIcon, StarIcon } from '../Icons';
-import { Spiral, Rings } from '../Spiral';
+import { Rings } from '../Spiral';
 import { responsive } from '../responsive';
+import { MindScene } from '../scene/MindScene';
+import { VelocityMarquee, RollText } from '../MotionFx';
 import {
   motion,
   useReducedMotion,
   SplitHeading,
   Counter,
-  Marquee,
   CursorGlow,
-  FloatY,
   ScrollAway,
+  Magnetic,
   EASE_OUT_SOFT,
 } from '../Motion';
 
@@ -60,17 +58,17 @@ const CHIPS = [
   { label: 'Free discovery call' },
 ];
 
+const HERO_CYCLE = ['brain', 'spiral'] as const;
+
 export const HomeHero = () => {
   const reduce = useReducedMotion();
 
   return (
     /* The negative top margin pulls the hero up UNDER the sticky header, which
-       is what makes the header's transparent mode work at all — without it the
-       "transparent" bar is transparent over the white body and reads as a solid
-       white strip. The offsets must stay in step with the header's own
-       over-hero height (h-20 / sm:h-24), and the padding below adds it back so
-       nothing tucks beneath the nav. */
-    <section className="relative isolate -mt-20 overflow-hidden bg-[#2E2F3D] ph-grain sm:-mt-24">
+       is what makes the header's transparent mode work at all. The offsets
+       must stay in step with the header's over-hero height (h-20 / sm:h-24),
+       and the padding below adds it back so nothing tucks beneath the nav. */
+    <section className="relative isolate -mt-20 overflow-hidden bg-[#1F2030] ph-grain sm:-mt-24">
       {/* BACKDROP ------------------------------------------------------- */}
       <div className="absolute inset-0 -z-10">
         <img
@@ -79,32 +77,42 @@ export const HomeHero = () => {
           aria-hidden="true"
           fetchPriority="high"
           {...responsive(HERO_STILL_WATER.src, 'full')}
-          className={`h-full w-full object-cover ${reduce ? '' : 'ph-drift'}`}
+          className={`h-full w-full object-cover opacity-40 ${reduce ? '' : 'ph-drift'}`}
         />
-        {/* Two scrims, not one: a horizontal ramp that protects the text
-            column on desktop, and a vertical one that keeps the header and the
-            section seam dark on every width. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#2E2F3D] via-[#2E2F3D]/88 to-[#2E2F3D]/35" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2E2F3D] via-transparent to-[#2E2F3D]/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1F2030] via-[#2E2F3D]/92 to-[#2E2F3D]/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1F2030]/90 via-transparent to-[#1F2030]" />
+        {/* The glow the figure sits in. */}
+        <div className="absolute right-[-10%] top-[8%] h-[80%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(70,105,159,0.42),transparent)] blur-2xl lg:right-[-4%] lg:w-[58%]" />
       </div>
 
       <CursorGlow />
 
-      {/* Decorative geometry, echoing the logo's spiral. */}
-      <FloatY amount={14} duration={9} className="pointer-events-none absolute -right-24 -top-28">
-        <Spiral className="h-[36rem] w-[36rem] text-[#A9C4EE]/15 ph-spin-slow" strokeWidth={0.6} />
-      </FloatY>
-      <Rings className="pointer-events-none absolute -left-40 bottom-[-14rem] h-[34rem] w-[34rem] text-[#5DBA47]/12 ph-spin-slower" />
+      {/* THE FIGURE ------------------------------------------------------ */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] opacity-45 sm:h-[78vh] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-auto lg:w-[56%] lg:opacity-100">
+        <Rings className="absolute left-1/2 top-1/2 h-[46rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 text-[#A9C4EE]/[0.07] ph-spin-slower" count={9} />
+        <MindScene
+          shape="brain"
+          cycle={[...HERO_CYCLE]}
+          cycleMs={7200}
+          hoverShape="spiral"
+          tone="dark"
+          className="absolute inset-0"
+          offset={[0.12, 0.05]}
+          zoom={1.08}
+        />
+      </div>
+      {/* Mobile scrim so the copy keeps its contrast over the figure. */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1F2030]/25 via-[#1F2030]/70 to-[#1F2030]/80 lg:hidden" />
 
       <ScrollAway>
-        <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-4 pb-14 pt-32 sm:px-6 sm:pb-16 sm:pt-40 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:pb-20 lg:pt-44">
+        <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-12 px-4 pb-12 pt-36 sm:px-6 sm:pb-14 sm:pt-44 lg:min-h-[100svh] lg:grid-cols-12 lg:px-8 lg:pb-16 lg:pt-40">
           {/* COPY ---------------------------------------------------------- */}
           <div className="lg:col-span-7">
             <motion.p
               initial={reduce ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: EASE_OUT_SOFT }}
-              className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/18 bg-white/8 px-4 py-1.5 text-[12.5px] font-medium tracking-[0.02em] text-[#D9E1F0] backdrop-blur-sm"
+              className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-white/18 bg-white/8 px-4 py-1.5 text-[12.5px] font-medium tracking-[0.02em] text-[#D9E1F0] backdrop-blur-sm"
             >
               <span className="relative flex h-1.5 w-1.5">
                 {!reduce && (
@@ -115,12 +123,12 @@ export const HomeHero = () => {
               South Pasadena, CA &middot; in person or by video statewide
             </motion.p>
 
-            <h1 className="max-w-[15ch] font-heading text-[2.4rem] leading-[1.07] tracking-[-0.015em] text-white sm:text-[3rem] lg:text-[3.55rem]">
+            <h1 className="max-w-[16ch] font-heading text-[2.55rem] leading-[1.04] tracking-[-0.02em] text-white sm:text-[3.4rem] lg:text-[4.1rem]">
               <SplitHeading as="p" text={H1_CLAUSE} className="block" stagger={0.034} duration={0.7} />
               <SplitHeading
                 as="p"
                 text={H1_TAIL.trim()}
-                className="mt-4 block font-body text-[1.05rem] font-normal leading-[1.5] text-[#A9C4EE] sm:text-[1.3rem] lg:text-[1.45rem]"
+                className="mt-5 block max-w-[34ch] font-body text-[1.05rem] font-normal leading-[1.5] tracking-normal text-[#A9C4EE] sm:text-[1.25rem] lg:text-[1.35rem]"
                 delay={0.32}
                 stagger={0.014}
                 duration={0.6}
@@ -144,127 +152,110 @@ export const HomeHero = () => {
               className="mt-9 flex flex-wrap items-center gap-3"
             >
               {/* Inside the dark band the primary button INVERTS — light fill,
-                  dark text — and takes the light focus ring. That rule is in the
-                  token set's header comment; a #454659 fill here would be a
-                  charcoal button on a charcoal ground. */}
-              <Link
-                href="/book"
-                className="group inline-flex items-center gap-2.5 rounded-[12px] bg-white px-7 py-4 text-[15px] font-semibold text-[#2E2F3D] shadow-[0_10px_30px_-12px_rgba(0,0,0,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E6EFFF] hover:shadow-[0_18px_40px_-14px_rgba(0,0,0,0.75)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D] sm:text-base"
-              >
-                Book a Free Discovery Call
-                <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+                  dark text — and takes the light focus ring. */}
+              <Magnetic>
+                <Link
+                  href="/book"
+                  className="group ph-glow-border inline-flex items-center gap-2.5 rounded-[14px] bg-white px-7 py-4 text-[15px] font-semibold text-[#2E2F3D] shadow-[0_10px_30px_-12px_rgba(0,0,0,0.65)] transition-all duration-300 hover:bg-[#E6EFFF] hover:shadow-[0_18px_40px_-14px_rgba(0,0,0,0.75)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D] sm:text-base"
+                >
+                  <RollText>Book a Free Discovery Call</RollText>
+                  <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </Magnetic>
               <a
                 href={NAP.phoneHref}
-                className="inline-flex items-center gap-2.5 rounded-[12px] border border-white/35 px-7 py-4 text-[15px] font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D] sm:text-base"
+                className="group inline-flex items-center gap-2.5 rounded-[14px] border border-white/35 px-7 py-4 text-[15px] font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D] sm:text-base"
               >
                 <PhoneIcon className="h-4 w-4" />
-                {NAP.phone}
+                <RollText>{NAP.phone}</RollText>
               </a>
             </motion.div>
 
-            {/* Trust chips. The rating counts up; everything else is a plain
-                string because inventing a number to animate would be the easiest
-                possible way to break this page's whole premise. */}
-            <motion.ul
+            {/* TRUST ROW — the real portrait, the rating, the chips. The rating
+                counts up; everything else is a plain string because inventing
+                a number to animate would break this page's whole premise. */}
+            <motion.div
               initial="hidden"
               animate="shown"
               variants={{ shown: { transition: { staggerChildren: 0.055, delayChildren: 0.72 } } }}
-              className="mt-9 flex flex-wrap items-center gap-2.5"
+              className="mt-10 flex flex-col gap-5"
             >
-              <motion.li
+              <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   shown: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_SOFT } },
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-[#5DBA47]/35 bg-[#5DBA47]/12 px-3.5 py-1.5 text-[12.5px] font-semibold text-white"
+                className="flex items-center gap-4"
               >
-                <span className="flex" aria-hidden="true">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <StarIcon key={i} className="h-3.5 w-3.5 text-[#5DBA47]" />
-                  ))}
+                <span className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full border-2 border-white/25 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)]">
+                  <img
+                    src={PORTRAIT}
+                    alt={PORTRAIT_ALT}
+                    {...responsive(PORTRAIT, 'tile')}
+                    className="h-full w-full object-cover"
+                  />
                 </span>
-                <Counter to={RATING.value} decimals={1} duration={1.1} />
-                <span className="font-normal text-[#D9E1F0]">
-                  &middot; {RATING.count} Google reviews
+                <span>
+                  <span className="block font-heading text-[1.05rem] text-white">Jason Meissner</span>
+                  <span className="block text-[13px] text-[#A9C4EE]">Certified Hypnotherapist &middot; Owner</span>
                 </span>
-              </motion.li>
-              {CHIPS.map((c) => (
+                <span className="mx-1 hidden h-10 w-px bg-white/15 sm:block" aria-hidden="true" />
+                <span className="hidden items-center gap-2 text-[13px] font-semibold text-white sm:inline-flex">
+                  <span className="flex" aria-hidden="true">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <StarIcon key={i} className="h-3.5 w-3.5 text-[#5DBA47]" />
+                    ))}
+                  </span>
+                  <Counter to={RATING.value} decimals={1} duration={1.1} />
+                  <span className="font-normal text-[#D9E1F0]">&middot; {RATING.count} Google reviews</span>
+                </span>
+              </motion.div>
+              <ul className="flex flex-wrap items-center gap-2.5">
                 <motion.li
-                  key={c.label}
                   variants={{
                     hidden: { opacity: 0, y: 10 },
                     shown: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_SOFT } },
                   }}
-                  className="inline-flex items-center rounded-full border border-white/18 bg-white/6 px-3.5 py-1.5 text-[12.5px] font-medium text-[#D9E1F0]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#5DBA47]/35 bg-[#5DBA47]/12 px-3.5 py-1.5 text-[12.5px] font-semibold text-white sm:hidden"
                 >
-                  {c.label}
+                  <StarIcon className="h-3.5 w-3.5 text-[#5DBA47]" aria-hidden="true" />
+                  {RATING.value.toFixed(1)} &middot; {RATING.count} Google reviews
                 </motion.li>
-              ))}
-            </motion.ul>
-          </div>
-
-          {/* PORTRAIT ------------------------------------------------------- */}
-          <div className="lg:col-span-5">
-            <motion.div
-              initial={reduce ? false : { opacity: 0, scale: 0.94, y: 28 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.12, ease: EASE_OUT_SOFT }}
-              className="relative mx-auto max-w-[24rem] lg:max-w-none"
-            >
-              <div className="relative overflow-hidden rounded-[20px] border border-white/12 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)]">
-                <img
-                  src={PORTRAIT}
-                  alt={PORTRAIT_ALT}
-                  {...responsive(PORTRAIT, 'half')}
-                  className="aspect-[4/5] w-full object-cover"
-                  fetchPriority="high"
-                />
-                {/* Caption plate. Says what the page can support: the name and
-                    the role, set beside the picture, with no "pictured above"
-                    claim — see the provenance note on PORTRAIT in assets.ts. */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2E2F3D] via-[#2E2F3D]/80 to-transparent p-5 pt-14">
-                  <p className="font-heading text-lg text-white">Jason Meissner</p>
-                  <p className="text-[13px] text-[#A9C4EE]">Certified Hypnotherapist &middot; Owner</p>
-                </div>
-              </div>
-
-              <FloatY amount={7} duration={7} className="absolute -left-3 top-8 sm:-left-6">
-                <motion.div
-                  initial={reduce ? false : { opacity: 0, x: -18 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.7, delay: 0.8, ease: EASE_OUT_SOFT }}
-                  className="rounded-[14px] border border-white/15 bg-[#2E2F3D]/90 px-4 py-3 shadow-xl backdrop-blur-md"
-                >
-                  <p className="font-heading text-2xl leading-none text-white">
-                    <Counter to={10} suffix="" duration={1.4} />
-                  </p>
-                  <p className="mt-1 text-[11.5px] uppercase tracking-[0.12em] text-[#A9C4EE]">
-                    years in practice
-                  </p>
-                </motion.div>
-              </FloatY>
+                {CHIPS.map((c) => (
+                  <motion.li
+                    key={c.label}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      shown: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_SOFT } },
+                    }}
+                    className="inline-flex items-center rounded-full border border-white/18 bg-white/6 px-3.5 py-1.5 text-[12.5px] font-medium text-[#D9E1F0] backdrop-blur-sm"
+                  >
+                    {c.label}
+                  </motion.li>
+                ))}
+              </ul>
             </motion.div>
           </div>
+
+          {/* Right column is the figure's; it stays empty in the grid so the
+              copy never runs under it on desktop. */}
+          <div className="hidden lg:col-span-5 lg:block" aria-hidden="true" />
         </div>
       </ScrollAway>
 
-      {/* IMAGE RAIL + SCROLL CUE ------------------------------------------ */}
-      <div className="relative pb-7">
-        <Marquee speed={64} className="ph-fade-x mb-7 border-y border-white/10 py-4">
-          {SERVICES.map((s) => {
-            const img = serviceImage(s.slug);
-            return (
-              <span
-                key={s.slug}
-                aria-hidden="true"
-                className="mx-2 block h-16 w-24 flex-shrink-0 overflow-hidden rounded-[10px] border border-white/12 opacity-70 transition-opacity duration-500 hover:opacity-100 sm:h-20 sm:w-32"
-              >
-                <img src={img.src} alt="" className="h-full w-full object-cover" loading="lazy" {...responsive(img.src, 'tile')} />
-              </span>
-            );
-          })}
-        </Marquee>
+      {/* SERVICE TICKER + SCROLL CUE ------------------------------------- */}
+      <div className="relative border-t border-white/10 pb-7 pt-5">
+        {/* Decorative: every one of these names is a real link further down. */}
+        <div aria-hidden="true">
+        <VelocityMarquee baseVelocity={-1.2} className="ph-fade-x mb-6">
+          {SERVICES.map((s) => (
+            <span key={s.slug} className="mx-6 inline-flex items-center gap-6 font-heading text-[1.6rem] text-white/80 sm:text-[2.2rem]">
+              {s.name}
+              <span className="inline-block h-2 w-2 rounded-full bg-[#5DBA47]/70" aria-hidden="true" />
+            </span>
+          ))}
+        </VelocityMarquee>
+        </div>
 
         <div className="flex justify-center">
           <a

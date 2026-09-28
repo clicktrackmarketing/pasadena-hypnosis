@@ -1,4 +1,6 @@
-'use client';
+/* No 'use client': this is plain data (paths, sizes, alt text), safe to
+   import from Server and Client Components alike. The directive it used to
+   carry turned every export into a client reference on the server. */
 
 /* ---------------------------------------------------------------------------
    Pasadena Hypnosis — image assets.

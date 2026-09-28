@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { NAP, HOURS, STEPS } from '../../components/content';
-import { serviceImage, GALLERY } from '../../components/unsplash';
-import { PhoneIcon, ShieldCheckIcon, ClockIcon, CheckIcon } from '../../components/Icons';
-import { BookingForm } from '../../components/BookingForm';
+import { NAP } from '../../components/content';
+import { serviceImage } from '../../components/unsplash';
+import { PhoneIcon, ArrowRightIcon } from '../../components/Icons';
 import { PageHero, heroPrimaryBtn, heroGhostBtn } from '../../components/PageHero';
-import { Reveal, Stagger, StaggerItem } from '../../components/Motion';
-import { ImageStrip } from '../../components/Bands';
+import { Magnetic } from '../../components/Motion';
+import { RollText } from '../../components/MotionFx';
+import { BookFormBand, StepsPath, ScopeScrub } from '../../components/pages/book/BookSections';
 
 // Target keywords (profile.ts targetKeywords['/book']): "book hypnotherapy
 // appointment pasadena".
@@ -23,6 +23,15 @@ const REASSURANCES = [
   'No obligation to book a session afterwards',
 ];
 
+/*
+ * REDESIGNED 2026-09-28 — each band moves differently:
+ *   hero    concentric rings: a voice travelling outward, the discovery call
+ *   form    the request form in a glass panel with a light running round its
+ *           edge; the decoration around it parts under the pointer, the form
+ *           itself never moves
+ *   steps   the real three-step process strung on a line that draws itself
+ *   scope   the scope sentence reads itself in with the scroll
+ */
 export default function BookPage() {
   return (
     <div>
@@ -30,6 +39,8 @@ export default function BookPage() {
         eyebrow="Book"
         title="Book a free discovery call"
         image={serviceImage('discovery-call')}
+        scene="rings"
+        intro="rise"
         facts={[
           { k: 'Cost', v: 'Free' },
           { k: 'You speak to', v: 'Jason, directly' },
@@ -43,89 +54,23 @@ export default function BookPage() {
           </p>
         }
       >
-        <a href={NAP.phoneHref} className={heroPrimaryBtn}>
-          <PhoneIcon className="h-4 w-4" />
-          Call {NAP.phone}
-        </a>
-        <a href="#request" className={heroGhostBtn}>
-          Or send a request
+        <Magnetic>
+          <a href={NAP.phoneHref} className={heroPrimaryBtn}>
+            <PhoneIcon className="h-4 w-4" />
+            <RollText>Call {NAP.phone}</RollText>
+          </a>
+        </Magnetic>
+        <a href="#request" className={`group ${heroGhostBtn}`}>
+          <RollText>Or send a request</RollText>
+          <ArrowRightIcon className="h-4 w-4 rotate-90 transition-transform duration-300 group-hover:translate-y-0.5" />
         </a>
       </PageHero>
 
-      <section className="bg-[#E6EFFF] py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-          <div>
-            <Stagger className="flex flex-col gap-3" as="ul" gap={0.08}>
-              {REASSURANCES.map((r) => (
-                <StaggerItem key={r} as="li" distance={14}>
-                  <span className="flex items-start gap-3 text-[16px] leading-[1.6] text-[#2E2F3D]">
-                    <CheckIcon className="mt-1 h-4 w-4 flex-shrink-0 text-[#5DBA47]" />
-                    {r}
-                  </span>
-                </StaggerItem>
-              ))}
-            </Stagger>
+      <BookFormBand reassurances={REASSURANCES} />
 
-            {/* The real three-step process, from content.ts. The call is step
-                one of a real sequence rather than a lead-capture event. */}
-            <Reveal delay={0.1}>
-              <h2 className="mb-6 mt-12 font-heading text-[1.5rem] text-[#2E2F3D]">What happens next</h2>
-            </Reveal>
-            <Stagger className="flex flex-col gap-6" as="ol" gap={0.1}>
-              {STEPS.map((s) => (
-                <StaggerItem key={s.n} as="li">
-                  <div className="flex gap-5">
-                    <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-[#D7DEEA] bg-white font-heading text-[15px] text-[#46699F]">
-                      {s.n}
-                    </span>
-                    <div>
-                      <h3 className="mb-1.5 font-heading text-[1.15rem] text-[#2E2F3D]">{s.title}</h3>
-                      <p className="max-w-[48ch] text-[14.5px] leading-[1.68] text-[#4B5468]">{s.body}</p>
-                    </div>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
+      <StepsPath />
 
-            <Reveal delay={0.1}>
-              <div className="mt-10 rounded-[18px] border border-[#D7DEEA] bg-white p-6">
-                <p className="mb-4 inline-flex items-center gap-2.5 text-[11.5px] font-bold uppercase tracking-[0.14em] text-[#46699F]">
-                  <ClockIcon className="h-4 w-4" />
-                  When you can call
-                </p>
-                <dl>
-                  {HOURS.map((h) => (
-                    <div
-                      key={h.days}
-                      className="flex items-baseline justify-between gap-6 border-b border-[#D7DEEA] py-2 last:border-0"
-                    >
-                      <dt className="text-[14.5px] text-[#4B5468]">{h.days}</dt>
-                      <dd className="text-[14.5px] font-semibold tabular-nums text-[#2E2F3D]">{h.time}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.12}>
-              <div className="mt-6 flex items-start gap-3.5 rounded-[18px] border border-[#D7DEEA] bg-[#E9F3EF] p-6">
-                <ShieldCheckIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#454659]" />
-                <p className="text-[14.5px] leading-[1.68] text-[#2E2F3D]">
-                  Pasadena Hypnosis is a complementary practice, not a substitute for medical or psychiatric care.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <div id="request" className="scroll-mt-28">
-            <Reveal delay={0.08}>
-              <BookingForm />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <ImageStrip images={GALLERY} speed={90} className="bg-[#E6EFFF] pb-20" />
+      <ScopeScrub />
     </div>
   );
 }

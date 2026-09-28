@@ -4,6 +4,9 @@ import './globals.css';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { ScrollProgress } from '../components/Motion';
+import { SmoothScroll } from '../components/SmoothScroll';
+import { CursorRing } from '../components/CursorRing';
+import { RouteCurtain } from '../components/RouteCurtain';
 import { buildJsonLd } from '../components/content';
 
 /* ---------------------------------------------------------------------------
@@ -86,6 +89,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Reading-progress hairline. Decorative and aria-hidden; it renders
             nothing at all when the visitor has asked for reduced motion. */}
         <ScrollProgress />
+        {/* Sitewide motion layer (2026-09-28): wheel smoothing, the cursor
+            ring and the page-to-page curtain. All three switch themselves
+            off under reduced motion; the first two also on touch devices. */}
+        <SmoothScroll />
+        <CursorRing />
+        <RouteCurtain />
         <div className="w-full min-h-screen flex flex-col bg-white text-[#2E2F3D]">
           <Header />
           <main className="flex-1">{children}</main>

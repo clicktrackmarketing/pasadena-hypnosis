@@ -166,15 +166,28 @@ export const Footer = () => {
             It is the sentence that keeps the rest of the site's claims
             defensible, and it should not be reachable only from /our-team. */}
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-7 lg:flex-row lg:items-center">
-          <p className="text-[12px] text-[#D9E1F0]/55">
+          {/* 75%, not the 55% these used to be: at 12px, #D9E1F0 at 55% over
+              #2E2F3D measures ~4.2:1 and fails AA — and the second line is the
+              scope disclosure, the one sentence that must never be faint. */}
+          <p className="text-[12px] text-[#D9E1F0]/75">
             &copy; {year} Pasadena Hypnosis. All rights reserved.
           </p>
-          <p className="max-w-[80ch] text-[12px] leading-[1.7] text-[#D9E1F0]/55">
+          <p className="max-w-[80ch] text-[12px] leading-[1.7] text-[#D9E1F0]/75">
             Pasadena Hypnosis is a complementary hypnotherapy practice, not a substitute for medical or psychiatric
             care. Jason Meissner is a certified hypnotherapist, not a licensed medical or mental-health clinician.
           </p>
         </div>
       </div>
+
+      {/* Oversized wordmark along the foot of every page — typographic, not
+          an image, so it costs nothing. Decorative (the real logo and name
+          are above), hence aria-hidden. */}
+      <p
+        aria-hidden="true"
+        className="pointer-events-none relative -mb-[0.18em] select-none whitespace-nowrap text-center font-heading text-[10.5vw] leading-[0.9] tracking-[-0.04em] text-white/[0.05] xl:text-[9.4rem]"
+      >
+        Pasadena Hypnosis
+      </p>
     </footer>
   );
 };

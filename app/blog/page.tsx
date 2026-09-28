@@ -5,7 +5,8 @@ import { DESK_NOTEBOOK, serviceImage } from '../../components/unsplash';
 import { PhoneIcon, ArrowRightIcon } from '../../components/Icons';
 import { PageHero, heroPrimaryBtn, heroGhostBtn } from '../../components/PageHero';
 import { CtaBand } from '../../components/CtaBand';
-import { Reveal, Stagger, StaggerItem } from '../../components/Motion';
+import { TopicGrid, type TopicCard } from '../../components/pages/blog/TopicGrid';
+import { TopicTicker } from '../../components/pages/blog/TopicTicker';
 
 // Target keywords (profile.ts targetKeywords['/blog']): "hypnotherapy blog los angeles".
 export const metadata: Metadata = {
@@ -29,6 +30,12 @@ export const metadata: Metadata = {
  * The `related` slug on each topic is real — it points at a service page that
  * does exist and does cover the subject, which is the useful thing this page
  * can offer today.
+ *
+ * SECOND REDESIGN 2026-09-28 — motion only, same eight entries:
+ *   hero    a particle ribbon; the H1 slides up out of a mask word by word
+ *   grid    bento layout, cards focus in from a blur (PopItem), cursor
+ *           spotlight, photographs zoom and regain colour on hover
+ *   ticker  two scroll-velocity marquees of the same subjects (aria-hidden)
  */
 const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string; href: string } }[] = [
   {
@@ -75,12 +82,27 @@ const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string;
 ];
 
 export default function BlogIndexPage() {
+  const cards: TopicCard[] = PLANNED_TOPICS.map((t) => {
+    const img = t.slug ? serviceImage(t.slug) : null;
+    return { title: t.title, related: t.related, img: img ? { src: img.src, alt: img.alt } : null };
+  });
+
+  // The ticker's display row names only the subjects that point at a
+  // specific service page ("Pricing" and "All services" read oddly as
+  // display words); the second row carries every planned title.
+  const tickerLabels = PLANNED_TOPICS.flatMap((t) =>
+    t.related && t.related.href.startsWith('/services/') ? [t.related.label] : [],
+  );
+  const tickerTitles = PLANNED_TOPICS.map((t) => t.title);
+
   return (
     <div>
       <PageHero
         eyebrow="Insights"
         title="Hypnotherapy insights"
         image={DESK_NOTEBOOK}
+        scene="ribbon"
+        intro="mask"
         lede={
           <p>
             Jason is writing these himself, which is why there are none yet rather than eight generic ones. The
@@ -99,62 +121,9 @@ export default function BlogIndexPage() {
         </a>
       </PageHero>
 
-      <section className="bg-[#E6EFFF] py-20 sm:py-28">
-        <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="mb-10 flex flex-col gap-2 border-b border-[#2E2F3D]/12 pb-5 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="font-heading text-[1.7rem] text-[#2E2F3D] sm:text-[2rem]">Planned, not yet written</h2>
-              <p className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#46699F]">
-                {PLANNED_TOPICS.length} subjects
-              </p>
-            </div>
-          </Reveal>
+      <TopicGrid topics={cards} />
 
-          {/* Each card carries the photograph of the service it points at —
-              the same slug-keyed image used on that service's own page. The
-              picture is therefore doing something honest: it previews the page
-              the "meanwhile" link actually goes to, rather than illustrating an
-              article that does not exist. */}
-          <Stagger className="grid auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" gap={0.07}>
-            {PLANNED_TOPICS.map((t) => {
-              const img = t.slug ? serviceImage(t.slug) : null;
-              return (
-                <StaggerItem key={t.title} distance={26}>
-                  <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-[#D7DEEA] bg-white transition-all duration-500 hover:-translate-y-1.5 hover:border-[#46699F]/40 hover:shadow-[0_26px_56px_-30px_rgba(46,47,61,0.4)]">
-                    {img ? (
-                      <div className="relative aspect-[16/10] overflow-hidden">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          loading="lazy"
-                          className="h-full w-full object-cover grayscale-[35%] transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08] group-hover:grayscale-0"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#2E2F3D]/55 via-transparent to-transparent" />
-                        <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/92 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#5DBA47]" aria-hidden="true" />
-                          Not written yet
-                        </span>
-                      </div>
-                    ) : null}
-                    <div className="flex flex-1 flex-col p-6">
-                      <h3 className="flex-1 font-heading text-[1.1rem] leading-snug text-[#2E2F3D]">{t.title}</h3>
-                      {t.related ? (
-                        <Link
-                          href={t.related.href}
-                          className="ph-tap ph-underline mt-5 inline-flex w-fit items-center gap-2 text-[13.5px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
-                        >
-                          Meanwhile: {t.related.label}
-                          <ArrowRightIcon className="h-3.5 w-3.5" />
-                        </Link>
-                      ) : null}
-                    </div>
-                  </article>
-                </StaggerItem>
-              );
-            })}
-          </Stagger>
-        </div>
-      </section>
+      <TopicTicker labels={tickerLabels} titles={tickerTitles} />
 
       <CtaBand
         title="Have a question now?"
