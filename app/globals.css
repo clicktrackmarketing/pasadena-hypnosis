@@ -1,19 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap');
+/* The Google Fonts @import that used to sit on this line was removed
+   2026-09-17. Both families are now self-hosted through next/font in
+   app/layout.tsx — see the note there. An @import here puts five serial round
+   trips on the critical path and, measured on this site, did not even begin
+   until 835ms after navigation. Do not re-add it. */
 @import 'tailwindcss';
 
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * FIXED 2026-09-16, with the homepage redesign.
+ *
+ * This block used to carry "display: flex", "height: 100%" and
+ * "overflow: auto" — scaffold defaults that arrived with the MagicPath export
+ * and were never right for a scrolling marketing site.
+ *
+ * WHAT THEY BROKE, worth writing down because the symptom does not point at
+ * the cause. "overflow: auto" on a body that is also height-limited makes BODY
+ * the nearest scrolling ancestor for everything inside it. Three consequences,
+ * all of them live on this site before today:
+ *
+ *   1. position: sticky on the header resolved against body's scrollport
+ *      rather than the viewport, so the header silently scrolled away. It has
+ *      carried "sticky top-0" since it was written and never once stuck.
+ *   2. Scroll listeners and viewport-triggered reveals measured a scroll that
+ *      was not the one moving the content.
+ *   3. scrollYProgress for any scroll-linked animation read ~0 all the way
+ *      down the page.
+ *
+ * The layout element already carries "min-h-screen flex flex-col", so nothing
+ * needed body to be a flex container in the first place.
+ */
 body {
   margin: 0;
   padding: 0;
-  display: flex;
   width: 100%;
-  height: 100%;
   min-height: 100vh;
   box-sizing: border-box;
-  overflow: auto;
   overscroll-behavior-x: none;
 }
 
@@ -94,8 +118,11 @@ body {
  */
 :root {
   --radius: 12px;
-  --font-heading: 'Lora', 'Georgia', serif;
-  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  /* --font-lora / --font-inter are emitted by next/font in layout.tsx and set
+     on <html>. The literal family names are kept as the fallback so the site
+     still renders in the right faces if the variables are ever missing. */
+  --font-heading: var(--font-lora), 'Lora', 'Georgia', serif;
+  --font-body: var(--font-inter), 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
   --background: #ffffff; /* dominant page ground */
   --foreground: #2e2f3d; /* ink */
@@ -193,10 +220,10 @@ body {
   h6 {
     font-family: var(--font-heading);
   }
+  /* height: 100% deliberately NOT set here — see the note above body. */
   html,
   body,
   #root {
-    height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -226,5 +253,153 @@ img.broken-image-fallback {
   }
   to {
     opacity: 1;
+  }
+}
+
+/* ===========================================================================
+   REDESIGN LAYER — added 2026-09-16 with the premium homepage.
+
+   Everything below is additive. No token above was changed: the palette in
+   :root is the approved "Field & Frame" set with its contrast already
+   verified, and this layer only composes those same values into grounds,
+   scrims and keyframes. The two new colours that appear here are #5DBA47 and
+   #0E75BB, and they are not new to the brand — they are the greens and blues
+   sampled off the real logo artwork (see assets.ts), used ONLY as gradient
+   stops and decorative strokes, never as text.
+   =========================================================================== */
+
+/* Infinite ticker. Translating exactly -50% works because <Marquee> renders
+   its children twice; changing one without the other breaks the seam. */
+@keyframes ph-marquee-slide {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.ph-marquee {
+  animation-name: ph-marquee-slide;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Hero ambience: a very slow push-in on the backdrop so the first screen is
+   never completely static, at an amplitude (4%) below the threshold where it
+   reads as "moving" rather than "alive". */
+@keyframes ph-drift {
+  0%   { transform: scale(1.04) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.09) translate3d(-1.2%, -1%, 0); }
+  100% { transform: scale(1.04) translate3d(0, 0, 0); }
+}
+.ph-drift { animation: ph-drift 34s ease-in-out infinite; }
+
+/* The breathing motif. 4s in, 4s hold, 6s out, 2s rest — a 16s cycle, which is
+   the paced-breathing pattern the section's own label describes. If these
+   numbers are edited, edit BreathSection's labels to match: a visual that says
+   "breathe out" while the ring is still expanding is worse than no visual. */
+@keyframes ph-breathe {
+  0%   { transform: scale(0.72); opacity: 0.55; }
+  25%  { transform: scale(1);    opacity: 1; }
+  50%  { transform: scale(1);    opacity: 1; }
+  87.5%{ transform: scale(0.72); opacity: 0.55; }
+  100% { transform: scale(0.72); opacity: 0.55; }
+}
+.ph-breathe { animation: ph-breathe 16s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+@keyframes ph-ripple {
+  0%   { transform: scale(0.72); opacity: 0.5; }
+  70%  { transform: scale(1.5);  opacity: 0; }
+  100% { transform: scale(1.5);  opacity: 0; }
+}
+.ph-ripple { animation: ph-ripple 16s ease-out infinite; }
+
+/* Slow rotation for the concentric spiral motif lifted from the logo mark. */
+@keyframes ph-spin-slow { to { transform: rotate(360deg); } }
+.ph-spin-slow { animation: ph-spin-slow 90s linear infinite; }
+.ph-spin-slower { animation: ph-spin-slow 140s linear infinite reverse; }
+
+/* Scroll cue in the hero. */
+@keyframes ph-nudge {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%      { transform: translateY(7px); opacity: 1; }
+}
+.ph-nudge { animation: ph-nudge 2.4s ease-in-out infinite; }
+
+/* Film grain over the dark bands. Pure CSS — an SVG feTurbulence data URI
+   would be another network-ish payload for something this subtle. */
+.ph-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Reusable soft-edge fade for marquee rails, so items enter and leave the
+   viewport instead of being guillotined at the container edge. */
+.ph-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+/* Underline that draws in on hover, for text links that are not buttons. */
+.ph-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ph-underline:hover, .ph-underline:focus-visible { background-size: 100% 1px; }
+
+/* THE GLOBAL OFF SWITCH. Everything above is decorative, so when the visitor
+   has asked for reduced motion it all stops — including the ambient loops that
+   no JS component gates, which is exactly the class of animation people who
+   set this preference complain about most. */
+@media (prefers-reduced-motion: reduce) {
+  .ph-marquee,
+  .ph-drift,
+  .ph-breathe,
+  .ph-ripple,
+  .ph-spin-slow,
+  .ph-spin-slower,
+  .ph-nudge {
+    animation: none !important;
+  }
+  .ph-breathe { transform: scale(0.92); opacity: 1; }
+  .ph-underline { transition: none; }
+  html { scroll-behavior: auto !important; }
+}
+
+html { scroll-behavior: smooth; }
+
+/* ===========================================================================
+   TOUCH TARGETS — added 2026-09-17 with the mobile/tablet pass.
+
+   An audit at 375px found ten interactive elements between 17px and 23px
+   tall: inline text links ("View all 10 questions", "All service areas"), the
+   footer nav, and the footer phone/email. They are fine with a mouse and
+   genuinely hard to hit with a thumb — the WCAG 2.5.8 minimum is 24px and the
+   practical guideline everyone uses is 44px.
+
+   `.ph-tap` adds the missing height ON COARSE POINTERS ONLY. Gating on
+   `pointer: coarse` rather than on a width breakpoint is the important part:
+   the constraint is the input device, not the screen. A touchscreen laptop at
+   1440px needs the bigger target; a mouse-driven browser window narrowed to
+   375px does not, and padding every text link on desktop would loosen the
+   layout everywhere for no reason.
+
+   It sets a min-height rather than padding so the element grows around its
+   text and stays vertically centred where it sits in a flex row.
+   =========================================================================== */
+@media (pointer: coarse) {
+  .ph-tap {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  /* Icon-only controls need width as well as height. */
+  .ph-tap-icon {
+    min-height: 44px;
+    min-width: 44px;
   }
 }

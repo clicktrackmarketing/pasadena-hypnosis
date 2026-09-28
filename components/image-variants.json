@@ -1,0 +1,356 @@
+{
+  "area-arcadia.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "area-eagle-rock.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "area-pasadena.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "bamboo-walkway.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1400
+  },
+  "band-blue-smoke.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1800
+  },
+  "cta-open-water.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1800
+  },
+  "desk-lamp-warm.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1500
+  },
+  "desk-notebook.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1500
+  },
+  "desk-planner.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1500
+  },
+  "fog-forest-aerial.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1400
+  },
+  "foothill-range.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1600
+  },
+  "gal-blinds-light.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "gal-journal-writing.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "gal-lamp-window.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "gal-office-desk-plant.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "gal-sofa-window.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "gal-waiting-chairs.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "hands-resting-outdoors.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1300
+  },
+  "hero-armchair-lamp.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1600
+  },
+  "hero-consult-room.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1600
+  },
+  "hero-foliage-path.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1400
+  },
+  "hero-still-water.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 2000
+  },
+  "hero-two-chairs.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1600
+  },
+  "hero-two-talking.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1600
+  },
+  "out-bench-calm.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "out-sleep-calm.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "out-walk-sunrise.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1200
+  },
+  "palms-daylight.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1700
+  },
+  "pasadena-city-hall.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1400
+  },
+  "pine-forest-light.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1800
+  },
+  "stream-gravel-path.jpg": {
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "full": 1400
+  },
+  "svc-calm-sea.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-chronic-pain.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-empty-swing.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-garden-path.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-grief-hands.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-group-therapy.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-gut-ibs.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-night-sky.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-online-laptop.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-open-book-light.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-phone-window.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-quiet-interior.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-sheer-curtain-light.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-spiral-stairs.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "svc-student-desk.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1100
+  },
+  "497f5cb6507faf1745101eef9a4613de13e982c13cbe66b7d184487d117d45f6.jpg": {
+    "widths": [
+      640,
+      960
+    ],
+    "full": 1000
+  },
+  "d9aa12f2dd313baad58d388e2ad7df23f8bf2a3b5f43b901ba1de09e90ae64c6.jpg": {
+    "widths": [
+      640
+    ],
+    "full": 880
+  }
+}
