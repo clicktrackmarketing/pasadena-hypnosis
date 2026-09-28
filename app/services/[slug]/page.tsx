@@ -1,8 +1,22 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { SERVICES, FAQS, PRACTITIONER, NAP } from '../../../components/content';
-import { ArrowRightIcon, PhoneIcon, ShieldCheckIcon } from '../../../components/Icons';
+import { SERVICES, NAP } from '../../../components/content';
+import { serviceImage } from '../../../components/unsplash';
+import { ArrowRightIcon, PhoneIcon } from '../../../components/Icons';
+import { PageHero } from '../../../components/PageHero';
+import { heroPrimaryBtn, heroGhostBtn } from '../../../components/buttons';
+import { CtaBand } from '../../../components/CtaBand';
+import { priceLabel } from '../../../components/price';
+import { serviceScene } from '../../../components/pages/services/shapes';
+import {
+  AnswerZoom,
+  InShort,
+  StepsPath,
+  OfficeSetting,
+  RelatedRise,
+  FaqEcho,
+} from '../../../components/pages/services/DetailSections';
 
 // profile.ts targetKeywords['/services/<slug>'] — see profile.ts for the
 // sourcing note on each (audited vs. Call 2 brief-derived).
@@ -41,10 +55,25 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
+/*
+  PAGE ORDER, and the kind of motion each band carries (no two alike):
+    hero       dark   this service's own particle figure (see shapes.ts); H1 rises word by word
+    answer     photo  the service's photograph opens from an inset card to full-bleed; answer focuses in over it
+    in short   white  summary + the scope note, which turns in from the side with a rule drawing down it
+    steps      dark   cursor-lit glass cards joined by a line that draws itself with scroll
+    setting    mint   the real office photo uncovered by a sweeping colour panel
+    related    dark   a block that grows from a rounded card to full width as it arrives
+    faq        tint   the page's figure again, light tone, held beside the questions (desktop)
+    cta        slate  shared CtaBand
+*/
 export default async function ServiceDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) notFound();
+
+  const img = serviceImage(service.slug);
+  const price = priceLabel(service);
+  const { scene, hover } = serviceScene(service.slug);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -78,75 +107,59 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <section className="bg-white">
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
-          <Link href="/services" className="text-sm font-medium text-[#46699F] hover:text-[#2E2F3D] mb-5 inline-block">
-            &larr; All services
-          </Link>
-          <p className="font-body text-xs sm:text-sm font-semibold tracking-[0.14em] uppercase text-[#46699F] mb-3">
-            {service.category}
-            {service.tag ? ` · ${service.tag}` : ''}
-          </p>
-          <h1 className="font-heading text-4xl sm:text-5xl leading-[1.1] text-[#2E2F3D] mb-6">{service.name}</h1>
-          <p id="answer-first" className="text-base sm:text-lg text-[#4B5468] leading-relaxed mb-8 border-l-[3px] border-[#454659] pl-5">
-            {service.answer}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/book" className="inline-flex items-center gap-2 rounded-[10px] bg-[#454659] text-white px-6 py-3.5 text-sm sm:text-base font-medium hover:bg-[#33344A] transition-colors">
-              Book a Free Discovery Call
-              <ArrowRightIcon className="h-4 w-4" />
-            </Link>
-            <a href={`tel:${NAP.phone.replace(/[^\d+]/g, '')}`} className="inline-flex items-center gap-2 rounded-[10px] border border-[#454659] text-[#2E2F3D] px-6 py-3.5 text-sm sm:text-base font-medium hover:text-[#46699F] transition-colors">
-              <PhoneIcon className="h-4 w-4" />
-              {NAP.phone}
-            </a>
-          </div>
-        </div>
-      </section>
+      {/*
+        The hero carries this service's OWN photograph, keyed by slug in
+        unsplash.ts, as a dim ground under this service's own figure. That
+        mapping is by slug and not by array index precisely so that re-ranking
+        the catalogue — which the brief expects — cannot quietly move the night
+        sky onto smoking cessation.
 
-      <section className="bg-[#E6EFFF] py-14 sm:py-20 border-t border-[#D7DEEA]">
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-start gap-4 bg-white border border-[#D7DEEA] rounded-[14px] p-6 sm:p-8">
-          <ShieldCheckIcon className="h-6 w-6 text-[#454659] flex-shrink-0" />
-          <p className="text-sm sm:text-base text-[#2E2F3D] leading-relaxed">
-            {PRACTITIONER.name}, a Hypnosis Motivation Institute graduate with 10 years in practice, reviews every
-            case personally — sessions run $200 each unless noted otherwise above, with a free discovery call
-            available first to talk through your specific situation.
-          </p>
-        </div>
-      </section>
+        The answer block (id="answer-first") moved from the hero lede into the
+        band directly below, where it is set large over the same photograph at
+        full bleed. It is still the first paragraph after the H1 in the DOM —
+        printed once, not twice.
 
-      <section className="bg-white py-14 sm:py-20">
-        <div className="max-w-[760px] mx-auto px-4 sm:px-6">
-          <h2 className="font-heading text-2xl sm:text-3xl text-[#2E2F3D] mb-6">Common questions</h2>
-          <div className="flex flex-col gap-3">
-            {FAQS.slice(0, 3).map((f) => (
-              <div key={f.q} className="border border-[#D7DEEA] rounded-[12px] bg-[#E9F3EF] p-5">
-                <p className="font-medium text-[#2E2F3D] mb-1.5">{f.q}</p>
-                <p className="text-sm text-[#4B5468] leading-relaxed">{f.a}</p>
-              </div>
-            ))}
-          </div>
-          <Link href="/faq" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-[#46699F] hover:text-[#2E2F3D] transition-colors">
-            View all frequently asked questions
-            <ArrowRightIcon className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+        `price` renders "On your call" rather than a number when the figure is
+        genuinely unresolved (smoking cessation: $400 site-verified vs. $500
+        verbal, still open after Call 2).
+      */}
+      <PageHero
+        eyebrow={`${service.category}${service.tag ? ` · ${service.tag}` : ''}`}
+        title={service.name}
+        image={img}
+        size="lg"
+        scene={scene}
+        sceneHover={hover}
+        intro="rise"
+        breadcrumb={{ label: 'All services', href: '/services' }}
+        facts={[
+          { k: 'Investment', v: price },
+          { k: 'Format', v: 'In person or by video' },
+          { k: 'Typical course', v: 'Six to eight sessions' },
+          { k: 'First step', v: 'A free discovery call' },
+        ]}
+      >
+        <Link href="/book" className={heroPrimaryBtn}>
+          Book a Free Discovery Call
+          <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
+        <a href={NAP.phoneHref} className={heroGhostBtn}>
+          <PhoneIcon className="h-4 w-4" />
+          {NAP.phone}
+        </a>
+      </PageHero>
 
-      <section className="bg-[#454659] py-14">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {SERVICES.filter((s) => s.slug !== service.slug)
-            .slice(0, 3)
-            .map((s) => (
-              <Link key={s.slug} href={`/services/${s.slug}`} className="text-left bg-white/[0.08] border border-white/20 rounded-[12px] p-5 hover:bg-white/[0.14] transition-colors block">
-                <p className="font-heading text-lg text-white mb-1">{s.name}</p>
-                <span className="text-xs text-white inline-flex items-center gap-1">
-                  Learn more <ArrowRightIcon className="h-3 w-3" />
-                </span>
-              </Link>
-            ))}
-        </div>
-      </section>
+      <AnswerZoom slug={service.slug} />
+      <InShort slug={service.slug} />
+      <StepsPath />
+      <OfficeSetting />
+      <RelatedRise slug={service.slug} />
+      <FaqEcho scene={scene} hover={hover} />
+
+      <CtaBand
+        title={`Talk through ${service.name.toLowerCase()} first`}
+        body="The discovery call is free and carries no obligation to book a session afterwards."
+      />
     </div>
   );
 }
