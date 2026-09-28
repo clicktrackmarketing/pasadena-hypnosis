@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { NAP, HOURS, SERVICE_AREAS, RATING } from './content';
 import { LOGO, LOGO_W, LOGO_H } from './assets';
-import { MapPinIcon, ClockIcon, PhoneIcon, MailIcon, ArrowRightIcon, StarIcon } from './Icons';
+import { MapPinIcon, ClockIcon, PhoneIcon, MailIcon, StarIcon } from './Icons';
 import { Rings } from './Spiral';
 
 const areaSlug = (a: string) => a.split(',')[0].trim().toLowerCase().replace(/\s+/g, '-');
@@ -45,30 +45,11 @@ export const Footer = () => {
         count={8}
       />
 
-      {/* CALL STRIP ------------------------------------------------------- */}
-      <div className="relative border-b border-white/10">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-5 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:px-8">
-          <p className="font-heading text-[1.35rem] text-white sm:text-[1.6rem]">
-            A free discovery call comes first.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="/book"
-              className="group inline-flex items-center gap-2.5 rounded-[12px] bg-white px-6 py-3.5 text-[14.5px] font-semibold text-[#2E2F3D] transition-colors duration-300 hover:bg-[#E6EFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
-            >
-              Book a Free Discovery Call
-              <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <a
-              href={NAP.phoneHref}
-              className="inline-flex items-center gap-2.5 rounded-[12px] border border-white/30 px-6 py-3.5 text-[14.5px] font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
-            >
-              <PhoneIcon className="h-4 w-4" />
-              {NAP.phone}
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* The call strip that used to sit here ("A free discovery call comes
+          first." + Book / phone) was removed 2026-09-28: every page already
+          ends on a call to action directly above the footer (CtaBand, the
+          homepage FinalCta, or the booking form itself), so it rendered as a
+          second identical bar. */}
 
       {/* COLUMNS ---------------------------------------------------------- */}
       <div className="relative mx-auto max-w-[1280px] px-4 py-14 sm:px-6 sm:py-16 lg:px-8">

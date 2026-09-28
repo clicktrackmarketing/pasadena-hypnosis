@@ -174,7 +174,7 @@ export const StepsPath = () => {
           <div className="lg:sticky lg:top-32">
             <SplitHeading
               text="What happens next"
-              className="max-w-[12ch] font-heading text-[2.5rem] leading-[1.04] tracking-[-0.025em] text-[#2E2F3D] sm:text-[3.4rem] lg:text-[4rem]"
+              className="max-w-[12ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
             />
             {/* Progress read-out. Decorative — the <ol> carries the order. */}
             <div aria-hidden="true" className="mt-8 hidden items-center gap-2 lg:flex">
@@ -228,7 +228,7 @@ export const StepsPath = () => {
 
 export const ScopeScrub = () => (
   <section className="relative overflow-hidden bg-[#E9F3EF] py-20 sm:py-28">
-    <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <Reveal>
         <span className="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#454659] shadow-[0_14px_30px_-16px_rgba(46,47,61,0.5)]">
           <ShieldCheckIcon className="h-6 w-6" aria-hidden="true" />
@@ -236,7 +236,7 @@ export const ScopeScrub = () => (
       </Reveal>
       <ScrubText
         text="Pasadena Hypnosis is a complementary practice, not a substitute for medical or psychiatric care."
-        className="font-heading text-[1.9rem] leading-[1.2] tracking-[-0.015em] text-[#2E2F3D] sm:text-[2.8rem] lg:text-[3.3rem]"
+        className="max-w-[30ch] font-heading text-[1.9rem] leading-[1.2] tracking-[-0.015em] text-[#2E2F3D] sm:text-[2.8rem] lg:text-[3.3rem]"
         dim={0.18}
         offset={['start 88%', 'end 55%']}
       />

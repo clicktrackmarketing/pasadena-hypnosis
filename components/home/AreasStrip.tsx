@@ -43,13 +43,13 @@ export const AreasStrip = () => (
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">
           <Reveal>
-            <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.18em] text-[#46699F] sm:text-[13px]">
+            <p className="mb-3 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#46699F] sm:text-xs">
               Where Jason works
             </p>
           </Reveal>
           <SplitHeading
             text="In the room in South Pasadena, or by video statewide."
-            className="max-w-[16ch] font-heading text-[2.1rem] leading-[1.12] tracking-[-0.01em] text-[#2E2F3D] sm:text-[2.7rem]"
+            className="max-w-[16ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
 
           <Stagger className="mt-9 flex flex-wrap gap-2.5" as="ul" gap={0.08}>

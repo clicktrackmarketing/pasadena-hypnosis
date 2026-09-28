@@ -163,7 +163,7 @@ export const PriceTiers = () => {
           <div className="lg:sticky lg:top-32">
             <SplitHeading
               text="Every service, at a glance"
-              className="font-heading text-[2.2rem] leading-[1.08] tracking-[-0.015em] text-[#2E2F3D] sm:text-[2.9rem]"
+              className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
             />
             <Reveal delay={0.12}>
               <p className="mt-5 max-w-[40ch] text-[16px] leading-[1.7] text-[#4B5468]">

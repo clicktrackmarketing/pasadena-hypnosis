@@ -37,13 +37,13 @@ export const Practitioner = () => (
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
           <Reveal>
-            <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.18em] text-[#46699F] sm:text-[13px]">
+            <p className="mb-3 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#46699F] sm:text-xs">
               Practitioner
             </p>
           </Reveal>
           <SplitHeading
             text={PRACTITIONER.name}
-            className="font-heading text-[2.1rem] leading-[1.12] tracking-[-0.01em] text-[#2E2F3D] sm:text-[2.7rem]"
+            className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal delay={0.12}>
             <p className="mt-3 text-[15px] font-medium text-[#46699F]">{PRACTITIONER.role}</p>
@@ -138,7 +138,7 @@ export const Practitioner = () => (
             <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#5DBA47]" aria-hidden="true" />
             <span className="whitespace-nowrap text-[14px] font-semibold text-[#2E2F3D]">{c.award}</span>
             <span className="whitespace-nowrap text-[13px] text-[#4B5468]">{c.issuer}</span>
-            <span className="whitespace-nowrap text-[12.5px] text-[#4B5468]/70">{c.date}</span>
+            <span className="whitespace-nowrap text-[12.5px] text-[#4B5468]">{c.date}</span>
           </div>
         ))}
       </Marquee>

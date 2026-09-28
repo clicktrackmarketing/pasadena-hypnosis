@@ -120,7 +120,7 @@ export const CityBento = () => {
         <div className="mb-12 flex flex-col gap-5 border-b border-[#2E2F3D]/12 pb-8 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
           <SplitHeading
             text="In person"
-            className="font-heading text-[2.8rem] leading-[1] tracking-[-0.025em] text-[#2E2F3D] sm:text-[4.2rem] lg:text-[5.2rem]"
+            className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal dir="left" delay={0.15}>
             <p className="inline-flex items-baseline gap-3 text-[12.5px] font-semibold uppercase tracking-[0.16em] text-[#46699F]">
@@ -200,7 +200,7 @@ export const OnlineDepth = () => {
           </Reveal>
           <SplitHeading
             text={ONLINE_AREA}
-            className="max-w-[14ch] font-heading text-[2.3rem] leading-[1.08] tracking-[-0.02em] text-[#2E2F3D] sm:text-[3.1rem] lg:text-[3.5rem]"
+            className="max-w-[14ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal delay={0.15}>
             <p className="mt-7 max-w-[50ch] text-[16.5px] leading-[1.75] text-[#4B5468] sm:text-[17px]">

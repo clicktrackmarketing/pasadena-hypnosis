@@ -41,17 +41,17 @@ export const SectionHeading = ({
 }) => {
   const titleSize =
     size === 'sm'
-      ? 'text-[1.7rem] sm:text-[2.1rem]'
+      ? 'text-[1.8rem] sm:text-[2.3rem]'
       : size === 'lg'
-        ? 'text-[2.3rem] sm:text-[3rem]'
-        : 'text-[2.1rem] sm:text-[2.6rem]';
+        ? 'text-[2.4rem] sm:text-[3.2rem] lg:text-[3.6rem]'
+        : 'text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem]';
 
   const eyebrowTone = tone === 'light' ? 'text-[#A9C4EE]' : 'text-[#46699F]';
   const titleTone = tone === 'light' ? 'text-white' : 'text-[#2E2F3D]';
   const ledeTone = tone === 'light' ? 'text-[#D9E1F0]' : 'text-[#4B5468]';
 
   const block = (
-    <div className={align === 'center' ? 'mx-auto max-w-[58ch] text-center' : 'max-w-[46ch]'}>
+    <div className={align === 'center' ? 'mx-auto max-w-[48rem] text-center' : 'max-w-[44rem]'}>
       <Reveal>
         <p className={`mb-4 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] ${eyebrowTone} sm:text-xs`}>
           {eyebrow}
@@ -59,11 +59,11 @@ export const SectionHeading = ({
       </Reveal>
       <SplitHeading
         text={title}
-        className={`font-heading leading-[1.12] tracking-[-0.015em] ${titleSize} ${titleTone}`}
+        className={`font-heading leading-[1.08] tracking-[-0.018em] ${titleSize} ${titleTone}`}
       />
       {lede ? (
         <Reveal delay={0.15}>
-          <div className={`mt-5 text-[16px] leading-[1.72] sm:text-[17px] ${ledeTone}`}>{lede}</div>
+          <div className={`mt-5 text-[16px] leading-[1.72] sm:text-[17px] ${ledeTone} ${align === 'center' ? 'mx-auto max-w-[56ch]' : 'max-w-[56ch]'}`}>{lede}</div>
         </Reveal>
       ) : null}
     </div>

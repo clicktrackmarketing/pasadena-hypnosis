@@ -758,10 +758,17 @@ export const PinnedRail = ({
   className,
   trackClassName,
   pace = 0.62,
+  header,
 }: {
   children: ReactNode;
   className?: string;
   trackClassName?: string;
+  /**
+   * Pinned WITH the track (2026-09-28). Without it the pinned viewport held
+   * only a half-height row of cards, leaving a band of empty screen above
+   * and below; the section heading belongs in that space.
+   */
+  header?: ReactNode;
   /**
    * How much vertical scroll buys the sideways travel. 1 means one pixel down
    * per pixel across; below 1 the rail moves faster than the wheel.
@@ -817,7 +824,9 @@ export const PinnedRail = ({
       className={className}
       style={pinned ? { height: `calc(100vh + ${Math.round(travel * pace)}px)` } : undefined}
     >
-      <div className={pinned ? 'sticky top-0 flex h-screen items-center overflow-hidden' : 'overflow-x-auto'}>
+      {!pinned && header ? header : null}
+      <div className={pinned ? 'sticky top-0 flex h-screen flex-col justify-center gap-10 overflow-hidden' : 'overflow-x-auto'}>
+        {pinned && header ? header : null}
         {pinned ? (
           <motion.div ref={trackRef} style={{ x }} className={trackClassName}>
             {children}

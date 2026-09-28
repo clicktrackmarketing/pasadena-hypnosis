@@ -39,7 +39,7 @@ export const AboutReviews = () => {
   const wide = useMinWidth(1024);
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#1F2030] pb-28 pt-24 ph-grain sm:pb-36 sm:pt-32">
+    <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-20 ph-grain sm:py-28">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-40 top-0 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(70,105,159,0.35),transparent)] blur-2xl"
@@ -63,7 +63,7 @@ export const AboutReviews = () => {
             </Reveal>
             <SplitHeading
               text={`From ${RATING.count} Google reviews, shown as screenshots.`}
-              className="max-w-[20ch] font-heading text-[2.1rem] leading-[1.1] tracking-[-0.018em] text-white sm:text-[2.9rem] lg:text-[3.3rem]"
+              className="max-w-[20ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-white"
             />
             <Reveal delay={0.15}>
               <p className="mt-7 max-w-[58ch] text-[16.5px] leading-[1.75] text-[#D9E1F0]">

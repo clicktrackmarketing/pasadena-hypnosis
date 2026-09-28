@@ -103,7 +103,7 @@ export const SessionJourney = () => {
 
           {/* STEPS ---------------------------------------------------------- */}
           <div ref={stepsRef} className="relative z-10 lg:col-span-6">
-            <div className="flex min-h-[60vh] items-center py-16 lg:min-h-screen lg:py-0">
+            <div className="flex min-h-[46vh] items-center py-14 lg:min-h-[78vh] lg:py-0">
               <div className="rounded-[22px] bg-[#1F2030]/75 p-6 backdrop-blur-md sm:p-8 lg:bg-transparent lg:p-0 lg:backdrop-blur-0">
                 <SectionHeading
                   tone="light"
@@ -126,11 +126,11 @@ export const SessionJourney = () => {
                 const img = STEP_IMAGES[i] ?? STEP_IMAGES[0];
                 const on = active === i + 1;
                 return (
-                  <li key={s.n} className="flex min-h-[75vh] items-center py-10 lg:min-h-screen">
+                  <li key={s.n} className="flex min-h-[58vh] items-center py-6 lg:min-h-[76vh]">
                     <motion.div
                       initial={reduce ? false : { opacity: 0, y: 60, filter: 'blur(8px)' }}
                       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      viewport={{ once: false, margin: '-20% 0px -20% 0px' }}
+                      viewport={{ once: true, margin: '0px 0px -15% 0px' }}
                       transition={{ duration: 0.9, ease: EASE_OUT_SOFT }}
                       className={`w-full rounded-[24px] border p-6 backdrop-blur-md transition-colors duration-700 sm:p-8 ${
                         on ? 'border-[#A9C4EE]/35 bg-white/[0.07]' : 'border-white/10 bg-[#1F2030]/70'
@@ -163,7 +163,7 @@ export const SessionJourney = () => {
               })}
             </ol>
 
-            <div className="flex min-h-[40vh] items-center pb-24 lg:min-h-[60vh]">
+            <div className="flex min-h-[26vh] items-center pb-20 lg:min-h-[40vh]">
               <Reveal>
                 <Link
                   href="/book"

@@ -371,11 +371,7 @@ export const PageHero = ({
   );
 };
 
-/* The two button treatments used inside a PageHero, exported so no page
-   re-types the inverted-on-dark rule (light fill, dark text, light focus
-   ring) that the token set requires inside the dark band. */
-export const heroPrimaryBtn =
-  'group inline-flex items-center gap-2.5 rounded-[14px] bg-white px-6 py-3.5 text-[15px] font-semibold text-[#2E2F3D] shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E6EFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]';
-
-export const heroGhostBtn =
-  'inline-flex items-center gap-2.5 rounded-[14px] border border-white/35 px-6 py-3.5 text-[15px] font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]';
+/* Hero button classes live in ./buttons (a plain module) so Server
+   Components can import them — see the note there. Re-exported here for
+   client callers only; server pages must import from ./buttons. */
+export { heroPrimaryBtn, heroGhostBtn } from './buttons';

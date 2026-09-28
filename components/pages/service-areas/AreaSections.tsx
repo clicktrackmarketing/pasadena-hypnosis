@@ -53,7 +53,7 @@ export const AreaServices = ({ slug, city }: { slug: string; city: string }) => 
       </Reveal>
       <SplitHeading
         text="The work this practice is known for"
-        className="max-w-[16ch] font-heading text-[2.3rem] leading-[1.06] tracking-[-0.02em] text-[#2E2F3D] sm:text-[3.3rem] lg:text-[4rem]"
+        className="max-w-[16ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
       />
     </>
   );
@@ -136,7 +136,7 @@ export const VisitBand = ({ city }: { city: string }) => (
         <div className="lg:col-span-7">
           <SplitHeading
             text={`Where ${city} clients come`}
-            className="max-w-[16ch] font-heading text-[2.2rem] leading-[1.08] tracking-[-0.02em] text-white sm:text-[3rem] lg:text-[3.5rem]"
+            className="max-w-[16ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-white"
           />
 
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10">

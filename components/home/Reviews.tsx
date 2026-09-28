@@ -52,13 +52,13 @@ export const Reviews = () => (
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <Reveal>
-            <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.18em] text-[#46699F] sm:text-[13px]">
+            <p className="mb-3 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#46699F] sm:text-xs">
               In their words
             </p>
           </Reveal>
           <SplitHeading
             text="Real reviews, shown as they were left."
-            className="max-w-[18ch] font-heading text-[2.1rem] leading-[1.12] tracking-[-0.01em] text-[#2E2F3D] sm:text-[2.7rem]"
+            className="max-w-[18ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
         </div>
         <Reveal delay={0.15} dir="left">

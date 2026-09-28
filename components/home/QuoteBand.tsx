@@ -26,7 +26,7 @@ export const QuoteBand = () => {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#1F2030] py-28 ph-grain sm:py-40">
+    <section className="relative isolate overflow-hidden bg-[#1F2030] py-24 ph-grain sm:py-32">
       <MindScene shape="tunnel" tone="dark" intro={false} intensity={0.75} className="absolute inset-0" interactive />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,rgba(31,32,48,0.55),rgba(31,32,48,0.92))]" />
 

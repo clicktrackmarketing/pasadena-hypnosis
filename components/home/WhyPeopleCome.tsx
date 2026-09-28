@@ -52,7 +52,7 @@ const REASONS = [
 ];
 
 export const WhyPeopleCome = () => (
-  <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+  <section className="relative overflow-hidden bg-[#E6EFFF] py-20 sm:py-28">
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <SectionHeading
         className="mb-12 sm:mb-16"

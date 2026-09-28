@@ -50,7 +50,7 @@ export const FinalCta = () => {
           <div className="lg:col-span-7">
             <SplitHeading
               text="Ready to talk it through?"
-              className="font-heading text-[2.2rem] leading-[1.1] tracking-[-0.01em] text-white sm:text-[3rem]"
+              className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-white"
             />
             <Reveal delay={0.15}>
               <p className="mt-5 max-w-[50ch] text-[16.5px] leading-[1.7] text-white/85">

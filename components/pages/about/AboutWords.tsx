@@ -25,7 +25,7 @@ export const AboutWords = () => {
   const diploma = CREDENTIALS.find((c) => c.featured) ?? CREDENTIALS[0];
 
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-36">
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
       {/* Decorative: the logo's spiral, turning with the page. */}
       <div aria-hidden="true" className="pointer-events-none absolute -right-48 top-8 hidden md:block">
         <ScrollRotate degrees={140}>

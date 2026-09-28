@@ -141,7 +141,7 @@ export const AboutRoom = () => {
           </Reveal>
           <SplitHeading
             text={lead}
-            className="font-heading text-[2.1rem] leading-[1.1] tracking-[-0.018em] text-[#2E2F3D] sm:text-[2.8rem] lg:text-[3.1rem]"
+            className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           {rest ? (
             <Reveal delay={0.15}>

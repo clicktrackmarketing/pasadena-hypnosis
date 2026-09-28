@@ -104,13 +104,13 @@ export const BreathSection = () => {
       <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
         <div>
           <Reveal>
-            <p className="mb-4 font-body text-xs font-semibold uppercase tracking-[0.18em] text-[#A9C4EE] sm:text-[13px]">
+            <p className="mb-4 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#A9C4EE] sm:text-xs">
               While you are here
             </p>
           </Reveal>
           <SplitHeading
             text="Thirty seconds, before you decide anything."
-            className="max-w-[16ch] font-heading text-[2.1rem] leading-[1.12] tracking-[-0.01em] text-white sm:text-[2.7rem]"
+            className="max-w-[16ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-white"
           />
           <Reveal delay={0.15}>
             <p className="mt-6 max-w-[52ch] text-[16px] leading-[1.72] text-[#D9E1F0]">

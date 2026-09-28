@@ -133,7 +133,7 @@ export const InShort = ({ slug }: { slug: string }) => {
           </Reveal>
           <SplitHeading
             text="What booking this actually involves"
-            className="max-w-[18ch] font-heading text-[2.2rem] leading-[1.08] tracking-[-0.02em] text-[#2E2F3D] sm:text-[3rem] lg:text-[3.4rem]"
+            className="max-w-[18ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal delay={0.15}>
             <p className="mt-8 max-w-[58ch] text-[17px] leading-[1.72] text-[#4B5468]">{service.summary}</p>
@@ -409,7 +409,7 @@ export const RelatedRise = ({ slug }: { slug: string }) => {
           <div className="mb-12 flex flex-col gap-5 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
             <SplitHeading
               text="Other work Jason takes"
-              className="font-heading text-[2.1rem] leading-[1.1] tracking-[-0.015em] text-white sm:text-[2.8rem]"
+              className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-white"
             />
             <Reveal dir="left" delay={0.2}>
               <Link
@@ -451,7 +451,7 @@ export const FaqEcho = ({ scene, hover }: { scene: ShapeName; hover?: ShapeName 
           </Reveal>
           <SplitHeading
             text="Common questions"
-            className="font-heading text-[2.2rem] leading-[1.08] tracking-[-0.02em] text-[#2E2F3D] sm:text-[3rem]"
+            className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal delay={0.15}>
             <Link

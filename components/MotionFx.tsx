@@ -232,7 +232,7 @@ export const StickyStack = ({
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
   const items = Children.toArray(children);
   return (
-    <div ref={ref} className={`relative flex flex-col gap-[14vh] ${className ?? ''}`}>
+    <div ref={ref} className={`relative flex flex-col gap-[9vh] ${className ?? ''}`}>
       {items.map((c, i) => (
         <StackCard
           key={i}

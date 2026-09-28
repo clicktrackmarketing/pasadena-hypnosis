@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { SERVICES, NAP, REAL_COPY } from '../../components/content';
 import { FOLIAGE_PATH } from '../../components/unsplash';
 import { PhoneIcon, ArrowRightIcon } from '../../components/Icons';
-import { PageHero, heroPrimaryBtn, heroGhostBtn } from '../../components/PageHero';
+import { PageHero } from '../../components/PageHero';
+import { heroPrimaryBtn, heroGhostBtn } from '../../components/buttons';
 import { CtaBand } from '../../components/CtaBand';
 import { SectionHeading } from '../../components/SectionHeading';
 import { priceLabel } from '../../components/price';
@@ -98,7 +99,7 @@ export default function ServicesHubPage() {
       <NameTicker />
 
       {/* CATEGORIES — expanding panels ------------------------------------ */}
-      <section className="relative isolate overflow-hidden bg-[#1F2030] pb-28 pt-20 ph-grain sm:pb-36 sm:pt-28">
+      <section className="relative isolate overflow-hidden bg-[#1F2030] py-20 ph-grain sm:py-28">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -left-40 top-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(closest-side,rgba(70,105,159,0.28),transparent)] blur-2xl"

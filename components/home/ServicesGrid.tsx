@@ -38,30 +38,31 @@ export const ServicesGrid = () => {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative bg-white">
-      <div className="mx-auto max-w-[1280px] px-4 pb-10 pt-20 sm:px-6 sm:pb-12 sm:pt-28 lg:px-8">
-        <SectionHeading
-          eyebrow="Service information"
-          title="What can you book with Pasadena Hypnosis?"
-          lede={
-            <p>
-              Fourteen services, ranked the way the practice ranks them &mdash; specialisms first, then the
-              programmes, then everything else it still offers.
-            </p>
-          }
-          aside={
-            <Link
-              href="/services"
-              className="group inline-flex items-center gap-2 rounded-full border border-[#2E2F3D]/15 px-5 py-2.5 text-sm font-medium text-[#2E2F3D] transition-all duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
-            >
-              View all {SERVICES.length} services
-              <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          }
-        />
-      </div>
-
+    <section className="relative bg-white pt-20 sm:pt-28">
       <PinnedRail
+        header={
+          <div className="mx-auto mb-10 w-full max-w-[1280px] px-4 sm:px-6 lg:mb-0 lg:px-8">
+            <SectionHeading
+              eyebrow="Service information"
+              title="What can you book with Pasadena Hypnosis?"
+              lede={
+                <p>
+                  Fourteen services, ranked the way the practice ranks them &mdash; specialisms first, then the
+                  programmes, then everything else it still offers.
+                </p>
+              }
+              aside={
+                <Link
+                  href="/services"
+                  className="group inline-flex items-center gap-2 rounded-full border border-[#2E2F3D]/15 px-5 py-2.5 text-sm font-medium text-[#2E2F3D] transition-all duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+                >
+                  View all {SERVICES.length} services
+                  <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              }
+            />
+          </div>
+        }
         className="pb-20 sm:pb-28"
         trackClassName="flex gap-6 px-4 sm:px-6 lg:px-8 pb-4"
       >

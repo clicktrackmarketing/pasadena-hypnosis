@@ -76,13 +76,13 @@ export default function HomePage() {
         <div className="mx-auto max-w-[800px] px-4 sm:px-6">
           <div className="mb-10 text-center sm:mb-12">
             <Reveal>
-              <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.18em] text-[#46699F] sm:text-[13px]">
+              <p className="mb-3 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#46699F] sm:text-xs">
                 Before you call
               </p>
             </Reveal>
             <SplitHeading
               text="Common questions"
-              className="font-heading text-[2.1rem] leading-[1.12] tracking-[-0.01em] text-[#2E2F3D] sm:text-[2.7rem]"
+              className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
             />
           </div>
           <Reveal delay={0.1}>

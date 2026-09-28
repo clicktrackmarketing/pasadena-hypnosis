@@ -48,7 +48,7 @@ export const LegalPlaceholder = ({ title, intro, sections }: Props) => (
     />
 
     <section className="relative bg-white pb-20 pt-14 sm:pb-28 sm:pt-20">
-      <div className="mx-auto max-w-[820px] px-4 sm:px-6">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8"><div className="max-w-[820px]">
         <Reveal distance={14}>
           <div className="relative mb-14 overflow-hidden rounded-[18px] border-2 border-dashed border-[#46699F]/50 bg-[#E6EFFF] p-6 sm:p-8">
             <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1.5 bg-[#46699F]" />
@@ -64,12 +64,12 @@ export const LegalPlaceholder = ({ title, intro, sections }: Props) => (
         </Reveal>
 
         <LegalOutline sections={sections} />
-      </div>
+      </div></div>
     </section>
 
     <section className="relative bg-[#E9F3EF] py-12 sm:py-16">
       <WaveSeam color="#E9F3EF" className="absolute inset-x-0 bottom-full" />
-      <div className="mx-auto max-w-[820px] px-4 sm:px-6">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8"><div className="max-w-[820px]">
         <Reveal distance={12}>
           <div className="flex items-start gap-4">
             <span
@@ -84,7 +84,7 @@ export const LegalPlaceholder = ({ title, intro, sections }: Props) => (
             </p>
           </div>
         </Reveal>
-      </div>
+      </div></div>
     </section>
   </div>
 );

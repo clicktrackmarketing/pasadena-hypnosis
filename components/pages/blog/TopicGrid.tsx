@@ -113,7 +113,7 @@ export const TopicGrid = ({ topics }: { topics: TopicCard[] }) => {
         <div className="mb-12 flex flex-col gap-4 border-b border-[#2E2F3D]/12 pb-7 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
           <SplitHeading
             text="Planned, not yet written"
-            className="font-heading text-[2.2rem] leading-[1.06] tracking-[-0.015em] text-[#2E2F3D] sm:text-[3.2rem] lg:text-[3.8rem]"
+            className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal dir="left" delay={0.15}>
             <p className="flex items-baseline gap-2.5 text-[12.5px] font-semibold uppercase tracking-[0.12em] text-[#46699F]">

@@ -115,7 +115,7 @@ const TileBody = ({ t }: { t: Tile }) => (
 );
 
 export const ContactTiles = () => (
-  <section className="relative isolate overflow-hidden bg-[#1F2030] py-16 ph-grain sm:py-24">
+  <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-16 ph-grain sm:py-24">
     <div aria-hidden="true" className="pointer-events-none absolute inset-0">
       <div className="absolute left-1/2 top-0 h-[28rem] w-[70rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(70,105,159,0.3),transparent)] blur-2xl" />
     </div>
@@ -177,7 +177,7 @@ export const OfficeBlock = () => {
         <div className="lg:col-span-7">
           <SplitHeading
             text="The office"
-            className="font-heading text-[2.8rem] leading-[1] tracking-[-0.025em] text-[#2E2F3D] sm:text-[4rem] lg:text-[4.8rem]"
+            className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
 
           {/* ROUTE — draws itself with the scroll and ends on a pin. */}
