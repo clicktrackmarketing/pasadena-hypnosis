@@ -94,7 +94,7 @@ export default function HomePage() {
                 href="/faq"
                 className="ph-tap ph-underline inline-flex items-center gap-2 text-[15px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
               >
-                View all {FAQS.length} frequently asked questions
+                View all frequently asked questions
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </div>

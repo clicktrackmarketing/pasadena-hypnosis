@@ -25,7 +25,7 @@
 
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
-import { SERVICE_AREAS, ONLINE_AREA } from '../../content';
+import { SERVICE_AREAS, ONLINE_AREA, REAL_COPY } from '../../content';
 import { areaImage, serviceImage, FOOTHILL_RANGE } from '../../unsplash';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT, OFFICE_INTERIOR_W, OFFICE_INTERIOR_H } from '../../assets';
 import { ArrowRightIcon, MapPinIcon } from '../../Icons';
@@ -204,8 +204,7 @@ export const OnlineDepth = () => {
           />
           <Reveal delay={0.15}>
             <p className="mt-7 max-w-[50ch] text-[16.5px] leading-[1.75] text-[#4B5468] sm:text-[17px]">
-              Video sessions are the same work at the same rate, and roughly half the practice runs that way. If you
-              are outside the five cities above, that is the route &mdash; not a lesser version of it.
+              {REAL_COPY.online} Online sessions reach clients anywhere, at the same rate as the office.
             </p>
           </Reveal>
           <Reveal delay={0.25}>
@@ -263,7 +262,7 @@ export const OnlineDepth = () => {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5DBA47] opacity-60 motion-reduce:animate-none" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#5DBA47]" />
                 </span>
-                All of California
+                Clients anywhere
               </span>
             </Depth>
           </DepthField>

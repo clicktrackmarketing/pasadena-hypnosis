@@ -1,4 +1,5 @@
 import { PINE_FOREST } from './unsplash';
+import { DISCLAIMER } from './content';
 import { ShieldCheckIcon } from './Icons';
 import { PageHero } from './PageHero';
 import { Reveal } from './Motion';
@@ -78,10 +79,9 @@ export const LegalPlaceholder = ({ title, intro, sections }: Props) => (
             >
               <ShieldCheckIcon className="h-5 w-5" />
             </span>
-            <p className="text-[14.5px] leading-[1.72] text-[#4B5468]">
-              Pasadena Hypnosis is a complementary hypnotherapy practice, not a substitute for medical or psychiatric
-              care. Jason Meissner is a certified hypnotherapist, not a licensed medical or mental-health clinician.
-            </p>
+            {/* Markup #77: the client's own disclaimer sentence, the one that
+                also closes every page in the footer. */}
+            <p className="text-[14.5px] leading-[1.72] text-[#4B5468]">{DISCLAIMER}</p>
           </div>
         </Reveal>
       </div></div>

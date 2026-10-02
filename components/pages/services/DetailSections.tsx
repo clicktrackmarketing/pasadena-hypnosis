@@ -1,15 +1,20 @@
 'use client';
 
 /* ---------------------------------------------------------------------------
-   SERVICE DETAIL — the animated bands shared by all fourteen service pages.
+   SERVICE DETAIL — the animated bands shared by every service page.
 
    Each band has its own kind of motion; none of them is a plain fade-up:
 
      AnswerZoom    the service's own photograph starts as an inset, rounded
                    card and opens to full-bleed as it reaches the middle of the
                    screen (ZoomFrame); the answer block focuses in over it.
-     InShort       the summary, and the scope note arriving as a card that
-                   turns in from the side with a rule drawing down its edge.
+     ServiceStory  the service's own heading and paragraphs (content.ts
+                   `detail`), beside a card that turns in from the side with a
+                   rule drawing down its edge: a client review from the live
+                   site where there is one, otherwise a way to call.
+     QuitSmoking   smoking cessation only, in place of StepsPath: the method,
+                   "Two Ways to Win" and the smoking client reviews, all from
+                   the client's own /quitsmoking page.
      StepsPath     the three STEPS as cursor-lit cards (Spotlight) zig-zagging
                    down a dark band, joined by a line that draws itself with
                    scroll (ScrollDraw), measured from the cards' positions.
@@ -22,9 +27,9 @@
                    last canvas on the page).
 
    COPY RULES: every string is the service record, STEPS, FAQS, NAP or
-   PRACTITIONER from content.ts, or text this route already carried. The
-   `summary` is rendered at the same size and position-in-page as before; it is
-   not promoted into display type.
+   REAL_COPY from content.ts, or text this route already carried. NO SCOPE
+   NOTE on these pages: the client removed it (markup #93, #101) and allowed
+   it on /our-team only (#73).
 
    IMAGERY: the office photograph is OFFICE_INTERIOR from ./assets — the one
    real picture of the room. The two stock "room" photographs that used to sit
@@ -34,12 +39,12 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { SERVICES, STEPS, FAQS, NAP, PRACTITIONER, type Service } from '../../content';
+import { SERVICES, STEPS, FAQS, NAP, REAL_COPY, type Service } from '../../content';
 import { serviceImage } from '../../unsplash';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../../assets';
 import { responsive } from '../../responsive';
 import { priceLabel } from '../../price';
-import { ArrowRightIcon, PhoneIcon, ShieldCheckIcon, MapPinIcon, ClockIcon } from '../../Icons';
+import { ArrowRightIcon, PhoneIcon, MapPinIcon, ClockIcon, QuoteIcon, StarIcon } from '../../Icons';
 import { SectionHeading } from '../../SectionHeading';
 import { ServiceCard } from '../../ServiceCard';
 import { FaqAccordion } from '../../FaqAccordion';
@@ -113,63 +118,228 @@ export const AnswerZoom = ({ slug }: { slug: string }) => {
   );
 };
 
-/* ------------------------------------------------------------- InShort -- */
+/* --------------------------------------------------------- ServiceStory -- */
 
-export const InShort = ({ slug }: { slug: string }) => {
+/*
+  REPLACES "InShort" (2026-10-01, markup #93, #94, #100, #101). That band had a
+  generic heading ("What booking this actually involves"), the one-line card
+  summary, and the scope note in a card beside it. The client: "Why is this
+  here? and not anxiety and stress"; on the scope note, "Remove completely!"
+  and "Delete this terrible junk". So each service now gets its own heading
+  and paragraphs (`detail` in content.ts, in his own words), and the card
+  beside them is either a real testimonial from his site or a way to call.
+*/
+export const ServiceStory = ({ slug }: { slug: string }) => {
   const reduce = useReducedMotion();
   const service = bySlug(slug);
   if (!service) return null;
-
   return (
-    /* Clipped on x: the scope card enters from 60px to the right and would
+    /* Clipped on x: the side card enters from 60px to the right and would
        otherwise push a phone's page sideways while it travels. */
     <section className="relative overflow-x-clip bg-white py-16 sm:py-32">
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-start gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-7">
           <Reveal>
             <p className="mb-4 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#46699F] sm:text-xs">
-              In short
+              {service.name}
             </p>
           </Reveal>
           <SplitHeading
-            text="What booking this actually involves"
-            className="max-w-[18ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
+            text={service.detail.heading}
+            className="max-w-[20ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal delay={0.15}>
-            <p className="mt-8 max-w-[58ch] text-[17px] leading-[1.72] text-[#4B5468]">{service.summary}</p>
+            <div className="mt-8 flex max-w-[58ch] flex-col gap-5 text-[17px] leading-[1.72] text-[#4B5468]">
+              {service.detail.paras.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
           </Reveal>
         </div>
-
-        {/* THE SCOPE NOTE. Same words, same weight or more: full ink on mint,
-            17px, an icon and a drawn rule. On the depression, anxiety, pain
-            and IBS pages this is the most important sentence after the
-            answer, and it is placed accordingly — beside the summary, before
-            the process. */}
         <div className="lg:col-span-5 lg:pt-10" style={{ perspective: 1200 }}>
           <motion.div
-            role="note"
             initial={reduce ? false : { opacity: 0, x: 60, rotateY: -14 }}
             whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
             viewport={{ once: true, margin: '0px 0px 5% 0px' }}
-            transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
+            transition={{ duration: 0.8, ease: EASE_OUT_SOFT }}
             className="relative overflow-hidden rounded-[24px] border border-[#2E2F3D]/12 bg-[#E9F3EF] p-7 pl-9 shadow-[0_30px_60px_-40px_rgba(46,47,61,0.45)] sm:p-9 sm:pl-11"
           >
             <motion.span
               aria-hidden="true"
-              className="absolute bottom-0 left-0 top-0 w-[5px] origin-top bg-[#2E2F3D]"
               initial={reduce ? false : { scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.15, ease: EASE_OUT_SOFT }}
+              transition={{ duration: 0.9, delay: 0.35, ease: EASE_OUT_SOFT }}
+              className="absolute bottom-0 left-0 top-0 w-[5px] origin-top bg-[#2E2F3D]"
             />
-            <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_8px_20px_-12px_rgba(46,47,61,0.5)]">
-              <ShieldCheckIcon className="h-6 w-6 text-[#2E2F3D]" aria-hidden="true" />
-            </span>
-            <p className="text-[17px] leading-[1.7] text-[#2E2F3D]">{PRACTITIONER.scopeNote}</p>
+            {service.quote ? (
+              <figure>
+                <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_8px_20px_-12px_rgba(46,47,61,0.5)]">
+                  <QuoteIcon className="h-6 w-6 text-[#2E2F3D]" aria-hidden="true" />
+                </span>
+                <blockquote className="font-heading text-[1.25rem] leading-[1.5] text-[#2E2F3D] sm:text-[1.4rem]">
+                  &ldquo;{service.quote.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-5 text-[13px] font-semibold uppercase tracking-[0.14em] text-[#46699F]">
+                  {service.quote.by} &middot; Client review
+                </figcaption>
+              </figure>
+            ) : (
+              <div>
+                <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_8px_20px_-12px_rgba(46,47,61,0.5)]">
+                  <PhoneIcon className="h-6 w-6 text-[#2E2F3D]" aria-hidden="true" />
+                </span>
+                <p className="font-heading text-[1.4rem] leading-[1.35] text-[#2E2F3D]">Let us know how we can help.</p>
+                <p className="mt-3 text-[16px] leading-[1.7] text-[#4B5468]">
+                  Don&rsquo;t hesitate to call with any questions you might have.
+                </p>
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <a
+                    href={NAP.phoneHref}
+                    className="ph-tap inline-flex items-center gap-2 rounded-[12px] bg-[#454659] px-5 py-3 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-[#33344A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+                  >
+                    <PhoneIcon className="h-4 w-4" />
+                    {NAP.phone}
+                  </a>
+                  <Link
+                    href="/book"
+                    className="ph-tap ph-underline inline-flex items-center gap-2 text-[15px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+                  >
+                    Book a Free Discovery Call
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </div>
     </section>
+  );
+};
+
+/* -------------------------------------------------------- QuitSmoking -- */
+
+/*
+  The smoking-cessation page's own middle, in place of the generic steps
+  (markup #95 "This is all wrong", #96 "this is all wrong as well" — the
+  generic steps quoted $200 and a session count). Every line is the client's
+  /quitsmoking page, via REAL_COPY.quitSmoking: the method, "Two Ways to Win",
+  and the smoking client reviews. Markup #94: "I will write the smoke pages I
+  guess. I thought I did…" — he did; this is that page.
+*/
+export const QuitSmoking = () => {
+  const q = REAL_COPY.quitSmoking;
+  return (
+    <>
+      <section className="relative isolate overflow-hidden bg-[#2E2F3D] py-16 ph-grain sm:py-32">
+        <CursorGlow />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-48 top-1/3 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(93,186,71,0.14),transparent)] blur-2xl"
+        />
+        <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+          {/* THE METHOD */}
+          <div className="lg:col-span-6">
+            <Reveal>
+              <p className="mb-6 flex items-center gap-3 text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#A9C4EE] sm:text-xs">
+                <span aria-hidden="true" className="inline-block h-px w-10 bg-[#A9C4EE]/60" />
+                The Method
+              </p>
+            </Reveal>
+            <SplitHeading
+              text={q.kicker}
+              className="max-w-[18ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.1rem] leading-[1.08] tracking-[-0.018em] text-white"
+            />
+            <Reveal delay={0.12}>
+              <ul className="mt-9 flex flex-col gap-2 font-heading text-[1.35rem] leading-snug text-[#D9E1F0] sm:text-[1.6rem]">
+                {q.method.map((line, i) => (
+                  <li key={line} className={i === q.method.length - 1 ? 'text-white' : ''}>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-8 max-w-[52ch] text-[16.5px] leading-[1.75] text-[#D9E1F0]">{q.body}</p>
+              <p className="mt-6 font-heading text-[1.6rem] leading-snug text-white sm:text-[1.9rem]">{q.headline}</p>
+            </Reveal>
+          </div>
+
+          {/* TWO WAYS TO WIN */}
+          <div className="lg:col-span-6">
+            <Reveal>
+              <p className="mb-6 flex items-center gap-3 text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#A9C4EE] sm:text-xs">
+                <span aria-hidden="true" className="inline-block h-px w-10 bg-[#A9C4EE]/60" />
+                Two Ways to Win
+              </p>
+            </Reveal>
+            <Stagger className="flex flex-col gap-5" gap={0.12}>
+              {q.ways.map((w, i) => (
+                <PopItem key={w.title}>
+                  <Spotlight className="rounded-[24px] border border-white/10 bg-[#1F2030] p-7 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)] sm:p-9">
+                    <span
+                      aria-hidden="true"
+                      className="font-heading text-[3.4rem] leading-[0.9] text-transparent [-webkit-text-stroke:1px_rgba(169,196,238,0.75)]"
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-5 font-heading text-[1.6rem] leading-tight text-white sm:text-[1.9rem]">{w.title}</h3>
+                    <p className="mt-3 max-w-[52ch] text-[16px] leading-[1.72] text-[#D9E1F0]">{w.body}</p>
+                  </Spotlight>
+                </PopItem>
+              ))}
+            </Stagger>
+            <Reveal delay={0.15}>
+              <p className="mt-7 font-heading text-[1.35rem] text-[#A9C4EE]">{q.walkAway}</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* SMOKING CLIENT REVIEWS */}
+      <section className="relative overflow-hidden bg-white py-16 sm:py-28">
+        <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-col gap-4 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
+            <SplitHeading
+              text="Smoking client reviews"
+              className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
+            />
+            <Reveal dir="left" delay={0.15}>
+              <ul className="flex flex-col font-heading text-[1.15rem] leading-snug text-[#2E2F3D] sm:items-end sm:text-right">
+                {q.earned.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+          <Stagger className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6" gap={0.12}>
+            {q.reviews.map((r) => (
+              <PopItem key={r} className="h-full">
+                <figure className="flex h-full flex-col rounded-[22px] border border-[#D7DEEA] bg-[#F7F9FC] p-7">
+                  <QuoteIcon className="h-6 w-6 text-[#46699F]" aria-hidden="true" />
+                  <blockquote className="mt-4 flex-1 text-[16px] leading-[1.7] text-[#2E2F3D]">&ldquo;{r}&rdquo;</blockquote>
+                  <figcaption className="mt-5 flex gap-1" aria-label="Five stars">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <StarIcon key={i} className="h-4 w-4 text-[#5DBA47]" aria-hidden="true" />
+                    ))}
+                  </figcaption>
+                </figure>
+              </PopItem>
+            ))}
+          </Stagger>
+          <Reveal delay={0.1}>
+            <Link
+              href="/book"
+              className="group mt-10 inline-flex items-center gap-2.5 rounded-[14px] bg-[#454659] px-7 py-4 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-[#33344A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+            >
+              <RollText>{q.readyCta}</RollText>
+              <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+    </>
   );
 };
 
@@ -335,13 +505,11 @@ export const OfficeSetting = () => {
         <div className="lg:col-span-7">
           <SectionHeading
             eyebrow="The setting"
-            title="An hour at a time, in a quiet room"
+            title="In the office, or online from anywhere"
             size="lg"
             lede={
-              <p>
-                In person at {NAP.street} in {NAP.city}, or by video anywhere in California. Same work, same rate,
-                whichever you can get to.
-              </p>
+              /* Markup #97, the client's exact sentence ("DELETE AND INSERT"). */
+              <p>In person at 1910 Huntington Dr in South Pasadena, or by video anywhere.</p>
             }
           />
 
@@ -361,7 +529,7 @@ export const OfficeSetting = () => {
               <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-[#46699F]">
                 <ClockIcon className="h-[18px] w-[18px]" />
               </span>
-              <span className="text-[15.5px] text-[#2E2F3D]">Open late &mdash; most evenings until 21:00</span>
+              <span className="text-[15.5px] text-[#2E2F3D]">Open late &mdash; most evenings until 9 PM</span>
             </SlideItem>
             <SlideItem as="li" from="right" className="flex items-center gap-4 py-4">
               <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-[#46699F]">
@@ -458,7 +626,7 @@ export const FaqEcho = ({ scene, hover }: { scene: ShapeName; hover?: ShapeName 
               href="/faq"
               className="ph-tap ph-underline mt-6 inline-flex items-center gap-2 text-[15px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
             >
-              View all {FAQS.length} frequently asked questions
+              View all frequently asked questions
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
           </Reveal>
@@ -485,7 +653,7 @@ export const FaqEcho = ({ scene, hover }: { scene: ShapeName; hover?: ShapeName 
           {/*
             No FAQPage schema on this route — it lives on /faq, beside the
             full list. Emitting the same three questions as FAQPage from
-            fourteen service URLs would be duplicate structured data across
+            every service URL would be duplicate structured data across
             the site, which is the opposite of helpful.
           */}
           <Reveal dir="left" distance={40}>

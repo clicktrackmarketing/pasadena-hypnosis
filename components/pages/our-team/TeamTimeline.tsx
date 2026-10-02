@@ -25,7 +25,7 @@
 
 import { SectionHeading } from '../../SectionHeading';
 import { MindScene } from '../../scene/MindScene';
-import { motion, useReducedMotion, Reveal, EASE_OUT_SOFT } from '../../Motion';
+import { motion, useReducedMotion, EASE_OUT_SOFT } from '../../Motion';
 import { ScrollDraw } from '../../MotionFx';
 import { chronological, splitDate } from './credentials';
 import { useViewportWidth } from './useViewport';
@@ -56,14 +56,10 @@ export const TeamTimeline = () => {
         <SectionHeading
           className="mb-14 sm:mb-20"
           eyebrow={`The paperwork, ${yearLabel}`}
-          title="Four specialisms, then the diploma"
+          /* Markup #69-#72: "specialisms" is not a word, and the lede is
+             deleted ("Yes delete all of this text"). */
+          title="Four specialist certifications, then the diploma"
           size="lg"
-          lede={
-            <p>
-              Dated in the order the documents themselves are dated. The American Hypnosis Association
-              specialisms came first, in the spring; the accredited diploma completed that October.
-            </p>
-          }
         />
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -162,15 +158,9 @@ export const TeamTimeline = () => {
           </div>
         </div>
 
-        {/* CLOSING NOTE. Deliberately NOT a node: "ten years in practice" is
-            a statement in the bio, not a date on a certificate. */}
-        <Reveal delay={0.1}>
-          <p className="mt-12 max-w-[70ch] border-t border-[#2E2F3D]/10 pt-6 text-[14.5px] leading-[1.7] text-[#4B5468]">
-            Every date above is printed on a certificate shown further down this page. The practice has run in South
-            Pasadena for the decade since &mdash; that part is Jason&rsquo;s own account rather than a document, so it
-            is written here rather than added to the sequence.
-          </p>
-        </Reveal>
+        {/* The closing note that explained how this timeline was assembled
+            is gone: the client asked the site to stop talking about itself
+            (markup #8, #27). */}
       </div>
     </section>
   );

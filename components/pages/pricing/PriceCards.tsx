@@ -14,9 +14,8 @@
    `price` field from content.ts and the `priceLabel()` string built from it.
    A positive number is animated by <Counter>, whose final string is
    `$${price}` — byte-identical to priceLabel(). A zero or null price renders
-   the label itself ("Free" / "On your call"), so the smoking-cessation
-   figure stays hedged exactly as content.ts hedges it ($400 site-verified
-   vs. $500 verbal, unresolved).
+   the label itself ("Free" / "On your call"). Smoking cessation is $400
+   since markup round one (#58, the client: "This is published at $400").
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';

@@ -57,7 +57,7 @@ export const Reviews = () => (
             </p>
           </Reveal>
           <SplitHeading
-            text="Real reviews, shown as they were left."
+            text="Real reviews from real clients."
             className="max-w-[18ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
         </div>
@@ -76,8 +76,7 @@ export const Reviews = () => (
       </div>
       <Reveal delay={0.2}>
         <p className="mt-5 max-w-[62ch] text-[15px] leading-[1.7] text-[#4B5468]">
-          Screenshots of the practice&rsquo;s own Google reviews. Reviewer names are greyed out in the
-          originals, so they are shown as captured rather than retyped as quotes.
+          Screenshots of the practice&rsquo;s own Google reviews.
         </p>
       </Reveal>
     </div>

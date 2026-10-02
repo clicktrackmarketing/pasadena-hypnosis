@@ -10,11 +10,9 @@
    anywhere in this block, because this is the block a prospect reads to decide
    whether the practitioner is real.
 
-   The scope note keeps its own plate and its full wording: "a certified
-   hypnotherapist is not a licensed medical or mental-health clinician". It
-   would be very easy for a redesign to treat that as a legal footnote and
-   shrink it. It is doing the opposite job — naming the limit is what makes the
-   ten years and the five certificates land as fact rather than as sales copy.
+   NO SCOPE NOTE HERE. It used to have its own plate in this section; the
+   client removed it (markup #26) and allowed it in one place only, /our-team
+   (#73). Do not bring it back.
 
    MOTION: the room photograph drifts against the scroll, the credential rail
    tickers sideways and pauses on hover or keyboard focus, and the two headline
@@ -26,7 +24,7 @@
 import Link from 'next/link';
 import { PRACTITIONER, CREDENTIALS, RATING } from '../content';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../assets';
-import { ArrowRightIcon, ShieldCheckIcon, StarIcon } from '../Icons';
+import { ArrowRightIcon, StarIcon } from '../Icons';
 import { Reveal, SplitHeading, Parallax, Counter, Marquee, Stagger, StaggerItem, TiltCard } from '../Motion';
 import { ScrubText, DepthField, Depth } from '../MotionFx';
 import { Rings } from '../Spiral';
@@ -82,12 +80,8 @@ export const Practitioner = () => (
             </StaggerItem>
           </Stagger>
 
-          <Reveal delay={0.1}>
-            <div className="mt-8 flex items-start gap-4 rounded-[16px] border border-[#D7DEEA] bg-[#E6EFFF] p-6">
-              <ShieldCheckIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#454659]" />
-              <p className="text-[15px] leading-[1.7] text-[#2E2F3D]">{PRACTITIONER.scopeNote}</p>
-            </div>
-          </Reveal>
+          {/* The scope note that sat here is removed — markup #26, and #73:
+              it appears on /our-team and nowhere else. */}
 
           <Reveal delay={0.14}>
             <Link
@@ -119,7 +113,7 @@ export const Practitioner = () => (
                 className="aspect-[3/4] w-full object-cover"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2E2F3D] via-[#2E2F3D]/75 to-transparent p-5 pt-16 text-[13px] text-[#D9E1F0]">
-                The consulting room in South Pasadena. Sessions also run by video, anywhere in California.
+                The office at 1910 Huntington Dr, South Pasadena.
               </figcaption>
             </figure>
           </TiltCard>

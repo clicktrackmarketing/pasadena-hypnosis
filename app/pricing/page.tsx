@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SERVICES, NAP, type Service } from '../../components/content';
+import { SERVICES, NAP, REAL_COPY, type Service } from '../../components/content';
 import { DESK_LAMP, GALLERY } from '../../components/unsplash';
 import { priceLabel } from '../../components/price';
 import { ArrowRightIcon, PhoneIcon } from '../../components/Icons';
@@ -10,15 +10,13 @@ import { CtaBand } from '../../components/CtaBand';
 import { ImageStrip } from '../../components/Bands';
 import { PriceCards, type PriceCard } from '../../components/pages/pricing/PriceCards';
 import { PriceTiers } from '../../components/pages/pricing/PriceTiers';
-import { PaymentBand } from '../../components/pages/pricing/PaymentBand';
 
 // Target keywords (profile.ts targetKeywords['/pricing']): "hypnotherapy
-// cost pasadena", "how much does hypnotherapy cost", "is hypnotherapy
-// covered by insurance".
+// cost pasadena", "how much does hypnotherapy cost".
 export const metadata: Metadata = {
   title: 'Hypnotherapy Pricing',
   description:
-    'Standard hypnotherapy sessions with Pasadena Hypnosis are $200 each, with most clients engaging for 6-8 sessions. Self-pay by cash, credit card, or HSA/FSA card.',
+    'Hypnotherapy sessions with Pasadena Hypnosis are $200 each, the same in the office or online. Smoking cessation is $400, and the discovery call is free.',
   alternates: { canonical: '/pricing' },
 };
 
@@ -28,24 +26,28 @@ export const metadata: Metadata = {
  *   cards     3D flip-up entrance, cursor spotlight, glow border on the
  *             standard session, prices counting up
  *   tiers     every service grouped by price, as a pinned card stack
- *   payment   pointer-parallax depth field around a particle orb
  *   strip     the existing gallery ticker
  *
+ * REVISED 2026-10-01 from the client's markup round one (#56-#67):
+ *   - no "6-8 sessions" anywhere on the page (#56, #60);
+ *   - no HSA/FSA anywhere — the payment band that carried it is gone, and
+ *     with it the hero's payment fact (#57, #61, #67);
+ *   - smoking cessation is $400, as published (#58), with no session timing
+ *     and no "figure confirmed on your call" (#59);
+ *   - the standard-session card sells the session instead of describing the
+ *     page (#62).
+ *
  * EVERY PRICE ON THIS PAGE COMES FROM content.ts via priceLabel() or the raw
- * `price` field — including the hero fact strip and the lede, which used to
- * carry a typed "$200". price === null renders the qualifier / "On your call",
- * never a number: smoking cessation is genuinely unresolved ($400
- * site-verified vs. $500 verbal, still open after Call 2) and a pricing page
- * is the last place to guess.
+ * `price` field — including the hero fact strip and the lede.
  */
 
-const card = (s: Service, note: string, points: string[], featured: boolean): PriceCard => ({
+const card = (s: Service, note: string, points: string[], featured: boolean, qualifier?: string): PriceCard => ({
   slug: s.slug,
   name: s.name,
   tag: s.tag ?? null,
   price: s.price,
   label: priceLabel(s),
-  qualifier: s.priceQualifier ?? '',
+  qualifier: qualifier ?? s.priceQualifier ?? '',
   note,
   points,
   featured,
@@ -59,21 +61,25 @@ export default function PricingPage() {
   const cards: PriceCard[] = [
     card(
       discovery,
-      'No charge, no card, no commitment — talk it through before you book anything.',
-      ['Speak to Jason directly', 'No written intake first', 'No obligation to continue'],
+      'Talk through your situation with Jason before you book a session.',
+      ['Speak with Jason directly', 'Discuss what you need', 'Plan what we can accomplish together'],
       false,
+      // The figure already says Free; the sub-label says what it is.
+      'A call with Jason',
     ),
     card(
       standard,
-      'Most clients engage for 6-8 sessions. The same fee in the South Pasadena office or online statewide.',
-      ['Same rate in person or by video', 'Typically six to eight sessions', 'HSA/FSA cards accepted'],
+      REAL_COPY.hypnotherapy,
+      ['A 60-minute session', 'Specifically designed for you', 'Same rate in the office or online'],
       true,
     ),
     card(
       smoking,
-      'A single 90-minute session, or a Two-Session Package. Pricing confirmed on your discovery call.',
-      ['90-minute Quit Smoking Power Session', 'Or a Two-Session Package', 'Figure confirmed on your call'],
+      REAL_COPY.quitSmoking.money,
+      ['One-Session Quit Day', 'Support calls included', 'A back up office session if needed'],
       false,
+      // The booking widget's own name for it, minus the timing (#59).
+      'Quit Smoking Power Session',
     ),
   ];
 
@@ -88,14 +94,14 @@ export default function PricingPage() {
         intro="scale"
         facts={[
           { k: 'Standard session', v: priceLabel(standard) },
+          { k: 'Smoking cessation', v: priceLabel(smoking) },
           { k: 'Discovery call', v: priceLabel(discovery) },
-          { k: 'Typical course', v: '6–8 sessions' },
-          { k: 'Payment', v: 'Self-pay · HSA/FSA' },
+          { k: 'Format', v: 'In person or online' },
         ]}
         lede={
           <p>
-            Published up front. Standard sessions are {priceLabel(standard)} each, with most clients engaging Jason
-            Meissner for six to eight sessions depending on the condition treated.
+            Hypnotherapy sessions are {priceLabel(standard)} each, and smoking cessation is {priceLabel(smoking)}.{' '}
+            {REAL_COPY.charges} Please call if you need more information.
           </p>
         }
       >
@@ -113,13 +119,11 @@ export default function PricingPage() {
 
       <PriceTiers />
 
-      <PaymentBand />
-
       <ImageStrip images={GALLERY} speed={92} className="bg-white py-14 sm:py-20" />
 
       <CtaBand
         title="Talk it through first, at no cost"
-        body="The discovery call is genuinely free — there is no card, and no session is booked on it unless you want one."
+        body="The discovery call is free. Don’t hesitate to call with any questions you might have."
       />
     </div>
   );

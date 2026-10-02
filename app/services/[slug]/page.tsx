@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { SERVICES, NAP } from '../../../components/content';
+import { SERVICES, NAP, REAL_COPY } from '../../../components/content';
 import { serviceImage } from '../../../components/unsplash';
 import { ArrowRightIcon, PhoneIcon } from '../../../components/Icons';
 import { PageHero } from '../../../components/PageHero';
@@ -11,7 +11,8 @@ import { priceLabel } from '../../../components/price';
 import { serviceScene } from '../../../components/pages/services/shapes';
 import {
   AnswerZoom,
-  InShort,
+  ServiceStory,
+  QuitSmoking,
   StepsPath,
   OfficeSetting,
   RelatedRise,
@@ -22,19 +23,17 @@ import {
 // sourcing note on each (audited vs. Call 2 brief-derived).
 const TARGET_KEYWORDS: Record<string, string[]> = {
   'depression-bipolar-support': ['hypnotherapy for depression pasadena', 'hypnosis for bipolar disorder'],
-  'stress-and-anxiety': ['hypnotherapy for anxiety pasadena', 'hypnosis for disabling anxiety'],
+  'stress-and-anxiety': ['hypnotherapy for anxiety pasadena', 'hypnosis for stress and anxiety'],
   'smoking-cessation': ['quit smoking hypnosis pasadena', 'does hypnosis work to quit smoking'],
-  'chronic-pain': ['hypnotherapy for chronic pain los angeles', 'hypnosis for post surgical pain'],
-  ibs: ['gut-directed hypnotherapy', 'hypnotherapy for ibs los angeles'],
+  'chronic-pain': ['hypnotherapy for chronic pain los angeles', 'hypnosis for acute pain'],
+  ibs: ['hypnotherapy for ibs los angeles', 'hypnotherapy for fibromyalgia'],
   'grief-and-loss': ['hypnotherapy for grief pasadena', 'hypnosis for grief and loss'],
-  'group-hypnotherapy-program': ['group hypnotherapy program pasadena'],
   'hypnotherapy-sessions': ['hypnotherapy session pasadena', 'hypnotherapist south pasadena'],
-  'online-hypnotherapy': ['online hypnotherapy california'],
+  'online-hypnotherapy': ['online hypnotherapy'],
   'discovery-call': ['free hypnotherapy consultation pasadena'],
   'childhood-stress-anxiety': ['hypnotherapy for children pasadena'],
   'testing-and-academic-performance': ['test anxiety hypnosis pasadena', 'academic performance hypnosis san marino'],
   'sports-performance': ['sports performance hypnosis los angeles'],
-  'past-life-regression': ['past life regression pasadena'],
 };
 
 type Params = { slug: string };
@@ -59,8 +58,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   PAGE ORDER, and the kind of motion each band carries (no two alike):
     hero       dark   this service's own particle figure (see shapes.ts); H1 rises word by word
     answer     photo  the service's photograph opens from an inset card to full-bleed; answer focuses in over it
-    in short   white  summary + the scope note, which turns in from the side with a rule drawing down it
+    story      white  the service's own heading + paragraphs, beside a review or a call card
     steps      dark   cursor-lit glass cards joined by a line that draws itself with scroll
+                      (smoking cessation: QuitSmoking instead — his /quitsmoking page)
     setting    mint   the real office photo uncovered by a sweeping colour panel
     related    dark   a block that grows from a rounded card to full width as it arrives
     faq        tint   the page's figure again, light tone, held beside the questions (desktop)
@@ -74,6 +74,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
   const img = serviceImage(service.slug);
   const price = priceLabel(service);
   const { scene, hover } = serviceScene(service.slug);
+  const isSmoking = service.slug === 'smoking-cessation';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -119,9 +120,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
         full bleed. It is still the first paragraph after the H1 in the DOM —
         printed once, not twice.
 
-        `price` renders "On your call" rather than a number when the figure is
-        genuinely unresolved (smoking cessation: $400 site-verified vs. $500
-        verbal, still open after Call 2).
+        No "typical course" fact: there is no set number of sessions (markup
+        #23, #56). Smoking cessation is $400 (#58).
       */}
       <PageHero
         eyebrow={`${service.category}${service.tag ? ` · ${service.tag}` : ''}`}
@@ -134,8 +134,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
         breadcrumb={{ label: 'All services', href: '/services' }}
         facts={[
           { k: 'Investment', v: price },
-          { k: 'Format', v: 'In person or by video' },
-          { k: 'Typical course', v: 'Six to eight sessions' },
+          { k: 'Format', v: 'In person or online' },
+          isSmoking
+            ? { k: 'Includes', v: 'Support calls' }
+            : service.slug === 'discovery-call'
+              ? { k: 'With', v: 'Jason, directly' }
+              : { k: 'Session', v: '60 minutes' },
           { k: 'First step', v: 'A free discovery call' },
         ]}
       >
@@ -150,16 +154,24 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
       </PageHero>
 
       <AnswerZoom slug={service.slug} />
-      <InShort slug={service.slug} />
-      <StepsPath />
+      <ServiceStory slug={service.slug} />
+      {isSmoking ? <QuitSmoking /> : <StepsPath />}
       <OfficeSetting />
       <RelatedRise slug={service.slug} />
       <FaqEcho scene={scene} hover={hover} />
 
-      <CtaBand
-        title={`Talk through ${service.name.toLowerCase()} first`}
-        body="The discovery call is free and carries no obligation to book a session afterwards."
-      />
+      {isSmoking ? (
+        <CtaBand
+          title={REAL_COPY.quitSmoking.close}
+          body={REAL_COPY.quitSmoking.walkAway}
+          primaryLabel={REAL_COPY.quitSmoking.readyCta}
+        />
+      ) : (
+        <CtaBand
+          title="Let us know how we can help"
+          body="A free discovery call comes first."
+        />
+      )}
     </div>
   );
 }

@@ -2,8 +2,8 @@
 
 /* ---------------------------------------------------------------------------
    /service-areas/[slug] — the animated sections under the hero. One template,
-   five cities; every fact in it is shared (NAP, hours, the service catalogue,
-   the scope note) rather than per-city copy invented to fill a page.
+   five cities; every fact in it is shared (NAP, hours, the service catalogue)
+   rather than per-city copy invented to fill a page.
 
      AreaServices  the city's photograph opens from an inset card to its full
                    frame as it scrolls to centre (ZoomFrame); the service cards
@@ -24,10 +24,10 @@
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';
-import { SERVICE_AREAS, SERVICES, NAP, HOURS, PRACTITIONER } from '../../content';
+import { SERVICE_AREAS, SERVICES, NAP, HOURS } from '../../content';
 import { areaImage } from '../../unsplash';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../../assets';
-import { ArrowRightIcon, ClockIcon, MapPinIcon, ShieldCheckIcon } from '../../Icons';
+import { ArrowRightIcon, ClockIcon, MapPinIcon } from '../../Icons';
 import { Rings } from '../../Spiral';
 import { responsive } from '../../responsive';
 import { ServiceCard } from '../../ServiceCard';
@@ -98,7 +98,7 @@ export const AreaServices = ({ slug, city }: { slug: string; city: string }) => 
             href="/services"
             className="group ph-tap mt-10 inline-flex items-center gap-2.5 rounded-[14px] border border-[#2E2F3D]/20 bg-white px-6 py-3.5 text-[15px] font-semibold text-[#2E2F3D] transition-colors duration-300 hover:border-[#2E2F3D] hover:bg-[#2E2F3D] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2 focus-visible:ring-offset-[#E6EFFF]"
           >
-            <RollText>All {SERVICES.length} services</RollText>
+            <RollText>All services</RollText>
             <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </Reveal>
@@ -177,12 +177,8 @@ export const VisitBand = ({ city }: { city: string }) => (
             </Reveal>
           </div>
 
-          <Reveal delay={0.24}>
-            <div className="mt-10 flex items-start gap-3.5 rounded-[18px] border border-white/12 bg-white/[0.05] p-5 backdrop-blur-sm sm:p-6">
-              <ShieldCheckIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#A9C4EE]" />
-              <p className="text-[14px] leading-[1.7] text-[#D9E1F0]">{PRACTITIONER.scopeNote}</p>
-            </div>
-          </Reveal>
+          {/* The scope note that sat here was removed: markup #73 allows it on
+              /our-team only. */}
         </div>
       </div>
     </RiseIn>

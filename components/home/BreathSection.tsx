@@ -34,6 +34,7 @@
 import { useRef, useState } from 'react';
 import { useAnimationFrame } from 'motion/react';
 import { HANDS_RESTING } from '../unsplash';
+import { REAL_COPY } from '../content';
 import { responsive } from '../responsive';
 import { Rings } from '../Spiral';
 import { motion, useReducedMotion, useInView, Reveal, SplitHeading, CursorGlow } from '../Motion';
@@ -113,15 +114,16 @@ export const BreathSection = () => {
             className="max-w-[16ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-white"
           />
           <Reveal delay={0.15}>
+            {/* Site-wide rules from markup round one: no "not" qualifiers
+                (#55), no talking about the page itself (#27), and "It is
+                an office" (#29). The second sentence is his own homepage. */}
             <p className="mt-6 max-w-[52ch] text-[16px] leading-[1.72] text-[#D9E1F0]">
-              Follow the ring for a few rounds if you like &mdash; in for four, hold for four, out for six.
-              It is a paced-breathing pattern, not hypnotherapy and not a session. Consider it somewhere to
-              put your attention while you read the rest of the page.
+              Follow the ring for a few rounds &mdash; in for four, hold for four, out for six. {REAL_COPY.meditation}
             </p>
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[12.5px] text-[#A9C4EE]">
-              Hypnotherapy itself is one-to-one work with Jason, in the room or by video.
+              Hypnotherapy itself is one-to-one work with Jason, in the office or online.
             </p>
           </Reveal>
         </div>

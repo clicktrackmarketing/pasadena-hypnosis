@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     template: '%s | Pasadena Hypnosis',
   },
   description:
-    'Hypnotherapy for Depression & Bipolar Disorder, Disabling Anxiety, Smoking Cessation, Chronic Pain, Gut-Directed Hypnotherapy and Grief in South Pasadena.',
+    'Certified hypnotherapy in South Pasadena and online: stress and anxiety, depression and bipolar disorder, smoking cessation, chronic and acute pain, IBS and fibromyalgia, and grief.',
   // This repo is the real, launch-track site (converted from the approved
   // MagicPath concept per the site-build skill's route-conversion pattern),
   // but it is not yet promoted to the live domain — stays noindex,nofollow

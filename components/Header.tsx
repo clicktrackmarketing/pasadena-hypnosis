@@ -4,15 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react';
-import { SERVICES, SERVICE_AREAS, NAP } from './content';
+import { SERVICES, SERVICE_AREAS, NAP, CATEGORY_ORDER } from './content';
 import { LOGO, LOGO_W, LOGO_H } from './assets';
 import { serviceImage } from './unsplash';
 import { responsive } from './responsive';
 import { ChevronDownIcon, MenuIcon, CloseIcon, PhoneIcon, ArrowRightIcon } from './Icons';
 import { EASE_OUT_SOFT } from './Motion';
 import { RollText } from './MotionFx';
-
-const CATEGORY_ORDER = ['Featured', 'Conditions', 'Programs', 'General', 'Online', 'Performance', 'Specialty'];
 
 const areaSlug = (a: string) => a.split(',')[0].trim().toLowerCase().replace(/\s+/g, '-');
 
@@ -25,7 +23,9 @@ const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Contact', href: '/contact' },
 ];
 
-/* The mega-menu groups services by category in the brief's own order. */
+/* The mega-menu groups services by category, in content.ts's CATEGORY_ORDER
+   (revised in markup round one so the discovery call is no longer listed
+   among the specialties — #34). */
 const GROUPED = CATEGORY_ORDER.map((c) => ({ c, items: SERVICES.filter((s) => s.category === c) })).filter(
   (g) => g.items.length > 0,
 );
@@ -230,7 +230,7 @@ export const Header = () => {
                           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#A9C4EE]">Start here</p>
                           <p className="mt-3 font-heading text-[1.35rem] leading-snug">A free discovery call</p>
                           <p className="mt-2 text-[13px] leading-relaxed text-[#D9E1F0]">
-                            Talk it through with Jason directly. No charge, no commitment.
+                            Talk it through with Jason directly. Let us know how we can help.
                           </p>
                         </div>
                         <div className="relative mt-6 flex flex-col gap-2">
@@ -247,7 +247,7 @@ export const Header = () => {
                             onClick={() => setServicesOpen(false)}
                             className="inline-flex items-center justify-between rounded-[12px] border border-white/25 px-4 py-3 text-[14px] font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE]"
                           >
-                            All {SERVICES.length} services
+                            All services
                             <ArrowRightIcon className="h-4 w-4" />
                           </Link>
                         </div>
@@ -392,7 +392,7 @@ export const Header = () => {
                   <PhoneIcon className="h-4 w-4" />
                   {NAP.phone}
                 </a>
-                <p className="mt-2 text-center text-[13px] text-[#A9C4EE]/80">{SERVICE_AREAS.slice(0, 3).map((a) => a.split(',')[0]).join(' · ')} · online statewide</p>
+                <p className="mt-2 text-center text-[13px] text-[#A9C4EE]/80">{SERVICE_AREAS.slice(0, 3).map((a) => a.split(',')[0]).join(' · ')} · online anywhere</p>
               </motion.div>
             </nav>
           </motion.div>

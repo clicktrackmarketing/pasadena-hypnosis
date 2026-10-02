@@ -824,7 +824,10 @@ export const PinnedRail = ({
       className={className}
       style={pinned ? { height: `calc(100vh + ${Math.round(travel * pace)}px)` } : undefined}
     >
-      {!pinned && header ? header : null}
+      {/* Unpinned (reduced motion) at lg+, the header's own lg:mb-0 assumes
+          the pinned layout's gap-10; this restores that gap so the cards do
+          not sit on the heading. */}
+      {!pinned && header ? <div className="lg:mb-10">{header}</div> : null}
       <div className={pinned ? 'sticky top-0 flex h-screen flex-col justify-center gap-10 overflow-hidden' : 'overflow-x-auto'}>
         {pinned && header ? header : null}
         {pinned ? (

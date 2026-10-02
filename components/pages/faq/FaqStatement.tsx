@@ -42,7 +42,7 @@ export const FaqStatement = () => (
         <Reveal>
           <h2 className="mb-7 inline-flex items-center gap-3 text-[12.5px] font-bold uppercase tracking-[0.2em] text-[#46699F]">
             <span aria-hidden="true" className="inline-block h-px w-8 bg-[#46699F]/60" />
-            Not answered here?
+            Have a question?
           </h2>
         </Reveal>
 
@@ -55,7 +55,7 @@ export const FaqStatement = () => (
 
         <Reveal delay={0.1}>
           <p className="mt-8 max-w-[46ch] text-[17px] leading-[1.7] text-[#4B5468]">
-            The discovery call exists for exactly that, and it costs nothing.
+            The discovery call is free.
           </p>
         </Reveal>
 

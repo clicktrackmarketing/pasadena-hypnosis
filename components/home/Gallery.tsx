@@ -31,14 +31,10 @@ export const Gallery = () => (
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
       <SectionHeading
         className="mb-12 sm:mb-16"
+        /* Markup #20: the lede is removed ("Remove all of this it is
+           terrible!"). #29: "It is an office." */
         eyebrow="The setting"
-        title="The kind of room this work happens in"
-        lede={
-          <p>
-            Quiet, unclinical, and an hour at a time. The room below on the right is the real one, at 1910
-            Huntington Drive; the rest of this band is what that kind of space looks like.
-          </p>
-        }
+        title="Where the work happens"
         aside={
           <Link
             href="/contact"
@@ -123,10 +119,10 @@ export const Gallery = () => (
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2E2F3D] via-[#2E2F3D]/80 to-transparent p-5 pt-14">
                 <span className="mb-2 inline-flex items-center rounded-full bg-[#5DBA47] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D]">
-                  The real room
+                  The office
                 </span>
                 <p className="text-[13px] leading-[1.6] text-[#D9E1F0]">
-                  The consulting room in South Pasadena. Sessions also run by video, anywhere in California.
+                  The office in South Pasadena. Sessions also run online, anywhere.
                 </p>
               </figcaption>
             </figure>
@@ -135,9 +131,10 @@ export const Gallery = () => (
       </div>
 
       <Reveal delay={0.1}>
+        {/* Shortened: the client asked the site to stop talking about itself
+            (#27), but stock interiors still must not pass as his premises. */}
         <p className="mt-8 text-[12.5px] leading-[1.6] text-[#4B5468]">
-          Only the captioned tile shows Pasadena Hypnosis. The other photographs are stock images of comparable
-          spaces, included to set the tone rather than to represent the premises.
+          Only the captioned photo shows the Pasadena Hypnosis office.
         </p>
       </Reveal>
     </div>

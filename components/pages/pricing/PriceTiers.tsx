@@ -14,10 +14,10 @@
    filed under its own priceLabel(), so a price edited in content.ts moves the
    service to the right tier on its own. The big figure on each tier is a
    <Counter> over the raw numeric field (its final string is identical to
-   priceLabel), or the label itself for "Free" and "On your call". Where a
-   tier's services do not share a qualifier — the two unresolved prices are
-   "confirmed on your free discovery call" and "confirmed directly with
-   Jason" — each service shows its own.
+   priceLabel), or the label itself for "Free". Where a tier's services do
+   not share a qualifier, each service shows its own. Since markup round one
+   (2026-10-01) no service is unpriced, and no tier counts its services (#64,
+   #74 "Remove the reference to the number… everywhere").
 
    HEIGHT DISCIPLINE. A sticky card taller than the viewport hides its own
    lower half behind the next card, so the big tier (ten services) lays its
@@ -84,7 +84,7 @@ const TierCard = ({ t, i }: { t: Tier; i: number }) => {
               {String(i + 1).padStart(2, '0')}
             </span>
             <span aria-hidden="true" className="inline-block h-px w-6 bg-current opacity-50" />
-            {t.items.length} {t.items.length === 1 ? 'service' : 'services'}
+            {t.price === 0 ? 'First step' : 'Investment'}
           </p>
           <h3 className={`mt-4 font-heading leading-none tracking-[-0.02em] ${skin.ink} ${numeric ? 'text-[clamp(3.4rem,8vw,5.6rem)] tabular-nums' : 'text-[clamp(2.4rem,5.5vw,3.6rem)]'}`}>
             {numeric ? (
@@ -166,8 +166,10 @@ export const PriceTiers = () => {
               className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
             />
             <Reveal delay={0.12}>
+              {/* Markup #64: no count of the services, and say plainly what
+                  the list is. The second sentence is his own homepage. */}
               <p className="mt-5 max-w-[40ch] text-[16px] leading-[1.7] text-[#4B5468]">
-                All {SERVICES.length} services and what each one costs. Nothing is hidden behind a form.
+                The price of each service, in one place.
               </p>
             </Reveal>
 
@@ -193,7 +195,6 @@ export const PriceTiers = () => {
                       >
                         {t.label}
                       </span>
-                      <span className="ml-auto text-[12px] text-[#4B5468]">{t.items.length}</span>
                     </li>
                   ))}
                 </ol>

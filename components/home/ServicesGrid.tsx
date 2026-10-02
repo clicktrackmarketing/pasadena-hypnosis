@@ -3,9 +3,9 @@
 /* ---------------------------------------------------------------------------
    SERVICES — a horizontal rail that the page scrolls sideways through.
 
-   WHY A RAIL RATHER THAN THE GRID IT WAS. Fourteen services do not fit in a
+   WHY A RAIL RATHER THAN THE GRID IT WAS. A full catalogue does not fit in a
    six-card grid without the grid quietly lying about the catalogue's size. The
-   rail carries ALL FOURTEEN, in the practice's own ranked order, and the
+   rail carries EVERY SERVICE, in the practice's own ranked order, and the
    sideways travel makes the length of the list the point instead of hiding it.
 
    <PinnedRail> handles the mechanics and the bail-outs: below lg, and for
@@ -28,7 +28,6 @@
 import Link from 'next/link';
 import { SERVICES } from '../content';
 import { serviceImage } from '../unsplash';
-import { priceLabel } from '../price';
 import { responsive } from '../responsive';
 import { ArrowRightIcon } from '../Icons';
 import { SectionHeading } from '../SectionHeading';
@@ -41,21 +40,18 @@ export const ServicesGrid = () => {
       <PinnedRail
         header={
           <div className="mx-auto mb-10 w-full max-w-[1280px] px-4 sm:px-6 lg:mb-0 lg:px-8">
+            {/* Markup #8: the lede explaining the ranking is deleted ("Don't
+                tell the customer why they are ranked… Delete all of this"),
+                and #74: no count of the services anywhere. */}
             <SectionHeading
               eyebrow="Service information"
               title="What can you book with Pasadena Hypnosis?"
-              lede={
-                <p>
-                  Fourteen services, ranked the way the practice ranks them &mdash; specialisms first, then the
-                  programmes, then everything else it still offers.
-                </p>
-              }
               aside={
                 <Link
                   href="/services"
                   className="group inline-flex items-center gap-2 rounded-full border border-[#2E2F3D]/15 px-5 py-2.5 text-sm font-medium text-[#2E2F3D] transition-all duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
                 >
-                  View all {SERVICES.length} services
+                  View all services
                   <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               }
@@ -67,7 +63,6 @@ export const ServicesGrid = () => {
       >
         {SERVICES.map((s) => {
           const img = serviceImage(s.slug);
-          const price = priceLabel(s);
           return (
             /* No per-card entrance: in a sideways rail each card would start
                blank and fade in as it slid into view, which reads as photos
@@ -90,9 +85,8 @@ export const ServicesGrid = () => {
                     <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/92 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
                       {s.tag ?? s.category}
                     </span>
-                    <span className="absolute bottom-4 right-4 inline-flex items-center rounded-full bg-[#2E2F3D]/85 px-3 py-1 text-[11.5px] font-semibold text-white backdrop-blur-sm">
-                      {price}
-                    </span>
+                    {/* No price pill: markup #22/#34/#36 — the price is on
+                        /pricing and on each service page, not on every tile. */}
                   </div>
 
                   {/* Clamped to a fixed shape for the same reason as

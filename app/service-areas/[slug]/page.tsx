@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const city = areaCity(area);
   return {
     title: `Hypnotherapy in ${city}, CA`,
-    description: `Pasadena Hypnosis serves ${city}, CA with in-person sessions at ${NAP.street} in ${NAP.city} and online statewide. Certified hypnotherapy for depression, anxiety, chronic pain, smoking cessation and grief.`,
+    description: `Pasadena Hypnosis serves ${city}, CA with in-person sessions at ${NAP.street} in ${NAP.city} and online sessions anywhere. Certified hypnotherapy for stress and anxiety, depression, chronic and acute pain, smoking cessation and grief.`,
     alternates: { canonical: `/service-areas/${slug}` },
   };
 }
@@ -87,7 +87,7 @@ export default async function ServiceAreaDetailPage({ params }: { params: Promis
                 src: OFFICE_INTERIOR,
                 alt: OFFICE_INTERIOR_ALT,
                 aspect: '3/4' as const,
-                caption: `The consulting room at ${NAP.street} — this is the city the office is actually in.`,
+                caption: `The office at ${NAP.street}, South Pasadena.`,
               }
             : undefined
         }
@@ -98,14 +98,14 @@ export default async function ServiceAreaDetailPage({ params }: { params: Promis
         facts={[
           { k: 'Office', v: 'South Pasadena' },
           { k: 'Standard session', v: '$200' },
-          { k: 'Also available', v: 'By video' },
+          { k: 'Also available', v: 'Online, anywhere' },
           { k: 'First call', v: 'Free' },
         ]}
         lede={
           <p id="answer-first" className="border-l-2 border-[#A9C4EE]/45 pl-5">
-            Pasadena Hypnosis serves {city} clients in person at {NAP.street} in {NAP.city}, and by video anywhere in
-            California &mdash; the same $200 rate and the same conditions treated either way, led by Jason Meissner,
-            a Hypnosis Motivation Institute graduate with 10 years in practice.
+            Pasadena Hypnosis serves {city} clients in person at {NAP.street} in {NAP.city}, and by video anywhere
+            &mdash; the same work either way, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10
+            years in practice.
           </p>
         }
       >
@@ -129,7 +129,7 @@ export default async function ServiceAreaDetailPage({ params }: { params: Promis
 
       <CtaBand
         title={`Talk it through from ${city}`}
-        body="A free discovery call first, in person or by video — whichever is easier to get to."
+        body="A free discovery call first. Let us know how we can help."
       />
     </div>
   );

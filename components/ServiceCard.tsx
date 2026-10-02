@@ -21,11 +21,9 @@ import type { Service } from './content';
 import { serviceImage } from './unsplash';
 import { ArrowRightIcon } from './Icons';
 import { TiltCard } from './Motion';
-/* priceLabel lives in its own module rather than here: this file is
-   'use client', and a Server Component cannot CALL a function exported from a
-   client module — /services/[slug] did exactly that and threw at request time.
-   See the header note in ./price. */
-import { priceLabel } from './price';
+/* No price pill on the card (markup #22, #34 "Why is the dollar amount there
+   over and over and over when I have one cost", #36). Prices live on
+   /pricing and in each service page's hero. */
 import { responsive } from './responsive';
 
 export const ServiceCard = ({
@@ -37,7 +35,6 @@ export const ServiceCard = ({
   variant?: 'full' | 'brief' | 'compact';
 }) => {
   const img = serviceImage(s.slug);
-  const price = priceLabel(s);
 
   if (variant === 'compact') {
     return (
@@ -69,11 +66,6 @@ export const ServiceCard = ({
           {s.tag ? (
             <span className="absolute left-4 top-4 hidden items-center rounded-full bg-white/92 sm:inline-flex px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
               {s.tag}
-            </span>
-          ) : null}
-          {price ? (
-            <span className="absolute bottom-2.5 right-2.5 inline-flex items-center rounded-full bg-[#2E2F3D]/85 px-2.5 py-0.5 sm:bottom-4 sm:right-4 sm:px-3 sm:py-1 text-[11.5px] font-semibold text-white backdrop-blur-sm">
-              {price}
             </span>
           ) : null}
         </div>

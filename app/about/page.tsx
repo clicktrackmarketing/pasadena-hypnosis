@@ -10,7 +10,6 @@ import { AboutWords } from '../../components/pages/about/AboutWords';
 import { AboutRoom } from '../../components/pages/about/AboutRoom';
 import { AboutZoom } from '../../components/pages/about/AboutZoom';
 import { AboutReviews } from '../../components/pages/about/AboutReviews';
-import { AboutScope } from '../../components/pages/about/AboutScope';
 
 /* ---------------------------------------------------------------------------
    ABOUT — redesigned 2026-09-28 for motion. Each band moves its own way:
@@ -39,7 +38,7 @@ import { AboutScope } from '../../components/pages/about/AboutScope';
 export const metadata: Metadata = {
   title: 'About Pasadena Hypnosis',
   description:
-    'Pasadena Hypnosis LLC is a solo hypnotherapy practice run by Jason Meissner out of South Pasadena, California, holding a 5.0 Google rating from 12 reviews.',
+    'Pasadena Hypnosis LLC is a solo hypnotherapy practice run by Jason Meissner out of South Pasadena, CA, holding a 5.0 Google rating from 12 reviews.',
   alternates: { canonical: '/about' },
 };
 
@@ -48,7 +47,7 @@ export default function AboutPage() {
     <div>
       <PageHero
         eyebrow="About"
-        title="A solo practice, in one room, for a decade"
+        title="A solo practice, in one office, for a decade"
         image={GARDEN_STREAM}
         size="lg"
         scene="wave"
@@ -58,12 +57,12 @@ export default function AboutPage() {
           { k: 'Practice', v: 'Solo, since 2016' },
           { k: 'Location', v: 'South Pasadena, CA' },
           { k: 'Rating', v: '5.0 from 12 reviews' },
-          { k: 'Also', v: 'Video, statewide' },
+          { k: 'Also', v: 'Online, anywhere' },
         ]}
         lede={
           <p>
             Pasadena Hypnosis LLC is Jason Meissner&rsquo;s own practice, run out of a South Pasadena office he has
-            worked from for ten years. What follows is in his words, carried across from the site he wrote himself.
+            worked from for ten years.
           </p>
         }
       >
@@ -81,11 +80,10 @@ export default function AboutPage() {
       <AboutRoom />
       <AboutZoom />
       <AboutReviews />
-      <AboutScope />
 
       <CtaBand
         title="Talk to Jason directly"
-        body="The first conversation is free, and it is a conversation rather than an intake form."
+        body="The first conversation is free. Let us know how we can help."
       />
     </div>
   );

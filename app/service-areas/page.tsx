@@ -16,7 +16,7 @@ import { AreasMarquee, CityBento, OnlineDepth } from '../../components/pages/ser
 export const metadata: Metadata = {
   title: 'Hypnotherapy Service Areas Near South Pasadena, CA',
   description:
-    'Pasadena Hypnosis sees clients in person from a South Pasadena office and serves Pasadena, South Pasadena, Glendale, Eagle Rock and Arcadia, plus online statewide.',
+    'Pasadena Hypnosis sees clients in person from a South Pasadena office and serves Pasadena, South Pasadena, Glendale, Eagle Rock and Arcadia, plus online sessions with clients anywhere.',
   alternates: { canonical: '/service-areas' },
 };
 
@@ -33,7 +33,9 @@ export const metadata: Metadata = {
  * that included Alhambra, Altadena, San Marino and Sierra Madre; Jason
  * confirmed only these five on Call 2, and content.ts was trimmed to match.
  * Every section below renders SERVICE_AREAS as-is. The online route keeps a
- * full section of its own — statewide video is genuinely half the practice.
+ * full section of its own — online sessions with clients anywhere are
+ * genuinely half the practice (markup #15, #28, #85: no "statewide", no
+ * "California").
  */
 export default function ServiceAreasHubPage() {
   return (
@@ -48,14 +50,14 @@ export default function ServiceAreasHubPage() {
         intro="mask"
         facts={[
           { k: 'In person', v: '5 cities' },
-          { k: 'Online', v: 'All of California' },
+          { k: 'Online', v: 'Anywhere' },
           { k: 'Office', v: 'South Pasadena' },
           { k: 'First call', v: 'Free' },
         ]}
         lede={
           <p>
-            In person at {NAP.street} in {NAP.city}, and by video anywhere in California. These are the areas Jason
-            Meissner most often sees clients from in person.
+            In person at {NAP.street} in {NAP.city}, and by video anywhere. These are the areas Jason Meissner most
+            often sees clients from in person.
           </p>
         }
       >
@@ -79,7 +81,7 @@ export default function ServiceAreasHubPage() {
 
       <CtaBand
         title="Outside these cities? Online works the same way."
-        body="Same rate, same conditions treated, anywhere in California."
+        body="Same rate, same work, with clients anywhere."
         secondary={{ href: '/services/online-hypnotherapy', label: 'Online Hypnotherapy' }}
       />
     </div>
