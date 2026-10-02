@@ -9,8 +9,10 @@
      StepsPath     the three STEPS strung on a line that draws itself down
                    the page as you read (ScrollDraw); each stage's marker
                    lights when the line reaches it
-     ScopeScrub    the scope sentence reads itself in, word by word, with
-                   the scroll (ScrubText)
+
+   ScopeScrub, the scope sentence that closed this page, was removed
+   2026-10-01 (markup #77, #73: the disclaimer is the footer's, the scope note
+   is /our-team's, and nothing else on the site may repeat them).
 
    THE FORM IS THE POINT OF THIS PAGE, so the rule for its band is strict:
    NOTHING THAT MOVES IS ALLOWED TO CARRY A FIELD. The form sits outside
@@ -19,8 +21,7 @@
    one entrance (Reveal) runs once, as it scrolls into view, before anyone
    can be typing in it. BookingForm itself is the shared component, untouched.
 
-   COPY: STEPS and HOURS are content.ts; the four reassurances and the scope
-   sentence were already on this page.
+   COPY: STEPS and HOURS are content.ts; the four reassurances are the page's.
 
    The stock "room" gallery strip that closed the old page was dropped — see
    the matching note on /contact.
@@ -29,7 +30,7 @@
 import { useRef, useState } from 'react';
 import { useMotionValueEvent } from 'motion/react';
 import { HOURS, STEPS } from '../../content';
-import { CheckIcon, ClockIcon, ShieldCheckIcon } from '../../Icons';
+import { CheckIcon, ClockIcon } from '../../Icons';
 import { Spiral, Rings } from '../../Spiral';
 import { BookingForm } from '../../BookingForm';
 import {
@@ -42,7 +43,7 @@ import {
   StaggerItem,
   EASE_OUT_SOFT,
 } from '../../Motion';
-import { DepthField, Depth, ScrollDraw, ScrubText } from '../../MotionFx';
+import { DepthField, Depth, ScrollDraw } from '../../MotionFx';
 
 /* ---------------------------------------------------------- Form band -- */
 
@@ -223,23 +224,3 @@ export const StepsPath = () => {
     </section>
   );
 };
-
-/* --------------------------------------------------------------- Scope -- */
-
-export const ScopeScrub = () => (
-  <section className="relative overflow-hidden bg-[#E9F3EF] py-16 sm:py-28">
-    <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-      <Reveal>
-        <span className="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#454659] shadow-[0_14px_30px_-16px_rgba(46,47,61,0.5)]">
-          <ShieldCheckIcon className="h-6 w-6" aria-hidden="true" />
-        </span>
-      </Reveal>
-      <ScrubText
-        text="Pasadena Hypnosis is a complementary practice, not a substitute for medical or psychiatric care."
-        className="max-w-[30ch] font-heading text-[1.9rem] leading-[1.2] tracking-[-0.015em] text-[#2E2F3D] sm:text-[2.8rem] lg:text-[3.3rem]"
-        dim={0.18}
-        offset={['start 88%', 'end 55%']}
-      />
-    </div>
-  </section>
-);

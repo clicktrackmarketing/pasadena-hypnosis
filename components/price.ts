@@ -23,11 +23,11 @@ import type { Service } from './content';
  * SHORT price label, for badges and pills.
  *
  * A null price does NOT fall back to `priceQualifier`. That field is a full
- * sentence on at least one service ("Pricing confirmed on your free discovery
- * call" on smoking cessation) and rendering it inside a pill produced a badge
- * wider than the card it sat on. Null means the figure is genuinely unresolved
- * — $400 site-verified vs. $500 verbal, still open after Call 2 — so the short
- * form says where the number will come from rather than inventing one.
+ * sentence on at least one service, and rendering it inside a pill produced a
+ * badge wider than the card it sat on. Null means a figure is genuinely
+ * unresolved, so the short form says where the number will come from rather
+ * than inventing one. (No service is null since markup round one: the client
+ * settled smoking cessation at $400.)
  * Use `priceQualifier` directly wherever there is room for the sentence.
  */
 export const priceLabel = (s: Service) =>

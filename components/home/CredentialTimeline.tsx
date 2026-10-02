@@ -68,13 +68,7 @@ export const CredentialTimeline = ({ items }: { items: TimelineItem[] }) => {
         <SectionHeading
           className="mb-14 sm:mb-16"
           eyebrow={`The paperwork, ${yearLabel}`}
-          title="Four specialisms, then the diploma"
-          lede={
-            <p>
-              Dated in the order the documents themselves are dated. The American Hypnosis Association
-              specialisms came first, in the spring; the accredited diploma completed that October.
-            </p>
-          }
+          title="Four specialist certifications, then the diploma"
         />
 
         <div className="relative">

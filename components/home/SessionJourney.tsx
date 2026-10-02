@@ -15,7 +15,8 @@
    The figure is driven by this section's own scroll progress, not by a
    timer: the visitor is the one moving through the process, so the visitor
    moves the figure. It has no captions and claims nothing; the words beside
-   it are STEPS from content.ts, verbatim, including the $200 and the address.
+   it are STEPS from content.ts, verbatim (rewritten per markup #21-#24: no
+   price in step two, no session count in step three).
 
    LAYOUT: desktop is two columns with the canvas column sticky. On phones the
    canvas itself is sticky under the header and the step cards (dark glass)
@@ -112,12 +113,6 @@ export const SessionJourney = () => {
                   title="How it works"
                   lede={<p>Three stages, and the first one costs nothing.</p>}
                 />
-                <Reveal delay={0.3}>
-                  <p className="mt-8 flex items-center gap-3 text-[13px] uppercase tracking-[0.18em] text-[#A9C4EE]/80">
-                    <span className="inline-block h-px w-10 bg-[#A9C4EE]/50" />
-                    Scroll to move through it
-                  </p>
-                </Reveal>
               </div>
             </div>
 
@@ -169,7 +164,7 @@ export const SessionJourney = () => {
                   href="/book"
                   className="group inline-flex items-center gap-2.5 rounded-[14px] bg-white px-7 py-4 text-[15px] font-semibold text-[#2E2F3D] transition-colors hover:bg-[#E6EFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F2030]"
                 >
-                  Start with step one
+                  Book a Free Discovery Call
                   <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </Reveal>

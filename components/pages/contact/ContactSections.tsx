@@ -13,7 +13,7 @@
      ContactForm   the shared BookingForm, untouched, with slow scroll-turned
                    rings in the ground around it — never on it
 
-   COPY: every string is content.ts (NAP, HOURS, SERVICE_AREAS) or was already
+   COPY: every string is content.ts (NAP, HOURS) or was already
    on this page. No suite number anywhere: it is unverified (see NAP).
 
    The stock "room" gallery strip that used to close this page was dropped:
@@ -22,7 +22,7 @@
 --------------------------------------------------------------------------- */
 
 import type { ComponentType, ReactNode, SVGProps } from 'react';
-import { NAP, HOURS, SERVICE_AREAS } from '../../content';
+import { NAP, HOURS } from '../../content';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../../assets';
 import { ArrowRightIcon, ClockIcon, MailIcon, MapPinIcon, PhoneIcon } from '../../Icons';
 import { Spiral, Rings } from '../../Spiral';
@@ -48,7 +48,7 @@ type Tile = {
 const [emailUser, emailDomain] = NAP.email.split('@');
 
 const TILES: Tile[] = [
-  { label: 'Call', Icon: PhoneIcon, value: NAP.phone, href: NAP.phoneHref, note: 'Fastest route to a person' },
+  { label: 'Call', Icon: PhoneIcon, value: NAP.phone, href: NAP.phoneHref, note: 'Talk to Jason directly' },
   {
     label: 'Email',
     Icon: MailIcon,
@@ -59,14 +59,14 @@ const TILES: Tile[] = [
       </>
     ),
     href: `mailto:${NAP.email}`,
-    note: 'For anything not urgent',
+    note: 'Write any time',
   },
   {
     label: 'Visit',
     Icon: MapPinIcon,
     value: `${NAP.street}, ${NAP.city}`,
     href: NAP.directions,
-    note: 'Opens Google Maps',
+    note: 'Get directions',
     external: true,
   },
   { label: 'Hours', Icon: ClockIcon, hours: true },
@@ -224,14 +224,9 @@ export const OfficeBlock = () => {
           </Reveal>
 
           {/* No suite number anywhere on this page: it is unverified.
-              See the NAP note in content.ts. */}
-          <Reveal delay={0.24}>
-            <p className="mt-10 max-w-[56ch] border-t border-[#D7DEEA] pt-6 text-[15px] leading-[1.72] text-[#4B5468]">
-              Several other practitioners work out of the same building. Sessions also run by video anywhere in
-              California, including for clients in {SERVICE_AREAS.slice(0, 3).map((a) => a.split(',')[0]).join(', ')} and
-              beyond.
-            </p>
-          </Reveal>
+              See the NAP note in content.ts. The paragraph that sat here
+              (other practitioners in the building, video "anywhere in
+              California") was removed — markup #91, "Get rid of this!" */}
         </div>
       </div>
     </section>

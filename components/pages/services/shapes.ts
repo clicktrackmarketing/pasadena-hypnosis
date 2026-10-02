@@ -13,8 +13,8 @@
      - a brain for depression, lungs for smoking, a spine for pain, a knot for
        the gut, a heart for grief;
      - a storm for anxiety that settles into a calm orb while hovered;
-     - formats as forms: a constellation for the group, a globe for online,
-       rings (a conversation) for the discovery call, a spiral for the session.
+     - formats as forms: a globe for online, rings (a conversation) for the
+       discovery call, a spiral for the session.
 --------------------------------------------------------------------------- */
 
 import type { ShapeName } from '../../scene/shapes';
@@ -28,14 +28,12 @@ export const SERVICE_SCENES: Record<string, ServiceScene> = {
   'chronic-pain': { scene: 'spine' },
   ibs: { scene: 'knot' },
   'grief-and-loss': { scene: 'heart' },
-  'group-hypnotherapy-program': { scene: 'constellation' },
   'hypnotherapy-sessions': { scene: 'spiral' },
   'online-hypnotherapy': { scene: 'globe' },
   'discovery-call': { scene: 'rings' },
   'childhood-stress-anxiety': { scene: 'orb' },
   'testing-and-academic-performance': { scene: 'lattice' },
   'sports-performance': { scene: 'ribbon' },
-  'past-life-regression': { scene: 'tunnel' },
 };
 
 /** Falls back to the spiral so a newly added service still gets a figure. */

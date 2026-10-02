@@ -11,7 +11,8 @@
    promising coverage nobody agreed to.
 
    The online line is given equal weight rather than treated as a footnote,
-   because statewide video is genuinely half the practice.
+   because online sessions with clients anywhere are genuinely half the
+   practice (markup #28: "I work on video with clients who live anywhere").
 
    MOTION: pills pop in on a stagger; the landmark photograph drifts on scroll.
 --------------------------------------------------------------------------- */
@@ -48,7 +49,7 @@ export const AreasStrip = () => (
             </p>
           </Reveal>
           <SplitHeading
-            text="In the room in South Pasadena, or by video statewide."
+            text="In the office in South Pasadena, or online anywhere."
             className="max-w-[16ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
 

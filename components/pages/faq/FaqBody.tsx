@@ -26,7 +26,7 @@ import { FAQS, NAP } from '../../content';
 import { FaqAccordion } from '../../FaqAccordion';
 import { ArrowRightIcon, MailIcon, PhoneIcon } from '../../Icons';
 import { MindScene } from '../../scene/MindScene';
-import { Counter, Reveal, SectionProgressBar, useScroll } from '../../Motion';
+import { Reveal, SectionProgressBar, useScroll } from '../../Motion';
 import { RollText, Spotlight } from '../../MotionFx';
 
 export const FaqBody = () => {
@@ -46,16 +46,12 @@ export const FaqBody = () => {
                   <MindScene shape="orb" tone="light" intro={false} intensity={0.75} className="absolute inset-0" />
                 </div>
                 <p className="flex flex-col lg:pointer-events-none lg:absolute lg:inset-x-0 lg:top-0 lg:h-72 lg:items-center lg:justify-center lg:text-center">
-                  <span className="sr-only">{FAQS.length}</span>
-                  <span aria-hidden="true">
-                    <Counter
-                      to={FAQS.length}
-                      duration={1.2}
-                      className="font-heading text-[2.8rem] leading-none text-[#2E2F3D] lg:text-[4.6rem]"
-                    />
-                  </span>
+                  {/* No count here: the client asked for counts to go site-wide
+                      (markup #74 "Remove the reference to the number no one
+                      cares"). */}
+                  <span className="font-heading text-[2.8rem] leading-none text-[#2E2F3D] lg:text-[4.6rem]">FAQ</span>
                   <span className="mt-2 text-[12.5px] font-semibold uppercase tracking-[0.14em] text-[#46699F]">
-                    questions answered
+                    Common questions
                   </span>
                 </p>
               </div>
@@ -68,7 +64,8 @@ export const FaqBody = () => {
             <Reveal delay={0.12} className="hidden lg:block">
               <Spotlight className="mt-8 rounded-[22px] bg-[#2E2F3D] p-7 shadow-[0_30px_70px_-40px_rgba(31,32,48,0.8)]">
                 <p className="font-heading text-[1.35rem] leading-[1.35] text-white">
-                  For anything not covered here, call the office.
+                  {/* Markup #79, verbatim. */}
+                  Don&rsquo;t hesitate to call with any questions you might have.
                 </p>
                 <div className="mt-6 flex flex-col gap-3">
                   <a

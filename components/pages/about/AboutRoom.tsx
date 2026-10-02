@@ -136,7 +136,7 @@ export const AboutRoom = () => {
           <Reveal>
             <p className="mb-5 inline-flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-[#46699F] sm:text-[13px]">
               <span aria-hidden="true" className="inline-block h-px w-10 bg-[#46699F]/60" />
-              The room
+              The office
             </p>
           </Reveal>
           <SplitHeading

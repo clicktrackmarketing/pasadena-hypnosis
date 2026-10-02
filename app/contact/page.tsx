@@ -36,8 +36,8 @@ export default function ContactPage() {
         facts={[
           { k: 'Phone', v: '(626) 616-0143' },
           { k: 'Address', v: '1910 Huntington Dr' },
-          { k: 'Open until', v: '21:00 most evenings' },
-          { k: 'Also', v: 'Video, statewide' },
+          { k: 'Open until', v: '9 PM most evenings' },
+          { k: 'Also', v: 'Online, anywhere' },
         ]}
         lede={
           <p>
@@ -54,7 +54,7 @@ export default function ContactPage() {
         </Magnetic>
         <a href={`mailto:${NAP.email}`} className={`group ${heroGhostBtn}`}>
           <MailIcon className="h-4 w-4" />
-          <RollText>Email instead</RollText>
+          <RollText>Email Jason</RollText>
         </a>
       </PageHero>
 

@@ -4,10 +4,10 @@
    QUOTE BAND.
 
    The quote is the one the live site already runs, carried across unchanged
-   from content.ts — including the attribution line admitting it is quoted
-   rather than original. That line survived the redesign on purpose: a serif
-   pull-quote floating unattributed is precisely the styling that makes a
-   borrowed aphorism read as the practitioner's own words.
+   from content.ts, attributed the way the live site attributes it: to Carl
+   Jung. (The line that used to sit here talked about the website itself —
+   the client asked for that to stop, markup #27.) A serif pull-quote
+   floating unattributed would read as the practitioner's own words.
 
    MOTION (2026-09-28): the quote is SCRUBBED — each word brightens in order
    as the band scrolls through the viewport, so it is read at the speed the
@@ -60,7 +60,7 @@ export const QuoteBand = () => {
           transition={{ duration: 0.65, delay: 0.4 }}
           className="mt-10 text-[13px] tracking-wide text-[#D9E1F0]/60"
         >
-          Quoted on pasadenahypnosis.com today &mdash; carried across unchanged
+          Carl Jung
         </motion.p>
         {/* Belt and braces: if the copy in content.ts is ever edited, this
             renders the difference rather than silently drifting from it. */}

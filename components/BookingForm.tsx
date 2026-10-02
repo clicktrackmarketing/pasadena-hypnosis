@@ -80,7 +80,7 @@ export const BookingForm = () => {
       <div>
         <h2 className="font-heading text-[1.5rem] text-[#2E2F3D]">Request a free discovery call</h2>
         <p className="mt-2 text-[14.5px] leading-[1.6] text-[#4B5468]">
-          Jason calls you back himself. There is no charge and no obligation to book a session.
+          Jason calls you back himself. The discovery call is free.
         </p>
       </div>
 

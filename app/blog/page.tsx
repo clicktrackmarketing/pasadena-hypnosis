@@ -32,6 +32,11 @@ export const metadata: Metadata = {
  * does exist and does cover the subject, which is the useful thing this page
  * can offer today.
  *
+ * MARKUP ROUND ONE (2026-10-01): titles keep the brief's subjects but drop
+ * the words the client banned site-wide — "disabling", "gut-directed",
+ * HSA — and the removed group programme. Jason, on this page's lede (#88):
+ * "I accept the challenge" — he is writing the posts.
+ *
  * SECOND REDESIGN 2026-09-28 — motion only, same eight entries:
  *   hero    a particle ribbon; the H1 slides up out of a mask word by word
  *   grid    bento layout, cards focus in from a blur (PopItem), cursor
@@ -45,7 +50,7 @@ const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string;
     related: { label: 'Depression & Bipolar Support', href: '/services/depression-bipolar-support' },
   },
   {
-    title: 'Living with disabling anxiety — when talk therapy and medication aren’t enough',
+    title: 'Living with stress and anxiety: getting your mind in order',
     slug: 'stress-and-anxiety',
     related: { label: 'Stress and Anxiety', href: '/services/stress-and-anxiety' },
   },
@@ -55,15 +60,14 @@ const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string;
     related: { label: 'Smoking Cessation', href: '/services/smoking-cessation' },
   },
   {
-    title:
-      'Gut-directed hypnotherapy for IBS: the evidence-based term your gastroenterologist may already know',
+    title: 'Hypnotherapy for IBS and fibromyalgia: relief after every session',
     slug: 'ibs',
-    related: { label: 'Gut-Directed Hypnotherapy', href: '/services/ibs' },
+    related: { label: 'IBS & Fibromyalgia', href: '/services/ibs' },
   },
   {
     title: 'What chronic pain patients wish their doctor understood about the "pain alarm"',
     slug: 'chronic-pain',
-    related: { label: 'Chronic Pain', href: '/services/chronic-pain' },
+    related: { label: 'Chronic and Acute Pain', href: '/services/chronic-pain' },
   },
   {
     title: 'Grief after loss: when it doesn’t get better on its own',
@@ -71,13 +75,13 @@ const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string;
     related: { label: 'Grief & Loss', href: '/services/grief-and-loss' },
   },
   {
-    title: 'How much does hypnotherapy cost, and is it covered by insurance/HSA?',
-    slug: 'hypnotherapy-sessions',
+    title: 'How much does hypnotherapy cost?',
+    slug: 'discovery-call',
     related: { label: 'Pricing', href: '/pricing' },
   },
   {
-    title: 'What makes gut-directed / clinical hypnotherapy different from stage hypnosis',
-    slug: 'group-hypnotherapy-program',
+    title: 'What makes clinical hypnotherapy different from stage hypnosis',
+    slug: 'hypnotherapy-sessions',
     related: { label: 'All services', href: '/services' },
   },
 ];

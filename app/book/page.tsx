@@ -6,22 +6,23 @@ import { PageHero } from '../../components/PageHero';
 import { heroPrimaryBtn, heroGhostBtn } from '../../components/buttons';
 import { Magnetic } from '../../components/Motion';
 import { RollText } from '../../components/MotionFx';
-import { BookFormBand, StepsPath, ScopeScrub } from '../../components/pages/book/BookSections';
+import { BookFormBand, StepsPath } from '../../components/pages/book/BookSections';
 
 // Target keywords (profile.ts targetKeywords['/book']): "book hypnotherapy
 // appointment pasadena".
 export const metadata: Metadata = {
   title: 'Book a Free Discovery Call',
   description:
-    'A free, no-obligation discovery call with Jason Meissner to talk through your situation before booking a paid hypnotherapy session.',
+    'A free discovery call with Jason Meissner to talk through your situation before booking a hypnotherapy session — in person in South Pasadena or online anywhere.',
   alternates: { canonical: '/book' },
 };
 
+/* Positive statements only — the client's rule against "not" phrases (#55). */
 const REASSURANCES = [
-  'It costs nothing, and no card is taken',
-  'You talk to Jason, not to a receptionist',
-  'No written intake form before you speak',
-  'No obligation to book a session afterwards',
+  'It is free',
+  'You talk to Jason directly',
+  'Talk through what you want to accomplish',
+  'Then choose in the office or online',
 ];
 
 /*
@@ -31,7 +32,8 @@ const REASSURANCES = [
  *           edge; the decoration around it parts under the pointer, the form
  *           itself never moves
  *   steps   the real three-step process strung on a line that draws itself
- *   scope   the scope sentence reads itself in with the scroll
+ *   (the scope band that closed this page was removed — markup #77/#73:
+ *   the disclaimer lives in the footer, the scope note on /our-team only)
  */
 export default function BookPage() {
   return (
@@ -45,13 +47,13 @@ export default function BookPage() {
         facts={[
           { k: 'Cost', v: 'Free' },
           { k: 'You speak to', v: 'Jason, directly' },
-          { k: 'Obligation', v: 'None' },
+          { k: 'Sessions', v: 'In the office or online' },
           { k: 'Then', v: '$200 per session' },
         ]}
         lede={
           <p>
-            A no-cost conversation with Jason Meissner to talk through your situation before booking a paid
-            hypnotherapy session &mdash; in person in South Pasadena or online anywhere in California.
+            A free conversation with Jason Meissner to talk through your situation before you book a hypnotherapy
+            session &mdash; in person in South Pasadena or online anywhere.
           </p>
         }
       >
@@ -70,8 +72,6 @@ export default function BookPage() {
       <BookFormBand reassurances={REASSURANCES} />
 
       <StepsPath />
-
-      <ScopeScrub />
     </div>
   );
 }

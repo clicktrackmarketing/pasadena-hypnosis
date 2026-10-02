@@ -50,6 +50,7 @@ const faqPageJsonLd = {
 export default function FaqPage() {
   const standard = SERVICES.find((s) => s.slug === 'hypnotherapy-sessions')!;
   const discovery = SERVICES.find((s) => s.slug === 'discovery-call')!;
+  const smoking = SERVICES.find((s) => s.slug === 'smoking-cessation')!;
 
   return (
     <div>
@@ -67,16 +68,15 @@ export default function FaqPage() {
         sceneHover="orb"
         intro="blur"
         facts={[
-          { k: 'Questions', v: 'Ten, answered' },
           { k: 'Cost', v: `${priceLabel(standard)} ${standard.priceQualifier}` },
-          { k: 'Insurance', v: 'Self-pay, HSA/FSA' },
+          { k: 'Smoking cessation', v: priceLabel(smoking) },
+          { k: 'Format', v: 'In person or online' },
           { k: 'First call', v: priceLabel(discovery) },
         ]}
         breadcrumb={{ label: 'Back to home', href: '/' }}
         lede={
           <p>
-            Cost, credentials, online availability and what actually happens in a session &mdash; answered directly,
-            with no form in the way. For anything not covered here, call the office.
+            Cost, credentials, online sessions and what happens in a session, answered directly.
           </p>
         }
       >
@@ -96,7 +96,7 @@ export default function FaqPage() {
 
       <CtaBand
         title="Still have a question?"
-        body="Jason can walk you through anything not covered here, on a call that costs nothing."
+        body="Call (626) 616-0143, or book a free discovery call online."
       />
     </div>
   );

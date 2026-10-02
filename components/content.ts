@@ -59,6 +59,25 @@
  *   - PRACTITIONER no longer says "two years at HMI". The diploma says one
  *     year, and the diploma is now on the page. See the note on that field.
  *
+ * WHAT CHANGED 2026-10-01 (Jason's markup round one, 101 comments — full
+ * record in docs/markup-round-one.md). These are the client's own rules and
+ * they outrank every older note in this header:
+ *   - Never say "diagnosed", "disabling", "complementary", "statewide" or
+ *     "California" (as a service range — he works online with clients
+ *     anywhere), "6-8 sessions" (there is no set number), HSA/FSA, or
+ *     "specialisms". No military time.
+ *   - Never compare him with other hypnotherapists or practices, and never
+ *     say what he is not. The scope note survives in exactly two places he
+ *     chose (/our-team's TeamScope, and FAQ "Is hypnotherapy a replacement…");
+ *     the footer carries the one disclaimer sentence he wrote himself.
+ *   - Never count the services out loud.
+ *   - Group Hypnotherapy Program and Past Life Regression are removed ("not
+ *     an offering"). Gut-Directed Hypnotherapy is now IBS & Fibromyalgia;
+ *     Chronic Pain is now Chronic and Acute Pain. Smoking cessation is $400,
+ *     resolving the old $400-vs-$500 question in favour of the published
+ *     figure, on his instruction.
+ *   - Copy comes from his own site wherever it can: "go back to my website".
+ *
  * DELIBERATE OMISSIONS — do not "complete" these:
  *   - NAP has no suite number. Every other tenant at 1910 Huntington lists
  *     one; whether Jason has one is unverified.
@@ -93,15 +112,22 @@ export const NAP = {
     'https://www.google.com/maps/search/?api=1&query=1910+Huntington+Dr+South+Pasadena+CA+91030',
 } as const;
 
-/** Complete 7-day hours, Google Places API pull 2026-09-03. */
+/** Complete 7-day hours, Google Places API pull 2026-09-03. Twelve-hour clock
+    on the client's instruction ("Get rid of all military time on the
+    website"); the 24-hour form survives only inside the JSON-LD, where
+    schema.org requires it and nobody reads it. */
 export const HOURS = [
-  { days: 'Monday - Friday', time: '10:00 - 21:00' },
-  { days: 'Saturday', time: '10:30 - 21:00' },
-  { days: 'Sunday', time: '10:00 - 21:00' },
+  { days: 'Monday - Friday', time: '10:00 AM - 9:00 PM' },
+  { days: 'Saturday', time: '10:30 AM - 9:00 PM' },
+  { days: 'Sunday', time: '10:00 AM - 9:00 PM' },
 ];
 
-/** Places API 2026-09-03. Real, and the only social proof on this page. */
+/** Places API 2026-09-03. Real, and the only machine-readable review claim. */
 export const RATING = { value: 5.0, count: 12, best: 5, worst: 1 } as const;
+
+/** Jason, markup #31: "There are also yelp reviews. As well as others." No
+    count or URL was given, so this names the platforms and nothing more. */
+export const REVIEWS_ELSEWHERE = 'Also reviewed on Yelp and more';
 
 /**
  * Verbatim from the live site, fetched 2026-09-09. These are Jason's own
@@ -126,23 +152,74 @@ export const REAL_COPY = {
     specialties: 'Specialties and Success',
     serviceInfo: 'Service Information',
   },
-  /** About page, verbatim. */
+  /**
+   * About page, verbatim — with two cuts the client made himself in markup
+   * round one: "in Southern California" is gone from the training line
+   * ("Delete California site wide", #85), and the office line stops before
+   * the other therapists in the building (#91, "Get rid of this!").
+   */
   about: {
-    training:
-      'I received my training in Hypnotherapy at the Hypnosis Motivation Institute in Southern California.',
-    office:
-      'We have a beautiful office in South Pasadena. There are several other traditional Therapists also working out of this building.',
+    training: 'I received my training in Hypnotherapy at the Hypnosis Motivation Institute.',
+    office: 'We have a beautiful office in South Pasadena. It is safe and easy to use.',
     hmi: 'HMI is located at hypnosis.edu for more information.',
   },
-  /** /quitsmoking page, verbatim. Its voice is deliberately louder than the rest of the site — preserved rather than smoothed out. */
+  /** Homepage, verbatim. */
+  hypnotherapy:
+    'Hypnotherapy allows you to strengthen what you want in your life and to gain freedom from what should be released. It allows us to curate the impact and results of thoughts.',
+  wholeSelf:
+    'The world and pressures around us can keep us from remembering we are already whole and complete. We can find that whole and fearless self at the center of peace and strength that is already there inside us.',
+  bestOfUs: 'All we need to do is access what we already have and let go of everything we no longer need or want.',
+  inOffice: 'In person sessions are held at my office in South Pasadena, CA.',
+  online:
+    'Hypnotherapy is 100% effective online or over the phone. Save drive time and fuel. Find a quiet spot where you will be undisturbed for 1 hour and we can take care of it from the comfort of your home.',
+  meditation:
+    'Meditation and Hypnotherapy share many things. First of which is the certainty that doing it regularly will create better overall health and wellbeing.',
+  charges: 'All charges are the same in the office or online.',
+  /** Footer motto on the live site. */
+  motto: 'Find your Peace',
+  /**
+   * /quitsmoking page, verbatim. Its voice is deliberately louder than the
+   * rest of the site — preserved rather than smoothed out. Jason, markup #94:
+   * "I will write the smoke pages I guess. I thought I did" — he did, and this
+   * is it. The smoking-cessation page is built from these lines.
+   */
   quitSmoking: {
     kicker: 'My Method Turns Craving into a Victory Trigger',
     headline: 'Mr. Butts Doesn’t Own You Anymore!',
-    body:
-      'You trained yourself to crave a cigarette… Now you’ll feel powerful in those moments — because you conquered the beast most cannot.',
+    body: 'You trained yourself to need cigarettes. Now you’ll feel powerful in those moments — because you conquered the beast most cannot.',
     close: 'Ready? Let’s make you a non-smoker… Forever.',
     money: 'The Last Money You’ll Ever Spend on Cigarettes.',
     packages: ['Two-Session Package', 'One-Session Quit Day'],
+    opener: [
+      'You thought quitting meant pain… deprivation… willpower.',
+      'That is what they told you. That’s what you’ve tried before.',
+      'This isn’t that.',
+    ],
+    question: 'What if quitting smoking became the most powerful moment of your life?',
+    answer: ['Not a punishment.', 'Not a sacrifice.', 'A new freedom and victory you can feel every day.'],
+    trigger: 'We turn your habit into a lifelong trigger for Peace, Confidence and Victory',
+    craving:
+      'You trained yourself to crave a cigarette. What if that same craving now brought you directly back to your healthiest, strongest, most powerful self? That’s what I do. It works.',
+    method: ['Every time you see it.', 'Every time you smell it.', 'Every time someone offers it…', 'It means one thing: Victory'],
+    ways: [
+      {
+        title: 'One-Session Quit Day',
+        body: 'Includes support calls and a back up hypnotherapy office session if needed.',
+      },
+      {
+        title: 'Two-Session Package',
+        body: 'Get ready for your quit day with a warm up hypnotherapy session going deep and getting comfortable with hypnotherapy. Then we schedule your Quit Day session. Includes support calls if needed and a back up hypnotherapy office session if needed.',
+      },
+    ],
+    walkAway: 'It is time to walk away now.',
+    earned: ['You’ve done the suffering.', 'You earned the victory.', 'I’ll help you claim it.'],
+    readyCta: 'I’m Ready to Quit',
+    /** "SMOKING CLIENT REVIEWS" on /quitsmoking, verbatim, unattributed there too. */
+    reviews: [
+      'It is hard to believe I was ever so attached to cigarettes in the way I was and I feel complete relief from the pull to indulge in that again!',
+      'I can’t even explain the level of comfort I feel and the amount of hope I have inside. I am a non smoker and I am more than grateful for Jason’s work and the compassion he has shown to me.',
+      'I quit smoking with a deep reverence to the pledge. Jason has a warm and passionate demeanor and I hope to run into him again. 100% recommend.',
+    ],
   },
   /** Newsletter block that exists on the live site. Visual only here — see Newsletter in the component. */
   newsletter: 'Sign up to get the latest news and updates',
@@ -161,21 +238,22 @@ export const PRACTITIONER = {
    * what the document supports. Worth confirming with Jason whether the extra
    * year was a second HMI program that produced its own certificate.
    */
-  bio: 'Jason Meissner graduated with Honors from the Hypnosis Motivation Institute in 2016 and has practiced hypnotherapy in South Pasadena for a decade, specializing in cases many hypnotherapists decline — chronic pain, diagnosed depression, addiction and grief — alongside smoking cessation and anxiety.',
+  /* Markup #25/#68: no comparison with other hypnotherapists, no "diagnosed". */
+  bio: 'Jason Meissner graduated with Honors from the Hypnosis Motivation Institute in 2016 and has practiced hypnotherapy for a decade — in person at his South Pasadena office, and online with clients anywhere.',
   credentials: [
     {
       title: 'HMI graduate, with Honors',
-      detail: 'Nationally accredited hypnotherapy college in Tarzana, California (hypnosis.edu).',
+      detail: 'Nationally accredited college of hypnotherapy (hypnosis.edu).',
     },
     {
       title: '10 years in practice',
-      detail: 'Practicing hypnotherapy in South Pasadena, California.',
+      detail: 'Practicing hypnotherapy in South Pasadena.',
     },
   ],
   /**
-   * Scope disclosure. Vertical research: "Do not imply licensure or scope the
-   * practitioner does not hold — credential display must say exactly what was
-   * earned, not more." Naming the limit is what makes the rest believable.
+   * Scope disclosure. Jason, markup #73, on /our-team's TeamScope: "This is the
+   * one place this can remain. REMOVE IT EVERYWHERE ELSE COMPLETELY." So it is
+   * rendered there and nowhere else — do not import it into another section.
    */
   scopeNote:
     'A certified hypnotherapist is not a licensed medical or mental-health clinician. Jason’s training is in hypnotherapy, and this practice works alongside your doctor, psychiatrist or chiropractor rather than in place of them.',
@@ -195,7 +273,7 @@ export const CREDENTIALS = [
     img: 'DIPLOMA_HMI',
     award: 'Diploma in Clinical Hypnotherapy, with Honors',
     issuer: 'Hypnosis Motivation Institute',
-    issuerNote: 'Nationally accredited college of hypnotherapy, Tarzana, California',
+    issuerNote: 'Nationally accredited college of hypnotherapy',
     date: 'October 8, 2016',
     ref: null as string | null,
     /* Transcribed from the body of the diploma itself. */
@@ -295,15 +373,29 @@ export const REVIEW_SHOTS = [
   },
 ];
 
-export const H1_CLAUSE = 'Certified hypnotherapy for the conditions other practices turn away';
+/**
+ * The H1 and the footer tagline, in Jason's words (markup #78): "CHANGE THIS TO
+ * THE FOLLOWING SITE WIDE: Certified hypnotherapy, let us know how we can help.
+ * I'm available online anywhere and locally in person." The old clause about
+ * conditions other practices turn away is deleted everywhere.
+ */
+export const H1_CLAUSE = 'Certified hypnotherapy, let us know how we can help.';
 /* Leading space is load-bearing: the two spans join into the element's text
-   content, and the required H1 has a space before the em dash. It collapses
-   visually because the spans are block-level. */
-export const H1_TAIL = ' — Pasadena, South Pasadena, and by video across California.';
+   content. It collapses visually because the spans are block-level. */
+export const H1_TAIL = ' I’m available online anywhere and locally in person.';
+/** Footer tagline — the same two sentences as the H1, one string. */
+export const TAGLINE = H1_CLAUSE + H1_TAIL;
 
-/** profile.homeAnswer, verbatim. Renders directly under the H1 as required. */
+/**
+ * Footer disclaimer, verbatim from markup #77 — the only sentence of its kind
+ * the client allows outside /our-team and the one FAQ that carries it.
+ */
+export const DISCLAIMER =
+  'Pasadena Hypnosis is a hypnotherapy practice, Jason Meissner is a certified hypnotherapist. Hypnotherapy is not a substitute for medical or psychiatric care.';
+
+/** Renders directly under the H1 as the answer-first block. */
 export const HOME_ANSWER =
-  'Pasadena Hypnosis LLC is a South Pasadena, CA hypnotherapy practice led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. He specializes in diagnosed depression, bipolar disorder and disabling anxiety, plus smoking cessation, chronic pain and grief, holding a 5.0 Google rating from South Pasadena and Pasadena clients.';
+  'Pasadena Hypnosis LLC is a South Pasadena, CA hypnotherapy practice led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. He works with stress and anxiety, depression and bipolar disorder, smoking cessation, chronic and acute pain, IBS and fibromyalgia, and grief, in person and online, with a 5.0 Google rating.';
 
 export type Service = {
   slug: string;
@@ -314,171 +406,274 @@ export type Service = {
   price: number | null;
   priceQualifier?: string;
   tag?: string;
-  /** 40–60 word answer block, one per /services/<slug> route. */
+  /** Answer block, one per /services/<slug> route; also the hub card text. */
   answer: string;
+  /** The service page's own section: a heading and paragraphs in Jason's voice. */
+  detail: { heading: string; paras: string[] };
+  /** A testimonial from the live site, verbatim, initials as published there. */
+  quote?: { text: string; by: string };
 };
 
 /**
- * The practice's 14 real service pages — 11 from the live booking system
- * plus 3 net-new pages added 2026-09-10 per the Call 2 brief (see profile.ts
- * catalog for full sourcing). Generated from profile.ts's catalog array
- * rather than retyped, so the slugs match booking-services-sitemap.xml
- * exactly for the 11 pre-existing ones. Order matches Jason's own ranked
- * priority; the last 4 are de-prioritized per the brief but kept live.
+ * The practice's services, in the practice's own order. Rewritten 2026-10-01
+ * from Jason's markup (comment numbers in brackets) and from his own site's
+ * words — every summary, answer and detail line below either quotes
+ * pasadenahypnosis.com or does what a pinned comment told it to.
+ *
+ * REMOVED: group-hypnotherapy-program (#13 "This is not an offering please
+ * remove it", #46, #65) and past-life-regression (#19, #51 "Get rid of this
+ * tile. Remove the offering."). Their routes no longer exist.
+ *
+ * PRICES ARE NOT REPEATED IN CARD TEXT (#22, #34 "Why is the dollar amount
+ * there over and over and over when I have one cost", #36). They live on
+ * /pricing and in each service page's own hero.
+ *
+ * CATEGORIES were renamed so the menus stop putting the discovery call among
+ * the specialties (#34 "This is a mistake obviously") and stop leaving out
+ * the practices he leads with (#34 "you already forgot my primary practices").
  */
 export const SERVICES: Service[] = [
   {
     slug: 'depression-bipolar-support',
     name: 'Depression & Bipolar Support',
-    category: 'Featured',
-    summary: 'Hypnotherapy for diagnosed depression and bipolar disorder — the practice\'s primary differentiator; most hypnotherapists decline these cases outright.',
+    category: 'Specialties',
+    // #40, #75, #98: no "diagnosed", no other hypnotherapists.
+    summary:
+      'Depression and bipolar support — remember that you are already whole and complete.',
     price: 200,
     priceQualifier: 'per session',
-    tag: 'Primary specialty',
     answer:
-      'Pasadena Hypnosis specializes in diagnosed depression and bipolar disorder — conditions most hypnotherapists decline outright. Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice, works alongside your existing psychiatric care, not in place of it. Sessions run $200 each, with a free discovery call available first.',
+      'Pasadena Hypnosis offers hypnotherapy for depression and bipolar disorder with Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. The world and pressures around us can keep us from remembering we are already whole and complete — together we find that whole and fearless self again.',
+    detail: {
+      heading: 'You, whole, healthy and complete every day',
+      paras: [
+        'The world and pressures around us can keep us from remembering we are already whole and complete. We can find that whole and fearless self at the center of peace and strength that is already there inside us.',
+        'All we need to do is access what we already have and let go of everything we no longer need or want. Hypnotherapy allows you to strengthen what you want in your life and to gain freedom from what should be released.',
+      ],
+    },
   },
   {
     slug: 'stress-and-anxiety',
     name: 'Stress and Anxiety',
-    category: 'Featured',
-    summary: 'Hypnotherapy for disabling-level stress and anxiety — grouped with depression/bipolar support as Jason\'s stated primary client focus.',
+    category: 'Specialties',
+    // #3, #41, #99, #100: no "disabling", no "not everyday nerves" — talk
+    // about stress and anxiety, in the words of his own Stress and Anxiety page.
+    summary:
+      'Hypnotherapy for stress and anxiety, with great relief normally every session.',
     price: 200,
     priceQualifier: 'per session',
-    tag: 'Primary specialty',
     answer:
-      'Pasadena Hypnosis treats disabling-level stress and anxiety — not everyday nerves, but anxiety serious enough that other approaches have already been tried. Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice, works with clients in South Pasadena, Pasadena and online statewide. Sessions run $200 each; a free discovery call comes first.',
+      'Don’t continue to suffer as a slave to a mind that is lost and overworking itself to solve all of your problems. Hypnotherapy for stress and anxiety with Jason Meissner gets your mind in order and calms the body.',
+    detail: {
+      heading: 'Getting your mind in order is a process we can take care of',
+      paras: [
+        'Stress and anxiety are a mind lost and overworking itself, trying to solve all of your problems at once. It keeps you up at night, tightens the body and takes the ease out of every day.',
+        'Hypnotherapy allows you to strengthen what you want in your life and to gain freedom from what should be released. It quiets the racing thoughts and brings you back to the center of peace and strength that is already there inside you.',
+        'We can also refine your at home self hypnosis or meditation work to keep you on track now and in the future.',
+      ],
+    },
   },
   {
     slug: 'smoking-cessation',
     name: 'Smoking Cessation',
-    category: 'Featured',
-    summary: 'A proven, high-close service — a single 90-minute Quit Smoking Power Session, or a Two-Session Package. Pricing confirmed on your free discovery call.',
-    // null 2026-09-10 (was 400) — still unresolved per the Call 2 brief's
-    // own open questions ($400 site-verified vs. Jason's verbal $500).
-    // priceLabel() renders null as nothing rather than guessing.
-    price: null,
-    priceQualifier: 'confirmed on your free discovery call',
+    category: 'Specialties',
+    // #9, #58: "The pricing is the pricing as listed on my website. $400." The
+    // old null (the unresolved $400-vs-$500 question) is closed by the client.
+    // #6, #9, #42, #76, #92, #94: his method, in his words — no "high-close",
+    // no session counts.
+    summary:
+      'My method turns craving into a victory trigger. Let’s make you a non-smoker… forever.',
+    price: 400,
+    priceQualifier: 'I’m ready to quit smoking',
     tag: 'Most requested',
     answer:
-      'Smoking Cessation at Pasadena Hypnosis is a proven, high-close service — most clients quit after a single 90-minute Quit Smoking Power Session, with a Two-Session Package also offered for those who want extra support. Exact pricing is confirmed on your free discovery call. Led by Jason Meissner, HMI-trained with 10 years in practice.',
+      'We turn your habit into a lifelong trigger for peace, confidence and victory. You trained yourself to crave a cigarette — what if that same craving now brought you directly back to your healthiest, strongest, most powerful self? That’s what Jason Meissner does. It works.',
+    detail: {
+      heading: 'The last money you’ll ever spend on cigarettes',
+      paras: [
+        'You thought quitting meant pain… deprivation… willpower. That is what they told you. That’s what you’ve tried before. This isn’t that.',
+        'What if quitting smoking became the most powerful moment of your life? Not a punishment. Not a sacrifice. A new freedom and victory you can feel every day.',
+      ],
+    },
+    quote: {
+      text: 'I have been smoking for 30 years… I’ve tried cutting down, stopping cold turkey, and rationing. NOTHING has worked. I smoked over a pack a day and woke up to my coffee and cigarette every morning… well not this morning!!',
+      by: 'A.S.',
+    },
   },
   {
     slug: 'chronic-pain',
-    name: 'Chronic Pain',
-    category: 'Conditions',
-    summary: 'Hypnotherapy for chronic and post-surgical pain — a specialty Jason treats as adjacent to his depression/bipolar work, alongside ongoing medical care.',
+    // #10, #33, #43: "It is 'Chronic and Acute Pain'". The slug stays, so the
+    // URL still matches the live site's /service-page/chronic-pain.
+    name: 'Chronic and Acute Pain',
+    category: 'Specialties',
+    summary: 'Hypnotherapy for chronic and acute pain, with relief after every session.',
     price: 200,
     priceQualifier: 'per session',
     answer:
-      'Pasadena Hypnosis treats chronic and post-surgical pain as a complement to your existing medical care — the same complex, harder cases Jason Meissner takes on for depression and bipolar disorder. He\'s a Hypnosis Motivation Institute graduate with 10 years in practice, serving South Pasadena, Pasadena and the greater LA area. Sessions run $200 each.',
+      'Yes, we can reduce the pain you are experiencing. Hypnotherapy for chronic and acute pain with Jason Meissner, a Certified Specialist in Hypnosis and Pain Management through the American Hypnosis Association — and there will be relief after every session.',
+    detail: {
+      heading: 'Yes, we can reduce the pain you are experiencing',
+      paras: [
+        'Hypnotherapy for chronic and acute pain with Jason Meissner, a Certified Specialist in Hypnosis and Pain Management through the American Hypnosis Association.',
+        'There will be relief after every session, and together we build a result that is personally sustainable — comfort you can keep.',
+      ],
+    },
   },
   {
     slug: 'ibs',
-    name: 'Gut-Directed Hypnotherapy',
-    category: 'Conditions',
-    summary: 'Gut-directed hypnotherapy for IBS and other gut-brain conditions — a genuine differentiator no local competitor claims.',
+    // #5, #11, #35, #44: "Gut Directed is made up… I work with IBS and
+    // fibromyalgia. Remove all gut directed references."
+    name: 'IBS & Fibromyalgia',
+    category: 'Specialties',
+    summary: 'Hypnotherapy for IBS and fibromyalgia. Jason has always had great success with IBS.',
     price: 200,
     priceQualifier: 'per session',
     answer:
-      'Gut-Directed Hypnotherapy is a clinical term for hypnotherapy targeting IBS and other gut-brain conditions — a specialty no competitor in the South Pasadena area claims. Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice, treats it at $200 per session, with a free discovery call available first.',
+      'Pasadena Hypnosis works with IBS and fibromyalgia. Jason Meissner has always had great success with IBS — you will find relief after every session, and together we establish your ability to maintain that comfort on your own.',
+    detail: {
+      heading: 'Great success with IBS and fibromyalgia',
+      paras: [
+        'Jason Meissner has always had great success with IBS, and works with fibromyalgia as well.',
+        'You will find relief after every session, and together we establish your ability to maintain the comfort on your own.',
+      ],
+    },
+    quote: {
+      text: 'I met Jason three years ago while dealing with persistent IBS. I had tried and seen every doctor in the book… Through several hypnosis sessions, I was finally able to regain my life back.',
+      by: 'A.G.',
+    },
   },
   {
     slug: 'grief-and-loss',
     name: 'Grief & Loss',
-    category: 'Conditions',
-    summary: 'Hypnotherapy for grief and loss — one of Jason\'s most requested areas of work, per the Call 2 brief.',
+    category: 'Specialties',
+    // #12 "PLEASE FIX". #45 "Delete everything after the first sentence."
+    summary: 'Hypnotherapy for grief and loss — a place to find your peace again.',
     price: 200,
     priceQualifier: 'per session',
-    answer:
-      'Pasadena Hypnosis offers hypnotherapy for grief and loss — one of Jason Meissner\'s most requested areas of work, alongside chronic pain and diagnosed depression. He\'s a Hypnosis Motivation Institute graduate with 10 years in practice, serving South Pasadena, Pasadena and online statewide. Sessions run $200 each; a free discovery call comes first.',
-  },
-  {
-    slug: 'group-hypnotherapy-program',
-    name: 'Group Hypnotherapy Program',
-    category: 'Programs',
-    summary: 'A newly launched 8-person weekly cohort program — not previously on the site. Cadence, pricing and booking are confirmed directly with Jason.',
-    price: null,
-    priceQualifier: 'confirmed directly with Jason',
-    tag: 'New',
-    answer:
-      'The Group Hypnotherapy Program is Pasadena Hypnosis\'s newest offering — an ongoing, weekly cohort format led by Jason Meissner rather than a one-on-one session. It\'s a recent addition to the practice, so cohort size, cadence and pricing are confirmed directly with Jason. Contact Pasadena Hypnosis or book a free discovery call to learn more.',
+    answer: 'Pasadena Hypnosis offers hypnotherapy for grief and loss — one of Jason Meissner’s most requested areas of work.',
+    detail: {
+      heading: 'Find your peace',
+      paras: [
+        'Hypnotherapy for grief and loss, at your own pace.',
+        'We can find that whole and fearless self at the center of peace and strength that is already there inside us.',
+      ],
+    },
   },
   {
     slug: 'hypnotherapy-sessions',
     name: 'Hypnotherapy Sessions',
-    category: 'General',
-    summary: 'The flagship 60-90 minute hypnotherapy session — the practice\'s general, most-booked offering.',
+    category: 'Sessions',
+    // #14: "It is a 60 minute session. No other wording is here is valuable."
+    summary: 'A 60-minute hypnotherapy session, specifically designed for you.',
     price: 200,
     priceQualifier: 'per session',
     tag: 'Most booked',
     answer:
-      'A Hypnotherapy Session with Jason Meissner runs 60-90 minutes and is $200. Jason discusses your specific needs before the session — charges are the same whether you book in the South Pasadena office or online. He is a Hypnosis Motivation Institute graduate with 10 years in practice.',
+      'A Hypnotherapy Session with Jason Meissner is 60 minutes, specifically designed for you. We can discuss your specific needs before your session.',
+    detail: {
+      heading: 'Specifically designed for you',
+      paras: [
+        'Hypnotherapy allows you to strengthen what you want in your life and to gain freedom from what should be released. It allows us to curate the impact and results of thoughts.',
+        'All charges are the same in the office or online.',
+      ],
+    },
   },
   {
     slug: 'online-hypnotherapy',
     name: 'Online Hypnotherapy',
-    category: 'Online',
-    summary: 'Full sessions delivered online, available anywhere in California — geographically unbounded and currently unmarketed.',
+    category: 'Sessions',
+    // #15 "I do online sessions with people anywhere. Remove everything else."
+    // #47 "anywhere. Delete everything after Meissner."
+    summary: 'Online hypnotherapy sessions with clients anywhere.',
     price: 200,
     priceQualifier: 'per session',
-    answer:
-      'Pasadena Hypnosis offers complete hypnotherapy sessions online for clients anywhere in California, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. Online sessions cover the same range of work as in-person sessions at $200 per session, with a free discovery call available first.',
+    answer: 'Pasadena Hypnosis offers complete hypnotherapy sessions online for clients anywhere, led by Jason Meissner.',
+    detail: {
+      heading: 'Hypnotherapy online at your convenience',
+      paras: [
+        'Hypnotherapy is 100% effective online or over the phone. Save drive time and fuel.',
+        'Find a quiet spot where you will be undisturbed for 1 hour and we can take care of it from the comfort of your home, wherever you are.',
+      ],
+    },
   },
   {
     slug: 'discovery-call',
     name: 'Free Discovery Call',
-    category: 'Featured',
-    summary: 'A free call to talk through your situation before committing to a paid session — a real, currently-live booking option.',
+    category: 'Sessions',
+    // #16 "Delete everything after the -".
+    summary: 'A free call to talk through your situation before committing to a paid session.',
     price: 0,
     priceQualifier: 'free',
     tag: 'Free',
     answer:
-      'The Free Discovery Call is a no-cost conversation with Jason Meissner to talk through your situation before booking a paid hypnotherapy session. It\'s available to anyone considering Pasadena Hypnosis, whether in person in South Pasadena or online anywhere in California, with no obligation to continue afterward.',
+      'The Free Discovery Call is a conversation with Jason Meissner to talk through your situation before you book a hypnotherapy session. We can discuss what you need and what we can accomplish together.',
+    detail: {
+      heading: 'Talk it through first',
+      paras: [
+        'A free call with Jason to talk through your situation before you book a session.',
+        'We can discuss what you need and what we can accomplish together, so you know what to expect before you begin.',
+      ],
+    },
   },
-  // De-prioritized 2026-09-10 per Call 2 brief — pages stay live, content
-  // unchanged, just moved out of the featured/front-loaded positions above.
   {
     slug: 'childhood-stress-anxiety',
     name: 'Childhood Stress & Anxiety',
-    category: 'Conditions',
-    summary: 'Hypnotherapy for stress and anxiety in children — a real page on the live site, distinct from the adult stress-and-anxiety service.',
+    category: 'Specialties',
+    // #17 "AI talking to itself". #48 "Get rid of the location junk and
+    // everything after my name."
+    summary: 'Kids respond quickly to hypnotherapy. Parents are of course welcome to observe and participate.',
     price: 200,
     priceQualifier: 'per session',
-    answer:
-      'Pasadena Hypnosis offers hypnotherapy for childhood stress and anxiety in South Pasadena, CA, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. Sessions are $200 each, with an approach adapted for younger clients rather than a direct copy of the adult session format.',
+    answer: 'Pasadena Hypnosis offers hypnotherapy for childhood stress and anxiety, led by Jason Meissner.',
+    detail: {
+      heading: 'Kids respond quickly to hypnotherapy',
+      paras: [
+        'Hypnotherapy for stress and anxiety in children, led by Jason Meissner.',
+        'Parents are of course welcome to observe and participate.',
+      ],
+    },
   },
   {
     slug: 'testing-and-academic-performance',
     name: 'Testing and Academic Performance',
     category: 'Performance',
-    summary: 'Hypnotherapy for test anxiety and academic performance — directly targets the San Marino / Arcadia gap in the audit.',
+    // #18 "pointless terrible text". #49 "Get rid of everything after
+    // Performance. Or do FAR better!" — the better version is his own page.
+    summary: 'Express your excellence and rise to the challenge. Let’s get your mind in order ahead of time.',
     price: 200,
     priceQualifier: 'per session',
     answer:
-      'Pasadena Hypnosis offers hypnotherapy for testing and academic performance in South Pasadena and the greater Los Angeles area, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. Sessions run $200 each, helping clients manage test anxiety and perform at their real ability level.',
+      'Pasadena Hypnosis offers hypnotherapy for testing and academic performance. Jason helps you express your excellence and rise to the challenge — the more preparation the better, so let’s get your mind in order ahead of time.',
+    detail: {
+      heading: 'Express your excellence',
+      paras: [
+        'Jason helps you express your excellence and rise to the challenge.',
+        'The more preparation the better. Let’s get your mind in order ahead of time.',
+        'Memorization techniques and large project help available if needed.',
+      ],
+    },
   },
   {
     slug: 'sports-performance',
     name: 'Sports Performance Hypnosis',
     category: 'Performance',
-    summary: 'Hypnotherapy for sports and athletic performance.',
+    summary: 'Most athletics is a mental game. Get yours in order or fall behind.',
     price: 200,
     priceQualifier: 'per session',
-    answer:
-      'Pasadena Hypnosis offers sports performance hypnosis in South Pasadena and the greater Los Angeles area, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. Sessions run $200 each and are available in person in South Pasadena or online anywhere in California.',
-  },
-  {
-    slug: 'past-life-regression',
-    name: 'Past Life Regression',
-    category: 'Specialty',
-    summary: 'A real, currently-live service offering distinct from the clinical/condition-focused sessions.',
-    price: 400,
-    priceQualifier: 'per session',
-    answer:
-      'Pasadena Hypnosis offers past life regression sessions in South Pasadena, CA, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. Sessions are $400 each, available in person or online, for clients interested in this specialty alongside the practice\'s clinical hypnotherapy work.',
+    // #50 "Get rid of everything after performance. It is repetitive garbage!"
+    answer: 'Pasadena Hypnosis offers sports performance hypnosis.',
+    detail: {
+      heading: 'Most athletics is a mental game',
+      paras: [
+        'Get yours in order or fall behind.',
+        'You will normally see immediate results, and you keep them with your practice at home. Just like body fitness, mental fitness takes effort.',
+      ],
+    },
   },
 ];
+
+/** The order the header menu groups SERVICES by `category`. */
+export const CATEGORY_ORDER = ['Specialties', 'Sessions', 'Performance'];
 
 /**
  * The live site's real static pages, from pages-sitemap.xml. Rendered in the
@@ -508,75 +703,77 @@ export const SERVICE_AREAS = [
   'Arcadia, CA',
 ];
 
-export const ONLINE_AREA = 'Online — statewide across California';
+/* Markup #15, #21, #28, #33, #85: online sessions reach clients anywhere. */
+export const ONLINE_AREA = 'Online — anywhere';
 
+/**
+ * The three steps. Markup #21-#24: no cost in step two, no "six to eight
+ * sessions" and no "you will know roughly where you stand" in step three.
+ */
 export const STEPS = [
   {
     n: '01',
     title: 'A free discovery call',
-    body: 'Talk through your situation with Jason directly. No charge, no commitment, and no form asking you to explain yourself in writing first.',
+    body: 'Talk through your situation with Jason directly, and discuss what you need and what we can accomplish together.',
   },
   {
     n: '02',
     title: 'Your first session',
-    body: '$200, in person at 1910 Huntington Drive in South Pasadena, or online by video anywhere in California — whichever suits you.',
+    body: 'Online with clients anywhere, or in person at the office in South Pasadena.',
   },
   {
     n: '03',
-    title: 'A short course of work',
-    body: 'Most clients work with Jason for six to eight sessions. It varies by condition, and you will know roughly where you stand after the first.',
+    title: 'Relief, session by session',
+    body: 'There is no set number of sessions. With hypnotherapy you experience great relief, normally every session.',
   },
 ];
 
 /**
- * profile.faqs, verbatim, all ten (was nine — the insurance/HSA question was
- * added 2026-09-10 per the Call 2 brief). Rendered by the accordion AND by
- * the FAQPage JSON-LD from this same array — they cannot drift. The cost
- * answer is re-hedged on smoking-cessation pricing (see profile.ts header):
- * the brief itself still lists $400-vs-$500 as unresolved after Call 2.
+ * Rendered by the accordion AND by the FAQPage JSON-LD from this same array —
+ * they cannot drift. Rewritten 2026-10-01 from the client's markup:
+ *   - the insurance / HSA-FSA question is gone (#61, #67 "remove all of this
+ *     HSA AND FSA CARD STUFF ACROSS THE WHOLE SITE");
+ *   - "Does Pasadena Hypnosis treat conditions other hypnotherapists turn
+ *     down?" is gone (#84 "Delete this section completely");
+ *   - the replacement-for-medical-care answer stays here and only here (#80
+ *     "This is where this belongs"), minus "complementary" (#55);
+ *   - the sessions answer is the client's own text (#81), and the
+ *     credentials answer loses its last sentence (#83).
+ * Keep that question out of FAQS.slice(0, 4): the homepage and service pages
+ * show the first few, and #80 says it must not appear on any other page.
  */
 export const FAQS = [
   {
     q: 'What does a hypnotherapy session with Pasadena Hypnosis cost?',
-    a: 'Standard hypnotherapy sessions with Jason Meissner are $200 each, with most clients engaging for 6-8 sessions depending on the condition being treated. A free discovery call is available before booking any paid session, so you can talk through your situation first. Smoking cessation is priced separately, as a single session or a Two-Session Package — exact pricing is confirmed on your discovery call.',
-  },
-  {
-    // NEW 2026-09-10, Call 2 brief — near-zero-competition term, and a real,
-    // sourced fact (not consent-gated).
-    q: 'Is hypnotherapy covered by insurance or HSA/FSA?',
-    a: 'Pasadena Hypnosis does not bill insurance directly — sessions are self-pay by cash or credit card. HSA and FSA cards work the same as any other credit card at checkout, so many clients are able to use pre-tax health-spending funds even without a direct insurance billing relationship. Ask on your free discovery call if you have questions about your specific plan.',
+    a: 'Hypnotherapy sessions with Jason Meissner are $200 each, and all charges are the same in the office or online. Smoking cessation is $400. A free discovery call comes first, so you can talk through your situation before you book.',
   },
   {
     q: 'Does hypnosis actually work for quitting smoking?',
-    a: 'Hypnotherapy addresses the psychological drivers of nicotine dependence directly, which is why it can succeed where willpower alone does not. Pasadena Hypnosis has helped clients quit smoking through a defined series of sessions led by a Hypnosis Motivation Institute-trained hypnotherapist with 10 years in practice.',
+    a: 'Yes. You have to want to quit for real, and that is all. Jason Meissner is a Certified Specialist in Hypnosis and Smoking Cessation through the American Hypnosis Association.',
   },
   {
     q: 'What conditions does Pasadena Hypnosis treat?',
-    a: 'Jason Meissner works with chronic pain, diagnosed depression and bipolar disorder, addiction, grief and loss, IBS, anxiety and smoking cessation — a broader range than most hypnotherapists, who typically limit their practice to phobias and light behavioral change. He completed a year of accredited training and supervised residency at the Hypnosis Motivation Institute and has practiced for a decade, treating cases many peers in the field decline to take on.',
+    a: 'Jason Meissner works with stress and anxiety, depression and bipolar disorder, chronic and acute pain, IBS and fibromyalgia, grief and loss, and smoking cessation, along with childhood stress and anxiety, testing and academic performance, and sports performance. He completed a year of accredited training and supervised residency at the Hypnosis Motivation Institute and has practiced for a decade.',
   },
   {
     q: 'Is hypnotherapy available online, or only in South Pasadena?',
-    a: 'Both. Pasadena Hypnosis sees clients in person at 1910 Huntington Drive in South Pasadena, and offers full sessions online to clients anywhere in California — the same $200 rate and the same conditions treated either way, from chronic pain and anxiety to smoking cessation. Online sessions are a genuine option, not a fallback, for anyone outside the South Pasadena area or who prefers not to travel.',
-  },
-  {
-    q: 'Is hypnotherapy a replacement for medical or psychiatric treatment?',
-    a: 'No. Pasadena Hypnosis is a complementary practice — most clients are already under the care of a doctor, psychiatrist or chiropractor, and hypnotherapy works alongside that care rather than replacing it. Jason Meissner is a certified hypnotherapist, not a licensed medical or mental-health clinician, and he frames every session that way: as one part of a client\'s broader care, not a substitute for it.',
+    a: 'Both. Jason sees clients in person at 1910 Huntington Dr in South Pasadena, and online with clients anywhere. Hypnotherapy is 100% effective online or over the phone — save drive time and fuel, find a quiet spot where you will be undisturbed for 1 hour, and we can take care of it from the comfort of your home. All charges are the same in the office or online.',
   },
   {
     q: 'How many hypnotherapy sessions does it typically take?',
-    a: 'Most clients work with Jason Meissner for 6-8 sessions, though this varies by condition and by individual — chronic, long-standing issues like grief or chronic pain sometimes take longer, while quit-smoking clients often see results in a shorter, more defined series. A free discovery call helps set realistic expectations for your specific situation before you book a paid session.',
+    a: 'This totally depends on what the issue is we are working with. We can discuss how many sessions according to what you need and what we can accomplish during the discovery call before you begin.',
+  },
+  {
+    q: 'Is hypnotherapy a replacement for medical or psychiatric treatment?',
+    a: 'No. Most clients are already under the care of a doctor, psychiatrist or chiropractor, and hypnotherapy works alongside that care rather than replacing it. Jason Meissner is a certified hypnotherapist, not a licensed medical or mental-health clinician, and he frames every session that way: as one part of a client\'s broader care, not a substitute for it.',
   },
   {
     q: 'What are Jason Meissner\'s credentials as a hypnotherapist?',
-    a: 'Jason Meissner holds a Diploma in Clinical Hypnotherapy with Honors from the Hypnosis Motivation Institute, a nationally accredited hypnotherapy college in Tarzana, California, awarded October 8 2016. He also holds four American Hypnosis Association specialist certifications — Pain Management, Smoking Cessation, Sports Performance, and ADD-ADHD — and has practiced in South Pasadena for a decade. Every one of those documents is reproduced on this page rather than merely claimed.',
-  },
-  {
-    q: 'Does Pasadena Hypnosis treat conditions other hypnotherapists turn down?',
-    a: 'Yes. Jason Meissner specifically works with chronic pain, diagnosed depression and bipolar disorder, addiction, and grief — cases many hypnotherapists decline in favor of lighter work like phobias, rather than treating them as a hard no. He describes this as his real focus: not a textbook approach to a diagnosis, but full investment in the specific person and situation in front of him.',
+    a: 'Jason Meissner holds a Diploma in Clinical Hypnotherapy with Honors from the Hypnosis Motivation Institute, a nationally accredited hypnotherapy college, awarded October 8 2016. He also holds four American Hypnosis Association specialist certifications — Pain Management, Smoking Cessation, Sports Performance, and ADD-ADHD — and has practiced in South Pasadena for a decade.',
   },
   {
     q: 'How do I book an appointment with Pasadena Hypnosis?',
-    a: 'Book directly online or call (626) 616-0143. A free discovery call is available first for anyone who wants to talk through their situation before committing to a paid session — there\'s no obligation to continue afterward. Sessions are available both in person at the South Pasadena office and online for clients anywhere in California.',
+    a: 'Book directly online or call (626) 616-0143. A free discovery call is available first for anyone who wants to talk through their situation before booking a session. Sessions are available both in person at the South Pasadena office and online for clients anywhere.',
   },
 ];
 
@@ -591,7 +788,8 @@ export function buildJsonLd() {
     addressCountry: NAP.country,
   };
   const orgId = BUSINESS.url + '/#organization';
-  const areas = [...SERVICE_AREAS, 'California'];
+  // No 'California' entry: the client works online with clients anywhere (#85).
+  const areas = [...SERVICE_AREAS];
 
   return {
     '@context': 'https://schema.org',

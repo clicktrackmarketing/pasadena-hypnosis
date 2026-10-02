@@ -120,7 +120,7 @@ export const HomeHero = () => {
                 )}
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#5DBA47]" />
               </span>
-              South Pasadena, CA &middot; in person or by video statewide
+              South Pasadena, CA &middot; in person or online anywhere
             </motion.p>
 
             <h1 className="max-w-[16ch] font-heading text-[2.55rem] leading-[1.04] tracking-[-0.02em] text-white sm:text-[3.4rem] lg:text-[3.6rem] xl:text-[4.1rem]">

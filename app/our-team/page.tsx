@@ -41,6 +41,10 @@ import { TeamServices } from '../../components/pages/our-team/TeamServices';
      scope       deliberately quiet: one rise and a drawn hairline
      services    cards FLIP up into place
 
+   MARKUP ROUND ONE (2026-10-01, #68-#78): no comparison with other
+   hypnotherapists, no "specialisms", no count of the services, and the scope
+   note lives in TeamScope on this page and nowhere else on the site (#73).
+
    THE TIMELINE IS NOT DECORATIVE. Every node is the date printed on a
    certificate this page also displays — March 8, April 14, April 19, April 21
    and October 8, all 2016 — sorted by that date rather than by array order.
@@ -55,7 +59,7 @@ import { TeamServices } from '../../components/pages/our-team/TeamServices';
 export const metadata: Metadata = {
   title: 'Our Team — Jason Meissner, Certified Hypnotherapist',
   description:
-    "Jason Meissner completed a year of accredited training and supervised residency at the Hypnosis Motivation Institute and has practiced hypnotherapy for 10 years in South Pasadena, California.",
+    "Jason Meissner completed a year of accredited training and supervised residency at the Hypnosis Motivation Institute and has practiced hypnotherapy for 10 years in South Pasadena.",
   alternates: { canonical: '/our-team' },
 };
 
@@ -102,12 +106,12 @@ export default function OurTeamPage() {
           { k: 'Trained at', v: 'Hypnosis Motivation Institute' },
           { k: 'Graduated', v: '2016, with Honors' },
           { k: 'In practice', v: '10 years' },
-          { k: 'Certificates', v: 'Five, shown below' },
+          { k: 'Credentials', v: 'Shown below' },
         ]}
         lede={
           <p>
-            Pasadena Hypnosis is a solo practice. There is no associate to be handed to and no rotating roster
-            &mdash; the person you speak to on the discovery call is the person in the room.
+            Pasadena Hypnosis is Jason Meissner&rsquo;s own practice &mdash; the person you speak to on the discovery
+            call is the person you work with.
           </p>
         }
       >
@@ -130,7 +134,7 @@ export default function OurTeamPage() {
 
       <CtaBand
         title="Work with Jason"
-        body="A free discovery call comes first, and he will tell you honestly whether this is work he takes."
+        body="A free discovery call comes first. Let us know how we can help."
         secondary={{ href: '/services', label: 'See all services' }}
       />
     </div>

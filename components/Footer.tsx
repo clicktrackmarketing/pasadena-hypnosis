@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NAP, HOURS, SERVICE_AREAS, RATING } from './content';
+import { NAP, HOURS, SERVICE_AREAS, RATING, REVIEWS_ELSEWHERE, TAGLINE, DISCLAIMER } from './content';
 import { LOGO, LOGO_W, LOGO_H } from './assets';
 import { MapPinIcon, ClockIcon, PhoneIcon, MailIcon, StarIcon } from './Icons';
 import { Rings } from './Spiral';
@@ -64,14 +64,14 @@ export const Footer = () => {
                 className="h-9 w-auto object-contain"
               />
             </span>
-            <p className="max-w-[38ch] text-[14.5px] leading-[1.7] text-[#D9E1F0]/80">
-              Certified hypnotherapy for the conditions other practices turn away &mdash; South Pasadena, and by
-              video across California.
-            </p>
+            {/* Markup #78 (and #54/#86/#89 on other pages): the client's own words. */}
+            <p className="max-w-[38ch] text-[14.5px] leading-[1.7] text-[#D9E1F0]/80">{TAGLINE}</p>
             <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[12.5px] text-[#D9E1F0]">
               <StarIcon className="h-3.5 w-3.5 text-[#5DBA47]" />
               {RATING.value.toFixed(1)} from {RATING.count} Google reviews
             </p>
+            {/* Markup #31: "There are also yelp reviews. As well as others." */}
+            <p className="mt-2.5 text-[12.5px] text-[#D9E1F0]/75">{REVIEWS_ELSEWHERE}.</p>
           </div>
 
           <div className="col-span-2 sm:col-span-1 lg:col-span-3">
@@ -98,7 +98,7 @@ export const Footer = () => {
                 <span className="flex flex-col gap-0.5">
                   {HOURS.map((h) => (
                     <span key={h.days}>
-                      {h.days}: <span className="tabular-nums">{h.time}</span>
+                      {h.days}: <span className="whitespace-nowrap tabular-nums">{h.time}</span>
                     </span>
                   ))}
                 </span>
@@ -143,9 +143,9 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* The scope disclosure sits in the footer of every page on purpose.
-            It is the sentence that keeps the rest of the site's claims
-            defensible, and it should not be reachable only from /our-team. */}
+        {/* The disclaimer sits in the footer of every page, in the exact words
+            the client gave in markup #77. It replaces the older two-sentence
+            scope disclosure, which he limited to /our-team (#73). */}
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-7 lg:flex-row lg:items-center">
           {/* 75%, not the 55% these used to be: at 12px, #D9E1F0 at 55% over
               #2E2F3D measures ~4.2:1 and fails AA — and the second line is the
@@ -153,10 +153,8 @@ export const Footer = () => {
           <p className="text-[12px] text-[#D9E1F0]/75">
             &copy; {year} Pasadena Hypnosis. All rights reserved.
           </p>
-          <p className="max-w-[80ch] text-[12px] leading-[1.7] text-[#D9E1F0]/75">
-            Pasadena Hypnosis is a complementary hypnotherapy practice, not a substitute for medical or psychiatric
-            care. Jason Meissner is a certified hypnotherapist, not a licensed medical or mental-health clinician.
-          </p>
+          {/* Markup #77 (and #32/#55/#87/#90): verbatim, the client's sentence. */}
+          <p className="max-w-[80ch] text-[12px] leading-[1.7] text-[#D9E1F0]/75">{DISCLAIMER}</p>
         </div>
       </div>
 

@@ -110,9 +110,12 @@ export const SERVICE_IMAGE_BY_SLUG: Record<string, StockImage> = {
     credit: 'Elisa Ventur / Unsplash',
   },
   'smoking-cessation': {
-    src: u('svc-quit-smoking.jpg'),
-    alt: 'A hand holding a cigarette, photographed in black and white.',
-    credit: 'Idin Ebrahimi / Unsplash',
+    /* Markup #76: the old frame (a hand holding a lit cigarette) was "terrible".
+       The client's own /quitsmoking page sells freedom and victory over a
+       mountain view, so this is a summit at sunrise rather than the habit. */
+    src: u('svc-sunbeams-peaks.jpg'),
+    alt: 'Sunlight breaking over a range of mountain peaks.',
+    credit: 'Unsplash (photographer not recorded at download)',
   },
   'chronic-pain': {
     src: u('svc-chronic-pain.jpg'),
@@ -128,11 +131,6 @@ export const SERVICE_IMAGE_BY_SLUG: Record<string, StockImage> = {
     src: u('svc-grief-hands.jpg'),
     alt: 'Two people holding hands across a table.',
     credit: 'Priscilla Du Preez / Unsplash',
-  },
-  'group-hypnotherapy-program': {
-    src: u('svc-group-therapy.jpg'),
-    alt: 'A group of people sitting together in a circle in a room.',
-    credit: 'Dillon Wanner / Unsplash',
   },
   'hypnotherapy-sessions': {
     src: u('svc-session-couch.jpg'),
@@ -166,14 +164,6 @@ export const SERVICE_IMAGE_BY_SLUG: Record<string, StockImage> = {
     src: u('svc-runner-silhouette.jpg'),
     alt: 'A runner in silhouette on a rocky trail against a low sun.',
     credit: 'Venti Views / Unsplash',
-  },
-  'past-life-regression': {
-    /* A descending spiral staircase. The nearest thing to an honest picture of
-       regression work that is not either a swinging pocket watch or a claim
-       about what the session recovers. */
-    src: u('svc-spiral-stairs.jpg'),
-    alt: 'A spiral staircase photographed looking down its centre.',
-    credit: 'Benoit Beaumatin / Unsplash',
   },
 };
 
@@ -426,7 +416,7 @@ export const AREA_IMAGE_BY_SLUG: Record<string, StockImage> = {
   },
   glendale: {
     src: u('area-glendale.jpg'),
-    alt: 'A panorama across Glendale, California, with mountains behind the city.',
+    alt: 'A panorama across Glendale, with mountains behind the city.',
     credit: 'Levi Meir Clancy / Unsplash',
   },
   arcadia: {

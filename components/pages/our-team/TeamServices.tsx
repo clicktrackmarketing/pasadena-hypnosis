@@ -27,17 +27,16 @@ export const TeamServices = () => {
           eyebrow="The work"
           title="What Jason actually treats"
           lede={
-            <p>
-              The certificates above map onto real services. These are the three he leads with; there are{' '}
-              {SERVICES.length} in total.
-            </p>
+            /* Markup #74: no number — "Remove it everywhere across the site
+               completely." */
+            <p>The work Jason leads with.</p>
           }
           aside={
             <Link
               href="/services"
               className="group inline-flex items-center gap-2 rounded-full border border-[#2E2F3D]/15 px-5 py-2.5 text-sm font-medium text-[#2E2F3D] transition-all duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
             >
-              <RollText>All {SERVICES.length} services</RollText>
+              <RollText>All services</RollText>
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           }

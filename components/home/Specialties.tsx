@@ -1,24 +1,23 @@
 'use client';
 
 /* ---------------------------------------------------------------------------
-   SPECIALTIES — "Most hypnotherapists stop at phobias."
+   SPECIALTIES — "You, whole healthy and complete every day."
 
-   This is the page's actual argument, so it gets the page's most deliberate
-   layout: the claim pins to the left while the six conditions it refers to
-   scroll past on the right, each with its own photograph. The reader cannot
-   lose the thesis while reading the evidence for it, which is the entire
-   reason to pin something.
+   REWRITTEN 2026-10-01 from the client's markup (#1-#6). The old pinned claim
+   compared Jason with other hypnotherapists; he does not, ever ("I don't rag
+   on other practices"). The pinned column now carries the opening of his own
+   homepage, and the six rows carry his own taglines. The layout is unchanged:
+   the statement pins to the left while the six specialties scroll past on the
+   right, each with its own photograph.
 
    THE CONDITIONS LIST IS NOT DECORATION. Each entry maps to a real service
    slug, carries that service's own image from unsplash.ts, and links to its
    page. It is generated from SERVICES rather than retyped, so a service that
    gets renamed or re-ranked cannot leave a stale claim sitting here.
 
-   THE WORDS ARE THE SAME WORDS. The em-dashed run-on in the original prose is
-   split into scannable rows, and the scope sentence — works alongside your
-   doctor, not instead of them — is kept verbatim and given its own plate,
-   because it is what makes every other claim on this page credible rather
-   than reckless.
+   THE PLATE under the statement used to hold a scope sentence; the client
+   removed every such qualifier outside /our-team (#4, #73, #77), so it holds
+   another line of his own copy.
 
    Pinning is desktop-only and is skipped entirely under reduced motion; the
    section then reads as an ordinary stacked list, which is what it is
@@ -50,26 +49,28 @@ import {
   EASE_OUT_SOFT,
 } from '../Motion';
 
-/** slug -> the plain-language label the argument uses for it. */
+/** slug -> the plain-language label the list uses for it. Rewritten from the
+    client's markup (#2-#6): no "diagnosed", no "disabling", no qualifiers,
+    no other practitioners — the notes are his own site's taglines. */
 const CONDITIONS: { slug: string; label: string; note: string }[] = [
   {
     slug: 'depression-bipolar-support',
-    label: 'Diagnosed depression & bipolar disorder',
-    note: 'The cases most hypnotherapists decline outright.',
+    label: 'Depression & bipolar disorder',
+    note: 'One-to-one, in the office or online.',
   },
   {
     slug: 'stress-and-anxiety',
-    label: 'Disabling anxiety',
-    note: 'Not everyday nerves — anxiety other approaches have already met.',
+    label: 'Stress and anxiety',
+    note: 'Getting your mind in order is a process we can take care of.',
   },
   {
     slug: 'chronic-pain',
-    label: 'Chronic & post-surgical pain',
-    note: 'Worked alongside ongoing medical care, never instead of it.',
+    label: 'Chronic and acute pain',
+    note: 'Yes, we can reduce the pain you are experiencing.',
   },
-  { slug: 'ibs', label: 'Gut-directed hypnotherapy', note: 'For IBS and other gut-brain conditions.' },
+  { slug: 'ibs', label: 'IBS and fibromyalgia', note: 'You will find relief after every session.' },
   { slug: 'grief-and-loss', label: 'Grief and loss', note: 'One of the most requested areas of the practice.' },
-  { slug: 'smoking-cessation', label: 'Smoking cessation', note: 'The proven, high-close service.' },
+  { slug: 'smoking-cessation', label: 'Smoking cessation', note: 'Mr. Butts doesn’t own you anymore!' },
 ];
 
 const FIGURE: Record<string, ShapeName> = {
@@ -115,14 +116,15 @@ export const Specialties = () => {
                   {REAL_COPY.headers.specialties}
                 </p>
               </Reveal>
+              {/* Markup #1: "Take this out. I don't rag on other practices." The
+                  heading and paragraph are now the opening of his own homepage. */}
               <SplitHeading
-                text="Most hypnotherapists stop at phobias."
+                text={REAL_COPY.heroLine}
                 className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[2.7rem] xl:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
               />
               <Reveal delay={0.1}>
                 <p className="mt-6 max-w-[42ch] text-[16.5px] leading-[1.72] text-[#4B5468]">
-                  The usual hypnotherapy menu is phobias, nail-biting and light behavioural change. Jason Meissner
-                  takes the cases that menu leaves out.
+                  {REAL_COPY.wholeSelf}
                 </p>
               </Reveal>
 
@@ -166,11 +168,9 @@ export const Specialties = () => {
                   <span className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#E9F3EF]">
                     <ShieldCheckIcon className="h-[18px] w-[18px] text-[#2E2F3D]" />
                   </span>
-                  <p className="text-[15px] leading-[1.68] text-[#2E2F3D]">
-                    Hypnotherapy here works alongside your doctor, psychiatrist or chiropractor &mdash; not instead
-                    of them. Most clients arrive already under someone&rsquo;s care, and that is exactly how this
-                    practice is designed to work.
-                  </p>
+                  {/* Markup #4/#77: no qualifiers about what the practice is
+                      not. The plate carries his own line instead. */}
+                  <p className="text-[15px] leading-[1.68] text-[#2E2F3D]">{REAL_COPY.bestOfUs}</p>
                 </div>
               </Reveal>
             </div>

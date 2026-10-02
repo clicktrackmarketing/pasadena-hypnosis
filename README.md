@@ -2,8 +2,8 @@
 
 Next.js 15 / React 19 / Tailwind 4. Converted from the approved MagicPath
 "C4 Brand Continuity" concept into real App Router routes per the CTM
-site-build skill's route-conversion pattern — 27 real, indexable pages
-(services index + 14 service detail pages, service-areas index + 5 city
+site-build skill's route-conversion pattern — 25 real, indexable pages
+(services index + 12 service detail pages, service-areas index + 5 city
 pages, pricing, FAQ, our-team, about, book, blog, contact, and 3 legal
 placeholder pages), not a single-page fake-multi-page demo.
 
@@ -14,11 +14,17 @@ placeholder pages), not a single-page fake-multi-page demo.
   `components/assets.ts` here are a synced snapshot of that data, not a live
   import — re-sync by hand if `profile.ts` changes (see that file's own
   header comment for the Call 2 Content & Services Brief context).
+- **Client markup round one (2026-10-01, 101 comments) overrides older
+  notes.** Read `docs/markup-round-one.md` before editing copy: it lists the
+  client's site-wide rules (no "diagnosed", no "California"/"statewide", no
+  comparisons with other practitioners, no session counts, no HSA/FSA, …).
+  Check with `node scripts/audit-markups.mjs http://localhost:3000`.
 - **Known open items, do not "fix" by inventing content:**
-  - Smoking-cessation price is intentionally unpublished (`SERVICES` entry
-    has `price: null`) — the site's $400 and Jason's verbal $500 are still
-    unreconciled.
-  - Group Hypnotherapy Program pricing/cadence/booking model: unconfirmed.
+  - Smoking cessation is $400 — the client settled the old $400/$500
+    question in markup #9/#58. The Two-Session Package has no published price.
+  - Group Hypnotherapy Program and Past Life Regression were removed on the
+    client's instruction ("not an offering", markup #13/#19/#51).
+  - More HMI diploma credentials are coming from the client (markup #82).
   - `/privacy`, `/terms`, `/editorial-policy` render a visible "not final
     legal text" placeholder — owner is Jason's own counsel.
   - `/blog` lists real planned topic titles from the Call 2 brief as

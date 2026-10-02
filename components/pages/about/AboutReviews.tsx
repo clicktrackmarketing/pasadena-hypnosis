@@ -19,7 +19,7 @@
    claims nothing.
 --------------------------------------------------------------------------- */
 
-import { RATING, REVIEW_SHOTS } from '../../content';
+import { RATING, REVIEW_SHOTS, REVIEWS_ELSEWHERE } from '../../content';
 import * as ASSETS from '../../assets';
 import { StarIcon, QuoteIcon } from '../../Icons';
 import { MindScene } from '../../scene/MindScene';
@@ -62,14 +62,12 @@ export const AboutReviews = () => {
               </div>
             </Reveal>
             <SplitHeading
-              text={`From ${RATING.count} Google reviews, shown as screenshots.`}
+              text={`From ${RATING.count} Google reviews.`}
               className="max-w-[20ch] font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-white"
             />
             <Reveal delay={0.15}>
               <p className="mt-7 max-w-[58ch] text-[16.5px] leading-[1.75] text-[#D9E1F0]">
-                Every review below is a real 5-star Google review, shown as the screenshot it is. The reviewer names
-                are greyed out in the practice&rsquo;s own crops, so these render as images rather than as invented
-                quote cards with fabricated authors.
+                Real 5-star reviews from Pasadena Hypnosis clients. {REVIEWS_ELSEWHERE}.
               </p>
             </Reveal>
           </div>

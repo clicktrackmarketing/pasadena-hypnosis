@@ -59,10 +59,7 @@ export const WhyPeopleCome = () => (
         eyebrow="Why people come"
         title="Most clients arrive having tried the obvious things first"
         lede={
-          <p>
-            These are the situations described in the practice&rsquo;s own Google reviews &mdash; what people came
-            in for, in their words, not what they left with.
-          </p>
+          <p>What people came in for, in their own words, from the practice&rsquo;s Google reviews.</p>
         }
         aside={
           <div className="flex items-center gap-3 rounded-full border border-[#D7DEEA] bg-white px-5 py-3">
@@ -104,8 +101,7 @@ export const WhyPeopleCome = () => (
       <Reveal delay={0.1}>
         <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-[#D7DEEA] pt-6 sm:flex-row sm:items-center">
           <p className="max-w-[72ch] text-[12.5px] leading-[1.6] text-[#4B5468]">
-            The photographs above are stock images, not clients of this practice. The situations described are taken
-            from real Google reviews, which are shown as screenshots further down this page.
+            Photographs are illustrative. The situations are taken from real Google reviews.
           </p>
           <Link
             href="/services"

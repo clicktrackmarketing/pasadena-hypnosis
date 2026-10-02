@@ -101,7 +101,7 @@ export const TeamPractitioner = () => {
                 &ldquo;{REAL_COPY.about.training}&rdquo;
               </p>
               <footer className="mt-3 text-[13px] text-[#4B5468]">
-                Jason Meissner, in his own words on pasadenahypnosis.com
+                Jason Meissner
               </footer>
             </blockquote>
           </Reveal>

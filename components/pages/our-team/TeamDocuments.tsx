@@ -70,8 +70,7 @@ export const TeamDocuments = () => {
           size="lg"
           lede={
             <p>
-              Five certificates, photographed and transcribed field by field. Read the image, then read the line
-              beneath it &mdash; they should say the same thing.
+              Jason&rsquo;s diploma and specialist certifications.
             </p>
           }
           aside={

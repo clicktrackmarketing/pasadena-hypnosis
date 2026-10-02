@@ -4,7 +4,7 @@
    BLOG — THE PLANNED SUBJECTS (redesigned 2026-09-28).
 
    STILL HONESTLY EMPTY. Every card is one of the page's own PLANNED_TOPICS:
-   the planned title, the words "Not written yet", and the real service page
+   the planned title, the words "Coming soon", and the real service page
    that covers the subject meanwhile. The redesign added motion and a bento
    layout; it did not add a date, a reading time, an excerpt or a byline,
    because every one of those would be invented.
@@ -64,7 +64,7 @@ const Card = ({ t, i, variant }: { t: TopicCard; i: number; variant: 'feature' |
           <div className="absolute inset-0 bg-gradient-to-t from-[#2E2F3D]/60 via-transparent to-transparent" />
           <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/92 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#5DBA47]" aria-hidden="true" />
-            Not written yet
+            Coming soon
           </span>
           <span
             aria-hidden="true"
