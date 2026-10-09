@@ -189,7 +189,7 @@ const PER_COMMENT = [
   [73, '/our-team', [], ['A certified hypnotherapist is not a licensed medical or mental-health clinician.']],
   [74, '/our-team', ['in total'], ['The work Jason leads with.']],
   [75, '/our-team', ['diagnosed', 'decline these cases outright'], []],
-  [76, '/our-team', ['html:svc-quit-smoking.jpg', 'high-close'], ['html:svc-sunbeams-peaks.jpg']],
+  [76, '/our-team', ['html:svc-quit-smoking.jpg', 'high-close'], ['html:blog-flower-or-cigarettes.jpg']],
   [77, '/our-team', [], [D]],
   [78, '/our-team', ['conditions other practices turn away'], [T]],
   [79, '/faq', ['For anything not covered here, call the office.'], ['Don’t hesitate to call with any questions you might have.']],

@@ -110,12 +110,14 @@ export const SERVICE_IMAGE_BY_SLUG: Record<string, StockImage> = {
     credit: 'Elisa Ventur / Unsplash',
   },
   'smoking-cessation': {
-    /* Markup #76: the old frame (a hand holding a lit cigarette) was "terrible".
-       The client's own /quitsmoking page sells freedom and victory over a
-       mountain view, so this is a summit at sunrise rather than the habit. */
-    src: u('svc-sunbeams-peaks.jpg'),
-    alt: 'Sunlight breaking over a range of mountain peaks.',
-    credit: 'Unsplash (photographer not recorded at download)',
+    /* Markup #76: the old frame (a hand holding a lit cigarette) was
+       "terrible", so it became a summit at sunrise. Replaced 2026-10-09 with a
+       smoking-related frame that still shows no one smoking: a flower offered
+       beside a cigarette pack — the choice to quit. Downloaded from
+       unsplash.com/photos/557xkSmNZ1g at 1100px, q=72. */
+    src: u('blog-flower-or-cigarettes.jpg'),
+    alt: 'One hand offering a yellow flower beside another hand holding a pack of cigarettes.',
+    credit: 'Shubhro Jyoti Dey / Unsplash',
   },
   'chronic-pain': {
     src: u('svc-chronic-pain.jpg'),
@@ -282,17 +284,6 @@ export const DESK_NOTEBOOK: StockImage = {
   src: u('desk-notebook.jpg'),
   alt: 'An open notebook and pen on a wooden table.',
   credit: 'Kelly Sikkema / Unsplash',
-};
-
-/** /blog, the "Does hypnosis really work to quit smoking?" card only. A
-    flower offered beside a cigarette pack: the choice to quit, without a lit
-    cigarette (markup #76 called that frame "terrible"). The smoking service
-    page and home card keep the summit he approved. Downloaded 2026-10-09 from
-    unsplash.com/photos/557xkSmNZ1g at 1100px, q=72. */
-export const BLOG_QUIT_SMOKING: StockImage = {
-  src: u('blog-flower-or-cigarettes.jpg'),
-  alt: 'One hand offering a yellow flower beside another hand holding a pack of cigarettes.',
-  credit: 'Shubhro Jyoti Dey / Unsplash',
 };
 
 /** /book */

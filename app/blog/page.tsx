@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { NAP } from '../../components/content';
-import { BLOG_QUIT_SMOKING, DESK_NOTEBOOK, serviceImage, type StockImage } from '../../components/unsplash';
+import { DESK_NOTEBOOK, serviceImage } from '../../components/unsplash';
 import { PhoneIcon, ArrowRightIcon } from '../../components/Icons';
 import { PageHero } from '../../components/PageHero';
 import { heroPrimaryBtn, heroGhostBtn } from '../../components/buttons';
@@ -43,13 +43,7 @@ export const metadata: Metadata = {
  *           spotlight, photographs zoom and regain colour on hover
  *   ticker  two scroll-velocity marquees of the same subjects (aria-hidden)
  */
-const PLANNED_TOPICS: {
-  title: string;
-  slug?: string;
-  /** Overrides the service photograph for this card only. */
-  img?: StockImage;
-  related?: { label: string; href: string };
-}[] = [
+const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string; href: string } }[] = [
   {
     title: 'Depression and hypnotherapy: what it actually looks like in session',
     slug: 'depression-bipolar-support',
@@ -63,7 +57,6 @@ const PLANNED_TOPICS: {
   {
     title: 'Does hypnosis really work to quit smoking?',
     slug: 'smoking-cessation',
-    img: BLOG_QUIT_SMOKING,
     related: { label: 'Smoking Cessation', href: '/services/smoking-cessation' },
   },
   {
@@ -95,7 +88,7 @@ const PLANNED_TOPICS: {
 
 export default function BlogIndexPage() {
   const cards: TopicCard[] = PLANNED_TOPICS.map((t) => {
-    const img = t.img ?? (t.slug ? serviceImage(t.slug) : null);
+    const img = t.slug ? serviceImage(t.slug) : null;
     return { title: t.title, related: t.related, img: img ? { src: img.src, alt: img.alt } : null };
   });
 
