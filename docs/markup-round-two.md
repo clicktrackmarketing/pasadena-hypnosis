@@ -5,7 +5,7 @@ Fourteen comments were open by 2026-10-09: the twelve new ones below, plus #82 a
 #88 carried over from round one. Applied 2026-10-07 to 2026-10-09.
 
 **Verify:** `node scripts/audit-markups.mjs http://localhost:3000`. It now
-asserts 109 of 113 comments; #82, #102, #110 and #113 are still open.
+asserts 110 of 113 comments; #82, #102 and #110 are still open.
 
 The site-wide rules from `docs/markup-round-one.md` still apply to everything
 below, and every new line was checked against them.
@@ -25,7 +25,7 @@ below, and every new line was checked against them.
 | 110 | `/services` | Hero "Standard session $200" | His current site's booking also takes payment and sends it to his account | **Waiting on a decision** — see below |
 | 111 | `/services` | Hero lede listing conditions | Missing the upbeat services (BAR exam and other test prep; high school, college and pro athletes); "bullet points without bullets" | Lede rewritten as two paragraphs of sentences, keeping his naming (#33) and adding test prep and athletes in his words |
 | 112 | `/contact` | Contact section | "We need an embedded map or google map I'm told." | Live Google map of 1910 Huntington Dr (keyless embed, `NAP.mapEmbed`) in the office block, under the address and Get directions |
-| 113 | `/` | Home H1 | H1 should include the city, e.g. "Your Best Choice for Certified Hypnotherapy in Pasadena, Ca"; better wording welcome | **Not done yet.** The H1 is also the footer tagline he wrote in #78, so the two need splitting first |
+| 113 | `/` | Home H1 | H1 should include the city, e.g. "Your Best Choice for Certified Hypnotherapy in Pasadena, Ca"; better wording welcome | H1 is now "Your Best Choice for Certified Hypnotherapy in Pasadena, CA" (his wording), with "I’m available online anywhere and locally in person." under it. The #78 tagline stays in the footer (`H1_TITLE` and `TAGLINE` are now separate) |
 
 ## Carried over
 
@@ -46,3 +46,10 @@ below, and every new line was checked against them.
   at the Wix booking pages (only works while the Wix site stays up, e.g. moved
   to a booking subdomain), or set up a scheduler with payments (Square,
   Acuity, Calendly + Stripe) on his account. Either way it needs his accounts.
+
+## Not from the markup
+
+- `/blog` "Does hypnosis really work to quit smoking?" card: a smoking-related
+  photo (a flower offered beside a cigarette pack, `BLOG_QUIT_SMOKING`) in
+  place of the summit, on ClickTrack's request. The smoking service page and
+  home card keep the summit Jason approved in #76.

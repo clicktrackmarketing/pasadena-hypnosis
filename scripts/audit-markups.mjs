@@ -108,7 +108,7 @@ for (const route of ROUTES) {
  * needle prefixed 'html:' (collapsed FAQ answers and image paths are not
  * visible text). Still open, so not asserted: #82 (more HMI
  * diplomas), #102 (Mr. Butts image or no Mr. Butts), #110 (booking that takes
- * payment), #113 (home H1 with the city). Round two (#102–#113) is in
+ * payment). Round two (#102–#113) is in
  * docs/markup-round-two.md.
  */
 const T = TAGLINE;
@@ -224,6 +224,7 @@ const PER_COMMENT = [
   [109, '/', ['html:svc-gut-ibs'], ['html:svc-session-armchairs']],
   [111, '/services', ['Jason Meissner specializes in'], ['students preparing for the BAR exam', 'high school, college and pro athletes']],
   [112, '/contact', [], ['html:maps.google.com/maps?q=1910+Huntington+Dr']],
+  [113, '/', [], ['Your Best Choice for Certified Hypnotherapy in Pasadena, CA']],
 ];
 
 const pageCache = new Map();
@@ -242,7 +243,7 @@ for (const [n, route, gone, present] of PER_COMMENT) {
   for (const p of present) if (!has(p)) fail(route, `#${n} is missing "${p}"`);
   checked++;
 }
-console.log(`Per-comment checks: ${checked} of 113 comments asserted (#82, #102, #110, #113 still open).`);
+console.log(`Per-comment checks: ${checked} of 113 comments asserted (#82, #102, #110 still open).`);
 
 for (const gone of ['/services/past-life-regression', '/services/group-hypnotherapy-program']) {
   const res = await fetch(base + gone);
