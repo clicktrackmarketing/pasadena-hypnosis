@@ -123,9 +123,14 @@ export const SERVICE_IMAGE_BY_SLUG: Record<string, StockImage> = {
     credit: 'Klara Kulikova / Unsplash',
   },
   ibs: {
-    src: u('svc-gut-ibs.jpg'),
-    alt: 'A person holding both hands against their stomach.',
-    credit: 'Towfiqu barbhuiya / Unsplash',
+    /* Markup #105, #109: the old frame (hands held against a stomach) had to
+       go — "I would like to remove this photo in place of anything else."
+       IBS and fibromyalgia are pain conditions, so the card shows the work —
+       a calm one-to-one session — rather than the symptom. Downloaded
+       2026-10-08 from unsplash.com/photos/lVEteug2d30 at 1100px, q=72. */
+    src: u('svc-session-armchairs.jpg'),
+    alt: 'A practitioner and a client talking in armchairs in a bright, quiet room.',
+    credit: 'Vitaly Gariev / Unsplash',
   },
   'grief-and-loss': {
     src: u('svc-grief-hands.jpg'),

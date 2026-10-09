@@ -106,8 +106,10 @@ for (const route of ROUTES) {
  * to: [number, route, text that must be gone, text that must be present].
  * Text is matched against the page's visible text, or the raw HTML for a
  * needle prefixed 'html:' (collapsed FAQ answers and image paths are not
- * visible text). #82 is not checkable yet: the client will send more HMI
- * diplomas.
+ * visible text). Still open, so not asserted: #82 (more HMI
+ * diplomas), #102 (Mr. Butts image or no Mr. Butts), #110 (booking that takes
+ * payment), #113 (home H1 with the city). Round two (#102–#113) is in
+ * docs/markup-round-two.md.
  */
 const T = TAGLINE;
 const D = DISCLAIMER;
@@ -204,7 +206,7 @@ const PER_COMMENT = [
   [91, '/contact', ['Several other practitioners work out of the same building'], []],
   [92, '/services/smoking-cessation', ['high-close'], ['We turn your habit into a lifelong trigger']],
   [93, '/services/smoking-cessation', ['not a licensed medical or mental-health clinician'], []],
-  [94, '/services/smoking-cessation', ['A proven, high-close service'], ['The last money you’ll ever spend on cigarettes', 'Two Ways to Win']],
+  [94, '/services/smoking-cessation', ['A proven, high-close service'], ['The last money you’ll ever spend on cigarettes', 'Quitting your way']],
   [95, '/services/smoking-cessation', ['Your first session'], ['One-Session Quit Day']],
   [96, '/services/smoking-cessation', ['six to eight sessions', 'Relief, session by session'], ['Two-Session Package']],
   [97, '/services/smoking-cessation', ['Same work, same rate'], ['In person at 1910 Huntington Dr in South Pasadena, or by video anywhere.']],
@@ -212,6 +214,16 @@ const PER_COMMENT = [
   [99, '/services/stress-and-anxiety', ['disabling-level', 'not everyday nerves'], ['Don’t continue to suffer as a slave to a mind']],
   [100, '/services/stress-and-anxiety', ['What booking this actually involves'], ['Stress and anxiety are a mind lost and overworking itself']],
   [101, '/services/stress-and-anxiety', ['not a licensed medical or mental-health clinician'], []],
+  // Round two (2026-10-07).
+  [103, '/services/smoking-cessation', ['Two Ways to Win'], ['Quitting your way', 'About 60% of clients choose one session', 'No price change', 'This is very rarely used']],
+  [104, '/services/chronic-pain', [], ['comfort you can keep, created by you during the hypnotherapy session.']],
+  [105, '/blog', ['html:svc-gut-ibs'], ['html:svc-session-armchairs']],
+  [106, '/services/sports-performance', [], ['all that is left is the mental game. We can help you find that flow state excellence on purpose.']],
+  [107, '/services/sports-performance', [], ['high school, college and pro athletes']],
+  [108, '/', ['html:w-[19rem] flex-shrink-0'], ['html:sm:grid-cols-2 lg:grid-cols-3']],
+  [109, '/', ['html:svc-gut-ibs'], ['html:svc-session-armchairs']],
+  [111, '/services', ['Jason Meissner specializes in'], ['students preparing for the BAR exam', 'high school, college and pro athletes']],
+  [112, '/contact', [], ['html:maps.google.com/maps?q=1910+Huntington+Dr']],
 ];
 
 const pageCache = new Map();
@@ -230,7 +242,7 @@ for (const [n, route, gone, present] of PER_COMMENT) {
   for (const p of present) if (!has(p)) fail(route, `#${n} is missing "${p}"`);
   checked++;
 }
-console.log(`Per-comment checks: ${checked} of 101 comments asserted (#82 waits on the client).`);
+console.log(`Per-comment checks: ${checked} of 113 comments asserted (#82, #102, #110, #113 still open).`);
 
 for (const gone of ['/services/past-life-regression', '/services/group-hypnotherapy-program']) {
   const res = await fetch(base + gone);

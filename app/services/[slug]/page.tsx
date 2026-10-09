@@ -132,6 +132,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
         sceneHover={hover}
         intro="rise"
         breadcrumb={{ label: 'All services', href: '/services' }}
+        lede={service.heroLede ? <p>{service.heroLede}</p> : undefined}
         facts={[
           { k: 'Investment', v: price },
           { k: 'Format', v: 'In person or online' },

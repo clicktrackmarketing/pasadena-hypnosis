@@ -69,12 +69,23 @@ export default function ServicesHubPage() {
           { k: 'Format', v: 'In person or online' },
           { k: 'Office', v: 'South Pasadena' },
         ]}
+        /* Markup #111: the old lede was a list of conditions ("bullet points
+           without bullets. It means nothing to people") and left out the
+           performance work. Rewritten as sentences, with test preparation and
+           athletes in his own words from that comment. */
         lede={
-          <p>
-            Jason Meissner specializes in stress and anxiety, depression and bipolar disorder, smoking cessation,
-            chronic and acute pain, IBS and fibromyalgia, and grief. Sessions are in person in South Pasadena, or
-            online with clients anywhere.
-          </p>
+          <>
+            <p>
+              Getting your mind in order is a process we can take care of. Whether you are carrying stress and
+              anxiety, depression, bipolar disorder or grief, living with chronic and acute pain, IBS and fibromyalgia,
+              or ready to quit smoking for good, Jason Meissner helps you find your peace again.
+            </p>
+            <p className="mt-4">
+              He also helps people rise to the challenge: students preparing for the BAR exam and other tests, and
+              high school, college and pro athletes managing the demands of life while finding their best. Sessions
+              are in person in South Pasadena, or online with clients anywhere.
+            </p>
+          </>
         }
       >
         <Link href="/book" className={heroPrimaryBtn}>

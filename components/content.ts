@@ -110,6 +110,8 @@ export const NAP = {
   email: 'jason@pasadenahypnosis.com',
   directions:
     'https://www.google.com/maps/search/?api=1&query=1910+Huntington+Dr+South+Pasadena+CA+91030',
+  /** Keyless Google Maps embed of the same address, for the /contact office block. */
+  mapEmbed: 'https://maps.google.com/maps?q=1910+Huntington+Dr,+South+Pasadena,+CA+91030&z=15&output=embed',
 } as const;
 
 /** Complete 7-day hours, Google Places API pull 2026-09-03. Twelve-hour clock
@@ -201,16 +203,25 @@ export const REAL_COPY = {
     craving:
       'You trained yourself to crave a cigarette. What if that same craving now brought you directly back to your healthiest, strongest, most powerful self? That’s what I do. It works.',
     method: ['Every time you see it.', 'Every time you smell it.', 'Every time someone offers it…', 'It means one thing: Victory'],
+    /*
+     * Markup #103 — his rewrite of "Two Ways to Win", which he signed off
+     * "Feel free to edit." Typos fixed ("quite day", "realligned", "every
+     * use"), nothing added. "No price change" settles the Two-Session
+     * Package's price: it is the same $400.
+     */
+    waysTitle: 'Quitting your way',
     ways: [
       {
         title: 'One-Session Quit Day',
-        body: 'Includes support calls and a back up hypnotherapy office session if needed.',
+        body: 'We can do it all at once in a single session, around 90 minutes long, and be done with everything. You choose your quit day now. About 60% of clients choose one session.',
       },
       {
         title: 'Two-Session Package',
-        body: 'Get ready for your quit day with a warm up hypnotherapy session going deep and getting comfortable with hypnotherapy. Then we schedule your Quit Day session. Includes support calls if needed and a back up hypnotherapy office session if needed.',
+        body: 'We also offer it in two sessions if you would like more time for the challenge. The first session gets you ready, going deep into hypnosis and laying the groundwork. You pick your final quit day during that first session and finish the process on the date you choose. No price change.',
       },
     ],
+    backup:
+      'A back-up session and call or text help are always available if you need them. We can do it all one more time if you need to be realigned. This is very rarely used.',
     walkAway: 'It is time to walk away now.',
     earned: ['You’ve done the suffering.', 'You earned the victory.', 'I’ll help you claim it.'],
     readyCta: 'I’m Ready to Quit',
@@ -406,6 +417,8 @@ export type Service = {
   price: number | null;
   priceQualifier?: string;
   tag?: string;
+  /** Optional lede under the service page's H1, where the client wrote one. */
+  heroLede?: string;
   /** Answer block, one per /services/<slug> route; also the hub card text. */
   answer: string;
   /** The service page's own section: a heading and paragraphs in Jason's voice. */
@@ -515,7 +528,8 @@ export const SERVICES: Service[] = [
       heading: 'Yes, we can reduce the pain you are experiencing',
       paras: [
         'Hypnotherapy for chronic and acute pain with Jason Meissner, a Certified Specialist in Hypnosis and Pain Management through the American Hypnosis Association.',
-        'There will be relief after every session, and together we build a result that is personally sustainable — comfort you can keep.',
+        // #104: his own continuation of this sentence.
+        'There will be relief after every session, and together we build a result that is personally sustainable — comfort you can keep, created by you during the hypnotherapy session.',
       ],
     },
   },
@@ -660,8 +674,15 @@ export const SERVICES: Service[] = [
     summary: 'Most athletics is a mental game. Get yours in order or fall behind.',
     price: 200,
     priceQualifier: 'per session',
+    // #106, verbatim but for one full stop turned into a comma.
+    heroLede:
+      'If you are putting in the effort, all that is left is the mental game. We can help you find that flow state excellence on purpose.',
     // #50 "Get rid of everything after performance. It is repetitive garbage!"
-    answer: 'Pasadena Hypnosis offers sports performance hypnosis.',
+    // #107 "This needs text I can provide." — the second sentence is his own,
+    // from #111: "I have helped high school, college and pro athletes manage
+    // those demands in life, while find their best."
+    answer:
+      'Pasadena Hypnosis offers sports performance hypnosis. Jason Meissner has helped high school, college and pro athletes manage the demands of competition and life while finding their best.',
     detail: {
       heading: 'Most athletics is a mental game',
       paras: [
