@@ -13,7 +13,7 @@
                    rule drawing down its edge: a client review from the live
                    site where there is one, otherwise a way to call.
      QuitSmoking   smoking cessation only, in place of StepsPath: the method,
-                   "Two Ways to Win" and the smoking client reviews, all from
+                   "Quitting your way" and the smoking client reviews, all from
                    the client's own /quitsmoking page.
      StepsPath     the three STEPS as cursor-lit cards (Spotlight) zig-zagging
                    down a dark band, joined by a line that draws itself with
@@ -224,7 +224,7 @@ export const ServiceStory = ({ slug }: { slug: string }) => {
   The smoking-cessation page's own middle, in place of the generic steps
   (markup #95 "This is all wrong", #96 "this is all wrong as well" — the
   generic steps quoted $200 and a session count). Every line is the client's
-  /quitsmoking page, via REAL_COPY.quitSmoking: the method, "Two Ways to Win",
+  /quitsmoking page, via REAL_COPY.quitSmoking: the method, "Quitting your way",
   and the smoking client reviews. Markup #94: "I will write the smoke pages I
   guess. I thought I did…" — he did; this is that page.
 */
@@ -266,12 +266,12 @@ export const QuitSmoking = () => {
             </Reveal>
           </div>
 
-          {/* TWO WAYS TO WIN */}
+          {/* QUITTING YOUR WAY (markup #103, was "Two Ways to Win") */}
           <div className="lg:col-span-6">
             <Reveal>
               <p className="mb-6 flex items-center gap-3 text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#A9C4EE] sm:text-xs">
                 <span aria-hidden="true" className="inline-block h-px w-10 bg-[#A9C4EE]/60" />
-                Two Ways to Win
+                {q.waysTitle}
               </p>
             </Reveal>
             <Stagger className="flex flex-col gap-5" gap={0.12}>
@@ -291,6 +291,7 @@ export const QuitSmoking = () => {
               ))}
             </Stagger>
             <Reveal delay={0.15}>
+              <p className="mt-7 max-w-[56ch] text-[16px] leading-[1.72] text-[#D9E1F0]">{q.backup}</p>
               <p className="mt-7 font-heading text-[1.35rem] text-[#A9C4EE]">{q.walkAway}</p>
             </Reveal>
           </div>

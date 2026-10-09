@@ -9,7 +9,8 @@
                    the hit area never leaves where the eye saw it)
      OfficeBlock   the practice's real consulting room, uncovered by a panel
                    that sweeps across it (CurtainReveal); a route line draws
-                   itself to a pin as the section scrolls (ScrollDraw)
+                   itself to a pin as the section scrolls (ScrollDraw), and
+                   a live Google map of the address under the directions link
      ContactForm   the shared BookingForm, untouched, with slow scroll-turned
                    rings in the ground around it — never on it
 
@@ -221,6 +222,20 @@ export const OfficeBlock = () => {
               <RollText>Get directions</RollText>
               <ArrowRightIcon className="h-4 w-4 -rotate-45 transition-transform duration-300 group-hover:rotate-0" />
             </a>
+          </Reveal>
+
+          {/* MAP — a live Google map of the office address. Lazy, so it costs
+              nothing until the visitor scrolls here. */}
+          <Reveal delay={0.24}>
+            <div className="mt-10 overflow-hidden rounded-[22px] border border-[#D7DEEA] shadow-[0_30px_60px_-40px_rgba(46,47,61,0.45)]">
+              <iframe
+                src={NAP.mapEmbed}
+                title={`Map of ${NAP.street}, ${NAP.city}, ${NAP.state} ${NAP.zip}`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="block aspect-[16/10] w-full border-0"
+              />
+            </div>
           </Reveal>
 
           {/* No suite number anywhere on this page: it is unverified.
