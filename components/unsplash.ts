@@ -284,6 +284,17 @@ export const DESK_NOTEBOOK: StockImage = {
   credit: 'Kelly Sikkema / Unsplash',
 };
 
+/** /blog, the "Does hypnosis really work to quit smoking?" card only. A
+    flower offered beside a cigarette pack: the choice to quit, without a lit
+    cigarette (markup #76 called that frame "terrible"). The smoking service
+    page and home card keep the summit he approved. Downloaded 2026-10-09 from
+    unsplash.com/photos/557xkSmNZ1g at 1100px, q=72. */
+export const BLOG_QUIT_SMOKING: StockImage = {
+  src: u('blog-flower-or-cigarettes.jpg'),
+  alt: 'One hand offering a yellow flower beside another hand holding a pack of cigarettes.',
+  credit: 'Shubhro Jyoti Dey / Unsplash',
+};
+
 /** /book */
 export const DESK_PLANNER: StockImage = {
   src: u('desk-planner.jpg'),

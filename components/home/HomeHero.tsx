@@ -32,7 +32,7 @@
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';
-import { H1_CLAUSE, H1_TAIL, HOME_ANSWER, RATING, NAP, SERVICES } from '../content';
+import { H1_TITLE, H1_TAIL, HOME_ANSWER, RATING, NAP, SERVICES } from '../content';
 import { PORTRAIT, PORTRAIT_ALT } from '../assets';
 import { HERO_STILL_WATER } from '../unsplash';
 import { ArrowRightIcon, PhoneIcon, StarIcon } from '../Icons';
@@ -124,7 +124,7 @@ export const HomeHero = () => {
             </motion.p>
 
             <h1 className="max-w-[16ch] font-heading text-[2.55rem] leading-[1.04] tracking-[-0.02em] text-white sm:text-[3.4rem] lg:text-[3.6rem] xl:text-[4.1rem]">
-              <SplitHeading as="p" text={H1_CLAUSE} className="block" stagger={0.034} duration={0.7} />
+              <SplitHeading as="p" text={H1_TITLE} className="block" stagger={0.034} duration={0.7} />
               <SplitHeading
                 as="p"
                 text={H1_TAIL.trim()}

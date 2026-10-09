@@ -385,17 +385,22 @@ export const REVIEW_SHOTS = [
 ];
 
 /**
- * The H1 and the footer tagline, in Jason's words (markup #78): "CHANGE THIS TO
- * THE FOLLOWING SITE WIDE: Certified hypnotherapy, let us know how we can help.
- * I'm available online anywhere and locally in person." The old clause about
- * conditions other practices turn away is deleted everywhere.
+ * The homepage H1. Markup #113: "I am told this H1 should read with the city.
+ * Like 'Your Best Choice for Certified Hypnotherapy in Pasadena, Ca.'" — his
+ * wording, with the state abbreviation capitalised. It used to be the #78
+ * tagline below; the tagline now lives only in the footer.
  */
-export const H1_CLAUSE = 'Certified hypnotherapy, let us know how we can help.';
+export const H1_TITLE = 'Your Best Choice for Certified Hypnotherapy in Pasadena, CA';
 /* Leading space is load-bearing: the two spans join into the element's text
    content. It collapses visually because the spans are block-level. */
 export const H1_TAIL = ' I’m available online anywhere and locally in person.';
-/** Footer tagline — the same two sentences as the H1, one string. */
-export const TAGLINE = H1_CLAUSE + H1_TAIL;
+/**
+ * Footer tagline, in Jason's words (markup #78): "CHANGE THIS TO THE FOLLOWING
+ * SITE WIDE: Certified hypnotherapy, let us know how we can help. I'm available
+ * online anywhere and locally in person." The old clause about conditions
+ * other practices turn away is deleted everywhere.
+ */
+export const TAGLINE = 'Certified hypnotherapy, let us know how we can help.' + H1_TAIL;
 
 /**
  * Footer disclaimer, verbatim from markup #77 — the only sentence of its kind
