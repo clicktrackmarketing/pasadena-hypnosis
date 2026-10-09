@@ -49,7 +49,7 @@ below, and every new line was checked against them.
 
 ## Not from the markup
 
-- `/blog` "Does hypnosis really work to quit smoking?" card: a smoking-related
-  photo (a flower offered beside a cigarette pack, `BLOG_QUIT_SMOKING`) in
-  place of the summit, on ClickTrack's request. The smoking service page and
-  home card keep the summit Jason approved in #76.
+- Smoking cessation photo, site-wide (home card, service page, blog card,
+  related cards): a smoking-related frame (a flower offered beside a
+  cigarette pack) in place of the summit, on ClickTrack's request. Still no
+  lit cigarette, which Jason rejected in #76.
