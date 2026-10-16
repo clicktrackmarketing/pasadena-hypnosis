@@ -1,6 +1,7 @@
 // Re-measure the crop offsets in components/WixCalendar.tsx (LAYOUT).
 // Frames a Wix booking calendar at three desktop widths and prints where the
-// "Select a Date and Time" heading lands. Needs puppeteer (not a dependency:
+// "Select a Date and Time" heading (crop) and the footer start; `docH - footer`
+// is the footer height the frame's clipped bottom has to cover. Needs puppeteer (not a dependency:
 // `npm i --no-save puppeteer`) and a local Chrome:
 //   node scripts/measure-wix-calendar.cjs discovery-call
 // The phone layout needs a mobile UA; see the note in WixCalendar.tsx.
