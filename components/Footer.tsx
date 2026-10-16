@@ -55,7 +55,7 @@ export const Footer = () => {
       <div className="relative mx-auto max-w-[1280px] px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-2 sm:col-span-3 lg:col-span-4">
-            <span className="mb-5 inline-flex items-center rounded-[10px] bg-black px-3 py-2">
+            <span className="mb-5 inline-flex items-center">
               <img
                 src={LOGO}
                 alt="Pasadena Hypnosis"

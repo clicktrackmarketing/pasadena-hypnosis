@@ -98,6 +98,13 @@ export const DIPLOMA_HMI_W = 1000;
 export const DIPLOMA_HMI_H = 750;
 export const DIPLOMA_HMI = '/assets/497f5cb6507faf1745101eef9a4613de13e982c13cbe66b7d184487d117d45f6.jpg';
 
+/* HMI Diploma in Clinical Hypnotherapy, September 17 2016 (no "with Honors"
+   on this one). Sent by Jason on markup #82, 2026-09-30, as one of the
+   "several more diploma credentials from HMI"; resized from his 1650px scan. */
+export const DIPLOMA_HMI_2_W = 1000;
+export const DIPLOMA_HMI_2_H = 773;
+export const DIPLOMA_HMI_2 = '/assets/diploma-hmi-2016-09-17.jpg';
+
 /* AHA Certified Specialist, Hypnosis and Pain Management. March 8 2016, cert #140250. */
 export const CERT_PAIN_W = 800;
 export const CERT_PAIN_H = 618;

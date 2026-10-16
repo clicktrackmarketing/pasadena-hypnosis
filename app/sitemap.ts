@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { SERVICES, SERVICE_AREAS } from '../components/content';
+import { POSTS, SERVICES, SERVICE_AREAS } from '../components/content';
 
 const areaSlug = (a: string) => a.split(',')[0].trim().toLowerCase().replace(/\s+/g, '-');
 
@@ -33,5 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
     changeFrequency: 'monthly' as const,
   }));
-  return [...staticRoutes, ...serviceRoutes, ...areaRoutes];
+  const postRoutes: MetadataRoute.Sitemap = POSTS.map((p) => ({
+    url: `${base}/blog/${p.slug}`,
+    lastModified: p.date,
+    priority: 0.6,
+    changeFrequency: 'yearly' as const,
+  }));
+  return [...staticRoutes, ...serviceRoutes, ...areaRoutes, ...postRoutes];
 }

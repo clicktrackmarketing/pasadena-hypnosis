@@ -3,7 +3,9 @@
 /* ---------------------------------------------------------------------------
    BLOG — THE PLANNED SUBJECTS (redesigned 2026-09-28).
 
-   STILL HONESTLY EMPTY. Every card is one of the page's own PLANNED_TOPICS:
+   PUBLISHED POSTS FIRST (POSTS in content.ts, Jason's own writing): those
+   cards say "New" and link to the post. Every other card is still one of the
+   page's PLANNED_TOPICS:
    the planned title, the words "Coming soon", and the real service page
    that covers the subject meanwhile. The redesign added motion and a bento
    layout; it did not add a date, a reading time, an excerpt or a byline,
@@ -29,6 +31,10 @@ import { PopItem, ScrollRotate, Spotlight } from '../../MotionFx';
 
 export type TopicCard = {
   title: string;
+  /** Set once Jason has written it: the card becomes a link to the post. */
+  href?: string;
+  /** A published post's opening, in Jason's own words. */
+  excerpt?: string;
   related?: { label: string; href: string };
   img: { src: string; alt: string } | null;
 };
@@ -64,7 +70,7 @@ const Card = ({ t, i, variant }: { t: TopicCard; i: number; variant: 'feature' |
           <div className="absolute inset-0 bg-gradient-to-t from-[#2E2F3D]/60 via-transparent to-transparent" />
           <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/92 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#2E2F3D] backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#5DBA47]" aria-hidden="true" />
-            Coming soon
+            {t.href ? 'New' : 'Coming soon'}
           </span>
           <span
             aria-hidden="true"
@@ -83,9 +89,23 @@ const Card = ({ t, i, variant }: { t: TopicCard; i: number; variant: 'feature' |
             feature ? 'text-[1.5rem] sm:text-[1.9rem] lg:text-[2.1rem] lg:leading-[1.2]' : wide ? 'text-[1.25rem] sm:text-[1.4rem]' : 'text-[1.1rem]'
           }`}
         >
-          {t.title}
+          {t.href ? (
+            <Link href={t.href} className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:underline">
+              {t.title}
+            </Link>
+          ) : (
+            t.title
+          )}
         </h3>
-        {t.related ? (
+        {t.excerpt ? (
+          <p className={`mt-4 text-[15px] leading-[1.7] text-[#4B5468] ${feature ? 'line-clamp-5' : 'line-clamp-3'}`}>{t.excerpt}</p>
+        ) : null}
+        {t.href ? (
+          <span className="mt-6 inline-flex w-fit items-center gap-2 text-[13.5px] font-semibold text-[#46699F]">
+            Read the article
+            <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+        ) : t.related ? (
           <Link
             href={t.related.href}
             className="ph-tap ph-underline mt-6 inline-flex w-fit items-center gap-2 text-[13.5px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
@@ -112,7 +132,7 @@ export const TopicGrid = ({ topics }: { topics: TopicCard[] }) => {
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className="mb-12 flex flex-col gap-4 border-b border-[#2E2F3D]/12 pb-7 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
           <SplitHeading
-            text="Planned, not yet written"
+            text="From Jason, and still to come"
             className="font-heading text-[2.2rem] sm:text-[2.9rem] lg:text-[3.3rem] leading-[1.08] tracking-[-0.018em] text-[#2E2F3D]"
           />
           <Reveal dir="left" delay={0.15}>

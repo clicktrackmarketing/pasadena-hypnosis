@@ -29,10 +29,14 @@ below, and every new line was checked against them.
 
 ## Carried over
 
-- **#82** — more HMI diploma credentials. Still waiting on him to send them.
-- **#88** — "I accept the challenge" on the blog lede. His reply: "Yes I would
-  like to write these. I will get through a couple this weekend." No change;
-  waiting on his posts.
+- **#82** — more HMI diploma credentials. **Done 2026-10-16.** He had attached
+  three files to the thread on 2026-09-30 (missed until then): the Sept 17 2016
+  HMI Diploma in Clinical Hypnotherapy is now on the site (`DIPLOMA_HMI_2`).
+  NOT added: his Hypnotherapists Union Local 472 certificate, printed "Valid to
+  March 2017" (expired; ask before showing it), and the AHA seal (a logo).
+- **#88** — "I accept the challenge" on the blog lede. **First post live
+  2026-10-16:** "Depression and Hypnotherapy" (`POSTS` in content.ts, sent as a
+  .docx on the Asana task), at /blog/depression-and-hypnotherapy.
 
 ## Decisions needed before these can close
 
@@ -48,6 +52,10 @@ below, and every new line was checked against them.
   Acuity, Calendly + Stripe) on his account. Either way it needs his accounts.
 
 ## Not from the markup
+
+- Logo plate removed (Julia, Asana 2026-10-03: "look more natural by removing
+  that black background"). The keyed logo now sits straight on the header and
+  footer.
 
 - Smoking cessation photo, site-wide (home card, service page, blog card,
   related cards): a smoking-related frame (a flower offered beside a

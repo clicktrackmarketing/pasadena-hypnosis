@@ -58,7 +58,7 @@ export const TeamTimeline = () => {
           eyebrow={`The paperwork, ${yearLabel}`}
           /* Markup #69-#72: "specialisms" is not a word, and the lede is
              deleted ("Yes delete all of this text"). */
-          title="Four specialist certifications, then the diploma"
+          title="Four specialist certifications, then the diplomas"
           size="lg"
         />
 
