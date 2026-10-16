@@ -135,8 +135,8 @@ export const TeamDocuments = () => {
                   <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3.5 border-t border-[#D7DEEA] pt-5 lg:grid-cols-4">
                     <Row k="Issuer" v={c.issuer} />
                     {c.issuerNote ? <Row k="Accredited" v={c.issuerNote} /> : null}
-                    <Row k="Dated" v={c.date} />
-                    {c.ref ? <Row k="Certificate" v={`#${c.ref}`} /> : null}
+                    {c.date ? <Row k="Dated" v={c.date} /> : c.validTo ? <Row k="Valid to" v={c.validTo} /> : null}
+                    {c.ref ? <Row k={c.validTo ? 'Certification ID' : 'Certificate'} v={c.validTo ? c.ref : `#${c.ref}`} /> : null}
                   </dl>
                   {c.note ? <p className="mt-4 max-w-[80ch] text-[14px] leading-[1.65] text-[#4B5468]">{c.note}</p> : null}
                 </div>

@@ -105,6 +105,13 @@ export const DIPLOMA_HMI_2_W = 1000;
 export const DIPLOMA_HMI_2_H = 773;
 export const DIPLOMA_HMI_2 = '/assets/diploma-hmi-2016-09-17.jpg';
 
+/* Hypnotherapists Union Local 472 (OPEIU), Certified Hypnotherapist,
+   certification ID 32240397, printed "Valid to March 2017". Sent by Jason on
+   markup #82 as a PDF; rendered to 1000px. He wants it shown (2026-10-16). */
+export const CERT_UNION_W = 1000;
+export const CERT_UNION_H = 773;
+export const CERT_UNION = '/assets/cert-hypnotherapists-union-472.jpg';
+
 /* AHA Certified Specialist, Hypnosis and Pain Management. March 8 2016, cert #140250. */
 export const CERT_PAIN_W = 800;
 export const CERT_PAIN_H = 618;

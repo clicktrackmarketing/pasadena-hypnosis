@@ -271,7 +271,7 @@ export const PRACTITIONER = {
 };
 
 /**
- * Six real documents (the Sept 2016 HMI diploma added from markup #82), transcribed field-by-field off the certificates
+ * Seven real documents (the Sept 2016 HMI diploma and the union certificate added from markup #82), transcribed field-by-field off the certificates
  * themselves rather than off the harvest manifest — the manifest dated the HMI
  * diploma 2018 and it reads 2016. Nothing here is inferred: issuer, award
  * wording, date and certificate number are all printed on the artwork the page
@@ -286,6 +286,8 @@ export const CREDENTIALS = [
     issuer: 'Hypnosis Motivation Institute',
     issuerNote: 'Nationally accredited college of hypnotherapy',
     date: 'October 8, 2016',
+    /* Only for a document with no issue date, just an expiry printed on it. */
+    validTo: null as string | null,
     ref: null as string | null,
     /* Transcribed from the body of the diploma itself. */
     note: 'Awarded on completion of nationally accredited education and supervised residency, and endorsed by the American Hypnosis Association.' as string | null,
@@ -347,6 +349,22 @@ export const CREDENTIALS = [
     ref: '140533',
     featured: false,
     alt: 'American Hypnosis Association certificate naming Jason A. Meissner a Certified Specialist in Hypnosis and Sports Performance, dated April 19 2016, certificate number 140533.',
+  },
+  {
+    img: 'CERT_UNION',
+    award: 'Certified Hypnotherapist',
+    issuer: 'Hypnotherapists Union Local 472',
+    issuerNote: null,
+    /* The certificate prints no issue date, only "Valid to March 2017", so it
+       has no date here and stays off the two date timelines. Jason asked for
+       it to be shown (2026-10-16). */
+    date: '',
+    validTo: 'March 2017',
+    /* As printed: the union designates him through the OPEIU (AFL-CIO, CLC). */
+    note: 'Designated by the Office and Professional Employees International Union, AFL-CIO and CLC.',
+    ref: '32240397',
+    featured: false,
+    alt: 'Hypnotherapists Union Local 472 certificate designating Jason Meissner a Certified Hypnotherapist, valid to March 2017, certification ID 32240397.',
   },
 ];
 
@@ -886,7 +904,7 @@ export function buildJsonLd() {
               '@type': 'EducationalOccupationalCredential',
               name: c.award,
               credentialCategory: c.featured ? 'diploma' : 'certificate',
-              dateCreated: c.date,
+              ...(c.date ? { dateCreated: c.date } : {}),
               recognizedBy: { '@type': 'Organization', name: c.issuer },
             };
             if (c.ref !== null) node.identifier = c.ref;

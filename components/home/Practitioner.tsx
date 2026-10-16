@@ -132,7 +132,7 @@ export const Practitioner = () => (
             <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#5DBA47]" aria-hidden="true" />
             <span className="whitespace-nowrap text-[14px] font-semibold text-[#2E2F3D]">{c.award}</span>
             <span className="whitespace-nowrap text-[13px] text-[#4B5468]">{c.issuer}</span>
-            <span className="whitespace-nowrap text-[12.5px] text-[#4B5468]">{c.date}</span>
+            <span className="whitespace-nowrap text-[12.5px] text-[#4B5468]">{c.date || `Valid to ${c.validTo}`}</span>
           </div>
         ))}
       </Marquee>

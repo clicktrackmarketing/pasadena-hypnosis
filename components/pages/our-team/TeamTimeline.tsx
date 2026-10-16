@@ -27,7 +27,7 @@ import { SectionHeading } from '../../SectionHeading';
 import { MindScene } from '../../scene/MindScene';
 import { motion, useReducedMotion, EASE_OUT_SOFT } from '../../Motion';
 import { ScrollDraw } from '../../MotionFx';
-import { chronological, splitDate } from './credentials';
+import { dated, splitDate } from './credentials';
 import { useViewportWidth } from './useViewport';
 
 /* A vertical line with a gentle wave in it: twelve half-waves down a 40 x
@@ -46,7 +46,7 @@ const RAIL = (() => {
 export const TeamTimeline = () => {
   const reduce = useReducedMotion();
   const vw = useViewportWidth(0);
-  const items = chronological();
+  const items = dated();
   const years = [...new Set(items.map((i) => splitDate(i.date).year))];
   const yearLabel = years.length === 1 ? years[0] : `${years[0]}–${years[years.length - 1]}`;
 

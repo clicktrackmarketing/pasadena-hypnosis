@@ -32,8 +32,10 @@ below, and every new line was checked against them.
 - **#82** — more HMI diploma credentials. **Done 2026-10-16.** He had attached
   three files to the thread on 2026-09-30 (missed until then): the Sept 17 2016
   HMI Diploma in Clinical Hypnotherapy is now on the site (`DIPLOMA_HMI_2`).
-  NOT added: his Hypnotherapists Union Local 472 certificate, printed "Valid to
-  March 2017" (expired; ask before showing it), and the AHA seal (a logo).
+  His Hypnotherapists Union Local 472 certificate (printed "Valid to March
+  2017", ID 32240397) was added the same day at his request (`CERT_UNION`); it
+  has no issue date, so it sits off the date timelines. Not added: the AHA seal
+  (a logo, not a credential).
 - **#88** — "I accept the challenge" on the blog lede. **First post live
   2026-10-16:** "Depression and Hypnotherapy" (`POSTS` in content.ts, sent as a
   .docx on the Asana task), at /blog/depression-and-hypnotherapy.
