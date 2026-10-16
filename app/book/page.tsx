@@ -28,9 +28,9 @@ const REASSURANCES = [
 /*
  * REDESIGNED 2026-09-28 — each band moves differently:
  *   hero    concentric rings: a voice travelling outward, the discovery call
- *   form    the request form in a glass panel with a light running round its
- *           edge; the decoration around it parts under the pointer, the form
- *           itself never moves
+ *   form    Jason's live Wix Discovery Call calendar in a glass panel with a
+ *           light running round its edge; the decoration around it parts
+ *           under the pointer, the calendar itself never moves
  *   steps   the real three-step process strung on a line that draws itself
  *   (the scope band that closed this page was removed — markup #77/#73:
  *   the disclaimer lives in the footer, the scope note on /our-team only)
@@ -64,7 +64,7 @@ export default function BookPage() {
           </a>
         </Magnetic>
         <a href="#request" className={`group ${heroGhostBtn}`}>
-          <RollText>Or send a request</RollText>
+          <RollText>Or book online</RollText>
           <ArrowRightIcon className="h-4 w-4 rotate-90 transition-transform duration-300 group-hover:translate-y-0.5" />
         </a>
       </PageHero>

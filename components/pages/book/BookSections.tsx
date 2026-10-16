@@ -3,9 +3,11 @@
 /* ---------------------------------------------------------------------------
    /book — the animated sections under the hero.
 
-     BookFormBand  the request form in a glass panel with a travelling light
-                   round its edge (.ph-glow-border). Around it, soft glows,
-                   rings and marks drift apart under the pointer (DepthField).
+     BookFormBand  Jason's live Wix Discovery Call calendar (WixCalendar) in a
+                   glass panel with a travelling light round its edge
+                   (.ph-glow-border). Around it, soft glows, rings and marks
+                   drift apart under the pointer (DepthField). The placeholder
+                   request form it replaced was removed 2026-10-16.
      StepsPath     the three STEPS strung on a line that draws itself down
                    the page as you read (ScrollDraw); each stage's marker
                    lights when the line reaches it
@@ -14,12 +16,12 @@
    2026-10-01 (markup #77, #73: the disclaimer is the footer's, the scope note
    is /our-team's, and nothing else on the site may repeat them).
 
-   THE FORM IS THE POINT OF THIS PAGE, so the rule for its band is strict:
-   NOTHING THAT MOVES IS ALLOWED TO CARRY A FIELD. The form sits outside
+   THE CALENDAR IS THE POINT OF THIS PAGE, so the rule for its band is strict:
+   NOTHING THAT MOVES IS ALLOWED TO CARRY IT. The calendar sits outside
    every <Depth> layer; only the decoration behind it responds to the
    pointer. The glow is a pseudo-element on the panel's border. The panel's
-   one entrance (Reveal) runs once, as it scrolls into view, before anyone
-   can be typing in it. BookingForm itself is the shared component, untouched.
+   one entrance (Reveal) runs once, as it scrolls into view. It spans the
+   full width because Wix's desktop booking page is a fixed 980px.
 
    COPY: STEPS and HOURS are content.ts; the four reassurances are the page's.
 
@@ -32,7 +34,7 @@ import { useMotionValueEvent } from 'motion/react';
 import { HOURS, STEPS } from '../../content';
 import { CheckIcon, ClockIcon } from '../../Icons';
 import { Spiral, Rings } from '../../Spiral';
-import { BookingForm } from '../../BookingForm';
+import { WixCalendar } from '../../WixCalendar';
 import {
   motion,
   useReducedMotion,
@@ -75,12 +77,12 @@ export const BookFormBand = ({ reassurances }: { reassurances: string[] }) => (
         </Depth>
       </div>
 
-      <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-start gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
-        <div className="lg:col-span-5 lg:pt-6">
-          <Stagger as="ul" className="flex flex-col" gap={0.1}>
+      <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-start gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+        <div className="lg:col-span-7">
+          <Stagger as="ul" className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-8" gap={0.1}>
             {reassurances.map((r) => (
               <StaggerItem key={r} as="li" distance={18}>
-                <span className="flex items-start gap-4 border-b border-white/10 py-5 font-heading text-[1.2rem] leading-[1.4] text-white sm:text-[1.4rem]">
+                <span className="flex items-start gap-4 border-b border-white/10 py-5 font-heading text-[1.2rem] leading-[1.4] text-white sm:text-[1.3rem]">
                   <span className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-[#5DBA47]/40 bg-[#5DBA47]/10">
                     <CheckIcon className="h-4 w-4 text-[#5DBA47]" aria-hidden="true" />
                   </span>
@@ -89,9 +91,11 @@ export const BookFormBand = ({ reassurances }: { reassurances: string[] }) => (
               </StaggerItem>
             ))}
           </Stagger>
+        </div>
 
+        <div className="lg:col-span-5">
           <Reveal delay={0.15}>
-            <div className="mt-10 rounded-[20px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm">
+            <div className="rounded-[20px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm">
               <p className="mb-4 inline-flex items-center gap-2.5 text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#A9C4EE]">
                 <ClockIcon className="h-4 w-4" aria-hidden="true" />
                 When you can call
@@ -108,12 +112,11 @@ export const BookFormBand = ({ reassurances }: { reassurances: string[] }) => (
           </Reveal>
         </div>
 
-        <div id="request" className="scroll-mt-28 lg:col-span-7">
+        <div id="request" className="scroll-mt-28 lg:col-span-12">
           <Reveal delay={0.08}>
-            {/* THE GLASS PANEL. The form card inside is the shared component;
-                this only frames it. */}
-            <div className="ph-glow-border rounded-[30px] border border-white/12 bg-white/[0.07] p-2.5 shadow-[0_60px_120px_-50px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-3.5">
-              <BookingForm />
+            {/* THE GLASS PANEL. It only frames the calendar. */}
+            <div className="ph-glow-border mx-auto max-w-[1100px] rounded-[30px] border border-white/12 bg-white/[0.07] p-2.5 shadow-[0_60px_120px_-50px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-3.5">
+              <WixCalendar wixSlug="discovery-call" title="Free discovery call - booking calendar" tone="dark" />
             </div>
           </Reveal>
         </div>

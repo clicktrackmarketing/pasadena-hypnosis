@@ -29,10 +29,14 @@ placeholder pages), not a single-page fake-multi-page demo.
     legal text" placeholder — owner is Jason's own counsel.
   - `/blog` lists real planned topic titles from the Call 2 brief as
     "coming soon" cards — no fabricated posts, dates, or authors.
-  - The booking form (`components/BookingForm.tsx`, used on `/book` and
-    `/contact`) is UI only, wired to nothing — `compliance.sensitiveDataEndpoint`
-    is unset in `profile.ts` until a BAA/DPA-covered endpoint is chosen. Do
-    not wire it to Formspree, a generic webhook, or an email relay.
+  - Booking is Jason's live Wix Bookings calendars, framed
+    (`components/WixCalendar.tsx`): the Discovery Call on `/book` and
+    `/contact`, and each service's own calendar on its `/services/<slug>`
+    page (map in `components/BookingCalendarBand.tsx`). He is keeping Wix
+    for bookings and payment. **The calendars load from
+    `https://www.pasadenahypnosis.com`, so before that domain is pointed at
+    this site, connect the Wix site to a subdomain (e.g.
+    `book.pasadenahypnosis.com`) and change `WIX_SITE`.**
   - Consent-gated material from the Call 2 brief (the knee-surgery case
     study, AscendantLens.com, Jason's personal story) is used nowhere on
     this site — none of it has his permission yet.

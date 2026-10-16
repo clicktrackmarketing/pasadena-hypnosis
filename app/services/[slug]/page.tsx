@@ -7,6 +7,7 @@ import { ArrowRightIcon, PhoneIcon } from '../../../components/Icons';
 import { PageHero } from '../../../components/PageHero';
 import { heroPrimaryBtn, heroGhostBtn } from '../../../components/buttons';
 import { CtaBand } from '../../../components/CtaBand';
+import { BookingCalendarBand } from '../../../components/BookingCalendarBand';
 import { priceLabel } from '../../../components/price';
 import { serviceScene } from '../../../components/pages/services/shapes';
 import {
@@ -61,6 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     story      white  the service's own heading + paragraphs, beside a review or a call card
     steps      dark   cursor-lit glass cards joined by a line that draws itself with scroll
                       (smoking cessation: QuitSmoking instead — his /quitsmoking page)
+    book       white  this service's live Wix booking calendar (BookingCalendarBand, #book)
     setting    mint   the real office photo uncovered by a sweeping colour panel
     related    dark   a block that grows from a rounded card to full width as it arrives
     faq        tint   the page's figure again, light tone, held beside the questions (desktop)
@@ -157,6 +159,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
       <AnswerZoom slug={service.slug} />
       <ServiceStory slug={service.slug} />
       {isSmoking ? <QuitSmoking /> : <StepsPath />}
+      <BookingCalendarBand slug={service.slug} />
       <OfficeSetting />
       <RelatedRise slug={service.slug} />
       <FaqEcho scene={scene} hover={hover} />

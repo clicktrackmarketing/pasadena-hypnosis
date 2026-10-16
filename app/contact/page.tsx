@@ -22,7 +22,7 @@ export const metadata: Metadata = {
  *   tiles    four ways to reach Jason, lit under the cursor and leaning to it
  *   office   the real consulting room uncovered by a sweeping panel, and a
  *            route line that draws itself to a pin
- *   form     the shared BookingForm, unchanged, in a ground of slow rings
+ *   form     the live Wix Discovery Call calendar, in a ground of slow rings
  */
 export default function ContactPage() {
   return (
