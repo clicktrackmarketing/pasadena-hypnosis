@@ -11,8 +11,9 @@
                    that sweeps across it (CurtainReveal); a route line draws
                    itself to a pin as the section scrolls (ScrollDraw), and
                    a live Google map of the address under the directions link
-     ContactForm   the shared BookingForm, untouched, with slow scroll-turned
-                   rings in the ground around it — never on it
+     ContactForm   Jason's live Wix Discovery Call calendar (WixCalendar),
+                   with slow scroll-turned rings in the ground around it —
+                   never on it. Replaced the placeholder form 2026-10-16.
 
    COPY: every string is content.ts (NAP, HOURS) or was already
    on this page. No suite number anywhere: it is unverified (see NAP).
@@ -28,7 +29,7 @@ import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../../assets';
 import { ArrowRightIcon, ClockIcon, MailIcon, MapPinIcon, PhoneIcon } from '../../Icons';
 import { Spiral, Rings } from '../../Spiral';
 import { responsive } from '../../responsive';
-import { BookingForm } from '../../BookingForm';
+import { WixCalendar } from '../../WixCalendar';
 import { motion, useReducedMotion, Magnetic, Reveal, SplitHeading, Stagger, EASE_OUT_SOFT } from '../../Motion';
 import { Spotlight, FlipItem, CurtainReveal, ScrollDraw, ScrollRotate, RollText } from '../../MotionFx';
 
@@ -253,7 +254,7 @@ export const OfficeBlock = () => {
 export const ContactForm = () => (
   <section className="relative isolate overflow-hidden bg-[#E6EFFF] py-16 sm:py-28">
     {/* The rings turn with the page scroll. They live in the ground, never
-        in the form — nothing near a field moves while someone types. */}
+        on the calendar. */}
     <ScrollRotate
       degrees={140}
       className="pointer-events-none absolute -left-48 -top-24 h-[34rem] w-[34rem] text-[#46699F]/[0.1] sm:-left-32"
@@ -267,9 +268,15 @@ export const ContactForm = () => (
       <Rings className="h-full w-full" count={7} />
     </ScrollRotate>
 
-    <div className="relative mx-auto max-w-[760px] px-4 sm:px-6">
-      <Reveal>
-        <BookingForm />
+    <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
+      <SplitHeading
+        text="Book a free discovery call"
+        className="font-heading text-[2.1rem] leading-[1.1] tracking-[-0.018em] text-[#2E2F3D] sm:text-[2.8rem]"
+      />
+      <Reveal delay={0.08}>
+        <div className="mt-10">
+          <WixCalendar wixSlug="discovery-call" title="Free discovery call - booking calendar" />
+        </div>
       </Reveal>
     </div>
   </section>
