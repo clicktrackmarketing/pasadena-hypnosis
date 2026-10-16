@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { NAP } from '../../components/content';
+import { NAP, POSTS } from '../../components/content';
 import { DESK_NOTEBOOK, serviceImage } from '../../components/unsplash';
 import { PhoneIcon, ArrowRightIcon } from '../../components/Icons';
 import { PageHero } from '../../components/PageHero';
@@ -12,7 +12,7 @@ import { TopicTicker } from '../../components/pages/blog/TopicTicker';
 // Target keywords (profile.ts targetKeywords['/blog']): "hypnotherapy blog los angeles".
 export const metadata: Metadata = {
   title: 'Insights',
-  description: 'Hypnotherapy insights from Pasadena Hypnosis — coming soon.',
+  description: 'Hypnotherapy insights from Jason Meissner of Pasadena Hypnosis, starting with Depression and Hypnotherapy.',
   alternates: { canonical: '/blog' },
 };
 
@@ -43,12 +43,9 @@ export const metadata: Metadata = {
  *           spotlight, photographs zoom and regain colour on hover
  *   ticker  two scroll-velocity marquees of the same subjects (aria-hidden)
  */
+/* Depression was the first planned subject, and it is the first one Jason
+   wrote (2026-10-12): its planned card is gone and his post leads the grid. */
 const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string; href: string } }[] = [
-  {
-    title: 'Depression and hypnotherapy: what it actually looks like in session',
-    slug: 'depression-bipolar-support',
-    related: { label: 'Depression & Bipolar Support', href: '/services/depression-bipolar-support' },
-  },
   {
     title: 'Living with stress and anxiety: getting your mind in order',
     slug: 'stress-and-anxiety',
@@ -87,10 +84,15 @@ const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string;
 ];
 
 export default function BlogIndexPage() {
-  const cards: TopicCard[] = PLANNED_TOPICS.map((t) => {
+  const published: TopicCard[] = POSTS.map((p) => {
+    const img = serviceImage(p.service);
+    return { title: p.title, href: `/blog/${p.slug}`, excerpt: p.paras[0], img: { src: img.src, alt: img.alt } };
+  });
+  const planned: TopicCard[] = PLANNED_TOPICS.map((t) => {
     const img = t.slug ? serviceImage(t.slug) : null;
     return { title: t.title, related: t.related, img: img ? { src: img.src, alt: img.alt } : null };
   });
+  const cards = [...published, ...planned];
 
   // The ticker's display row names only the subjects that point at a
   // specific service page ("Pricing" and "All services" read oddly as
@@ -110,9 +112,8 @@ export default function BlogIndexPage() {
         intro="mask"
         lede={
           <p>
-            Jason is writing these himself, which is why there are none yet rather than eight generic ones. The
-            planned subjects are below. In the meantime the service pages answer most of the same questions, and
-            the phone answers the rest.
+            Jason is writing these himself. The first one is up, and the subjects still to come are below. In the
+            meantime the service pages answer most of the same questions, and the phone answers the rest.
           </p>
         }
       >

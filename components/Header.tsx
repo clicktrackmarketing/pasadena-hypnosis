@@ -144,7 +144,10 @@ export const Header = () => {
             className="group flex items-center gap-2.5 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2 rounded-[12px]"
             aria-label="Pasadena Hypnosis — go to homepage"
           >
-            <span className="inline-flex items-center rounded-[8px] bg-black px-2.5 py-1.5 transition-transform duration-500 group-hover:scale-[1.03]">
+            {/* No black plate (client, 2026-10-03: "look more natural"). The logo is
+                keyed artwork with a real alpha channel, so it sits straight on
+                the header in both its dark and light states. */}
+            <span className="inline-flex items-center transition-transform duration-500 group-hover:scale-[1.03]">
               <img src={LOGO} alt="Pasadena Hypnosis" width={LOGO_W} height={LOGO_H} className="h-9 sm:h-10 w-auto object-contain" />
             </span>
           </Link>

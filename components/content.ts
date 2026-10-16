@@ -271,7 +271,7 @@ export const PRACTITIONER = {
 };
 
 /**
- * Five real documents, transcribed field-by-field off the certificates
+ * Six real documents (the Sept 2016 HMI diploma added from markup #82), transcribed field-by-field off the certificates
  * themselves rather than off the harvest manifest — the manifest dated the HMI
  * diploma 2018 and it reads 2016. Nothing here is inferred: issuer, award
  * wording, date and certificate number are all printed on the artwork the page
@@ -291,6 +291,18 @@ export const CREDENTIALS = [
     note: 'Awarded on completion of nationally accredited education and supervised residency, and endorsed by the American Hypnosis Association.' as string | null,
     featured: true,
     alt: 'Diploma from the Hypnosis Motivation Institute, nationally accredited College of Hypnotherapy, conferring the Diploma in Clinical Hypnotherapy with Honors on Jason Meissner, dated October 8 2016.',
+  },
+  {
+    img: 'DIPLOMA_HMI_2',
+    award: 'Diploma in Clinical Hypnotherapy',
+    issuer: 'Hypnosis Motivation Institute',
+    issuerNote: 'Nationally accredited college of hypnotherapy',
+    date: 'September 17, 2016',
+    ref: null,
+    /* Transcribed from the body of the diploma itself (markup #82). */
+    note: 'Awarded on completion of one year of nationally accredited education and supervised residency.',
+    featured: false,
+    alt: 'Diploma from the Hypnosis Motivation Institute, nationally accredited College of Hypnotherapy, conferring the Diploma in Clinical Hypnotherapy on Jason A. Meissner, dated September 17 2016.',
   },
   {
     img: 'CERT_PAIN',
@@ -942,3 +954,40 @@ export function buildJsonLd() {
     ],
   };
 }
+
+/**
+ * Published blog posts. Jason writes these himself (markup #88, "I accept the
+ * challenge"). The text is his, from the .docx he sent on the Asana task
+ * 2026-10-12, word for word except three typos: "dependance" -> "dependence",
+ * "never new existed" -> "never knew existed", "a greater understand of" ->
+ * "a greater understanding of". Paragraph breaks are his; the last one is
+ * split once at "In the same way", which starts a new thought. `date` is the
+ * day it went live on this site.
+ */
+export type Post = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  /** The service page this post belongs beside; its photo is the post's image. */
+  service: string;
+  paras: string[];
+};
+
+export const POSTS: Post[] = [
+  {
+    slug: 'depression-and-hypnotherapy',
+    title: 'Depression and Hypnotherapy',
+    description:
+      'Jason Meissner on how hypnotherapy helps change where your awareness is focused, and why relief from depression starts with seeing clearly.',
+    date: '2026-10-16',
+    service: 'depression-bipolar-support',
+    paras: [
+      'With hypnotherapy we gain the ability to understand cessation in the continuous activity of the mind of depression. Using the simple mechanics of the body and behavior a Hypnotherapist can help a client change where and what their awareness and consciousness are focused on. A Hypnotherapist leads the client through the experience of choosing to experience another activity of the mind, on purpose under their own control.',
+      'Without the tools used in hypnotherapy it is very difficult to find any relief from depression. Depression exists in the processes of thought as a real life somatic (felt) experience. The pain felt in real time triggers a process of survival, amplifying the importance of the pain and the dependence on these thoughts. This is a triggered automatic process labelled incorrectly as survival due to a real experience of pain.',
+      'With hypnotherapy session experience and a growing understanding of these mechanisms combined with a simple meditation or self-hypnosis practice things soon change for the better.',
+      'You are already the best version of yourself. When we learn how to know that center of ready fullness, beyond the versions of you there is nothing else to gain. We will and are representing the whole self at that moment. The propensity toward thinking and seeing with a depressed lens or perspective happens as a response to reality. When we find that we can just see clearly first in open awareness, and then taking a breath, we have the experience in real time of making a new choice we never knew existed. To experience reality without the bullying, dominating voice of depression and bipolar disorder.',
+      'In the same way a medication can provide space in your awareness for you to see more than pain and the thoughts of depression, these tools and experiences can aid at the same moment of suffering. These tools and experiences can only help you, your doctors, therapists, psychiatrists and medications find the shortest road to a greater understanding of peace and balance in your daily life.',
+    ],
+  },
+];

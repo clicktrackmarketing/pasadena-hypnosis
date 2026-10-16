@@ -68,7 +68,7 @@ export const CredentialTimeline = ({ items }: { items: TimelineItem[] }) => {
         <SectionHeading
           className="mb-14 sm:mb-16"
           eyebrow={`The paperwork, ${yearLabel}`}
-          title="Four specialist certifications, then the diploma"
+          title="Four specialist certifications, then the diplomas"
         />
 
         <div className="relative">
