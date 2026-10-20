@@ -57,7 +57,7 @@ const PLANNED_TOPICS: { title: string; slug?: string; related?: { label: string;
     related: { label: 'Smoking Cessation', href: '/services/smoking-cessation' },
   },
   {
-    title: 'Hypnotherapy for IBS and fibromyalgia: relief after every session',
+    title: 'Hypnotherapy for IBS and fibromyalgia: working toward relief',
     slug: 'ibs',
     related: { label: 'IBS & Fibromyalgia', href: '/services/ibs' },
   },

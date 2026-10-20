@@ -18,7 +18,7 @@ const SERVICES = [
 ];
 const AREAS = ['pasadena', 'south-pasadena', 'glendale', 'eagle-rock', 'arcadia'];
 const ROUTES = [
-  '/', '/services', '/pricing', '/our-team', '/faq', '/blog', '/contact', '/about', '/book', '/service-areas',
+  '/', '/services', '/pricing', '/meet-jason', '/faq', '/blog', '/contact', '/about', '/book', '/service-areas',
   '/privacy', '/terms', '/editorial-policy',
   ...SERVICES.map((s) => `/services/${s}`),
   ...AREAS.map((a) => `/service-areas/${a}`),
@@ -45,11 +45,15 @@ const BANNED = [
   ['not everyday nerves', /everyday nerves/i, '#41'],
   ['post-surgical', /post-surgical/i, '#10 #43'],
   ['On your call', /on your call/i, '#58'],
+  // Pre-launch review (Asana, 2026-10-19).
+  ['guaranteed result', /relief after every session|non-?smokerW*forever|100% effective|ever spend on cigarettes|lifelong trigger/i, 'review 2026-10-19'],
+  ['expired union certificate', /Valid to March 2017|Hypnotherapists Union/i, 'review 2026-10-19'],
+  ['"Our Team"', /our team/i, 'review 2026-10-19'],
 ];
 
-/* The scope-note sentence may appear ONLY on /our-team (#73) and /faq (#80). */
+/* The scope-note sentence may appear ONLY on /meet-jason (was /our-team, #73) and /faq (#80). */
 const SCOPE = /not a licensed medical or mental-health clinician/i;
-const SCOPE_ALLOWED = new Set(['/our-team', '/faq']);
+const SCOPE_ALLOWED = new Set(['/meet-jason', '/faq']);
 const DISCLAIMER =
   'Pasadena Hypnosis is a hypnotherapy practice, Jason Meissner is a certified hypnotherapist. Hypnotherapy is not a substitute for medical or psychiatric care.';
 const TAGLINE = 'Certified hypnotherapy, let us know how we can help.';
@@ -114,15 +118,15 @@ for (const route of ROUTES) {
 const T = TAGLINE;
 const D = DISCLAIMER;
 const PER_COMMENT = [
-  [1, '/', ['The usual hypnotherapy menu', 'Most hypnotherapists stop at phobias'], ['The world and pressures around us can keep us from remembering']],
-  [2, '/', ['Diagnosed depression'], ['Depression & bipolar disorder']],
+  [1, '/', ['The usual hypnotherapy menu', 'Most hypnotherapists stop at phobias'], []], // home Specialties section cut 2026-10-20
+  [2, '/', ['Diagnosed depression'], ['Depression & Bipolar Support']],
   [3, '/', ['Disabling anxiety', 'Not everyday nerves'], ['Getting your mind in order is a process we can take care of.']],
-  [4, '/', ['Worked alongside ongoing medical care'], ['Yes, we can reduce the pain you are experiencing.']],
+  [4, '/', ['Worked alongside ongoing medical care'], ['Together we work to reduce the pain you are experiencing.']],
   [5, '/', ['For IBS and other gut-brain conditions'], ['IBS and fibromyalgia']],
-  [6, '/', ['The proven, high-close service'], ['Mr. Butts doesn’t own you anymore!']],
+  [6, '/', ['The proven, high-close service'], []], // home Specialties section cut 2026-10-20
   [7, '/', ['by video statewide'], ['in person or online anywhere']],
   [8, '/', ['ranked the way the practice ranks them'], []],
-  [9, '/', ['A proven, high-close service'], ['My method turns craving into a victory trigger.']],
+  [9, '/', ['A proven, high-close service'], ['A method that turns craving into a victory trigger.']],
   [10, '/', ['post-surgical pain'], ['Chronic and Acute Pain']],
   [11, '/', ['Gut-directed hypnotherapy for IBS'], ['IBS & Fibromyalgia']],
   [12, '/', ['per the Call 2 brief'], ['a place to find your peace again']],
@@ -134,14 +138,14 @@ const PER_COMMENT = [
   [18, '/', ['San Marino / Arcadia gap'], ['Express your excellence and rise to the challenge.']],
   [19, '/', ['Past Life Regression'], []],
   [20, '/', ['Quiet, unclinical, and an hour at a time'], []],
-  [21, '/', ['online by video anywhere in California'], ['Online with clients anywhere, or in person at the office in South Pasadena.']],
+  [21, '/', ['online by video anywhere in California'], ['Online, wherever you are, or in person at my office in South Pasadena.']],
   [22, '/', ['$200, in person at 1910'], []],
   [23, '/', ['six to eight sessions'], ['There is no set number of sessions.']],
   [24, '/', ['you will know roughly where you stand'], []],
   [25, '/', ['cases many hypnotherapists decline'], []],
   [26, '/', ['not a licensed medical or mental-health clinician'], []],
   [27, '/', ['Reviewer names are greyed out'], ['Screenshots of the practice’s own Google reviews.']],
-  [28, '/', ['or by video statewide'], ['In the office in South Pasadena, or online anywhere.']],
+  [28, '/', ['or by video statewide'], []], // home AreasStrip cut 2026-10-20
   [29, '/', ['In the room in South Pasadena'], []],
   [30, '/', ['21:00'], ['10:00 AM - 9:00 PM']],
   [31, '/', [], ['Also reviewed on Yelp and more']],
@@ -155,8 +159,8 @@ const PER_COMMENT = [
   [39, '/services', ['The same work by video, anywhere in California.'], []],
   [40, '/services', ['conditions most hypnotherapists decline outright'], []],
   [41, '/services', ['not everyday nerves'], []],
-  [42, '/services', ['proven, high-close service'], ['We turn your habit into a lifelong trigger for peace, confidence and victory.']],
-  [43, '/services', ['as a complement to your existing medical care'], ['Yes, we can reduce the pain you are experiencing.']],
+  [42, '/services', ['proven, high-close service'], ['We turn your habit into a trigger for peace, confidence and victory.']],
+  [43, '/services', ['as a complement to your existing medical care'], ['Together we work to reduce the pain you are experiencing.']],
   [44, '/services', ['clinical term for hypnotherapy targeting IBS'], ['Pasadena Hypnosis works with IBS and fibromyalgia.']],
   [45, '/services', ['alongside chronic pain and diagnosed depression'], ['Pasadena Hypnosis offers hypnotherapy for grief and loss — one of Jason Meissner’s most requested areas of work.']],
   [46, '/services', ['Group Hypnotherapy Program'], []],
@@ -181,17 +185,17 @@ const PER_COMMENT = [
   [65, '/pricing', ['Group Hypnotherapy Program'], []],
   [66, '/pricing', ['confirmed on your free discovery call'], ['I’m ready to quit smoking']],
   [67, '/pricing', ['HSA/FSA-friendly'], []],
-  [68, '/our-team', ['hypnotherapists decline'], []],
-  [69, '/our-team', ['specialisms'], ['Four specialist certifications, then the diploma']],
-  [70, '/our-team', ['Dated in the order the documents themselves are dated'], []],
-  [71, '/our-team', ['specialisms came first'], []],
-  [72, '/our-team', ['the accredited diploma completed that October'], []],
-  [73, '/our-team', [], ['A certified hypnotherapist is not a licensed medical or mental-health clinician.']],
-  [74, '/our-team', ['in total'], ['The work Jason leads with.']],
-  [75, '/our-team', ['diagnosed', 'decline these cases outright'], []],
-  [76, '/our-team', ['html:svc-quit-smoking.jpg', 'high-close'], ['html:blog-flower-or-cigarettes.jpg']],
-  [77, '/our-team', [], [D]],
-  [78, '/our-team', ['conditions other practices turn away'], [T]],
+  [68, '/meet-jason', ['hypnotherapists decline'], []],
+  [69, '/meet-jason', ['specialisms'], ['Four specialist certifications, then the diploma']],
+  [70, '/meet-jason', ['Dated in the order the documents themselves are dated'], []],
+  [71, '/meet-jason', ['specialisms came first'], []],
+  [72, '/meet-jason', ['the accredited diploma completed that October'], []],
+  [73, '/meet-jason', [], ['A certified hypnotherapist is not a licensed medical or mental-health clinician.']],
+  [74, '/meet-jason', ['in total'], ['The work Jason leads with.']],
+  [75, '/meet-jason', ['diagnosed', 'decline these cases outright'], []],
+  [76, '/meet-jason', ['html:svc-quit-smoking.jpg', 'high-close'], ['html:blog-flower-or-cigarettes.jpg']],
+  [77, '/meet-jason', [], [D]],
+  [78, '/meet-jason', ['conditions other practices turn away'], [T]],
   [79, '/faq', ['For anything not covered here, call the office.'], ['Don’t hesitate to call with any questions you might have.']],
   [80, '/faq', [], ['html:Is hypnotherapy a replacement for medical or psychiatric treatment?']],
   [81, '/faq', ['html:Most clients work with Jason Meissner for 6-8 sessions'], ['html:This totally depends on what the issue is we are working with.']],
@@ -204,9 +208,9 @@ const PER_COMMENT = [
   [89, '/contact', ['conditions other practices turn away'], [T]],
   [90, '/contact', ['complementary'], [D]],
   [91, '/contact', ['Several other practitioners work out of the same building'], []],
-  [92, '/services/smoking-cessation', ['high-close'], ['We turn your habit into a lifelong trigger']],
+  [92, '/services/smoking-cessation', ['high-close'], ['We turn your habit into a trigger']],
   [93, '/services/smoking-cessation', ['not a licensed medical or mental-health clinician'], []],
-  [94, '/services/smoking-cessation', ['A proven, high-close service'], ['The last money you’ll ever spend on cigarettes', 'Quitting your way']],
+  [94, '/services/smoking-cessation', ['A proven, high-close service'], ['Make it the last money you spend on cigarettes', 'Quitting your way']],
   [95, '/services/smoking-cessation', ['Your first session'], ['One-Session Quit Day']],
   [96, '/services/smoking-cessation', ['six to eight sessions', 'Relief, session by session'], ['Two-Session Package']],
   [97, '/services/smoking-cessation', ['Same work, same rate'], ['In person at 1910 Huntington Dr in South Pasadena, or by video anywhere.']],
@@ -227,6 +231,14 @@ const PER_COMMENT = [
   [113, '/', [], ['Your Best Choice for Certified Hypnotherapy in Pasadena, CA']],
 ];
 
+/* Pre-launch review (Asana, 2026-10-19): [route, gone, present], same rules. */
+const REVIEW = [
+  ['/', ['Pasadena Hypnosis LLC is a South Pasadena', 'Only the captioned photo', 'Photographs are illustrative', 'Book a Free Discovery Call Book a Free Discovery Call', '5.0 0.0'], ['I’m Jason Meissner', 'Meet Jason', '$400 quit smoking']],
+  ['/services/depression-bipolar-support', [], ['What happens in a session', 'Shifting where your attention goes', 'Read Jason’s article']],
+  ['/services', [], ['Quit smoking']],
+  ['/meet-jason', ['Valid to March 2017'], ['Meet Jason']],
+];
+
 const pageCache = new Map();
 const getPage = async (route) => {
   if (!pageCache.has(route)) {
@@ -244,6 +256,18 @@ for (const [n, route, gone, present] of PER_COMMENT) {
   checked++;
 }
 console.log(`Per-comment checks: ${checked} of 113 comments asserted (#82, #102, #110 still open).`);
+
+for (const [route, gone, present] of REVIEW) {
+  const { html, text } = await getPage(route);
+  const has = (needle) => (needle.startsWith('html:') ? html.includes(needle.slice(5)) : text.includes(needle));
+  for (const g of gone) if (has(g)) fail(route, `review 2026-10-19: still shows "${g}"`);
+  for (const p of present) if (!has(p)) fail(route, `review 2026-10-19: missing "${p}"`);
+}
+
+const old = await fetch(base + '/our-team', { redirect: 'manual' });
+if (old.status !== 308 || !(old.headers.get('location') || '').endsWith('/meet-jason')) {
+  fail('/our-team', `expected a permanent redirect to /meet-jason, got ${old.status}`);
+}
 
 for (const gone of ['/services/past-life-regression', '/services/group-hypnotherapy-program']) {
   const res = await fetch(base + gone);

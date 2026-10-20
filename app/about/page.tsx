@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { NAP } from '../../components/content';
+import { NAP, RATING } from '../../components/content';
 import { GARDEN_STREAM } from '../../components/unsplash';
 import { ArrowRightIcon, PhoneIcon } from '../../components/Icons';
 import { PageHero } from '../../components/PageHero';
@@ -38,7 +38,7 @@ import { AboutReviews } from '../../components/pages/about/AboutReviews';
 export const metadata: Metadata = {
   title: 'About Pasadena Hypnosis',
   description:
-    'Pasadena Hypnosis LLC is a solo hypnotherapy practice run by Jason Meissner out of South Pasadena, CA, holding a 5.0 Google rating from 12 reviews.',
+    'Pasadena Hypnosis LLC is a solo hypnotherapy practice run by Jason Meissner out of South Pasadena, CA, holding a 5.0 Google rating from 13 reviews.',
   alternates: { canonical: '/about' },
 };
 
@@ -56,7 +56,7 @@ export default function AboutPage() {
         facts={[
           { k: 'Practice', v: 'Solo, since 2016' },
           { k: 'Location', v: 'South Pasadena, CA' },
-          { k: 'Rating', v: '5.0 from 12 reviews' },
+          { k: 'Rating', v: `${RATING.value.toFixed(1)} from ${RATING.count} reviews` },
           { k: 'Also', v: 'Online, anywhere' },
         ]}
         lede={
@@ -66,7 +66,7 @@ export default function AboutPage() {
           </p>
         }
       >
-        <Link href="/our-team" className={heroPrimaryBtn}>
+        <Link href="/meet-jason" className={heroPrimaryBtn}>
           Credentials &amp; documents
           <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>

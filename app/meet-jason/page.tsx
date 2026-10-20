@@ -15,7 +15,8 @@ import { TeamScope } from '../../components/pages/our-team/TeamScope';
 import { TeamServices } from '../../components/pages/our-team/TeamServices';
 
 /* ---------------------------------------------------------------------------
-   OUR TEAM.
+   MEET JASON (was "Our Team" at /our-team until 2026-10-20; renamed on the
+   client's request, and /our-team now redirects here in next.config.mjs).
 
    THE PROBLEM THIS PAGE HAS TO SOLVE. "Our Team" on a solo practice is
    usually an apology — one headshot under a plural heading, padded out to look
@@ -57,10 +58,10 @@ import { TeamServices } from '../../components/pages/our-team/TeamServices';
 
 // Target keywords (profile.ts targetKeywords['/our-team']): "jason meissner hypnotherapist".
 export const metadata: Metadata = {
-  title: 'Our Team — Jason Meissner, Certified Hypnotherapist',
+  title: 'Meet Jason Meissner, Certified Hypnotherapist',
   description:
     "Jason Meissner completed a year of accredited training and supervised residency at the Hypnosis Motivation Institute and has practiced hypnotherapy for 10 years in South Pasadena.",
-  alternates: { canonical: '/our-team' },
+  alternates: { canonical: '/meet-jason' },
 };
 
 const personJsonLd = {
@@ -80,7 +81,7 @@ const personJsonLd = {
   })),
 };
 
-export default function OurTeamPage() {
+export default function MeetJasonPage() {
   return (
     <div>
       <script
@@ -90,7 +91,7 @@ export default function OurTeamPage() {
       />
 
       <PageHero
-        eyebrow="Our team"
+        eyebrow="Meet Jason"
         title="One hypnotherapist, and every document behind him"
         image={BAMBOO_WALKWAY}
         scene="orb"

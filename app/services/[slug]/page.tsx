@@ -13,6 +13,7 @@ import { serviceScene } from '../../../components/pages/services/shapes';
 import {
   AnswerZoom,
   ServiceStory,
+  SessionDetail,
   QuitSmoking,
   StepsPath,
   OfficeSetting,
@@ -158,6 +159,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
 
       <AnswerZoom slug={service.slug} />
       <ServiceStory slug={service.slug} />
+      <SessionDetail slug={service.slug} />
       {isSmoking ? <QuitSmoking /> : <StepsPath />}
       <BookingCalendarBand slug={service.slug} />
       <OfficeSetting />

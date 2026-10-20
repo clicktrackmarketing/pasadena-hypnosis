@@ -25,6 +25,7 @@ export const metadata: Metadata = {
    the standard session's price and the discovery call's "Free". */
 const SESSION = SERVICES.find((s) => s.slug === 'hypnotherapy-sessions');
 const CALL = SERVICES.find((s) => s.slug === 'discovery-call');
+const SMOKING = SERVICES.find((s) => s.slug === 'smoking-cessation');
 
 /*
   REVISED 2026-10-01 from the client's markup round one (#33-#55):
@@ -65,6 +66,9 @@ export default function ServicesHubPage() {
         intro="scale"
         facts={[
           ...(sessionPrice ? [{ k: 'Standard session', v: sessionPrice }] : []),
+          /* Shown beside the standard price so $200 never reads as the price of
+             everything (client review 2026-10-19). */
+          ...(SMOKING ? [{ k: 'Quit smoking', v: priceLabel(SMOKING) }] : []),
           ...(callPrice ? [{ k: 'First call', v: callPrice }] : []),
           { k: 'Format', v: 'In person or online' },
           { k: 'Office', v: 'South Pasadena' },

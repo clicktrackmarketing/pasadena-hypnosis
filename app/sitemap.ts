@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/services`, priority: 0.9, changeFrequency: 'monthly' as const },
     { url: `${base}/service-areas`, priority: 0.8, changeFrequency: 'monthly' as const },
     { url: `${base}/pricing`, priority: 0.9, changeFrequency: 'monthly' as const },
-    { url: `${base}/our-team`, priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: `${base}/meet-jason`, priority: 0.7, changeFrequency: 'monthly' as const },
     { url: `${base}/book`, priority: 0.9, changeFrequency: 'monthly' as const },
     { url: `${base}/faq`, priority: 0.7, changeFrequency: 'monthly' as const },
     { url: `${base}/blog`, priority: 0.7, changeFrequency: 'weekly' as const },

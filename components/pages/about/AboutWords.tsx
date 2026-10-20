@@ -81,7 +81,7 @@ export const AboutWords = () => {
                 {diploma.issuer} &middot; {diploma.date}
               </p>
               <Link
-                href="/our-team"
+                href="/meet-jason"
                 className="ph-tap group mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-[#46699F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
               >
                 Credentials &amp; documents

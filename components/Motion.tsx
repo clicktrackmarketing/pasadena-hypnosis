@@ -433,14 +433,18 @@ export const Counter = ({
   }, [inView, reduce, to, duration]);
 
   // The final value is real text in an sr-only span (aria-label on a plain
-  // span is ignored by several screen readers); the ticking digits are
-  // aria-hidden so they are never narrated.
+  // span is ignored by several screen readers). The ticking digits are drawn
+  // by CSS from `data-n`, not written as text, so the value exists once in the
+  // DOM. As a second aria-hidden text node it read as "5.0 0.0" to audits and
+  // text readers (client review 2026-10-19).
   return (
     <span ref={ref} className={className}>
       <span className="sr-only">{final}</span>
-      <span aria-hidden="true">
-        {reduce ? final : `${prefix}${n.toFixed(decimals)}${suffix}`}
-      </span>
+      <span
+        aria-hidden="true"
+        data-n={reduce ? final : `${prefix}${n.toFixed(decimals)}${suffix}`}
+        className="before:content-[attr(data-n)]"
+      />
     </span>
   );
 };

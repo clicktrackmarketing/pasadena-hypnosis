@@ -6,16 +6,10 @@ import { FaqAccordion } from '../components/FaqAccordion';
 import { Reveal, SplitHeading } from '../components/Motion';
 import { WaveSeam } from '../components/MotionFx';
 import { HomeHero } from '../components/home/HomeHero';
-import { Specialties } from '../components/home/Specialties';
 import { ServicesGrid } from '../components/home/ServicesGrid';
 import { SessionJourney } from '../components/home/SessionJourney';
-import { BreathSection } from '../components/home/BreathSection';
 import { Practitioner } from '../components/home/Practitioner';
 import { Reviews } from '../components/home/Reviews';
-import { QuoteBand } from '../components/home/QuoteBand';
-import { AreasStrip } from '../components/home/AreasStrip';
-import { Gallery } from '../components/home/Gallery';
-import { WhyPeopleCome } from '../components/home/WhyPeopleCome';
 import { FinalCta } from '../components/home/FinalCta';
 
 /* ---------------------------------------------------------------------------
@@ -44,6 +38,24 @@ import { FinalCta } from '../components/home/FinalCta';
 
    The answer-first paragraph lives inside <HomeHero> and keeps its
    id="answer-first" anchor.
+
+   SHORTENED 2026-10-20 (Jason's pre-launch review: "too long and
+   repetitive"). Thirteen sections became seven:
+     hero → services → how it works → Meet Jason → reviews → FAQ → CTA.
+   Cut, and why:
+     - Specialties: a second list of the same services as the grid.
+     - Gallery: six stock interiors plus a disclaimer. The one real office
+       photograph is in the Meet Jason section, so the page shows exactly one
+       room, and it is his.
+     - BreathSection and QuoteBand: atmosphere, no information.
+     - WhyPeopleCome: illustrative photos and a disclaimer, repeating the
+       reviews section that follows it.
+     - AreasStrip: the service-area pages stay linked from the header,
+       footer and /service-areas.
+   The component files are kept in components/home for reference (as
+   HowItWorks already was); nothing imports them.
+   The page also speaks in one voice now: Jason's first person, with "we"
+   meaning Jason and the client.
 --------------------------------------------------------------------------- */
 
 // Target keywords (profile.ts targetKeywords['/']): "hypnotherapy pasadena",
@@ -58,16 +70,10 @@ export default function HomePage() {
   return (
     <div>
       <HomeHero />
-      <Specialties />
       <ServicesGrid />
-      <Gallery />
       <SessionJourney />
-      <BreathSection />
-      <WhyPeopleCome />
       <Practitioner />
       <Reviews />
-      <QuoteBand />
-      <AreasStrip />
 
       {/* FAQ TEASER — the accordion leaf is shared with /faq and the service
           pages, so the height animation added to it there arrives here too. */}

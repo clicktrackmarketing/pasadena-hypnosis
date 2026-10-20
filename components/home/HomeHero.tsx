@@ -54,7 +54,8 @@ import {
 const CHIPS = [
   { label: 'HMI graduate, with Honors' },
   { label: '10 years in practice' },
-  { label: '$200 / session' },
+  /* Both prices, so nothing reads as "everything is $200" (review 2026-10-19). */
+  { label: '$200 / session · $400 quit smoking' },
   { label: 'Free discovery call' },
 ];
 
@@ -259,7 +260,7 @@ export const HomeHero = () => {
 
         <div className="flex justify-center">
           <a
-            href="#specialties"
+            href="#services"
             className="group inline-flex flex-col items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#A9C4EE]/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
           >
             Scroll

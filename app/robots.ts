@@ -1,17 +1,23 @@
 import type { MetadataRoute } from 'next';
+import { BUSINESS } from '../components/content';
+import { isIndexable } from '../components/indexing';
 
 /**
- * Preview-stage robots.txt: disallow everything. The real permissive
- * per-bot ruleset (explicit allow for Googlebot, Bingbot, GPTBot, ClaudeBot,
- * PerplexityBot, Google-Extended, CCBot per profile.ts's aiPolicy) belongs
- * to the real production domain, www.pasadenahypnosis.com, at launch — not
- * to this Vercel preview host. Every client build in this pipeline keeps
- * its preview noindex/nofollow until a human promotes it
- * (pipeline/.claude/skills/site-build/SKILL.md), on top of the per-page
- * `robots: {index:false}` metadata in app/layout.tsx.
+ * robots.txt follows the same switch as the page-level robots meta
+ * (components/indexing.ts): disallow everything on the Vercel preview host
+ * and in development, allow everything on the live pasadenahypnosis.com
+ * production deployment, with the sitemap. Bots are not singled out:
+ * profile.ts's aiPolicy allows Googlebot, Bingbot, GPTBot, ClaudeBot,
+ * PerplexityBot, Google-Extended and CCBot, which `allow: '/'` for every
+ * agent already covers.
  */
 export default function robots(): MetadataRoute.Robots {
+  if (!isIndexable()) {
+    return { rules: [{ userAgent: '*', disallow: '/' }] };
+  }
   return {
-    rules: [{ userAgent: '*', disallow: '/' }],
+    rules: [{ userAgent: '*', allow: '/' }],
+    sitemap: `${BUSINESS.url}/sitemap.xml`,
+    host: BUSINESS.url,
   };
 }

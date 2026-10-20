@@ -48,7 +48,7 @@ export default function BookPage() {
           { k: 'Cost', v: 'Free' },
           { k: 'You speak to', v: 'Jason, directly' },
           { k: 'Sessions', v: 'In the office or online' },
-          { k: 'Then', v: '$200 per session' },
+          { k: 'Then', v: '$200 per session, $400 quit smoking' },
         ]}
         lede={
           <p>

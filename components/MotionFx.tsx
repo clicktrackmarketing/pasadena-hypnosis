@@ -697,13 +697,20 @@ export const WaveSeam = ({ color = '#ffffff', className }: { color?: string; cla
 
 /**
  * Button/link label that rolls up to an identical copy on hover. Needs a
- * `group` class on the interactive parent. The copy is aria-hidden.
+ * `group` class on the interactive parent.
+ *
+ * The copy is drawn by CSS (`.ph-roll-b::before`, content from `data-roll`),
+ * so the label exists exactly once in the DOM. It used to be a second
+ * aria-hidden span, which accessibility audits and text readers still picked
+ * up as a duplicate button label (client review 2026-10-19). Labels are plain
+ * text everywhere this is used, so the children flatten to one string.
  */
-export const RollText = ({ children }: { children: ReactNode }) => (
-  <span className="ph-roll relative inline-flex overflow-hidden align-top">
-    <span className="ph-roll-a block">{children}</span>
-    <span aria-hidden="true" className="ph-roll-b absolute left-0 top-full block">
-      {children}
+export const RollText = ({ children }: { children: ReactNode }) => {
+  const label = Children.toArray(children).join('');
+  return (
+    <span className="ph-roll relative inline-flex overflow-hidden align-top">
+      <span className="ph-roll-a block">{label}</span>
+      <span aria-hidden="true" data-roll={label} className="ph-roll-b absolute left-0 top-full block" />
     </span>
-  </span>
-);
+  );
+};
