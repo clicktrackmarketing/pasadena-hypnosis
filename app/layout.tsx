@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Lora, Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '../components/Header';
@@ -82,6 +83,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${lora.variable} ${inter.variable}`}>
       <body>
+        {/* Click Track Analytics V2 pixel (visits, forms and calls by source). */}
+        <Script
+          id="click-track-analytics"
+          src="https://c.clicktrackanalytics.com/ct.v2.js"
+          data-key="cta_pasadenahypnosis_com_v1"
+          data-site="5db36f62abd24879a342c430c917c1d2"
+          strategy="beforeInteractive"
+        />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
