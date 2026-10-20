@@ -233,7 +233,7 @@ const PER_COMMENT = [
 
 /* Pre-launch review (Asana, 2026-10-19): [route, gone, present], same rules. */
 const REVIEW = [
-  ['/', ['Pasadena Hypnosis LLC is a South Pasadena', 'Only the captioned photo', 'Photographs are illustrative', 'Book a Free Discovery Call Book a Free Discovery Call', '5.0 0.0'], ['I’m Jason Meissner', 'Meet Jason', '$400 quit smoking']],
+  ['/', ['Pasadena Hypnosis LLC is a South Pasadena', 'Only the captioned photo', 'Photographs are illustrative', 'Book a Free Discovery Call Book a Free Discovery Call', '5.0 0.0', '13 Google reviews 5.0'], ['I’m Jason Meissner', 'Meet Jason', '$400 quit smoking']],
   ['/services/depression-bipolar-support', [], ['What happens in a session', 'Shifting where your attention goes', 'Read Jason’s article']],
   ['/services', [], ['Quit smoking']],
   ['/meet-jason', ['Valid to March 2017'], ['Meet Jason']],

@@ -36,11 +36,23 @@ site loads the calendars from there, and old links forward to it.
 - Search indexing turns on by itself on the live domain
   (`components/indexing.ts`).
 
+## Where the domain lives (checked 2026-10-20)
+
+- Nameservers: **easyDNS** (`dns1.easydns.com`, `dns2.easydns.net`,
+  `dns3.easydns.org`). DNS changes are made in Jason's easyDNS account,
+  not in Wix.
+- `www.pasadenahypnosis.com` is a CNAME to Wix (`cdn1.wixdns.net`).
+
+So the access needed is: Jason's **Wix** login (to connect the subdomain)
+and his **easyDNS** login (to add the subdomain record and later point the
+main domain at Vercel).
+
 ## Launch order (needs access to Jason's Wix account and his DNS)
 
 1. **Wix: connect a subdomain.** In Wix, Settings → Domains, connect
-   `book.pasadenahypnosis.com` to the Wix site (Wix shows the DNS record to
-   add; usually a CNAME). Confirm
+   `book.pasadenahypnosis.com` to the Wix site, choosing the "connect via
+   pointing" option since DNS stays at easyDNS. Add the record Wix shows
+   (usually a CNAME for `book`) in easyDNS. Confirm
    `https://book.pasadenahypnosis.com/booking-calendar/discovery-call` loads.
    Make it the Wix site's primary domain so Wix emails and confirmations use
    it.
@@ -51,8 +63,9 @@ site loads the calendars from there, and old links forward to it.
    `/services/<slug>` calendar loads, a test booking reaches the payment step,
    and `/booking-calendar/discovery-call` redirects to the subdomain.
 4. **Point the main domain at Vercel.** Add `pasadenahypnosis.com` and
-   `www.pasadenahypnosis.com` to the Vercel project and update DNS as Vercel
-   instructs. Redeploy once attached, so the indexing switch sees the domain.
+   `www.pasadenahypnosis.com` to the Vercel project and update the records
+   in easyDNS as Vercel instructs (the `www` CNAME moves from Wix to Vercel;
+   the `book` CNAME stays on Wix). Redeploy once attached, so the indexing switch sees the domain.
 5. **After DNS settles:** open an old Wix link
    (`www.pasadenahypnosis.com/booking-calendar/smoking-cessation`) and confirm
    it lands on the Wix subdomain calendar; view source on the homepage and

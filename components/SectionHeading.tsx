@@ -74,9 +74,15 @@ export const SectionHeading = ({
   return (
     <div className={`flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between ${className ?? ''}`}>
       {block}
-      <Reveal delay={0.2} dir="left">
-        <div className="flex-shrink-0">{aside}</div>
-      </Reveal>
+      {/* The aside slides in from the right. Unclipped, its starting offset
+          pushed past the screen edge and let phones scroll sideways until it
+          revealed. The clip box is 12px wider than the aside on each side
+          (-mx-3 px-3), so focus rings are not cut off. */}
+      <div className="-mx-3 flex-shrink-0 overflow-x-clip px-3">
+        <Reveal delay={0.2} dir="left">
+          <div className="flex-shrink-0">{aside}</div>
+        </Reveal>
+      </div>
     </div>
   );
 };

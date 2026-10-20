@@ -18,15 +18,21 @@ Team" on every route, and checks each item below.
 | 6 | Opening reads like a business listing; switches I / he / we | Hero paragraph is now his first person ("I'm Jason Meissner…"); Meet Jason bio, steps, CTA and section titles follow. "We" only means Jason and the client. FAQ answers stay third person (they are the FAQ schema) |
 | 7 | Office gallery: one real photo, no illustrative images or disclaimers | Gallery and its disclaimer are gone from the homepage; the one real office photo is in Meet Jason. "Photographs are illustrative" no longer appears |
 | 8 | Remove noindex,nofollow at launch | No page sets its own robots; the site-wide noindex and robots.txt now lift automatically on the pasadenahypnosis.com production deployment (`components/indexing.ts`). Preview stays noindex |
-| 9 | Duplicate button labels and counter values exposed to screen readers | Hover-roll labels and counting numbers now draw their animated copy with CSS, so each label and number exists once in the page |
+| 9 | Duplicate button labels and counter values exposed to screen readers | Hover-roll labels and counting numbers now draw their animated copy with CSS, so each label and number exists once in the page. The hero's rating also existed twice (a desktop span and a phone chip); it is one element now |
 | 10 | "Our Team" → "Meet Jason" | Page moved to `/meet-jason` (title, eyebrow, menu, footer, links, sitemap); `/our-team` redirects permanently |
 | 11 | Verify address, hours, review count | Checked 2026-10-20 against his Google Business Profile and pasadenahypnosis.com. Address 1910 Huntington Dr, South Pasadena, CA 91030 and phone match. Hours match Google exactly (Mon–Fri and Sun 10 AM–9 PM, Sat 10:30 AM–9 PM). **Reviews: 13 now, was 12**, updated. Note: Yelp lists different hours (9–9 weekdays, 10–3 weekends) and a Pasadena 91101 address; worth Jason correcting there |
 | 12 | Pricing shouldn't suggest everything is $200 | Home hero chip "$200 / session · $400 quit smoking"; services hub adds "Quit smoking $400"; /book "$200 per session, $400 quit smoking". Pricing, FAQ and the smoking page already showed $400 |
 
+## Also fixed while checking
+
+- Phones could scroll sideways a few pixels on pages whose section heading
+  has a link beside it (e.g. "View all services"): the link's slide-in
+  started past the screen edge. Clipped in `SectionHeading`.
+
 ## Questions for Jason
 
-- Wix: access to connect `book.pasadenahypnosis.com`, and who manages the
-  domain's DNS.
+- Wix login (to connect `book.pasadenahypnosis.com`) and easyDNS login (the
+  domain's DNS is at easyDNS, checked 2026-10-20).
 - A current union card, if he wants that credential back.
 - More depression-page text, if he'd like his own wording over the version
   drawn from his blog post.
