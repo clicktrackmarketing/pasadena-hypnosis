@@ -1,3 +1,5 @@
+import { LOGO, OFFICE_INTERIOR } from './assets';
+
 /**
  * Ground truth for the C4 concept frame — REAL-SITE ALIGNED 2026-09-09,
  * CALL 2 BRIEF SYNCED 2026-09-10.
@@ -84,11 +86,12 @@
  *   - Still NO Review nodes. Six real reviews are now shown, but as the
  *     screenshots they are: the reviewer names are greyed out in the client's
  *     own crops, Review schema requires an author, and inventing one is not
- *     available. AggregateRating (5.0 / 12, Places API) remains the only
- *     machine-readable review claim.
+ *     available. AggregateRating was removed too (launch audit 2026-10-20):
+ *     self-serving review markup. The rating is shown as text only.
  *   - No social URLs. The live site says "Check us out On Instagram" but the
  *     href was not captured, and a guessed handle is worse than a gap.
  */
+
 
 export const BUSINESS = {
   name: 'Pasadena Hypnosis',
@@ -96,6 +99,10 @@ export const BUSINESS = {
   url: 'https://www.pasadenahypnosis.com',
   priceRange: '$$',
 } as const;
+
+/** Schema @ids, so every page's JSON-LD points at the same business and person. */
+export const ORG_ID = BUSINESS.url + '/#organization';
+export const PERSON_ID = BUSINESS.url + '/meet-jason#jason';
 
 /** GBP value — what NAP consistency is measured against. No suite number: unverified.
     Address and phone re-checked 2026-10-20 against the Google Business Profile
@@ -255,7 +262,7 @@ export const PRACTITIONER = {
    * year was a second HMI program that produced its own certificate.
    */
   /* Markup #25/#68: no comparison with other hypnotherapists, no "diagnosed". */
-  bio: 'Jason Meissner graduated with Honors from the Hypnosis Motivation Institute in 2016 and has practiced hypnotherapy for a decade — in person at his South Pasadena office, and online with clients anywhere.',
+  bio: 'Jason Meissner graduated with Honors from the Hypnosis Motivation Institute in 2016 and has practiced hypnotherapy for a decade, in person at his South Pasadena office, and online with clients anywhere.',
   credentials: [
     {
       title: 'HMI graduate, with Honors',
@@ -505,7 +512,7 @@ export const SERVICES: Service[] = [
     category: 'Specialties',
     // #40, #75, #98: no "diagnosed", no other hypnotherapists.
     summary:
-      'Depression and bipolar support — remember that you are already whole and complete.',
+      'Depression and bipolar support. Remember that you are already whole and complete.',
     price: 200,
     priceQualifier: 'per session',
     answer:
@@ -649,7 +656,7 @@ export const SERVICES: Service[] = [
     name: 'Grief & Loss',
     category: 'Specialties',
     // #12 "PLEASE FIX". #45 "Delete everything after the first sentence."
-    summary: 'Hypnotherapy for grief and loss — a place to find your peace again.',
+    summary: 'Hypnotherapy for grief and loss: a place to find your peace again.',
     price: 200,
     priceQualifier: 'per session',
     answer: 'Pasadena Hypnosis offers hypnotherapy for grief and loss — one of Jason Meissner’s most requested areas of work.',
@@ -745,7 +752,7 @@ export const SERVICES: Service[] = [
     price: 200,
     priceQualifier: 'per session',
     answer:
-      'Pasadena Hypnosis offers hypnotherapy for testing and academic performance. Jason helps you express your excellence and rise to the challenge — the more preparation the better, so let’s get your mind in order ahead of time.',
+      'Pasadena Hypnosis offers hypnotherapy for testing and academic performance. Jason helps you express your excellence and rise to the challenge. The more preparation the better, so let’s get your mind in order ahead of time.',
     detail: {
       heading: 'Express your excellence',
       paras: [
@@ -813,7 +820,7 @@ export const SERVICE_AREAS = [
 ];
 
 /* Markup #15, #21, #28, #33, #85: online sessions reach clients anywhere. */
-export const ONLINE_AREA = 'Online — anywhere';
+export const ONLINE_AREA = 'Online, anywhere';
 
 /**
  * The three steps. Markup #21-#24: no cost in step two, no "six to eight
@@ -878,11 +885,11 @@ export const FAQS = [
   },
   {
     q: 'What are Jason Meissner\'s credentials as a hypnotherapist?',
-    a: 'Jason Meissner holds a Diploma in Clinical Hypnotherapy with Honors from the Hypnosis Motivation Institute, a nationally accredited hypnotherapy college, awarded October 8 2016. He also holds four American Hypnosis Association specialist certifications — Pain Management, Smoking Cessation, Sports Performance, and ADD-ADHD — and has practiced in South Pasadena for a decade.',
+    a: 'Jason Meissner holds a Diploma in Clinical Hypnotherapy with Honors from the Hypnosis Motivation Institute, a nationally accredited hypnotherapy college, awarded October 8 2016. He also holds four American Hypnosis Association specialist certifications: Pain Management, Smoking Cessation, Sports Performance, and ADD-ADHD — and has practiced in South Pasadena for a decade.',
   },
   {
     q: 'How do I book an appointment with Pasadena Hypnosis?',
-    a: 'Book directly online or call (626) 616-0143. A free discovery call is available first for anyone who wants to talk through their situation before booking a session. Sessions are available both in person at the South Pasadena office and online for clients anywhere.',
+    a: 'Book directly online or call ' + NAP.phone + '. A free discovery call is available first for anyone who wants to talk through their situation before booking a session. Sessions are available both in person at the South Pasadena office and online for clients anywhere.',
   },
 ];
 
@@ -896,7 +903,7 @@ export function buildJsonLd() {
     postalCode: NAP.zip,
     addressCountry: NAP.country,
   };
-  const orgId = BUSINESS.url + '/#organization';
+  const orgId = ORG_ID;
   // No 'California' entry: the client works online with clients anywhere (#85).
   const areas = [...SERVICE_AREAS];
 
@@ -912,11 +919,17 @@ export function buildJsonLd() {
         inLanguage: 'en-US',
       },
       {
-        '@type': 'MedicalOrganization',
+        /* MedicalBusiness, not MedicalOrganization (launch audit 2026-10-20):
+           MedicalBusiness is the LocalBusiness subtype, so the practice reads
+           as a local business with an address and hours. */
+        '@type': 'MedicalBusiness',
         '@id': orgId,
         name: NAP.name,
         alternateName: BUSINESS.name,
         url: BUSINESS.url,
+        logo: BUSINESS.url + LOGO,
+        image: BUSINESS.url + OFFICE_INTERIOR,
+        knowsAbout: ['Hypnotherapy', 'Clinical hypnotherapy', ...SERVICES.map((s) => s.name)],
         telephone: NAP.phone,
         email: NAP.email,
         priceRange: BUSINESS.priceRange,
@@ -940,6 +953,9 @@ export function buildJsonLd() {
         ],
         founder: {
           '@type': 'Person',
+          '@id': PERSON_ID,
+          url: BUSINESS.url + '/meet-jason',
+          worksFor: { '@id': orgId },
           name: PRACTITIONER.name,
           jobTitle: PRACTITIONER.role,
           description: PRACTITIONER.bio,
@@ -964,13 +980,10 @@ export function buildJsonLd() {
             return node;
           }),
         },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: RATING.value,
-          reviewCount: RATING.count,
-          bestRating: RATING.best,
-          worstRating: RATING.worst,
-        },
+        /* No aggregateRating (launch audit 2026-10-20). A hand-typed rating
+           on the business's own entity is self-serving review markup, which
+           Google disallows and can penalise. Stars in search come from the
+           Google Business Profile; the visible "5.0 on Google" copy stays. */
         /* One Offer per REAL booking service, at its real URL. Every price
            here is site-verified; the previous revision's null-price branch is
            gone because no service is unpriced any more. */
@@ -1055,7 +1068,7 @@ export const POSTS: Post[] = [
     service: 'depression-bipolar-support',
     paras: [
       'With hypnotherapy we gain the ability to understand cessation in the continuous activity of the mind of depression. Using the simple mechanics of the body and behavior a Hypnotherapist can help a client change where and what their awareness and consciousness are focused on. A Hypnotherapist leads the client through the experience of choosing to experience another activity of the mind, on purpose under their own control.',
-      'Without the tools used in hypnotherapy it is very difficult to find any relief from depression. Depression exists in the processes of thought as a real life somatic (felt) experience. The pain felt in real time triggers a process of survival, amplifying the importance of the pain and the dependence on these thoughts. This is a triggered automatic process labelled incorrectly as survival due to a real experience of pain.',
+      'Without the tools used in hypnotherapy it is very difficult to find any relief from depression. Depression exists in the processes of thought as a real life somatic (felt) experience. The pain felt in real time triggers a process of survival, amplifying the importance of the pain and the dependence on these thoughts. This is a triggered automatic process labeled incorrectly as survival due to a real experience of pain.',
       'With hypnotherapy session experience and a growing understanding of these mechanisms combined with a simple meditation or self-hypnosis practice things soon change for the better.',
       'You are already the best version of yourself. When we learn how to know that center of ready fullness, beyond the versions of you there is nothing else to gain. We will and are representing the whole self at that moment. The propensity toward thinking and seeing with a depressed lens or perspective happens as a response to reality. When we find that we can just see clearly first in open awareness, and then taking a breath, we have the experience in real time of making a new choice we never knew existed. To experience reality without the bullying, dominating voice of depression and bipolar disorder.',
       'In the same way a medication can provide space in your awareness for you to see more than pain and the thoughts of depression, these tools and experiences can aid at the same moment of suffering. These tools and experiences can only help you, your doctors, therapists, psychiatrists and medications find the shortest road to a greater understanding of peace and balance in your daily life.',

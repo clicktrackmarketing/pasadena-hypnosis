@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { POSTS, PRACTITIONER, SERVICES } from '../../../components/content';
+import { ORG_ID, PERSON_ID, POSTS, PRACTITIONER, SERVICES } from '../../../components/content';
+import { pageMeta } from '../../../components/seo';
 import { serviceImage } from '../../../components/unsplash';
 import { ArrowRightIcon } from '../../../components/Icons';
 import { PageHero } from '../../../components/PageHero';
@@ -26,12 +27,13 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const post = POSTS.find((p) => p.slug === slug);
   if (!post) return {};
-  return {
+  return pageMeta({
     title: post.title,
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: { type: 'article', title: post.title, description: post.description, publishedTime: post.date },
-  };
+    path: `/blog/${post.slug}`,
+    type: 'article',
+    publishedTime: post.date,
+  });
 }
 
 const longDate = (iso: string) =>
@@ -64,8 +66,9 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         description: post.description,
         datePublished: post.date,
         mainEntityOfPage: url,
-        author: { '@type': 'Person', name: PRACTITIONER.name },
-        publisher: { '@type': 'MedicalOrganization', name: 'Pasadena Hypnosis' },
+        image: `https://www.pasadenahypnosis.com${img.src}`,
+        author: { '@type': 'Person', '@id': PERSON_ID, name: PRACTITIONER.name },
+        publisher: { '@id': ORG_ID },
       },
     ],
   };

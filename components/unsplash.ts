@@ -101,7 +101,7 @@ export const PINE_FOREST: StockImage = {
 export const SERVICE_IMAGE_BY_SLUG: Record<string, StockImage> = {
   'depression-bipolar-support': {
     src: u('svc-depression-counseling.jpg'),
-    alt: 'A therapist listening to a client during a counselling session.',
+    alt: 'A therapist listening to a client during a counseling session.',
     credit: 'Vitaly Gariev / Unsplash',
   },
   'stress-and-anxiety': {

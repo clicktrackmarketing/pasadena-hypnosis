@@ -65,16 +65,43 @@ export const Header = () => {
     };
   }, []);
 
-  /* The full-screen mobile sheet owns the viewport while it is open. */
+  /* The full-screen mobile sheet owns the viewport while it is open. It also
+     owns focus (launch audit 2026-10-20): the page and footer behind it go
+     inert so Tab cannot wander into content the sheet covers, focus moves to
+     the first link on open, and returns to the menu button on close. */
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const wasOpen = useRef(false);
   useEffect(() => {
-    if (!mobileOpen) return;
+    if (!mobileOpen) {
+      if (wasOpen.current) {
+        wasOpen.current = false;
+        const active = document.activeElement;
+        if (!active || active === document.body || !document.body.contains(active)) {
+          menuButtonRef.current?.focus();
+        }
+      }
+      return;
+    }
+    wasOpen.current = true;
     const html = document.documentElement;
     const prev = html.style.overflow;
     html.style.overflow = 'hidden';
+    const behind = Array.from(document.querySelectorAll<HTMLElement>('main, footer'));
+    behind.forEach((el) => el.setAttribute('inert', ''));
+    const t = window.setTimeout(() => {
+      document.querySelector<HTMLElement>('#mobile-menu a, #mobile-menu button')?.focus();
+    }, 60);
     return () => {
+      window.clearTimeout(t);
       html.style.overflow = prev;
+      behind.forEach((el) => el.removeAttribute('inert'));
     };
   }, [mobileOpen]);
+
+  /* Desktop services panel closes when keyboard focus leaves it. */
+  const onServicesBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setServicesOpen(false);
+  };
 
   const isActive = (href: string) => pathname === href || (href !== '/' && pathname.startsWith(href));
 
@@ -99,9 +126,11 @@ export const Header = () => {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   useMotionValueEvent(scrollY, 'change', (y) => {
     const prev = scrollY.getPrevious() ?? 0;
     setScrolled(y > 24);
+    setPastHero(y > 420);
     if (reduce || mobileOpen || servicesOpen) return setHidden(false);
     if (y > 420 && y > prev + 4) setHidden(true);
     else if (y < prev - 4 || y <= 420) setHidden(false);
@@ -126,6 +155,14 @@ export const Header = () => {
 
   return (
     <>
+    {/* Skip link (launch audit 2026-10-20): first stop for keyboard users,
+        visible only while focused. Target is <main id="main"> in layout. */}
+    <a
+      href="#main"
+      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-[10px] focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-[#2E2F3D] focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#454659]"
+    >
+      Skip to content
+    </a>
     <motion.header
       animate={{ y: hidden ? '-110%' : '0%' }}
       transition={{ duration: 0.45, ease: EASE_OUT_SOFT }}
@@ -142,7 +179,7 @@ export const Header = () => {
           <Link
             href="/"
             className="group flex items-center gap-2.5 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2 rounded-[12px]"
-            aria-label="Pasadena Hypnosis — go to homepage"
+            aria-label="Pasadena Hypnosis, go to homepage"
           >
             {/* No black plate (client, 2026-10-03: "look more natural"). The logo is
                 keyed artwork with a real alpha channel, so it sits straight on
@@ -156,7 +193,7 @@ export const Header = () => {
               (shared layoutId), which is what makes the bar feel like one
               object rather than seven. */}
           <nav aria-label="Primary" className="hidden xl:flex items-center gap-1" onMouseLeave={() => setHoverKey(null)}>
-            <div className="relative flex items-center" ref={servicesRef}>
+            <div className="relative flex items-center" ref={servicesRef} onBlur={onServicesBlur}>
               <Link
                 href="/services"
                 onMouseEnter={() => setHoverKey('/services')}
@@ -169,7 +206,6 @@ export const Header = () => {
               </Link>
               <button
                 type="button"
-                aria-haspopup="true"
                 aria-expanded={servicesOpen}
                 aria-controls="services-panel"
                 onClick={() => setServicesOpen((v) => !v)}
@@ -248,7 +284,7 @@ export const Header = () => {
                           <Link
                             href="/services"
                             onClick={() => setServicesOpen(false)}
-                            className="inline-flex items-center justify-between rounded-[12px] border border-white/25 px-4 py-3 text-[14px] font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE]"
+                            className="inline-flex items-center justify-between rounded-[12px] border border-white/50 px-4 py-3 text-[14px] font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE]"
                           >
                             All services
                             <ArrowRightIcon className="h-4 w-4" />
@@ -276,7 +312,7 @@ export const Header = () => {
           </nav>
 
           <div className="hidden xl:flex items-center gap-3 flex-shrink-0">
-            <a href={`tel:${NAP.phone.replace(/[^\d+]/g, '')}`} className={`flex items-center gap-2 text-sm font-medium transition-colors ${navLink(false)}`}>
+            <a href={NAP.phoneHref} className={`flex items-center gap-2 text-sm font-medium transition-colors ${navLink(false)}`}>
               <PhoneIcon className={`h-4 w-4 ${overHero ? 'text-[#A9C4EE]' : 'text-[#454659]'}`} />
               {NAP.phone}
             </a>
@@ -289,10 +325,11 @@ export const Header = () => {
           </div>
 
           <div className="flex xl:hidden items-center gap-2">
-            <a href={`tel:${NAP.phone.replace(/[^\d+]/g, '')}`} aria-label={`Call ${NAP.phone}`} className={`ph-tap-icon inline-flex items-center justify-center p-2 rounded-[10px] focus-visible:outline-none focus-visible:ring-2 ${ring} ${overHero || mobileOpen ? 'text-white' : 'text-[#454659]'}`}>
+            <a href={NAP.phoneHref} aria-label={`Call ${NAP.phone}`} className={`ph-tap-icon inline-flex items-center justify-center p-2 rounded-[10px] focus-visible:outline-none focus-visible:ring-2 ${ring} ${overHero || mobileOpen ? 'text-white' : 'text-[#454659]'}`}>
               <PhoneIcon className="h-5 w-5" />
             </a>
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMobileOpen((v) => !v)}
               aria-expanded={mobileOpen}
@@ -336,6 +373,7 @@ export const Header = () => {
                       <button
                         type="button"
                         aria-expanded={mobileServicesOpen}
+                        aria-controls={mobileServicesOpen ? 'mobile-services' : undefined}
                         onClick={() => setMobileServicesOpen((v) => !v)}
                         className="flex w-full items-center justify-between py-4 font-heading text-[1.75rem] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE]"
                       >
@@ -345,6 +383,7 @@ export const Header = () => {
                       <AnimatePresence initial={false}>
                         {mobileServicesOpen ? (
                           <motion.div
+                            id="mobile-services"
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -389,8 +428,8 @@ export const Header = () => {
                   Book a Free Call
                 </Link>
                 <a
-                  href={`tel:${NAP.phone.replace(/[^\d+]/g, '')}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-[12px] border border-white/25 px-4 py-4 text-base font-medium text-white"
+                  href={NAP.phoneHref}
+                  className="flex w-full items-center justify-center gap-2 rounded-[12px] border border-white/50 px-4 py-4 text-base font-medium text-white"
                 >
                   <PhoneIcon className="h-4 w-4" />
                   {NAP.phone}
@@ -401,6 +440,35 @@ export const Header = () => {
           </motion.div>
         ) : null}
       </AnimatePresence>
+
+      {/* STICKY MOBILE CTA BAR (launch audit 2026-10-20). Below xl the header
+          slides away once the visitor scrolls past the hero, which left no
+          call or book button in reach mid-page. This bar takes over from the
+          same point and hides while the menu sheet is open. layout.tsx pads
+          the page bottom on small screens so it never covers the footer. */}
+      <div
+        className={`xl:hidden fixed inset-x-0 bottom-0 z-30 border-t border-[#D7DEEA] bg-white/95 px-3 pb-[max(0.6rem,env(safe-area-inset-bottom))] pt-2.5 backdrop-blur-xl transition-transform duration-500 ${
+          pastHero && !mobileOpen ? 'translate-y-0' : 'pointer-events-none translate-y-full'
+        }`}
+        aria-hidden={!(pastHero && !mobileOpen)}
+        inert={!(pastHero && !mobileOpen)}
+      >
+        <div className="mx-auto flex max-w-[640px] gap-2.5">
+          <a
+            href={NAP.phoneHref}
+            className="flex flex-1 items-center justify-center gap-2 rounded-[12px] border border-[#454659]/40 px-3 py-3 text-[15px] font-semibold text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659]"
+          >
+            <PhoneIcon className="h-4 w-4" />
+            Call
+          </a>
+          <Link
+            href="/book"
+            className="flex flex-[1.6] items-center justify-center rounded-[12px] bg-[#454659] px-3 py-3 text-[15px] font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+          >
+            Book a Free Call
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

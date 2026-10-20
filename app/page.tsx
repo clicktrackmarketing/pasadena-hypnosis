@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../components/seo';
 import Link from 'next/link';
-import { HOME_ANSWER, FAQS } from '../components/content';
+import { FAQS } from '../components/content';
 import { ArrowRightIcon } from '../components/Icons';
 import { FaqAccordion } from '../components/FaqAccordion';
 import { Reveal, SplitHeading } from '../components/Motion';
@@ -60,11 +61,15 @@ import { FinalCta } from '../components/home/FinalCta';
 
 // Target keywords (profile.ts targetKeywords['/']): "hypnotherapy pasadena",
 // "hypnotherapy south pasadena", "hypnosis pasadena".
-export const metadata: Metadata = {
-  title: 'Certified Hypnotherapy in South Pasadena, CA',
-  description: HOME_ANSWER,
-  alternates: { canonical: '/' },
-};
+// Absolute: the root page is not covered by its own layout's title template,
+// so without the brand here the homepage title had no brand at all.
+export const metadata: Metadata = pageMeta({
+  title: 'Pasadena Hypnosis | Certified Hypnotherapy in South Pasadena, CA',
+  description:
+    'Jason Meissner, certified hypnotherapist in South Pasadena, helps with stress, anxiety, depression, smoking, pain, IBS and grief, in person or online.',
+  path: '/',
+  absoluteTitle: true,
+});
 
 export default function HomePage() {
   return (

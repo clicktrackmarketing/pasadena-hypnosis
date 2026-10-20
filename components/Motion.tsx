@@ -173,9 +173,8 @@ export const StaggerItem = ({
  *
  * SPLIT ON WORDS, NEVER ON CHARACTERS. Per-letter animation is the standard
  * showreel move and it wrecks screen readers and text selection. Each word
- * here is a real word in the DOM, separated by real spaces, and the whole
- * heading is exposed to assistive tech as a single string via aria-label with
- * the animated spans marked aria-hidden.
+ * here is a real word in the DOM, separated by real (non-breaking) spaces, so
+ * assistive tech and crawlers read the heading as one normal sentence.
  */
 export const SplitHeading = ({
   text,
@@ -198,9 +197,12 @@ export const SplitHeading = ({
   if (reduce) return <Tag className={className}>{text}</Tag>;
 
   return (
-    <Tag className={className} aria-label={text}>
+    // No aria-label / aria-hidden (launch audit 2026-10-20): aria-label is
+    // ignored on <p> and unreliable on headings, so the heading could read as
+    // empty. The words are real text with real spaces, which every screen
+    // reader and crawler reads as one normal sentence.
+    <Tag className={className}>
       <motion.span
-        aria-hidden="true"
         initial="hidden"
         whileInView="shown"
         viewport={{ once: true, margin: '0px 0px 5% 0px' }}
@@ -594,8 +596,8 @@ export const ClipReveal = ({
  * nonsense at a different width. The caller decides the break points, which
  * means they are stable at every breakpoint.
  *
- * Accessibility: the wrapper carries the joined text as aria-label and the
- * animated lines are aria-hidden, so it is announced as one paragraph.
+ * Accessibility: the lines are plain text with a space between them, so the
+ * paragraph is announced as one sentence (no aria-label, which <p> ignores).
  */
 export const LineReveal = ({
   lines,
@@ -615,14 +617,16 @@ export const LineReveal = ({
   return (
     <motion.p
       className={className}
-      aria-label={lines.join(' ')}
       initial="hidden"
       whileInView="shown"
       viewport={{ once: true, margin: '0px 0px 5% 0px' }}
       variants={{ shown: { transition: { staggerChildren: 0.075, delayChildren: delay } } }}
     >
+      {/* Real text, no aria-label (ignored on <p>) and no aria-hidden. The
+          space after each line keeps "line one line two" from reading as
+          "line oneline two"; at the end of a block it takes no room. */}
       {lines.map((l, i) => (
-        <span key={i} aria-hidden="true" className="block overflow-hidden">
+        <span key={i} className="block overflow-hidden">
           <motion.span
             className={`block ${lineClassName ?? ''}`}
             variants={{
@@ -631,6 +635,7 @@ export const LineReveal = ({
             }}
           >
             {l}
+            {i < lines.length - 1 ? ' ' : ''}
           </motion.span>
         </span>
       ))}

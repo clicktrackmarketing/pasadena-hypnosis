@@ -70,7 +70,7 @@ const ScrubWord = ({
   const opacity = useTransform(progress, range, [dim, 1]);
   const y = useTransform(progress, range, ['0.18em', '0em']);
   return (
-    <motion.span style={{ opacity, y, display: 'inline-block' }} aria-hidden="true">
+    <motion.span style={{ opacity, y, display: 'inline-block' }}>
       {word}
     </motion.span>
   );
@@ -109,7 +109,7 @@ export const ScrubText = ({
   if (reduce || !live) return <Tag ref={ref as React.RefObject<HTMLParagraphElement>} className={className}>{text}</Tag>;
   const words = text.split(' ');
   return (
-    <Tag ref={ref as React.RefObject<HTMLParagraphElement>} className={className} aria-label={text}>
+    <Tag ref={ref as React.RefObject<HTMLParagraphElement>} className={className}>
       {words.map((w, i) => (
         <span key={`${w}-${i}`}>
           <ScrubWord word={w} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]} dim={dim} />
@@ -283,9 +283,14 @@ export const VelocityMarquee = ({
   const skewX = useTransform(smooth, [-1800, 0, 1800], [7, 0, -7], { clamp: true });
   const x = useTransform(baseX, (v) => `${wrap(-25, -50, v)}%`);
   const dir = useRef(1);
+  /* Pausable (WCAG 2.2.2, launch audit 2026-10-20): it stops while hovered
+     or while anything inside has keyboard focus, and a pause button (shown
+     when it receives keyboard focus) stops it until pressed again. */
+  const [held, setHeld] = useState(false);
+  const [paused, setPaused] = useState(false);
 
   useAnimationFrame((_, delta) => {
-    if (reduce || !inView) return;
+    if (reduce || !inView || held || paused) return;
     let move = dir.current * baseVelocity * (delta / 1000);
     const f = factor.get();
     if (f < 0) dir.current = -1;
@@ -302,7 +307,22 @@ export const VelocityMarquee = ({
     );
   }
   return (
-    <div ref={ref} className={`overflow-hidden whitespace-nowrap ${className ?? ''}`}>
+    <div
+      ref={ref}
+      className={`relative overflow-hidden whitespace-nowrap ${className ?? ''}`}
+      onPointerEnter={(e) => e.pointerType === 'mouse' && setHeld(true)}
+      onPointerLeave={() => setHeld(false)}
+      onFocus={() => setHeld(true)}
+      onBlur={(e) => !e.currentTarget.contains(e.relatedTarget as Node | null) && setHeld(false)}
+    >
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-pressed={paused}
+        className="sr-only focus:not-sr-only focus:absolute focus:right-2 focus:top-1/2 focus:z-10 focus:-translate-y-1/2 focus:rounded-full focus:bg-white focus:px-3 focus:py-1.5 focus:text-[12px] focus:font-semibold focus:text-[#2E2F3D] focus:outline-none focus:ring-2 focus:ring-[#454659]"
+      >
+        {paused ? 'Play scrolling text' : 'Pause scrolling text'}
+      </button>
       <motion.div className="flex w-max flex-nowrap" style={{ x, skewX }}>
         <span className="block shrink-0">{children}</span>
         {[1, 2, 3].map((k) => (

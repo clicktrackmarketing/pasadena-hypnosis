@@ -157,6 +157,7 @@ export const VisitBand = ({ city }: { city: string }) => (
                 className="group mt-6 inline-flex items-center gap-2.5 rounded-[14px] bg-white px-5 py-3 text-[14.5px] font-semibold text-[#2E2F3D] transition-colors duration-300 hover:bg-[#E6EFFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
               >
                 <RollText>Get directions</RollText>
+                <span className="sr-only"> (opens in a new tab)</span>
                 <ArrowRightIcon className="h-3.5 w-3.5 -rotate-45 transition-transform duration-300 group-hover:rotate-0" />
               </a>
             </Reveal>

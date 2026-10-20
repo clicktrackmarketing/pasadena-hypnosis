@@ -39,10 +39,10 @@ import { ArrowRightIcon } from './Icons';
 import { Spiral, Rings } from './Spiral';
 import { responsive } from './responsive';
 import { MindScene, type ShapeName } from './scene/MindScene';
+import { HeroWords } from './HeroWords';
 import {
   motion,
   useReducedMotion,
-  SplitHeading,
   CursorGlow,
   FloatY,
   ScrollAway,
@@ -57,56 +57,26 @@ export type HeroFact = { k: string; v: string };
 export type HeroIntro = 'rise' | 'mask' | 'blur' | 'scale';
 
 /** The H1, arriving in one of four ways. */
+/* CSS-animated since the launch audit (2026-10-20): the motion versions were
+   server-rendered invisible and waited for hydration. Same four entrances,
+   same timings; see components/HeroWords.tsx and .ph-hero-* in globals.css. */
 const HeroTitle = ({ text, intro, className }: { text: string; intro: HeroIntro; className: string }) => {
-  const reduce = useReducedMotion();
-  if (reduce) return <h1 className={className}>{text}</h1>;
   if (intro === 'rise') {
-    return <SplitHeading as="h1" text={text} stagger={0.036} duration={0.7} className={className} />;
-  }
-  if (intro === 'mask') {
-    const words = text.split(' ');
     return (
-      <h1 className={className} aria-label={text}>
-        {words.map((w, i) => (
-          <span key={`${w}-${i}`}>
-            <span aria-hidden="true" className="inline-block overflow-hidden pb-[0.12em] align-top">
-              <motion.span
-                className="inline-block"
-                initial={{ y: '112%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 0.6, delay: 0.05 + i * 0.045, ease: [0.76, 0, 0.24, 1] }}
-              >
-                {w}
-              </motion.span>
-            </span>
-            {i < words.length - 1 ? ' ' : ''}
-          </span>
-        ))}
+      <h1 className={className}>
+        <HeroWords text={text} stagger={0.036} />
       </h1>
     );
   }
-  if (intro === 'blur') {
+  if (intro === 'mask') {
     return (
-      <motion.h1
-        className={className}
-        initial={{ opacity: 0, filter: 'blur(18px)', letterSpacing: '0.04em' }}
-        animate={{ opacity: 1, filter: 'blur(0px)', letterSpacing: '-0.015em' }}
-        transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
-      >
-        {text}
-      </motion.h1>
+      <h1 className={className}>
+        <HeroWords text={text} variant="mask" delay={0.05} stagger={0.045} />
+      </h1>
     );
   }
-  return (
-    <motion.h1
-      className={`${className} origin-left`}
-      initial={{ opacity: 0, scale: 1.12, y: 18 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.65, ease: EASE_OUT_SOFT }}
-    >
-      {text}
-    </motion.h1>
-  );
+  if (intro === 'blur') return <h1 className={`${className} ph-hero-blur`}>{text}</h1>;
+  return <h1 className={`${className} ph-hero-scale`}>{text}</h1>;
 };
 
 export const PageHero = ({

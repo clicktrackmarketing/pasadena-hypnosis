@@ -132,7 +132,7 @@ export const WixCalendar = ({
         <a
           href={src}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           className={`font-semibold underline underline-offset-2 ${tone === 'dark' ? 'text-white' : 'text-[#46699F]'}`}
         >
           Open it in a new tab

@@ -73,6 +73,9 @@ export default {
       { source: '/quitsmoking', destination: '/services/smoking-cessation', permanent: true },
       { source: '/inquiry-services-page', destination: '/contact', permanent: true },
       { source: '/general-9', destination: '/', permanent: true },
+      // Wix "Services" page, linked from the old homepage (launch audit 2026-10-20).
+      { source: '/schedule', destination: '/services', permanent: true },
+      { source: '/blog-feed.xml', destination: '/blog', permanent: true },
       { source: '/service-page/past-life-regression', destination: '/services', permanent: true },
       ...Object.entries(SERVICE_PAGES).map(([wix, ours]) => ({
         source: `/service-page/${wix}`,

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import Link from 'next/link';
 import { NAP } from '../../components/content';
 import { PALMS_DAYLIGHT } from '../../components/unsplash';
@@ -13,12 +14,12 @@ import { AreasMarquee, CityBento, OnlineDepth } from '../../components/pages/ser
 // Target keywords (profile.ts targetKeywords['/service-areas']): "hypnotherapy
 // near me", "hypnosis near me los angeles" — Call 2 brief's stated single
 // biggest unclaimed opportunity (~6,600/mo combined, low-moderate difficulty).
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Hypnotherapy Service Areas Near South Pasadena, CA',
   description:
-    'Pasadena Hypnosis sees clients in person from a South Pasadena office and serves Pasadena, South Pasadena, Glendale, Eagle Rock and Arcadia, plus online sessions with clients anywhere.',
-  alternates: { canonical: '/service-areas' },
-};
+    'In-person hypnotherapy in South Pasadena for Pasadena, Glendale, Eagle Rock and Arcadia, plus online sessions with clients anywhere.',
+  path: '/service-areas',
+});
 
 /*
  * REDESIGNED 2026-09-28 — each band moves differently:

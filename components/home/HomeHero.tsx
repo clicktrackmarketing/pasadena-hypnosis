@@ -40,10 +40,10 @@ import { Rings } from '../Spiral';
 import { responsive } from '../responsive';
 import { MindScene } from '../scene/MindScene';
 import { VelocityMarquee, RollText } from '../MotionFx';
+import { HeroWords } from '../HeroWords';
 import {
   motion,
   useReducedMotion,
-  SplitHeading,
   Counter,
   CursorGlow,
   ScrollAway,
@@ -124,17 +124,18 @@ export const HomeHero = () => {
               South Pasadena, CA &middot; in person or online anywhere
             </motion.p>
 
+            {/* Launch audit 2026-10-20: the H1 held two <p>s (invalid inside a
+                heading) with no space between them, so its text read
+                "...Pasadena, CAI'm available..." and screen readers got an
+                empty heading. The H1 is now the title alone; the tail line
+                sits under it as its own paragraph, styled exactly as before.
+                Both animate with CSS so they paint before hydration. */}
             <h1 className="max-w-[16ch] font-heading text-[2.55rem] leading-[1.04] tracking-[-0.02em] text-white sm:text-[3.4rem] lg:text-[3.6rem] xl:text-[4.1rem]">
-              <SplitHeading as="p" text={H1_TITLE} className="block" stagger={0.034} duration={0.7} />
-              <SplitHeading
-                as="p"
-                text={H1_TAIL.trim()}
-                className="mt-5 block max-w-[34ch] font-body text-[1.05rem] font-normal leading-[1.5] tracking-normal text-[#A9C4EE] sm:text-[1.25rem] lg:text-[1.35rem]"
-                delay={0.32}
-                stagger={0.014}
-                duration={0.6}
-              />
+              <HeroWords text={H1_TITLE} stagger={0.034} />
             </h1>
+            <p className="mt-5 max-w-[34ch] font-body text-[1.05rem] font-normal leading-[1.5] tracking-normal text-[#A9C4EE] sm:text-[1.25rem] lg:text-[1.35rem]">
+              <HeroWords text={H1_TAIL.trim()} delay={0.32} stagger={0.014} duration={0.6} />
+            </p>
 
             <motion.div
               id="answer-first"

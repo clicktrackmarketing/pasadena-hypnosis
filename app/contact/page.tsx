@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import { NAP } from '../../components/content';
 import { PASADENA_CITY_HALL } from '../../components/unsplash';
 import { PhoneIcon, MailIcon } from '../../components/Icons';
@@ -10,11 +11,12 @@ import { ContactTiles, OfficeBlock, ContactForm } from '../../components/pages/c
 
 // Target keywords (profile.ts targetKeywords['/contact']): "pasadena hypnosis
 // contact", "hypnotherapy south pasadena phone".
-export const metadata: Metadata = {
-  title: 'Contact Pasadena Hypnosis',
+// Brand left to the template (it used to render twice).
+export const metadata: Metadata = pageMeta({
+  title: 'Contact & Directions',
   description: `Call ${NAP.phone}, book a free discovery call, or visit Pasadena Hypnosis at ${NAP.street} in ${NAP.city}, CA.`,
-  alternates: { canonical: '/contact' },
-};
+  path: '/contact',
+});
 
 /*
  * REDESIGNED 2026-09-28 — each band moves differently:
@@ -34,7 +36,7 @@ export default function ContactPage() {
         scene="constellation"
         intro="scale"
         facts={[
-          { k: 'Phone', v: '(626) 616-0143' },
+          { k: 'Phone', v: NAP.phone },
           { k: 'Address', v: '1910 Huntington Dr' },
           { k: 'Open until', v: '9 PM most evenings' },
           { k: 'Also', v: 'Online, anywhere' },

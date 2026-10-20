@@ -6,6 +6,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
     "images": "node scripts/optimise-images.mjs"

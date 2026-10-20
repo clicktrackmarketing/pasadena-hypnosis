@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import Link from 'next/link';
 import { NAP, RATING } from '../../components/content';
 import { GARDEN_STREAM } from '../../components/unsplash';
@@ -35,12 +36,14 @@ import { AboutReviews } from '../../components/pages/about/AboutReviews';
 
 // Target keywords (profile.ts targetKeywords['/about']): "jason meissner
 // hypnotherapist", "hypnotherapy motivation institute pasadena".
-export const metadata: Metadata = {
-  title: 'About Pasadena Hypnosis',
+// The brand is already in the template, so the page title omits it (it used
+// to render "About Pasadena Hypnosis | Pasadena Hypnosis").
+export const metadata: Metadata = pageMeta({
+  title: 'About the Practice',
   description:
-    'Pasadena Hypnosis LLC is a solo hypnotherapy practice run by Jason Meissner out of South Pasadena, CA, holding a 5.0 Google rating from 13 reviews.',
-  alternates: { canonical: '/about' },
-};
+    'Pasadena Hypnosis LLC is a solo hypnotherapy practice run by Jason Meissner in South Pasadena, CA, rated 5.0 on Google.',
+  path: '/about',
+});
 
 export default function AboutPage() {
   return (

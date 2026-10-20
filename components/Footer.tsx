@@ -39,7 +39,7 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative isolate overflow-hidden bg-[#2E2F3D] text-[#D9E1F0] ph-grain">
+    <footer className="relative isolate overflow-hidden bg-[#2E2F3D] pb-[72px] text-[#D9E1F0] ph-grain xl:pb-0">
       <Rings
         className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] text-white/[0.06] ph-spin-slower"
         count={8}
@@ -150,9 +150,22 @@ export const Footer = () => {
           {/* 75%, not the 55% these used to be: at 12px, #D9E1F0 at 55% over
               #2E2F3D measures ~4.2:1 and fails AA — and the second line is the
               scope disclosure, the one sentence that must never be faint. */}
-          <p className="text-[12px] text-[#D9E1F0]/75">
-            &copy; {year} Pasadena Hypnosis. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-1.5 text-[12px] text-[#D9E1F0]/75">
+            <p>&copy; {year} Pasadena Hypnosis. All rights reserved.</p>
+            {/* CTM agency credit, standard on every CTM build (launch checklist
+                §19). The utm_source is this client's slug. */}
+            <p>
+              <a
+                href="https://clicktrackmarketing.com/?utm_source=pasadena-hypnosis&utm_medium=referral&utm_campaign=footer-credit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ph-underline hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
+              >
+                Designed &amp; Built by Click Track Marketing
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </p>
+          </div>
           {/* Markup #77 (and #32/#55/#87/#90): verbatim, the client's sentence. */}
           <p className="max-w-[80ch] text-[12px] leading-[1.7] text-[#D9E1F0]/75">{DISCLAIMER}</p>
         </div>
