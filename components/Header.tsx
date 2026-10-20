@@ -17,7 +17,7 @@ const areaSlug = (a: string) => a.split(',')[0].trim().toLowerCase().replace(/\s
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Service Areas', href: '/service-areas' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Our Team', href: '/our-team' },
+  { label: 'Meet Jason', href: '/meet-jason' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },

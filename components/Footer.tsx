@@ -12,7 +12,7 @@ const EXPLORE = [
   { href: '/service-areas', label: 'Service Areas' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/about', label: 'About' },
-  { href: '/our-team', label: 'Our Team' },
+  { href: '/meet-jason', label: 'Meet Jason' },
   { href: '/faq', label: 'FAQ' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },

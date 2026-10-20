@@ -22,7 +22,7 @@
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';
-import { PRACTITIONER, CREDENTIALS, RATING } from '../content';
+import { PRACTITIONER, CREDENTIALS, RATING, HOME_BIO } from '../content';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../assets';
 import { ArrowRightIcon, StarIcon } from '../Icons';
 import { Reveal, SplitHeading, Parallax, Counter, Marquee, Stagger, StaggerItem, TiltCard } from '../Motion';
@@ -36,7 +36,7 @@ export const Practitioner = () => (
         <div className="lg:col-span-7">
           <Reveal>
             <p className="mb-3 font-body text-[11.5px] font-bold uppercase tracking-[0.2em] text-[#46699F] sm:text-xs">
-              Practitioner
+              Meet Jason
             </p>
           </Reveal>
           <SplitHeading
@@ -48,7 +48,7 @@ export const Practitioner = () => (
           </Reveal>
           {/* The bio reads itself in as it scrolls through view (2026-09-28). */}
           <ScrubText
-            text={PRACTITIONER.bio}
+            text={HOME_BIO}
             dim={0.22}
             offset={['start 88%', 'end 60%']}
             className="mt-6 max-w-[60ch] text-[17.5px] leading-[1.72] text-[#2E2F3D]"
@@ -85,10 +85,10 @@ export const Practitioner = () => (
 
           <Reveal delay={0.14}>
             <Link
-              href="/our-team"
+              href="/meet-jason"
               className="ph-tap ph-underline mt-8 inline-flex items-center gap-2 text-[15px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
             >
-              Full credentials &amp; our team
+              Meet Jason: full credentials
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
           </Reveal>

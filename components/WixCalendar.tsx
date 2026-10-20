@@ -45,7 +45,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-export const WIX_SITE = 'https://www.pasadenahypnosis.com';
+/* Set NEXT_PUBLIC_WIX_SITE (e.g. https://book.pasadenahypnosis.com) on the
+   Vercel project once the Wix site is on its subdomain, and redeploy. The
+   default is today's address, which only works while Wix still owns the
+   domain. Launch steps: docs/launch-booking.md. next.config.mjs reads the
+   same variable to forward the old Wix booking URLs. */
+export const WIX_SITE = (process.env.NEXT_PUBLIC_WIX_SITE || 'https://www.pasadenahypnosis.com').replace(/\/$/, '');
 
 export const wixCalendarUrl = (wixSlug: string) => `${WIX_SITE}/booking-calendar/${wixSlug}`;
 

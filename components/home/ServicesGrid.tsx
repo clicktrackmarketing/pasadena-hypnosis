@@ -32,7 +32,7 @@ import { TiltCard } from '../Motion';
 export const ServicesGrid = () => {
 
   return (
-    <section className="relative bg-white py-16 sm:py-28">
+    <section id="services" className="relative bg-white py-16 sm:py-28">
       <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8">
         {/* Markup #8: the lede explaining the ranking is deleted ("Don't
             tell the customer why they are ranked… Delete all of this"),
@@ -40,7 +40,8 @@ export const ServicesGrid = () => {
         <div className="mb-10 sm:mb-14">
           <SectionHeading
             eyebrow="Service information"
-            title="What can you book with Pasadena Hypnosis?"
+            /* First person, like the rest of the homepage (review 2026-10-19). */
+            title="How I can help"
             aside={
               <Link
                 href="/services"

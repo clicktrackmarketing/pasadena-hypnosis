@@ -39,7 +39,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { SERVICES, STEPS, FAQS, NAP, REAL_COPY, type Service } from '../../content';
+import { SERVICES, STEPS, FAQS, NAP, REAL_COPY, POSTS, type Service } from '../../content';
 import { serviceImage } from '../../unsplash';
 import { OFFICE_INTERIOR, OFFICE_INTERIOR_ALT } from '../../assets';
 import { responsive } from '../../responsive';
@@ -213,6 +213,57 @@ export const ServiceStory = ({ slug }: { slug: string }) => {
             )}
           </motion.div>
         </div>
+      </div>
+    </section>
+  );
+};
+
+/* ------------------------------------------------------ SessionDetail -- */
+
+/*
+  "What happens in a session", for services whose record carries a
+  `session` walkthrough (depression first, from Jason's pre-launch review
+  2026-10-19). Numbered steps in plain cards, then a link to the blog post
+  the text is drawn from. Renders nothing for services without one.
+*/
+export const SessionDetail = ({ slug }: { slug: string }) => {
+  const service = bySlug(slug);
+  const session = service?.session;
+  if (!session) return null;
+  const post = session.postSlug ? POSTS.find((p) => p.slug === session.postSlug) : undefined;
+  return (
+    <section className="relative bg-[#F7F9FC] py-16 sm:py-28">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          className="mb-10 sm:mb-14"
+          eyebrow={service.name}
+          title={session.heading}
+          lede={<p>{session.intro}</p>}
+        />
+        <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2" gap={0.08}>
+          {session.steps.map((st, i) => (
+            <SlideItem key={st.title}>
+              <div className="h-full rounded-[20px] border border-[#D7DEEA] bg-white p-7 sm:p-8">
+                <p className="font-heading text-[1.6rem] leading-none text-[#46699F]">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <h3 className="mt-4 font-heading text-[1.35rem] leading-[1.25] text-[#2E2F3D]">{st.title}</h3>
+                <p className="mt-3 text-[16px] leading-[1.7] text-[#4B5468]">{st.body}</p>
+              </div>
+            </SlideItem>
+          ))}
+        </Stagger>
+        {post ? (
+          <Reveal delay={0.1}>
+            <Link
+              href={`/blog/${post.slug}`}
+              className="ph-tap ph-underline mt-10 inline-flex items-center gap-2 text-[15px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+            >
+              Read Jason&rsquo;s article: {post.title}
+              <ArrowRightIcon className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );

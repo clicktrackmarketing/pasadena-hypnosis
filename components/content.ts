@@ -97,7 +97,9 @@ export const BUSINESS = {
   priceRange: '$$',
 } as const;
 
-/** GBP value — what NAP consistency is measured against. No suite number: unverified. */
+/** GBP value — what NAP consistency is measured against. No suite number: unverified.
+    Address and phone re-checked 2026-10-20 against the Google Business Profile
+    and pasadenahypnosis.com: both say 1910 Huntington Dr, South Pasadena, CA 91030. */
 export const NAP = {
   name: 'Pasadena Hypnosis LLC',
   street: '1910 Huntington Dr',
@@ -114,7 +116,8 @@ export const NAP = {
   mapEmbed: 'https://maps.google.com/maps?q=1910+Huntington+Dr,+South+Pasadena,+CA+91030&z=15&output=embed',
 } as const;
 
-/** Complete 7-day hours, Google Places API pull 2026-09-03. Twelve-hour clock
+/** Complete 7-day hours, Google Places API pull 2026-09-03, re-checked against
+    the live Google Business Profile 2026-10-20 (unchanged). Twelve-hour clock
     on the client's instruction ("Get rid of all military time on the
     website"); the 24-hour form survives only inside the JSON-LD, where
     schema.org requires it and nobody reads it. */
@@ -124,8 +127,10 @@ export const HOURS = [
   { days: 'Sunday', time: '10:00 AM - 9:00 PM' },
 ];
 
-/** Places API 2026-09-03. Real, and the only machine-readable review claim. */
-export const RATING = { value: 5.0, count: 12, best: 5, worst: 1 } as const;
+/** Google Business Profile, re-checked 2026-10-20: 5.0 from 13 reviews (was
+    12 at the 2026-09-03 Places pull). Real, and the only machine-readable
+    review claim. Re-check before launch; it only goes up. */
+export const RATING = { value: 5.0, count: 13, best: 5, worst: 1 } as const;
 
 /** Jason, markup #31: "There are also yelp reviews. As well as others." No
     count or URL was given, so this names the platforms and nothing more. */
@@ -173,7 +178,7 @@ export const REAL_COPY = {
   bestOfUs: 'All we need to do is access what we already have and let go of everything we no longer need or want.',
   inOffice: 'In person sessions are held at my office in South Pasadena, CA.',
   online:
-    'Hypnotherapy is 100% effective online or over the phone. Save drive time and fuel. Find a quiet spot where you will be undisturbed for 1 hour and we can take care of it from the comfort of your home.',
+    'Hypnotherapy works just as well online or over the phone. Save drive time and fuel. Find a quiet spot where you will be undisturbed for 1 hour and we can take care of it from the comfort of your home.',
   meditation:
     'Meditation and Hypnotherapy share many things. First of which is the certainty that doing it regularly will create better overall health and wellbeing.',
   charges: 'All charges are the same in the office or online.',
@@ -189,8 +194,8 @@ export const REAL_COPY = {
     kicker: 'My Method Turns Craving into a Victory Trigger',
     headline: 'Mr. Butts Doesn’t Own You Anymore!',
     body: 'You trained yourself to need cigarettes. Now you’ll feel powerful in those moments — because you conquered the beast most cannot.',
-    close: 'Ready? Let’s make you a non-smoker… Forever.',
-    money: 'The Last Money You’ll Ever Spend on Cigarettes.',
+    close: 'Ready? Let’s make you a non-smoker.',
+    money: 'Make It the Last Money You Spend on Cigarettes.',
     packages: ['Two-Session Package', 'One-Session Quit Day'],
     opener: [
       'You thought quitting meant pain… deprivation… willpower.',
@@ -199,9 +204,9 @@ export const REAL_COPY = {
     ],
     question: 'What if quitting smoking became the most powerful moment of your life?',
     answer: ['Not a punishment.', 'Not a sacrifice.', 'A new freedom and victory you can feel every day.'],
-    trigger: 'We turn your habit into a lifelong trigger for Peace, Confidence and Victory',
+    trigger: 'We turn your habit into a trigger for Peace, Confidence and Victory',
     craving:
-      'You trained yourself to crave a cigarette. What if that same craving now brought you directly back to your healthiest, strongest, most powerful self? That’s what I do. It works.',
+      'You trained yourself to crave a cigarette. What if that same craving now brought you directly back to your healthiest, strongest, most powerful self? That’s what I do.',
     method: ['Every time you see it.', 'Every time you smell it.', 'Every time someone offers it…', 'It means one thing: Victory'],
     /*
      * Markup #103 — his rewrite of "Two Ways to Win", which he signed off
@@ -271,13 +276,20 @@ export const PRACTITIONER = {
 };
 
 /**
- * Seven real documents (the Sept 2016 HMI diploma and the union certificate added from markup #82), transcribed field-by-field off the certificates
+ * Six real documents (the Sept 2016 HMI diploma added from markup #82), transcribed field-by-field off the certificates
  * themselves rather than off the harvest manifest — the manifest dated the HMI
  * diploma 2018 and it reads 2016. Nothing here is inferred: issuer, award
  * wording, date and certificate number are all printed on the artwork the page
  * displays beside them, so a prospect can check every line against the image.
  * `img` names the export in ./assets; the component owns that mapping so the
  * facts file stays free of a megabyte of base64.
+ */
+/*
+ * REMOVED 2026-10-20: the Hypnotherapists Union Local 472 certificate
+ * (CERT_UNION, ID 32240397). It prints "Valid to March 2017", and Jason's
+ * pre-launch review asked for it to come off unless a current credential
+ * replaces it. The image stays in assets.ts; if he sends a current union
+ * card, add an entry back here with its own dates.
  */
 export const CREDENTIALS = [
   {
@@ -349,22 +361,6 @@ export const CREDENTIALS = [
     ref: '140533',
     featured: false,
     alt: 'American Hypnosis Association certificate naming Jason A. Meissner a Certified Specialist in Hypnosis and Sports Performance, dated April 19 2016, certificate number 140533.',
-  },
-  {
-    img: 'CERT_UNION',
-    award: 'Certified Hypnotherapist',
-    issuer: 'Hypnotherapists Union Local 472',
-    issuerNote: null,
-    /* The certificate prints no issue date, only "Valid to March 2017", so it
-       has no date here and stays off the two date timelines. Jason asked for
-       it to be shown (2026-10-16). */
-    date: '',
-    validTo: 'March 2017',
-    /* As printed: the union designates him through the OPEIU (AFL-CIO, CLC). */
-    note: 'Designated by the Office and Professional Employees International Union, AFL-CIO and CLC.',
-    ref: '32240397',
-    featured: false,
-    alt: 'Hypnotherapists Union Local 472 certificate designating Jason Meissner a Certified Hypnotherapist, valid to March 2017, certification ID 32240397.',
   },
 ];
 
@@ -439,9 +435,22 @@ export const TAGLINE = 'Certified hypnotherapy, let us know how we can help.' + 
 export const DISCLAIMER =
   'Pasadena Hypnosis is a hypnotherapy practice, Jason Meissner is a certified hypnotherapist. Hypnotherapy is not a substitute for medical or psychiatric care.';
 
-/** Renders directly under the H1 as the answer-first block. */
+/**
+ * Renders directly under the H1 as the answer-first block, and is the
+ * homepage meta description. Rewritten 2026-10-19 from Jason's pre-launch
+ * review: the old "Pasadena Hypnosis LLC is a … practice led by …" read like
+ * a business listing and switched between I / he / we. The homepage now
+ * speaks in Jason's own first person throughout ("we" only ever means Jason
+ * and the client).
+ */
 export const HOME_ANSWER =
-  'Pasadena Hypnosis LLC is a South Pasadena, CA hypnotherapy practice led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. He works with stress and anxiety, depression and bipolar disorder, smoking cessation, chronic and acute pain, IBS and fibromyalgia, and grief, in person and online, with a 5.0 Google rating.';
+  'I’m Jason Meissner, a certified hypnotherapist in South Pasadena. For ten years I’ve helped people with stress and anxiety, depression and bipolar disorder, smoking, chronic and acute pain, IBS and fibromyalgia, and grief, in my office or online, wherever you are. We start with a free call, so you can tell me what you need before you book.';
+
+/** The homepage "Meet Jason" bio, first person to match HOME_ANSWER. Facts
+    only from CREDENTIALS; PRACTITIONER.bio stays third person for /our-team
+    and the Person schema. */
+export const HOME_BIO =
+  'I graduated with Honors from the Hypnosis Motivation Institute in 2016 and hold American Hypnosis Association specialist certifications in pain management, smoking cessation, sports performance and ADD-ADHD. Every session is one-to-one and specifically designed for you.';
 
 export type Service = {
   slug: string;
@@ -460,6 +469,15 @@ export type Service = {
   detail: { heading: string; paras: string[] };
   /** A testimonial from the live site, verbatim, initials as published there. */
   quote?: { text: string; by: string };
+  /** Optional "what happens in a session" walkthrough, rendered after the
+      service's own section. Only where the client's own writing supports it. */
+  session?: {
+    heading: string;
+    intro: string;
+    steps: { title: string; body: string }[];
+    /** A post in POSTS this walkthrough is drawn from, linked under it. */
+    postSlug?: string;
+  };
 };
 
 /**
@@ -499,6 +517,41 @@ export const SERVICES: Service[] = [
         'All we need to do is access what we already have and let go of everything we no longer need or want. Hypnotherapy allows you to strengthen what you want in your life and to gain freedom from what should be released.',
       ],
     },
+    /*
+     * Jason's pre-launch review (2026-10-19): the page "needs more substance
+     * explaining what actually happens during a session and how the service
+     * helps", and he suggested reusing his blog. Every step below is drawn
+     * from his own post "Depression and Hypnotherapy" (POSTS, sent 2026-10-12),
+     * put into the first person and shortened; nothing is added that the post
+     * does not say, apart from the free call and the one-to-one format, which
+     * the rest of the site already states. Swap in his text if he sends more.
+     * Deliberately no "alongside your doctor" line here: the scope note lives
+     * on /meet-jason and in one FAQ only (#73, #80).
+     */
+    session: {
+      heading: 'What happens in a session',
+      intro:
+        'Depression is felt in the body as well as in thought, and the pain sets off an automatic process that keeps those thoughts going. Hypnotherapy works on that process directly, one-to-one, in my office or online.',
+      steps: [
+        {
+          title: 'We talk it through',
+          body: 'We start with what you are experiencing and what you want to change, so the session is specifically designed for you. The first conversation is a free discovery call.',
+        },
+        {
+          title: 'Shifting where your attention goes',
+          body: 'Using the simple mechanics of the body and behavior, I help you change where and what your awareness is focused on. I lead you through choosing another activity of the mind, on purpose and under your own control.',
+        },
+        {
+          title: 'Seeing clearly, then choosing',
+          body: 'In hypnosis you experience seeing clearly first, in open awareness, and then, taking a breath, making a new choice you may not have known existed: reality without the bullying, dominating voice of depression.',
+        },
+        {
+          title: 'Practice between sessions',
+          body: 'With session experience, a growing understanding of how this works, and a simple meditation or self-hypnosis practice we refine together, things can soon change for the better.',
+        },
+      ],
+      postSlug: 'depression-and-hypnotherapy',
+    },
   },
   {
     slug: 'stress-and-anxiety',
@@ -507,7 +560,7 @@ export const SERVICES: Service[] = [
     // #3, #41, #99, #100: no "disabling", no "not everyday nerves" — talk
     // about stress and anxiety, in the words of his own Stress and Anxiety page.
     summary:
-      'Hypnotherapy for stress and anxiety, with great relief normally every session.',
+      'Hypnotherapy for stress and anxiety. Getting your mind in order is a process we can take care of.',
     price: 200,
     priceQualifier: 'per session',
     answer:
@@ -530,14 +583,14 @@ export const SERVICES: Service[] = [
     // #6, #9, #42, #76, #92, #94: his method, in his words — no "high-close",
     // no session counts.
     summary:
-      'My method turns craving into a victory trigger. Let’s make you a non-smoker… forever.',
+      'A method that turns craving into a victory trigger. Let’s make you a non-smoker.',
     price: 400,
     priceQualifier: 'I’m ready to quit smoking',
     tag: 'Most requested',
     answer:
-      'We turn your habit into a lifelong trigger for peace, confidence and victory. You trained yourself to crave a cigarette — what if that same craving now brought you directly back to your healthiest, strongest, most powerful self? That’s what Jason Meissner does. It works.',
+      'We turn your habit into a trigger for peace, confidence and victory. You trained yourself to crave a cigarette — what if that same craving now brought you directly back to your healthiest, strongest, most powerful self? That’s what Jason Meissner does.',
     detail: {
-      heading: 'The last money you’ll ever spend on cigarettes',
+      heading: 'Make it the last money you spend on cigarettes',
       paras: [
         'You thought quitting meant pain… deprivation… willpower. That is what they told you. That’s what you’ve tried before. This isn’t that.',
         'What if quitting smoking became the most powerful moment of your life? Not a punishment. Not a sacrifice. A new freedom and victory you can feel every day.',
@@ -554,17 +607,17 @@ export const SERVICES: Service[] = [
     // URL still matches the live site's /service-page/chronic-pain.
     name: 'Chronic and Acute Pain',
     category: 'Specialties',
-    summary: 'Hypnotherapy for chronic and acute pain, with relief after every session.',
+    summary: 'Hypnotherapy for chronic and acute pain. Together we work to reduce the pain you are experiencing.',
     price: 200,
     priceQualifier: 'per session',
     answer:
-      'Yes, we can reduce the pain you are experiencing. Hypnotherapy for chronic and acute pain with Jason Meissner, a Certified Specialist in Hypnosis and Pain Management through the American Hypnosis Association — and there will be relief after every session.',
+      'Hypnotherapy for chronic and acute pain with Jason Meissner, a Certified Specialist in Hypnosis and Pain Management through the American Hypnosis Association. Together we work to reduce the pain you are experiencing.',
     detail: {
-      heading: 'Yes, we can reduce the pain you are experiencing',
+      heading: 'Working to reduce the pain you are experiencing',
       paras: [
         'Hypnotherapy for chronic and acute pain with Jason Meissner, a Certified Specialist in Hypnosis and Pain Management through the American Hypnosis Association.',
         // #104: his own continuation of this sentence.
-        'There will be relief after every session, and together we build a result that is personally sustainable — comfort you can keep, created by you during the hypnotherapy session.',
+        'Together we work toward relief that is personally sustainable — comfort you can keep, created by you during the hypnotherapy session.',
       ],
     },
   },
@@ -574,16 +627,16 @@ export const SERVICES: Service[] = [
     // fibromyalgia. Remove all gut directed references."
     name: 'IBS & Fibromyalgia',
     category: 'Specialties',
-    summary: 'Hypnotherapy for IBS and fibromyalgia. Jason has always had great success with IBS.',
+    summary: 'Hypnotherapy for IBS and fibromyalgia, with a long record of success with IBS in particular.',
     price: 200,
     priceQualifier: 'per session',
     answer:
-      'Pasadena Hypnosis works with IBS and fibromyalgia. Jason Meissner has always had great success with IBS — you will find relief after every session, and together we establish your ability to maintain that comfort on your own.',
+      'Pasadena Hypnosis works with IBS and fibromyalgia. Jason Meissner has always had great success with IBS. Together we work toward relief, and establish your ability to maintain that comfort on your own.',
     detail: {
       heading: 'Great success with IBS and fibromyalgia',
       paras: [
         'Jason Meissner has always had great success with IBS, and works with fibromyalgia as well.',
-        'You will find relief after every session, and together we establish your ability to maintain the comfort on your own.',
+        'Together we work toward relief, and establish your ability to maintain the comfort on your own.',
       ],
     },
     quote: {
@@ -640,7 +693,7 @@ export const SERVICES: Service[] = [
     detail: {
       heading: 'Hypnotherapy online at your convenience',
       paras: [
-        'Hypnotherapy is 100% effective online or over the phone. Save drive time and fuel.',
+        'Hypnotherapy works just as well online or over the phone. Save drive time and fuel.',
         'Find a quiet spot where you will be undisturbed for 1 hour and we can take care of it from the comfort of your home, wherever you are.',
       ],
     },
@@ -722,7 +775,7 @@ export const SERVICES: Service[] = [
       heading: 'Most athletics is a mental game',
       paras: [
         'Get yours in order or fall behind.',
-        'You will normally see immediate results, and you keep them with your practice at home. Just like body fitness, mental fitness takes effort.',
+        'Athletes often notice a difference quickly, and you keep it with your practice at home. Just like body fitness, mental fitness takes effort.',
       ],
     },
   },
@@ -770,17 +823,17 @@ export const STEPS = [
   {
     n: '01',
     title: 'A free discovery call',
-    body: 'Talk through your situation with Jason directly, and discuss what you need and what we can accomplish together.',
+    body: 'Talk through your situation with me directly, and we’ll discuss what you need and what we can accomplish together.',
   },
   {
     n: '02',
     title: 'Your first session',
-    body: 'Online with clients anywhere, or in person at the office in South Pasadena.',
+    body: 'Online, wherever you are, or in person at my office in South Pasadena.',
   },
   {
     n: '03',
-    title: 'Relief, session by session',
-    body: 'There is no set number of sessions. With hypnotherapy you experience great relief, normally every session.',
+    title: 'Session by session',
+    body: 'There is no set number of sessions. We work at your pace and talk about your progress as we go.',
   },
 ];
 
@@ -813,7 +866,7 @@ export const FAQS = [
   },
   {
     q: 'Is hypnotherapy available online, or only in South Pasadena?',
-    a: 'Both. Jason sees clients in person at 1910 Huntington Dr in South Pasadena, and online with clients anywhere. Hypnotherapy is 100% effective online or over the phone — save drive time and fuel, find a quiet spot where you will be undisturbed for 1 hour, and we can take care of it from the comfort of your home. All charges are the same in the office or online.',
+    a: 'Both. Jason sees clients in person at 1910 Huntington Dr in South Pasadena, and online with clients anywhere. Hypnotherapy works just as well online or over the phone — save drive time and fuel, find a quiet spot where you will be undisturbed for 1 hour, and we can take care of it from the comfort of your home. All charges are the same in the office or online.',
   },
   {
     q: 'How many hypnotherapy sessions does it typically take?',

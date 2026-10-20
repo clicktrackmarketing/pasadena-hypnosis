@@ -54,8 +54,8 @@ export const FinalCta = () => {
             />
             <Reveal delay={0.15}>
               <p className="mt-5 max-w-[50ch] text-[16.5px] leading-[1.7] text-white/85">
-                A free discovery call comes first &mdash; talk through your situation with Jason directly. Let us
-                know how we can help.
+                A free discovery call comes first &mdash; talk through your situation with me directly, and
+                let me know how I can help.
               </p>
             </Reveal>
 

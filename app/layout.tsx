@@ -9,6 +9,7 @@ import { CursorRing } from '../components/CursorRing';
 import { RouteCurtain } from '../components/RouteCurtain';
 import { ImageWarmup } from '../components/ImageWarmup';
 import { buildJsonLd } from '../components/content';
+import { isIndexable } from '../components/indexing';
 
 /* ---------------------------------------------------------------------------
    FONTS — self-hosted via next/font rather than fetched from Google.
@@ -70,12 +71,11 @@ export const metadata: Metadata = {
   },
   description:
     'Certified hypnotherapy in South Pasadena and online: stress and anxiety, depression and bipolar disorder, smoking cessation, chronic and acute pain, IBS and fibromyalgia, and grief.',
-  // This repo is the real, launch-track site (converted from the approved
-  // MagicPath concept per the site-build skill's route-conversion pattern),
-  // but it is not yet promoted to the live domain — stays noindex,nofollow
-  // on the Vercel preview host until a human promotes it. See
-  // pipeline/.claude/skills/site-build/SKILL.md.
-  robots: { index: false, follow: false },
+  // noindex,nofollow everywhere EXCEPT the live pasadenahypnosis.com
+  // production deployment, where it lifts by itself (client review
+  // 2026-10-19). Rules in components/indexing.ts. Child pages inherit this,
+  // so no page (the smoking page included) sets its own robots.
+  robots: isIndexable() ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

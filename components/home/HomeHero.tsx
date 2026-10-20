@@ -54,7 +54,8 @@ import {
 const CHIPS = [
   { label: 'HMI graduate, with Honors' },
   { label: '10 years in practice' },
-  { label: '$200 / session' },
+  /* Both prices, so nothing reads as "everything is $200" (review 2026-10-19). */
+  { label: '$200 / session · $400 quit smoking' },
   { label: 'Free discovery call' },
 ];
 
@@ -185,7 +186,11 @@ export const HomeHero = () => {
                   hidden: { opacity: 0, y: 10 },
                   shown: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_SOFT } },
                 }}
-                className="flex items-center gap-4"
+                /* One rating element at every width: it used to be this span
+                   on desktop plus a separate chip on phones, so the page held
+                   "5.0 · 13 Google reviews" twice (review 2026-10-19). On a
+                   phone it wraps onto its own line under the name. */
+                className="flex flex-wrap items-center gap-x-4 gap-y-3"
               >
                 <span className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full border-2 border-white/25 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)]">
                   <img
@@ -200,7 +205,7 @@ export const HomeHero = () => {
                   <span className="block text-[13px] text-[#A9C4EE]">Certified Hypnotherapist &middot; Owner</span>
                 </span>
                 <span className="mx-1 hidden h-10 w-px bg-white/15 sm:block" aria-hidden="true" />
-                <span className="hidden items-center gap-2 text-[13px] font-semibold text-white sm:inline-flex">
+                <span className="inline-flex basis-full items-center gap-2 text-[13px] font-semibold text-white sm:basis-auto">
                   <span className="flex" aria-hidden="true">
                     {Array.from({ length: 5 }, (_, i) => (
                       <StarIcon key={i} className="h-3.5 w-3.5 text-[#5DBA47]" />
@@ -211,16 +216,6 @@ export const HomeHero = () => {
                 </span>
               </motion.div>
               <ul className="flex flex-wrap items-center gap-2.5">
-                <motion.li
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    shown: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_SOFT } },
-                  }}
-                  className="inline-flex items-center gap-2 rounded-full border border-[#5DBA47]/35 bg-[#5DBA47]/12 px-3.5 py-1.5 text-[12.5px] font-semibold text-white sm:hidden"
-                >
-                  <StarIcon className="h-3.5 w-3.5 text-[#5DBA47]" aria-hidden="true" />
-                  {RATING.value.toFixed(1)} &middot; {RATING.count} Google reviews
-                </motion.li>
                 {CHIPS.map((c) => (
                   <motion.li
                     key={c.label}
@@ -259,7 +254,7 @@ export const HomeHero = () => {
 
         <div className="flex justify-center">
           <a
-            href="#specialties"
+            href="#services"
             className="group inline-flex flex-col items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#A9C4EE]/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
           >
             Scroll

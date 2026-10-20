@@ -470,6 +470,11 @@ html.lenis body {
 .group:focus-visible .ph-roll-b {
   transform: translateY(-100%);
 }
+/* The duplicate is generated content, so it never appears in the page text. */
+.ph-roll-b::before {
+  content: attr(data-roll);
+  white-space: nowrap;
+}
 
 /* Slow-moving light across a short run of display type. Use on a plain span
    containing text directly — background-clip:text does not survive
