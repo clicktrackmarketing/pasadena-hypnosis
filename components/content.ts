@@ -146,6 +146,15 @@ export const RATING = { value: 5.0, count: 13, best: 5, worst: 1 } as const;
     should correct in Yelp for Business, and there is a second, unclaimed
     El Centro St listing he should ask Yelp to close. Yelp's rating is never
     put in schema or shown as a number here: one machine-readable claim only. */
+/** Jason's YouTube explainers that the site embeds (click to load, VideoBand).
+    His third video, "Full First Session Hypnotherapy" (40:52), is left off on
+    purpose: it is a full self-hypnosis session meant to be repeated, so on a
+    service page it would stand in for booking one. */
+export const VIDEOS = {
+  sessionLike: { id: 'lJWolYhjvjc', title: 'What Is A Hypnotherapy Session Like', length: '1:42' },
+  howItWorks: { id: 'BXJTPGCOmGA', title: 'How Hypnosis and Hypnotherapy Work', length: '2:21' },
+} as const;
+
 export const REVIEW_LINKS = {
   google: 'https://www.google.com/maps?cid=2776673039626670784',
   yelp: 'https://www.yelp.com/biz/pasadena-hypnosis-pasadena',
@@ -261,7 +270,9 @@ export const REAL_COPY = {
 
 export const PRACTITIONER = {
   name: 'Jason Meissner',
-  role: 'Certified Hypnotherapist, Owner',
+  /* Jason's own title in his 2026-10-20 homepage copy, backed by his HMI
+     Diploma in Clinical Hypnotherapy (CREDENTIALS). */
+  role: 'Certified Clinical Hypnotherapist, Owner',
   /*
    * "Two years at HMI" was carried from Call 1 and is NOT what the diploma
    * says. The document reads "successfully completed one year of Nationally

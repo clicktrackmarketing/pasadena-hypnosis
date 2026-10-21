@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { pageMeta } from '../../components/seo';
-import { FAQS, NAP, SERVICES } from '../../components/content';
+import { FAQS, NAP, SERVICES, VIDEOS } from '../../components/content';
+import { VideoBand } from '../../components/VideoBand';
 import { TWO_TALKING } from '../../components/unsplash';
 import { priceLabel } from '../../components/price';
 import { PhoneIcon, MailIcon } from '../../components/Icons';
@@ -92,6 +93,9 @@ export default function FaqPage() {
       </PageHero>
 
       <FaqBody />
+
+      {/* Jason's explainer, beside the questions it answers. */}
+      <VideoBand eyebrow="In Jason's words" heading="How hypnosis and hypnotherapy work" video={VIDEOS.howItWorks} />
 
       <FaqStatement />
 

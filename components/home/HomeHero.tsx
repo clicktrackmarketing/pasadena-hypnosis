@@ -205,7 +205,7 @@ export const HomeHero = () => {
                 </span>
                 <span>
                   <span className="block font-heading text-[1.05rem] text-white">Jason Meissner</span>
-                  <span className="block text-[13px] text-[#A9C4EE]">Certified Hypnotherapist &middot; Owner</span>
+                  <span className="block text-[13px] text-[#A9C4EE]">Certified Clinical Hypnotherapist &middot; Owner</span>
                 </span>
                 <span className="mx-1 hidden h-10 w-px bg-white/15 sm:block" aria-hidden="true" />
                 <span className="inline-flex basis-full items-center gap-2 text-[13px] font-semibold text-white sm:basis-auto">

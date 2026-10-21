@@ -59,7 +59,7 @@ import { TeamServices } from '../../components/pages/our-team/TeamServices';
 
 // Target keywords (profile.ts targetKeywords['/our-team']): "jason meissner hypnotherapist".
 export const metadata: Metadata = pageMeta({
-  title: 'Meet Jason Meissner, Certified Hypnotherapist',
+  title: 'Meet Jason Meissner, Certified Clinical Hypnotherapist',
   description:
     'Jason Meissner trained for a year at the Hypnosis Motivation Institute, including a supervised residency, and has practiced hypnotherapy in South Pasadena for 10 years.',
   path: '/meet-jason',
@@ -107,7 +107,7 @@ export default function MeetJasonPage() {
         media={{
           src: PORTRAIT,
           alt: PORTRAIT_ALT,
-          caption: 'Jason Meissner, Certified Hypnotherapist and owner.',
+          caption: 'Jason Meissner, Certified Clinical Hypnotherapist and owner.',
           aspect: '4/5',
         }}
         facts={[

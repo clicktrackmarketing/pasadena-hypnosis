@@ -125,6 +125,11 @@ const SECTIONS: LegalSection[] = [
             receive your IP address when the map loads.
           </li>
           <li>
+            <strong>YouTube</strong>: a few pages show a still image of one of our videos, loaded from YouTube, which
+            receives your IP address. The video player itself loads only if you press play, from YouTube&rsquo;s
+            privacy-enhanced (youtube-nocookie.com) service, which may then store information in your browser.
+          </li>
+          <li>
             <strong>Vercel</strong>: hosts this Site and receives the standard technical information described in
             section 2.
           </li>
@@ -156,7 +161,7 @@ const SECTIONS: LegalSection[] = [
       <>
         <p>
           This Site does not set cookies of its own. The Wix booking pages and the Google map described in section 5 may
-          set cookies when they load. You can block or delete cookies in your browser settings; the booking calendar
+          set cookies when they load, and a YouTube video may once you press play. You can block or delete cookies in your browser settings; the booking calendar
           may not work if Wix&rsquo;s cookies are blocked, in which case you can book by phone instead.
         </p>
         <p>
