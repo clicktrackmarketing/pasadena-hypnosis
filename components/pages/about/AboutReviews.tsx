@@ -19,7 +19,7 @@
    claims nothing.
 --------------------------------------------------------------------------- */
 
-import { RATING, REVIEW_SHOTS, REVIEWS_ELSEWHERE } from '../../content';
+import { RATING, REVIEW_LINKS, REVIEW_SHOTS, REVIEWS_ELSEWHERE } from '../../content';
 import * as ASSETS from '../../assets';
 import { StarIcon, QuoteIcon } from '../../Icons';
 import { MindScene } from '../../scene/MindScene';
@@ -67,7 +67,27 @@ export const AboutReviews = () => {
             />
             <Reveal delay={0.15}>
               <p className="mt-7 max-w-[58ch] text-[16.5px] leading-[1.75] text-[#D9E1F0]">
-                Real 5-star reviews from Pasadena Hypnosis clients. {REVIEWS_ELSEWHERE}.
+                Real 5-star reviews from Pasadena Hypnosis clients. Read them all on{' '}
+                <a
+                  href={REVIEW_LINKS.google}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ph-underline font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
+                >
+                  Google
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                . {REVIEWS_ELSEWHERE}{' '}
+                <a
+                  href={REVIEW_LINKS.yelp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ph-underline font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
+                >
+                  Yelp
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                .
               </p>
             </Reveal>
           </div>
