@@ -1,0 +1,5 @@
+[
+  { "name": "Form Source", "fieldKey": "form_source", "dataType": "TEXT" },
+  { "name": "Form Page URL", "fieldKey": "form_page_url", "dataType": "TEXT" },
+  { "name": "Submitted At", "fieldKey": "submitted_at", "dataType": "TEXT" }
+]

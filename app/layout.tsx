@@ -8,6 +8,7 @@ import { SmoothScroll } from '../components/SmoothScroll';
 import { CursorRing } from '../components/CursorRing';
 import { RouteCurtain } from '../components/RouteCurtain';
 import { ImageWarmup } from '../components/ImageWarmup';
+import AttributionCapture from '../components/AttributionCapture';
 import { buildJsonLd } from '../components/content';
 import { isIndexable } from '../components/indexing';
 import { OG_IMAGE } from '../components/seo';
@@ -102,6 +103,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CursorRing />
         <RouteCurtain />
         <ImageWarmup />
+        {/* Peoplelytics first/recent-touch capture into localStorage, read by
+            the lead route's payload. Renders nothing. */}
+        <AttributionCapture />
         <div className="w-full min-h-screen flex flex-col bg-white text-[#2E2F3D]">
           <Header />
           <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
