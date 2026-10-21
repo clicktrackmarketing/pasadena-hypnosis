@@ -32,7 +32,7 @@
 --------------------------------------------------------------------------- */
 
 import Link from 'next/link';
-import { H1_TITLE, H1_TAIL, HOME_ANSWER, RATING, NAP, SERVICES } from '../content';
+import { H1_TITLE, H1_TAIL, HOME_ANSWER, RATING, REVIEW_LINKS, NAP, SERVICES } from '../content';
 import { PORTRAIT, PORTRAIT_ALT } from '../assets';
 import { HERO_STILL_WATER } from '../unsplash';
 import { ArrowRightIcon, PhoneIcon, StarIcon } from '../Icons';
@@ -142,9 +142,11 @@ export const HomeHero = () => {
               initial={reduce ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5, ease: EASE_OUT_SOFT }}
-              className="mt-8 max-w-[60ch] border-l-2 border-[#A9C4EE]/45 pl-5 text-[15px] leading-[1.68] text-[#D9E1F0] sm:text-base"
+              className="mt-8 flex max-w-[60ch] flex-col gap-3.5 border-l-2 border-[#A9C4EE]/45 pl-5 text-[15px] leading-[1.68] text-[#D9E1F0] sm:text-base"
             >
-              <p>{HOME_ANSWER}</p>
+              {HOME_ANSWER.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
             </motion.div>
 
             <motion.div
@@ -203,7 +205,7 @@ export const HomeHero = () => {
                 </span>
                 <span>
                   <span className="block font-heading text-[1.05rem] text-white">Jason Meissner</span>
-                  <span className="block text-[13px] text-[#A9C4EE]">Certified Hypnotherapist &middot; Owner</span>
+                  <span className="block text-[13px] text-[#A9C4EE]">Certified Clinical Hypnotherapist &middot; Owner</span>
                 </span>
                 <span className="mx-1 hidden h-10 w-px bg-white/15 sm:block" aria-hidden="true" />
                 <span className="inline-flex basis-full items-center gap-2 text-[13px] font-semibold text-white sm:basis-auto">
@@ -213,7 +215,15 @@ export const HomeHero = () => {
                     ))}
                   </span>
                   <Counter to={RATING.value} decimals={1} duration={1.1} />
-                  <span className="font-normal text-[#D9E1F0]">&middot; {RATING.count} Google reviews</span>
+                  <a
+                    href={REVIEW_LINKS.google}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ph-underline font-normal text-[#D9E1F0] transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
+                  >
+                    &middot; {RATING.count} Google reviews
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
                 </span>
               </motion.div>
               <ul className="flex flex-wrap items-center gap-2.5">

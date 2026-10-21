@@ -19,7 +19,7 @@
    scrollable row, which keeps every review reachable.
 --------------------------------------------------------------------------- */
 
-import { REVIEW_SHOTS, RATING } from '../content';
+import { REVIEW_SHOTS, RATING, REVIEW_LINKS } from '../content';
 import * as A from '../assets';
 import { FOG_FOREST } from '../unsplash';
 import { StarIcon } from '../Icons';
@@ -62,7 +62,14 @@ export const Reviews = () => (
           />
         </div>
         <Reveal delay={0.15} dir="left">
-          <div className="flex items-center gap-3 rounded-full border border-[#D7DEEA] bg-white px-5 py-3">
+          {/* Links to the Google Business Profile (Jason, 2026-10-20), so the
+              count can be checked and new reviews left in one click. */}
+          <a
+            href={REVIEW_LINKS.google}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ph-tap flex items-center gap-3 rounded-full border border-[#D7DEEA] bg-white px-5 py-3 transition-colors duration-300 hover:border-[#454659] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+          >
             <span className="flex" aria-hidden="true">
               {Array.from({ length: 5 }, (_, i) => (
                 <StarIcon key={i} className="h-4 w-4 text-[#5DBA47]" />
@@ -70,8 +77,9 @@ export const Reviews = () => (
             </span>
             <span className="text-[13.5px] font-semibold text-[#2E2F3D]">
               {RATING.value.toFixed(1)} from {RATING.count} Google reviews
+              <span className="sr-only"> (opens in a new tab)</span>
             </span>
-          </div>
+          </a>
         </Reveal>
       </div>
       <Reveal delay={0.2}>

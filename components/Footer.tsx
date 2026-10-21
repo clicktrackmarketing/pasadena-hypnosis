@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NAP, HOURS, SERVICE_AREAS, RATING, REVIEWS_ELSEWHERE, TAGLINE, DISCLAIMER } from './content';
+import { NAP, HOURS, SERVICE_AREAS, RATING, REVIEW_LINKS, REVIEWS_ELSEWHERE, TAGLINE, DISCLAIMER } from './content';
 import { LOGO, LOGO_W, LOGO_H } from './assets';
 import { MapPinIcon, ClockIcon, PhoneIcon, MailIcon, StarIcon } from './Icons';
 import { Rings } from './Spiral';
@@ -66,12 +66,31 @@ export const Footer = () => {
             </span>
             {/* Markup #78 (and #54/#86/#89 on other pages): the client's own words. */}
             <p className="max-w-[38ch] text-[14.5px] leading-[1.7] text-[#D9E1F0]/80">{TAGLINE}</p>
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[12.5px] text-[#D9E1F0]">
+            <a
+              href={REVIEW_LINKS.google}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[12.5px] text-[#D9E1F0] transition-colors hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
+            >
               <StarIcon className="h-3.5 w-3.5 text-[#5DBA47]" />
               {RATING.value.toFixed(1)} from {RATING.count} Google reviews
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            {/* Markup #31: "There are also yelp reviews. As well as others."
+                Linked, with no Yelp number: see REVIEW_LINKS. */}
+            <p className="mt-2.5 text-[12.5px] text-[#D9E1F0]/75">
+              {REVIEWS_ELSEWHERE}{' '}
+              <a
+                href={REVIEW_LINKS.yelp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ph-underline text-[#D9E1F0] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2E2F3D]"
+              >
+                Yelp
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              .
             </p>
-            {/* Markup #31: "There are also yelp reviews. As well as others." */}
-            <p className="mt-2.5 text-[12.5px] text-[#D9E1F0]/75">{REVIEWS_ELSEWHERE}.</p>
           </div>
 
           <div className="col-span-2 sm:col-span-1 lg:col-span-3">

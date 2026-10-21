@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { pageMeta } from '../../../components/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { SERVICES, NAP, REAL_COPY, ORG_ID } from '../../../components/content';
+import { SERVICES, NAP, REAL_COPY, ORG_ID, VIDEOS } from '../../../components/content';
+import { VideoBand } from '../../../components/VideoBand';
 import { serviceImage } from '../../../components/unsplash';
 import { ArrowRightIcon, PhoneIcon } from '../../../components/Icons';
 import { PageHero } from '../../../components/PageHero';
@@ -180,6 +181,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
       <AnswerZoom slug={service.slug} />
       <ServiceStory slug={service.slug} />
       <SessionDetail slug={service.slug} />
+      {/* Jason's own "what is a session like" explainer, on the page that
+          sells a session (docs/jason-copy-round.md). */}
+      {service.slug === 'hypnotherapy-sessions' ? (
+        <VideoBand
+          eyebrow={service.name}
+          heading="What is a hypnotherapy session like?"
+          video={VIDEOS.sessionLike}
+          className="bg-[#F7F9FC]"
+        />
+      ) : null}
       {isSmoking ? <QuitSmoking /> : <StepsPath />}
       <BookingCalendarBand slug={service.slug} />
       <OfficeSetting />

@@ -133,6 +133,7 @@ export const ServiceStory = ({ slug }: { slug: string }) => {
   const reduce = useReducedMotion();
   const service = bySlug(slug);
   if (!service) return null;
+  const post = service.detail.postSlug ? POSTS.find((p) => p.slug === service.detail.postSlug) : undefined;
   return (
     /* Clipped on x: the side card enters from 60px to the right and would
        otherwise push a phone's page sideways while it travels. */
@@ -155,6 +156,24 @@ export const ServiceStory = ({ slug }: { slug: string }) => {
               ))}
             </div>
           </Reveal>
+          {service.detail.note ? (
+            <Reveal delay={0.2}>
+              <p className="mt-8 max-w-[58ch] border-l-2 border-[#46699F] pl-5 text-[16px] font-medium leading-[1.7] text-[#2E2F3D]">
+                {service.detail.note}
+              </p>
+            </Reveal>
+          ) : null}
+          {post ? (
+            <Reveal delay={0.25}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="ph-tap ph-underline mt-8 inline-flex items-center gap-2 text-[15px] font-semibold text-[#46699F] transition-colors hover:text-[#2E2F3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+              >
+                Read Jason&rsquo;s article: {post.title}
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+            </Reveal>
+          ) : null}
         </div>
         <div className="lg:col-span-5 lg:pt-10" style={{ perspective: 1200 }}>
           <motion.div

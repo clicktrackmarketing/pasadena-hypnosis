@@ -148,7 +148,7 @@ const PER_COMMENT = [
   [28, '/', ['or by video statewide'], []], // home AreasStrip cut 2026-10-20
   [29, '/', ['In the room in South Pasadena'], []],
   [30, '/', ['21:00'], ['10:00 AM - 9:00 PM']],
-  [31, '/', [], ['Also reviewed on Yelp and more']],
+  [31, '/', [], ['Also reviewed on', 'html:yelp.com/biz/pasadena-hypnosis-pasadena']],
   [32, '/', ['complementary'], [D]],
   [33, '/services', ['diagnosed depression', 'disabling anxiety', 'online statewide'], ['chronic and acute pain, IBS and fibromyalgia']],
   [34, '/services', ['The work Jason leads with, and the reason most clients find this practice.', 'On your call'], []],
@@ -234,9 +234,13 @@ const PER_COMMENT = [
 /* Pre-launch review (Asana, 2026-10-19): [route, gone, present], same rules. */
 const REVIEW = [
   ['/', ['Pasadena Hypnosis LLC is a South Pasadena', 'Only the captioned photo', 'Photographs are illustrative', 'Book a Free Discovery Call Book a Free Discovery Call', '5.0 0.0', '13 Google reviews 5.0'], ['I’m Jason Meissner', 'Meet Jason', '$400 quit smoking']],
-  ['/services/depression-bipolar-support', [], ['What happens in a session', 'Shifting where your attention goes', 'Read Jason’s article']],
+  ['/services/depression-bipolar-support', [], ['Read Jason’s article']],
   ['/services', [], ['Quit smoking']],
   ['/meet-jason', ['Valid to March 2017'], ['Meet Jason']],
+  /* Jason's copy, 2026-10-20: his own opening and Depression page text, and
+     the review counts linking to his Google Business Profile. */
+  ['/', [], ['A qualified hypnotherapist is a mechanic of stillness', 'I look forward to meeting you.', 'html:maps?cid=2776673039626670784']],
+  ['/services/depression-bipolar-support', ['Shifting where your attention goes'], ['Understanding your depression and experiencing life differently', 'The suffering is real. It does not define the whole of you.', 'Hypnotherapy can complement care from your doctor, therapist, or psychiatrist']],
 ];
 
 const pageCache = new Map();

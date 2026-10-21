@@ -139,9 +139,29 @@ export const HOURS = [
     review claim. Re-check before launch; it only goes up. */
 export const RATING = { value: 5.0, count: 13, best: 5, worst: 1 } as const;
 
-/** Jason, markup #31: "There are also yelp reviews. As well as others." No
-    count or URL was given, so this names the platforms and nothing more. */
-export const REVIEWS_ELSEWHERE = 'Also reviewed on Yelp and more';
+/** Where the review counts link to (Jason, 2026-10-20). GOOGLE is the Business
+    Profile "Pasadena Hypnosis LLC" at 1910 Huntington Dr, by its stable CID
+    (hex 0x2688b96b085a12c0 in the Maps URL). YELP is the claimed listing; it
+    still shows an old 91101 address and "accepts insurance", which Jason
+    should correct in Yelp for Business, and there is a second, unclaimed
+    El Centro St listing he should ask Yelp to close. Yelp's rating is never
+    put in schema or shown as a number here: one machine-readable claim only. */
+/** Jason's YouTube explainers that the site embeds (click to load, VideoBand).
+    His third video, "Full First Session Hypnotherapy" (40:52), is left off on
+    purpose: it is a full self-hypnosis session meant to be repeated, so on a
+    service page it would stand in for booking one. */
+export const VIDEOS = {
+  sessionLike: { id: 'lJWolYhjvjc', title: 'What Is A Hypnotherapy Session Like', length: '1:42' },
+  howItWorks: { id: 'BXJTPGCOmGA', title: 'How Hypnosis and Hypnotherapy Work', length: '2:21' },
+} as const;
+
+export const REVIEW_LINKS = {
+  google: 'https://www.google.com/maps?cid=2776673039626670784',
+  yelp: 'https://www.yelp.com/biz/pasadena-hypnosis-pasadena',
+} as const;
+
+/** Jason, markup #31: "There are also yelp reviews. As well as others." */
+export const REVIEWS_ELSEWHERE = 'Also reviewed on';
 
 /**
  * Verbatim from the live site, fetched 2026-09-09. These are Jason's own
@@ -250,7 +270,9 @@ export const REAL_COPY = {
 
 export const PRACTITIONER = {
   name: 'Jason Meissner',
-  role: 'Certified Hypnotherapist, Owner',
+  /* Jason's own title in his 2026-10-20 homepage copy, backed by his HMI
+     Diploma in Clinical Hypnotherapy (CREDENTIALS). */
+  role: 'Certified Clinical Hypnotherapist, Owner',
   /*
    * "Two years at HMI" was carried from Call 1 and is NOT what the diploma
    * says. The document reads "successfully completed one year of Nationally
@@ -443,15 +465,16 @@ export const DISCLAIMER =
   'Pasadena Hypnosis is a hypnotherapy practice, Jason Meissner is a certified hypnotherapist. Hypnotherapy is not a substitute for medical or psychiatric care.';
 
 /**
- * Renders directly under the H1 as the answer-first block, and is the
- * homepage meta description. Rewritten 2026-10-19 from Jason's pre-launch
- * review: the old "Pasadena Hypnosis LLC is a … practice led by …" read like
- * a business listing and switched between I / he / we. The homepage now
- * speaks in Jason's own first person throughout ("we" only ever means Jason
- * and the client).
+ * Renders directly under the H1 as the answer-first block, one <p> per entry.
+ * Jason's own opening, sent 2026-10-20, verbatim (one doubled space removed).
+ * It replaces the 2026-10-19 rewrite, which had already moved the homepage to
+ * his first person; "we" still only ever means Jason and the client.
  */
-export const HOME_ANSWER =
-  'I’m Jason Meissner, a certified hypnotherapist in South Pasadena. For ten years I’ve helped people with stress and anxiety, depression and bipolar disorder, smoking, chronic and acute pain, IBS and fibromyalgia, and grief, in my office or online, wherever you are. We start with a free call, so you can tell me what you need before you book.';
+export const HOME_ANSWER = [
+  'A qualified hypnotherapist is a mechanic of stillness. In hypnosis what has been running automatically—seemingly beyond your control—can finally become quiet. In a hypnotherapy session, you can experience a break from what has been dragging you down, at least for a little while.',
+  'I’m Jason Meissner, owner and Certified Clinical Hypnotherapist at Pasadena Hypnosis. I work with high achievers in academics and athletics. I specialize in stress, anxiety, depression and bipolar disorder, smoking cessation, chronic and acute pain, IBS, fibromyalgia, and grief.',
+  'Let me know what you need help with. We can meet in person in South Pasadena or online. I look forward to meeting you.',
+];
 
 /** The homepage "Meet Jason" bio, first person to match HOME_ANSWER. Facts
     only from CREDENTIALS; PRACTITIONER.bio stays third person for /our-team
@@ -472,8 +495,9 @@ export type Service = {
   heroLede?: string;
   /** Answer block, one per /services/<slug> route; also the hub card text. */
   answer: string;
-  /** The service page's own section: a heading and paragraphs in Jason's voice. */
-  detail: { heading: string; paras: string[] };
+  /** The service page's own section: a heading and paragraphs in Jason's voice.
+      `note` is set apart under the paragraphs; `postSlug` links a post in POSTS. */
+  detail: { heading: string; paras: string[]; note?: string; postSlug?: string };
   /** A testimonial from the live site, verbatim, initials as published there. */
   quote?: { text: string; by: string };
   /** Optional "what happens in a session" walkthrough, rendered after the
@@ -517,46 +541,26 @@ export const SERVICES: Service[] = [
     priceQualifier: 'per session',
     answer:
       'Pasadena Hypnosis offers hypnotherapy for depression and bipolar disorder with Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years in practice. The world and pressures around us can keep us from remembering we are already whole and complete — together we find that whole and fearless self again.',
-    detail: {
-      heading: 'You, whole, healthy and complete every day',
-      paras: [
-        'The world and pressures around us can keep us from remembering we are already whole and complete. We can find that whole and fearless self at the center of peace and strength that is already there inside us.',
-        'All we need to do is access what we already have and let go of everything we no longer need or want. Hypnotherapy allows you to strengthen what you want in your life and to gain freedom from what should be released.',
-      ],
-    },
     /*
-     * Jason's pre-launch review (2026-10-19): the page "needs more substance
-     * explaining what actually happens during a session and how the service
-     * helps", and he suggested reusing his blog. Every step below is drawn
-     * from his own post "Depression and Hypnotherapy" (POSTS, sent 2026-10-12),
-     * put into the first person and shortened; nothing is added that the post
-     * does not say, apart from the free call and the one-to-one format, which
-     * the rest of the site already states. Swap in his text if he sends more.
-     * Deliberately no "alongside your doctor" line here: the scope note lives
-     * on /meet-jason and in one FAQ only (#73, #80).
+     * Jason's own page text, sent 2026-10-20, verbatim. It replaces both the
+     * old two-paragraph section and the four-step "What happens in a session"
+     * walkthrough that had been pieced together from his blog post: his text
+     * now says what happens in a session itself, so the steps would repeat it.
+     * The closing line about working alongside a doctor, therapist or
+     * psychiatrist is his, and he asked for it to stay on this page; it
+     * overrides the earlier "scope note only on /meet-jason" rule (#73, #80)
+     * for this one service.
      */
-    session: {
-      heading: 'What happens in a session',
-      intro:
-        'Depression is felt in the body as well as in thought, and the pain sets off an automatic process that keeps those thoughts going. Hypnotherapy works on that process directly, one-to-one, in my office or online.',
-      steps: [
-        {
-          title: 'We talk it through',
-          body: 'We start with what you are experiencing and what you want to change, so the session is specifically designed for you. The first conversation is a free discovery call.',
-        },
-        {
-          title: 'Shifting where your attention goes',
-          body: 'Using the simple mechanics of the body and behavior, I help you change where and what your awareness is focused on. I lead you through choosing another activity of the mind, on purpose and under your own control.',
-        },
-        {
-          title: 'Seeing clearly, then choosing',
-          body: 'In hypnosis you experience seeing clearly first, in open awareness, and then, taking a breath, making a new choice you may not have known existed: reality without the bullying, dominating voice of depression.',
-        },
-        {
-          title: 'Practice between sessions',
-          body: 'With session experience, a growing understanding of how this works, and a simple meditation or self-hypnosis practice we refine together, things can soon change for the better.',
-        },
+    detail: {
+      heading: 'Depression and Hypnotherapy',
+      paras: [
+        'Understanding your depression and experiencing life differently are two different things. You may know your history and recognize your patterns while still feeling caught in the same painful activity of the mind.',
+        'In our sessions, I guide you through breathing, physical relaxation, and focused attention to help you experience a pause in that activity. You practice directing your attention on purpose, under your own control, and discovering choices that can be difficult to recognize when thoughts and feelings are overwhelming.',
+        'The suffering is real. It does not define the whole of you.',
+        'With practice, these experiences can become tools you use in daily life. Simple meditation or self-hypnosis between sessions can help you develop that familiarity.',
+        'You are already whole and complete. Our work is to help you experience that sense of being here, able to meet the moment, even when life is difficult.',
       ],
+      note: 'Hypnotherapy can complement care from your doctor, therapist, or psychiatrist. For depression or bipolar disorder, we work alongside that care, including prescribed medication.',
       postSlug: 'depression-and-hypnotherapy',
     },
   },
