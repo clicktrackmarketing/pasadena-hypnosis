@@ -221,6 +221,7 @@ export const OfficeBlock = () => {
               className="group mt-8 inline-flex items-center gap-2.5 rounded-[14px] bg-[#454659] px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_34px_-18px_rgba(46,47,61,0.8)] transition-colors duration-300 hover:bg-[#33344A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
             >
               <RollText>Get directions</RollText>
+              <span className="sr-only"> (opens in a new tab)</span>
               <ArrowRightIcon className="h-4 w-4 -rotate-45 transition-transform duration-300 group-hover:rotate-0" />
             </a>
           </Reveal>

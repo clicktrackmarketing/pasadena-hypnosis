@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { ChevronDownIcon } from './Icons';
 
 type Faq = { q: string; a: string };
@@ -169,34 +169,30 @@ export const FaqAccordion = ({
               />
             </button>
 
-            {reduce ? (
-              open ? (
-                <div id={panelId} role="region" aria-labelledby={buttonId}>
-                  <p className="px-5 pb-5 text-sm leading-relaxed text-[#4B5468]">{faq.a}</p>
-                </div>
-              ) : null
-            ) : (
-              <AnimatePresence initial={false}>
-                {open ? (
-                  <motion.div
-                    key="panel"
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={buttonId}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{
+            {/* Always mounted (launch audit 2026-10-20). The answer used to
+                exist only while open, so the server HTML carried no answer
+                text and the FAQPage schema described content missing from the
+                page. A closed panel now collapses to height 0 and is inert
+                (skipped by keyboard and screen readers) but stays in the DOM. */}
+            <motion.div
+              id={panelId}
+              role="region"
+              aria-labelledby={buttonId}
+              inert={!open}
+              initial={false}
+              animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
+              transition={
+                reduce
+                  ? { duration: 0 }
+                  : {
                       height: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
                       opacity: { duration: 0.28, ease: 'easeOut' },
-                    }}
-                    style={{ overflow: 'hidden' }}
-                  >
-                    <p className="px-5 pb-5 text-sm leading-relaxed text-[#4B5468]">{faq.a}</p>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-            )}
+                    }
+              }
+              style={{ overflow: 'hidden' }}
+            >
+              <p className="px-5 pb-5 text-sm leading-relaxed text-[#4B5468]">{faq.a}</p>
+            </motion.div>
           </div>
         );
       })}

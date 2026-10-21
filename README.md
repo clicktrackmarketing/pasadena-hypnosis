@@ -32,8 +32,17 @@ placeholder pages), not a single-page fake-multi-page demo.
     client's instruction ("not an offering", markup #13/#19/#51).
   - The Hypnotherapists Union certificate ("Valid to March 2017") is off the
     site until a current one replaces it; the image is still in assets.ts.
-  - `/privacy`, `/terms`, `/editorial-policy` render a visible "not final
-    legal text" placeholder — owner is Jason's own counsel.
+  - `/privacy`, `/terms`, `/editorial-policy` carry real text since
+    2026-10-20 (`components/LegalDocument.tsx`), written to match what the
+    site actually does: no site forms, cookies or analytics; Wix Bookings for
+    booking and payment; a Google Maps embed; Vercel hosting. **When tracking
+    or a site form is added, update the privacy policy in the same change.**
+    Jason's counsel should still review all three.
+  - `/llms.txt` is generated from `components/content.ts`
+    (`app/llms.txt/route.ts`), so it stays in step with services and pages.
+  - Share card: `public/og-default.jpg`, rebuilt by
+    `node scripts/make-og-image.mjs`. Page metadata goes through
+    `components/seo.ts` `pageMeta()`.
   - `/blog` lists real planned topic titles from the Call 2 brief as
     "coming soon" cards — no fabricated posts, dates, or authors.
   - Booking is Jason's live Wix Bookings calendars, framed

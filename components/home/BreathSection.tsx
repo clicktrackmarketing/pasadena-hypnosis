@@ -118,7 +118,7 @@ export const BreathSection = () => {
                 (#55), no talking about the page itself (#27), and "It is
                 an office" (#29). The second sentence is his own homepage. */}
             <p className="mt-6 max-w-[52ch] text-[16px] leading-[1.72] text-[#D9E1F0]">
-              Follow the ring for a few rounds &mdash; in for four, hold for four, out for six. {REAL_COPY.meditation}
+              Follow the ring for a few rounds: in for four, hold for four, out for six. {REAL_COPY.meditation}
             </p>
           </Reveal>
           <Reveal delay={0.25}>

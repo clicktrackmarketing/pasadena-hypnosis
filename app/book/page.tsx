@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import { NAP } from '../../components/content';
 import { serviceImage } from '../../components/unsplash';
 import { PhoneIcon, ArrowRightIcon } from '../../components/Icons';
@@ -10,12 +11,12 @@ import { BookFormBand, StepsPath } from '../../components/pages/book/BookSection
 
 // Target keywords (profile.ts targetKeywords['/book']): "book hypnotherapy
 // appointment pasadena".
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Book a Free Discovery Call',
   description:
-    'A free discovery call with Jason Meissner to talk through your situation before booking a hypnotherapy session — in person in South Pasadena or online anywhere.',
-  alternates: { canonical: '/book' },
-};
+    'A free discovery call with Jason Meissner before you book a hypnotherapy session, in person in South Pasadena or online anywhere.',
+  path: '/book',
+});
 
 /* Positive statements only — the client's rule against "not" phrases (#55). */
 const REASSURANCES = [
@@ -53,7 +54,7 @@ export default function BookPage() {
         lede={
           <p>
             A free conversation with Jason Meissner to talk through your situation before you book a hypnotherapy
-            session &mdash; in person in South Pasadena or online anywhere.
+            session, in person in South Pasadena or online anywhere.
           </p>
         }
       >

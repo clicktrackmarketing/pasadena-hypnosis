@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../../components/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SERVICE_AREAS, NAP } from '../../../components/content';
@@ -39,11 +40,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const area = findArea(slug);
   if (!area) return {};
   const city = areaCity(area);
-  return {
+  return pageMeta({
     title: `Hypnotherapy in ${city}, CA`,
-    description: `Pasadena Hypnosis serves ${city}, CA with in-person sessions at ${NAP.street} in ${NAP.city} and online sessions anywhere. Certified hypnotherapy for stress and anxiety, depression, chronic and acute pain, smoking cessation and grief.`,
-    alternates: { canonical: `/service-areas/${slug}` },
-  };
+    description: `Certified hypnotherapy for ${city}, CA clients: in person at ${NAP.street} in ${NAP.city}, or online. Stress, anxiety, depression, pain, smoking and grief.`,
+    path: `/service-areas/${slug}`,
+  });
 }
 
 export default async function ServiceAreaDetailPage({ params }: { params: Promise<Params> }) {
@@ -103,9 +104,9 @@ export default async function ServiceAreaDetailPage({ params }: { params: Promis
         ]}
         lede={
           <p id="answer-first" className="border-l-2 border-[#A9C4EE]/45 pl-5">
-            Pasadena Hypnosis serves {city} clients in person at {NAP.street} in {NAP.city}, and by video anywhere
-            &mdash; the same work either way, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10
-            years in practice.
+            Pasadena Hypnosis serves {city} clients in person at {NAP.street} in {NAP.city}, and by video anywhere.
+            The same work either way, led by Jason Meissner, a Hypnosis Motivation Institute graduate with 10 years
+            in practice.
           </p>
         }
       >

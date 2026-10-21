@@ -67,6 +67,7 @@ export const AboutWords = () => {
                 className="ph-tap ph-underline font-medium text-[#46699F]"
               >
                 hypnosis.edu
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </p>
           </SlideItem>

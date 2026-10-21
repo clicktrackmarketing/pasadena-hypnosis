@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import Link from 'next/link';
 import { SERVICES, NAP, REAL_COPY, type Service } from '../../components/content';
 import { DESK_LAMP, GALLERY } from '../../components/unsplash';
@@ -13,12 +14,12 @@ import { PriceTiers } from '../../components/pages/pricing/PriceTiers';
 
 // Target keywords (profile.ts targetKeywords['/pricing']): "hypnotherapy
 // cost pasadena", "how much does hypnotherapy cost".
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Hypnotherapy Pricing',
   description:
-    'Hypnotherapy sessions with Pasadena Hypnosis are $200 each, the same in the office or online. Smoking cessation is $400, and the discovery call is free.',
-  alternates: { canonical: '/pricing' },
-};
+    'Hypnotherapy sessions are $200, in the office or online. Smoking cessation is $400, and the discovery call is free.',
+  path: '/pricing',
+});
 
 /*
  * REDESIGNED 2026-09-28 — one kind of motion per band:

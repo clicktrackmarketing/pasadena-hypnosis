@@ -13,6 +13,11 @@ const base = (props: SVGProps<SVGSVGElement>) => ({
   strokeWidth: 1.75,
   strokeLinecap: 'round' as const,
   strokeLinejoin: 'round' as const,
+  // Decorative by default (launch audit 2026-10-20): every icon sits beside
+  // visible text or inside a labelled button. Pass aria-hidden={false} plus a
+  // <title>/aria-label for the rare icon that must speak for itself.
+  'aria-hidden': true as const,
+  focusable: 'false' as const,
   ...props
 });
 export const PhoneIcon = (props: SVGProps<SVGSVGElement>) => <svg {...base(props)}>

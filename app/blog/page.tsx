@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import Link from 'next/link';
 import { NAP, POSTS } from '../../components/content';
 import { DESK_NOTEBOOK, serviceImage } from '../../components/unsplash';
@@ -10,11 +11,11 @@ import { TopicGrid, type TopicCard } from '../../components/pages/blog/TopicGrid
 import { TopicTicker } from '../../components/pages/blog/TopicTicker';
 
 // Target keywords (profile.ts targetKeywords['/blog']): "hypnotherapy blog los angeles".
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Insights',
   description: 'Hypnotherapy insights from Jason Meissner of Pasadena Hypnosis, starting with Depression and Hypnotherapy.',
-  alternates: { canonical: '/blog' },
-};
+  path: '/blog',
+});
 
 /*
  * Call 2 Content & Services Brief §8 (2026-09-10) — real planned topics, not
@@ -133,7 +134,7 @@ export default function BlogIndexPage() {
 
       <CtaBand
         title="Have a question now?"
-        body="You do not have to wait for an article — the discovery call is free and Jason will answer it directly."
+        body="You do not have to wait for an article. The discovery call is free and Jason will answer it directly."
         secondary={{ href: '/faq', label: 'View FAQ' }}
       />
     </div>

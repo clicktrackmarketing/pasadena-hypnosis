@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import Link from 'next/link';
 import { SERVICES, NAP, REAL_COPY } from '../../components/content';
 import { FOLIAGE_PATH, serviceImage } from '../../components/unsplash';
@@ -14,12 +15,12 @@ import { HUB_SCENE_CYCLE } from '../../components/pages/services/shapes';
 
 // Target keywords (profile.ts targetKeywords['/services']): "hypnotherapist
 // pasadena", "hypnotherapy services south pasadena".
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Hypnotherapy Services in South Pasadena, CA',
   description:
-    'Pasadena Hypnosis LLC offers hypnotherapy in South Pasadena, CA and online, specializing in stress and anxiety, depression and bipolar disorder, smoking cessation, chronic and acute pain, IBS and fibromyalgia, and grief.',
-  alternates: { canonical: '/services' },
-};
+    'Hypnotherapy in South Pasadena and online for stress and anxiety, depression, smoking cessation, chronic pain, IBS and fibromyalgia, and grief.',
+  path: '/services',
+});
 
 /* The hero's price figures are read off the service records, never retyped:
    the standard session's price and the discovery call's "Free". */

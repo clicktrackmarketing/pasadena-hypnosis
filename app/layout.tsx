@@ -10,6 +10,7 @@ import { RouteCurtain } from '../components/RouteCurtain';
 import { ImageWarmup } from '../components/ImageWarmup';
 import { buildJsonLd } from '../components/content';
 import { isIndexable } from '../components/indexing';
+import { OG_IMAGE } from '../components/seo';
 
 /* ---------------------------------------------------------------------------
    FONTS — self-hosted via next/font rather than fetched from Google.
@@ -55,10 +56,10 @@ const inter = Inter({
   display: 'swap',
 });
 
-// Sitewide entity graph only — WebSite and MedicalOrganization (with the
-// founder/credentials/aggregateRating/hasOfferCatalog nodes nested inside
-// it). FAQPage lives on /faq, next to the accordion it describes.
-const SITEWIDE_TYPES = new Set(['WebSite', 'MedicalOrganization']);
+// Sitewide entity graph only — WebSite and MedicalBusiness (with the
+// founder/credentials/hasOfferCatalog nodes nested inside it). FAQPage
+// lives on /faq, next to the accordion it describes.
+const SITEWIDE_TYPES = new Set(['WebSite', 'MedicalBusiness']);
 const sitewideJsonLd = (buildJsonLd()['@graph'] as Array<Record<string, unknown>>).filter((node) =>
   SITEWIDE_TYPES.has(node['@type'] as string),
 );
@@ -71,6 +72,10 @@ export const metadata: Metadata = {
   },
   description:
     'Certified hypnotherapy in South Pasadena and online: stress and anxiety, depression and bipolar disorder, smoking cessation, chronic and acute pain, IBS and fibromyalgia, and grief.',
+  authors: [{ name: 'Jason Meissner', url: '/meet-jason' }],
+  // Fallback share card for anything that does not call pageMeta (the 404).
+  openGraph: { type: 'website', siteName: 'Pasadena Hypnosis', locale: 'en_US', images: [OG_IMAGE] },
+  twitter: { card: 'summary_large_image', images: [OG_IMAGE.url] },
   // noindex,nofollow everywhere EXCEPT the live pasadenahypnosis.com
   // production deployment, where it lifts by itself (client review
   // 2026-10-19). Rules in components/indexing.ts. Child pages inherit this,
@@ -99,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ImageWarmup />
         <div className="w-full min-h-screen flex flex-col bg-white text-[#2E2F3D]">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
           <Footer />
         </div>
       </body>

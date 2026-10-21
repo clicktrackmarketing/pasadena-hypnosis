@@ -38,7 +38,7 @@ export const Gallery = () => (
         aside={
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 rounded-full border border-[#2E2F3D]/15 px-5 py-2.5 text-sm font-medium text-[#2E2F3D] transition-all duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+            className="group inline-flex items-center gap-2 rounded-full border border-[#2E2F3D]/45 px-5 py-2.5 text-sm font-medium text-[#2E2F3D] transition-all duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
           >
             <MapPinIcon className="h-4 w-4" />
             Visit the office

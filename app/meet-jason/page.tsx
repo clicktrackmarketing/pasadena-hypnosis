@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import Link from 'next/link';
-import { PRACTITIONER, CREDENTIALS, NAP } from '../../components/content';
+import { PRACTITIONER, CREDENTIALS, NAP, ORG_ID, PERSON_ID, SERVICES } from '../../components/content';
 import { PORTRAIT, PORTRAIT_ALT } from '../../components/assets';
 import { BAMBOO_WALKWAY } from '../../components/unsplash';
 import { ArrowRightIcon, PhoneIcon } from '../../components/Icons';
@@ -57,16 +58,22 @@ import { TeamServices } from '../../components/pages/our-team/TeamServices';
 --------------------------------------------------------------------------- */
 
 // Target keywords (profile.ts targetKeywords['/our-team']): "jason meissner hypnotherapist".
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Meet Jason Meissner, Certified Hypnotherapist',
   description:
-    "Jason Meissner completed a year of accredited training and supervised residency at the Hypnosis Motivation Institute and has practiced hypnotherapy for 10 years in South Pasadena.",
-  alternates: { canonical: '/meet-jason' },
-};
+    'Jason Meissner trained for a year at the Hypnosis Motivation Institute, including a supervised residency, and has practiced hypnotherapy in South Pasadena for 10 years.',
+  path: '/meet-jason',
+});
 
+// Same @id as the founder node in the sitewide graph, so search engines
+// read this page and the business entity as one person.
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': PERSON_ID,
+  url: 'https://www.pasadenahypnosis.com/meet-jason',
+  worksFor: { '@id': ORG_ID },
+  knowsAbout: ['Hypnotherapy', 'Clinical hypnotherapy', ...SERVICES.map((s) => s.name)],
   name: PRACTITIONER.name,
   jobTitle: PRACTITIONER.role,
   description: PRACTITIONER.bio,
@@ -111,7 +118,7 @@ export default function MeetJasonPage() {
         ]}
         lede={
           <p>
-            Pasadena Hypnosis is Jason Meissner&rsquo;s own practice &mdash; the person you speak to on the discovery
+            Pasadena Hypnosis is Jason Meissner&rsquo;s own practice: the person you speak to on the discovery
             call is the person you work with.
           </p>
         }

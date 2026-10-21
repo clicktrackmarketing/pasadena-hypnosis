@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../components/seo';
 import { FAQS, NAP, SERVICES } from '../../components/content';
 import { TWO_TALKING } from '../../components/unsplash';
 import { priceLabel } from '../../components/price';
@@ -12,12 +13,12 @@ import { FaqStatement } from '../../components/pages/faq/FaqStatement';
 // Target keywords (profile.ts targetKeywords['/faq']): "what does a hypnotist
 // cost", "does hypnosis work for quitting smoking", "is hypnotherapy covered
 // by insurance".
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Frequently Asked Questions',
   description:
-    'Cost, credentials, online availability, and what to expect at Pasadena Hypnosis in South Pasadena, CA — answered directly.',
-  alternates: { canonical: '/faq' },
-};
+    'Cost, credentials, online availability, and what to expect at Pasadena Hypnosis in South Pasadena, CA, answered directly.',
+  path: '/faq',
+});
 
 /*
  * FAQPage schema lives HERE and only here, built from the same FAQS array the
@@ -96,7 +97,7 @@ export default function FaqPage() {
 
       <CtaBand
         title="Still have a question?"
-        body="Call (626) 616-0143, or book a free discovery call online."
+        body={`Call ${NAP.phone}, or book a free discovery call online.`}
       />
     </div>
   );

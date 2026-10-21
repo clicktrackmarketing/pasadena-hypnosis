@@ -371,7 +371,8 @@ export const QuitSmoking = () => {
                 <figure className="flex h-full flex-col rounded-[22px] border border-[#D7DEEA] bg-[#F7F9FC] p-7">
                   <QuoteIcon className="h-6 w-6 text-[#46699F]" aria-hidden="true" />
                   <blockquote className="mt-4 flex-1 text-[16px] leading-[1.7] text-[#2E2F3D]">&ldquo;{r}&rdquo;</blockquote>
-                  <figcaption className="mt-5 flex gap-1" aria-label="Five stars">
+                  <figcaption className="mt-5 flex gap-1">
+                    <span className="sr-only">Five stars</span>
                     {Array.from({ length: 5 }, (_, i) => (
                       <StarIcon key={i} className="h-4 w-4 text-[#5DBA47]" aria-hidden="true" />
                     ))}
@@ -581,7 +582,7 @@ export const OfficeSetting = () => {
               <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-[#46699F]">
                 <ClockIcon className="h-[18px] w-[18px]" />
               </span>
-              <span className="text-[15.5px] text-[#2E2F3D]">Open late &mdash; most evenings until 9 PM</span>
+              <span className="text-[15.5px] text-[#2E2F3D]">Open late, most evenings until 9 PM</span>
             </SlideItem>
             <SlideItem as="li" from="right" className="flex items-center gap-4 py-4">
               <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-[#46699F]">

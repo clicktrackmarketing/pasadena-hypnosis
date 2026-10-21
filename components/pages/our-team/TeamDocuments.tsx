@@ -124,10 +124,10 @@ export const TeamDocuments = () => {
                       href={img.src}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ph-tap group inline-flex flex-shrink-0 items-center gap-2 self-start rounded-full border border-[#2E2F3D]/15 px-4 py-2 text-[13px] font-medium text-[#2E2F3D] transition-colors duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
+                      className="ph-tap group inline-flex flex-shrink-0 items-center gap-2 self-start rounded-full border border-[#2E2F3D]/45 px-4 py-2 text-[13px] font-medium text-[#2E2F3D] transition-colors duration-300 hover:border-[#454659] hover:bg-[#454659] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#454659] focus-visible:ring-offset-2"
                     >
                       View certificate
-                      <span className="sr-only">: {c.award}</span>
+                      <span className="sr-only">: {c.award} (opens in a new tab)</span>
                       <ArrowRightIcon className="h-3.5 w-3.5 -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </a>
                   </div>

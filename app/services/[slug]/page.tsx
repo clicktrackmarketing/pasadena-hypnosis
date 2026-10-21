@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '../../../components/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { SERVICES, NAP, REAL_COPY } from '../../../components/content';
+import { SERVICES, NAP, REAL_COPY, ORG_ID } from '../../../components/content';
 import { serviceImage } from '../../../components/unsplash';
 import { ArrowRightIcon, PhoneIcon } from '../../../components/Icons';
 import { PageHero } from '../../../components/PageHero';
@@ -38,6 +39,24 @@ const TARGET_KEYWORDS: Record<string, string[]> = {
   'sports-performance': ['sports performance hypnosis los angeles'],
 };
 
+/* <title> per service (launch audit 2026-10-20): the bare service name
+   ("Grief & Loss | Pasadena Hypnosis") carried no keyword or place. The
+   visible H1 stays the service name the client approved. */
+const SEO_TITLES: Record<string, string> = {
+  'depression-bipolar-support': 'Hypnotherapy for Depression & Bipolar Support in South Pasadena',
+  'stress-and-anxiety': 'Hypnotherapy for Stress & Anxiety in South Pasadena',
+  'smoking-cessation': 'Quit Smoking Hypnosis in South Pasadena',
+  'chronic-pain': 'Hypnotherapy for Chronic & Acute Pain in South Pasadena',
+  ibs: 'Hypnotherapy for IBS & Fibromyalgia in South Pasadena',
+  'grief-and-loss': 'Hypnotherapy for Grief & Loss in South Pasadena',
+  'hypnotherapy-sessions': 'Hypnotherapy Sessions in South Pasadena & Online',
+  'online-hypnotherapy': 'Online Hypnotherapy Sessions',
+  'discovery-call': 'Free Hypnotherapy Discovery Call',
+  'childhood-stress-anxiety': 'Hypnotherapy for Childhood Stress & Anxiety in South Pasadena',
+  'testing-and-academic-performance': 'Hypnosis for Test Anxiety & Academic Performance',
+  'sports-performance': 'Sports Performance Hypnosis in South Pasadena',
+};
+
 type Params = { slug: string };
 
 export function generateStaticParams(): Params[] {
@@ -48,12 +67,12 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) return {};
-  return {
-    title: service.name,
+  return pageMeta({
+    title: SEO_TITLES[slug] ?? service.name,
     description: service.answer,
     keywords: TARGET_KEYWORDS[slug],
-    alternates: { canonical: `/services/${slug}` },
-  };
+    path: `/services/${slug}`,
+  });
 }
 
 /*
@@ -97,7 +116,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
         serviceType: service.name,
         category: service.category,
         areaServed: 'South Pasadena, CA',
-        provider: { '@type': 'MedicalOrganization', name: 'Pasadena Hypnosis' },
+        url: `https://www.pasadenahypnosis.com/services/${service.slug}`,
+        provider: { '@id': ORG_ID },
         ...(service.price !== null ? { offers: { '@type': 'Offer', price: String(service.price), priceCurrency: 'USD' } } : {}),
       },
     ],

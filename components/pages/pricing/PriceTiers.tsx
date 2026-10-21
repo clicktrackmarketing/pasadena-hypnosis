@@ -53,10 +53,10 @@ const TIERS: Tier[] = (() => {
    set's verified list: ink on mint / tint / white, white + #D9E1F0 + #A9C4EE
    on the dark ground. */
 const SKINS = [
-  { card: 'bg-[#E9F3EF]', ink: 'text-[#2E2F3D]', body: 'text-[#4B5468]', accent: 'text-[#46699F]', chip: 'border-[#2E2F3D]/15 bg-white/70 text-[#2E2F3D] hover:border-[#46699F] hover:bg-white', ring: 'focus-visible:ring-[#454659]' },
+  { card: 'bg-[#E9F3EF]', ink: 'text-[#2E2F3D]', body: 'text-[#4B5468]', accent: 'text-[#46699F]', chip: 'border-[#2E2F3D]/45 bg-white/70 text-[#2E2F3D] hover:border-[#46699F] hover:bg-white', ring: 'focus-visible:ring-[#454659]' },
   { card: 'bg-[#2E2F3D]', ink: 'text-white', body: 'text-[#D9E1F0]', accent: 'text-[#A9C4EE]', chip: 'border-white/15 bg-white/[0.06] text-white hover:border-[#A9C4EE] hover:bg-white/[0.12]', ring: 'focus-visible:ring-[#A9C4EE] focus-visible:ring-offset-[#2E2F3D]' },
-  { card: 'bg-[#E6EFFF]', ink: 'text-[#2E2F3D]', body: 'text-[#4B5468]', accent: 'text-[#46699F]', chip: 'border-[#2E2F3D]/15 bg-white/80 text-[#2E2F3D] hover:border-[#46699F] hover:bg-white', ring: 'focus-visible:ring-[#454659]' },
-  { card: 'border border-[#D7DEEA] bg-white', ink: 'text-[#2E2F3D]', body: 'text-[#4B5468]', accent: 'text-[#46699F]', chip: 'border-[#2E2F3D]/15 bg-[#F7F9FC] text-[#2E2F3D] hover:border-[#46699F] hover:bg-white', ring: 'focus-visible:ring-[#454659]' },
+  { card: 'bg-[#E6EFFF]', ink: 'text-[#2E2F3D]', body: 'text-[#4B5468]', accent: 'text-[#46699F]', chip: 'border-[#2E2F3D]/45 bg-white/80 text-[#2E2F3D] hover:border-[#46699F] hover:bg-white', ring: 'focus-visible:ring-[#454659]' },
+  { card: 'border border-[#D7DEEA] bg-white', ink: 'text-[#2E2F3D]', body: 'text-[#4B5468]', accent: 'text-[#46699F]', chip: 'border-[#2E2F3D]/45 bg-[#F7F9FC] text-[#2E2F3D] hover:border-[#46699F] hover:bg-white', ring: 'focus-visible:ring-[#454659]' },
 ] as const;
 
 const sharedQualifier = (t: Tier) => {
@@ -190,7 +190,7 @@ export const PriceTiers = () => {
                       </span>
                       <span
                         className={`font-heading text-[1.35rem] transition-colors duration-500 ${
-                          active === i ? 'text-[#2E2F3D]' : 'text-[#4B5468]/70'
+                          active === i ? 'text-[#2E2F3D]' : 'text-[#4B5468]'
                         }`}
                       >
                         {t.label}
