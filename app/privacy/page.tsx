@@ -12,13 +12,16 @@ export const metadata: Metadata = pageMeta({
   path: '/privacy',
 });
 
-/* Written 2026-10-20 to match the site as built (see LegalDocument.tsx):
-   no site forms, no site cookies or analytics, Wix Bookings for booking and
-   payment, Google Maps embed on /contact, Vercel hosting. No consent or
-   opt-out mechanism is promised because none exists yet. Keep it that way:
-   add a promise only in the same change that ships the mechanism. To be
-   reviewed by Jason's counsel. */
-const EFFECTIVE = 'October 20, 2026';
+/* Written 2026-10-20 to match the site as built (see LegalDocument.tsx).
+   Updated 2026-10-23 when analytics shipped: Google Tag Manager + Google
+   Analytics with Consent Mode (components/Analytics.tsx) and the
+   visit-source record in localStorage (components/attribution.ts). Still no
+   site forms; Wix Bookings for booking and payment, Google Maps embed on
+   /contact, Vercel hosting. Every statement here must stay true of the code:
+   add a promise only in the same change that ships the mechanism, and change
+   this page whenever Analytics.tsx or attribution.ts changes. To be reviewed
+   by Jason's counsel. */
+const EFFECTIVE = 'October 23, 2026';
 
 const contactBlock = (
   <p>
@@ -53,10 +56,23 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          <strong>On this Site itself.</strong> The Site has no sign-up or contact forms, and it does not set its own
-          cookies or run its own analytics or advertising tags. Like any website, our hosting provider receives standard
-          technical information when your browser loads a page: your IP address, browser and device type, the page
-          requested, the referring page and the time of the request.
+          <strong>On this Site itself.</strong> The Site has no sign-up or contact forms and runs no advertising tags.
+          Like any website, our hosting provider receives standard technical information when your browser loads a
+          page: your IP address, browser and device type, the page requested, the referring page and the time of the
+          request.
+        </p>
+        <p>
+          <strong>Analytics.</strong> We use Google Analytics, loaded through Google Tag Manager, to see how visitors
+          find and use the Site: the pages you view, how you arrived (for example a search engine, an AI assistant, a
+          link on another site or an email), the campaign tags in the link you followed, your approximate location
+          (city level, from your IP address) and your browser and device type. Google Analytics does not receive your
+          name, email address or phone number from us.
+        </p>
+        <p>
+          <strong>How you found us.</strong> The Site also keeps a small record in your own browser&rsquo;s local
+          storage of how you first arrived and how you most recently arrived: the referring site, any campaign tags or
+          ad-click identifiers in the link, the first page you landed on, and when. It stays on your device; we only
+          receive it if you later send us a form on this Site, and the Site has no forms today.
         </p>
         <p>
           <strong>When you book.</strong> Appointments and payments are handled by Wix Bookings, shown inside our booking
@@ -84,6 +100,7 @@ const SECTIONS: LegalSection[] = [
         <li>To reply to your calls, texts and emails.</li>
         <li>To keep basic records of the sessions we provide, as a professional practice should.</li>
         <li>To keep the Site secure and working, using the hosting information described above.</li>
+        <li>To understand which pages help people and how they find us, using the analytics described above.</li>
         <li>To meet legal obligations.</li>
       </ul>
     ),
@@ -130,6 +147,11 @@ const SECTIONS: LegalSection[] = [
             privacy-enhanced (youtube-nocookie.com) service, which may then store information in your browser.
           </li>
           <li>
+            <strong>Google Analytics and Google Tag Manager</strong>: measure how the Site is used, as described in
+            section 2. Google processes this information under its own privacy policy. We have not enabled advertising
+            features: the signals Google uses for ads and personalisation are switched off on this Site.
+          </li>
+          <li>
             <strong>Vercel</strong>: hosts this Site and receives the standard technical information described in
             section 2.
           </li>
@@ -160,13 +182,26 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          This Site does not set cookies of its own. The Wix booking pages and the Google map described in section 5 may
-          set cookies when they load, and a YouTube video may once you press play. You can block or delete cookies in your browser settings; the booking calendar
-          may not work if Wix&rsquo;s cookies are blocked, in which case you can book by phone instead.
+          Google Analytics sets its own cookies on this Site (named <code>_ga</code> and <code>_ga_</code> followed by an
+          identifier) to recognise repeat visits; they last up to two years. The visit record described in section 2 is
+          kept in your browser&rsquo;s local storage rather than a cookie. The Wix booking pages and the Google map
+          described in section 5 may set cookies when they load, and a YouTube video may once you press play.
         </p>
         <p>
-          The Site does not currently respond differently to &ldquo;Do Not Track&rdquo; browser signals, because it
-          does not track visitors itself.
+          <strong>Visitors in Europe, the UK and Switzerland.</strong> We do not ask for cookie consent, so for visitors
+          in the European Economic Area, the United Kingdom and Switzerland, Google Analytics stores no cookies and
+          sends only cookieless measurements that do not identify your browser.
+        </p>
+        <p>
+          <strong>Global Privacy Control.</strong> If your browser sends a Global Privacy Control signal, Google
+          Analytics on this Site stores no cookies and sends only cookieless measurements that do not identify your browser, the same as for
+          visitors in Europe. The Site does not respond differently to &ldquo;Do Not Track&rdquo; signals, which have
+          no agreed meaning; use Global Privacy Control instead.
+        </p>
+        <p>
+          You can also block or delete cookies and local storage in your browser settings, or install Google&rsquo;s
+          opt-out browser add-on for Google Analytics. The booking calendar may not work if Wix&rsquo;s cookies are
+          blocked, in which case you can book by phone instead.
         </p>
       </>
     ),
@@ -220,8 +255,8 @@ const SECTIONS: LegalSection[] = [
     title: 'Changes to this policy',
     body: (
       <p>
-        If we change how we handle information, for example by adding analytics to the Site, we will update this page
-        and the effective date at the top before the change takes effect. See also our{' '}
+        If we change how we handle information, for example by adding a contact form or advertising to the Site, we
+        will update this page and the effective date at the top before the change takes effect. See also our{' '}
         <Link href="/terms">Terms of Service</Link>.
       </p>
     ),

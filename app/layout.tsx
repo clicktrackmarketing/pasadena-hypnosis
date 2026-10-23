@@ -9,6 +9,7 @@ import { CursorRing } from '../components/CursorRing';
 import { RouteCurtain } from '../components/RouteCurtain';
 import { ImageWarmup } from '../components/ImageWarmup';
 import AttributionCapture from '../components/AttributionCapture';
+import { ConsentDefaults, GoogleTagManager } from '../components/Analytics';
 import { buildJsonLd } from '../components/content';
 import { isIndexable } from '../components/indexing';
 import { OG_IMAGE } from '../components/seo';
@@ -87,6 +88,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${lora.variable} ${inter.variable}`}>
+      <head>
+        <ConsentDefaults />
+      </head>
       <body>
         <script
           type="application/ld+json"
@@ -106,6 +110,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Peoplelytics first/recent-touch capture into localStorage, read by
             the lead route's payload. Renders nothing. */}
         <AttributionCapture />
+        {/* GTM (GA4) after Consent Mode defaults; production only. See
+            components/Analytics.tsx. */}
+        <GoogleTagManager />
         <div className="w-full min-h-screen flex flex-col bg-white text-[#2E2F3D]">
           <Header />
           <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
