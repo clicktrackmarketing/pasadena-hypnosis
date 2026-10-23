@@ -37,7 +37,8 @@ placeholder pages), not a single-page fake-multi-page demo.
     site actually does: no site forms, cookies or analytics; Wix Bookings for
     booking and payment; a Google Maps embed; Vercel hosting. **When tracking
     or a site form is added, update the privacy policy in the same change.**
-    Jason's counsel should still review all three.
+    Signed off by Click Track Marketing (Bilal) 2026-10-23, including the analytics wording added that
+    day; not sent to Jason or counsel. Re-check after any change.
   - `/llms.txt` is generated from `components/content.ts`
     (`app/llms.txt/route.ts`), so it stays in step with services and pages.
   - Share card: `public/og-default.jpg`, rebuilt by

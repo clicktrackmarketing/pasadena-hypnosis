@@ -19,8 +19,8 @@ export const metadata: Metadata = pageMeta({
    site forms; Wix Bookings for booking and payment, Google Maps embed on
    /contact, Vercel hosting. Every statement here must stay true of the code:
    add a promise only in the same change that ships the mechanism, and change
-   this page whenever Analytics.tsx or attribution.ts changes. To be reviewed
-   by Jason's counsel. */
+   this page whenever Analytics.tsx or attribution.ts changes. Signed off by
+   Click Track Marketing (Bilal) 2026-10-23, including the analytics wording. */
 const EFFECTIVE = 'October 23, 2026';
 
 const contactBlock = (

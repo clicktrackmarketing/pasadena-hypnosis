@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMeta({
    cancellation and refund rules are NOT invented here: they are whatever Wix
    shows at checkout. Governing-law wording names the county, not the state:
    the client's rule bans that word site-wide (markup #7/#33/#85, enforced by
-   scripts/audit-markups.mjs). To be reviewed by Jason's counsel. */
+   scripts/audit-markups.mjs). Signed off by Click Track Marketing (Bilal) 2026-10-23. */
 const EFFECTIVE = 'October 20, 2026';
 
 const SECTIONS: LegalSection[] = [

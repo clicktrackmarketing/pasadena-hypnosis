@@ -53,8 +53,9 @@ accurate (the site still sets no cookies of its own).
    (new opening). This names psychiatric and medical conditions as
    specialties. The Depression page's "alongside your doctor, therapist, or
    psychiatrist" note and the footer disclaimer help, but the homepage line
-   has neither next to it. Worth a quick legal/compliance check. A softer
-   option, if needed: "I work with people living with …".
+   has neither next to it. **Kept as written: signed off by Click Track Marketing (Bilal) 2026-10-23**
+   (not sent to Jason). The softer
+   option, "I work with people living with …", remains available.
 3. **"including prescribed medication"** (Depression page). Fine as written:
    it supports staying on medication. Never edit it toward anything about
    changing or stopping medication.
@@ -68,8 +69,8 @@ accurate (the site still sets no cookies of its own).
 
 - **Yelp listing (Jason):** fix the address, hours and "accepts insurance"
   on the claimed listing, and ask Yelp to close the unclaimed El Centro St one.
-- **Homepage specialties line (compliance):** item 2 above. Left word for
-  word, since it is Jason's own copy.
+- ~~**Homepage specialties line (compliance):**~~ **Closed 2026-10-23:** kept as
+  written, signed off by Click Track Marketing (Bilal) (item 2 above).
 - **Wix bookings (Jason's Wix and easyDNS logins):** move Wix to
   `book.pasadenahypnosis.com` before the domain switches, or the booking
   calendars break. Steps: `docs/launch-booking.md`.
