@@ -442,10 +442,11 @@ export const REVIEW_SHOTS = [
 /**
  * The homepage H1. Markup #113: "I am told this H1 should read with the city.
  * Like 'Your Best Choice for Certified Hypnotherapy in Pasadena, Ca.'" — his
- * wording, with the state abbreviation capitalised. It used to be the #78
- * tagline below; the tagline now lives only in the footer.
+ * wording, with the state abbreviation capitalised. "Clinical" added at the
+ * client's request (2026-10-23). It used to be the #78 tagline below; the
+ * tagline now lives only in the footer.
  */
-export const H1_TITLE = 'Your Best Choice for Certified Hypnotherapy in Pasadena, CA';
+export const H1_TITLE = 'Your Best Choice for Certified Clinical Hypnotherapy in Pasadena, CA';
 /* Leading space is load-bearing: the two spans join into the element's text
    content. It collapses visually because the spans are block-level. */
 export const H1_TAIL = ' I’m available online anywhere and locally in person.';
