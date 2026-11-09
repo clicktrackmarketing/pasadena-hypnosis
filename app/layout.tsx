@@ -9,6 +9,7 @@ import { CursorRing } from '../components/CursorRing';
 import { RouteCurtain } from '../components/RouteCurtain';
 import { ImageWarmup } from '../components/ImageWarmup';
 import AttributionCapture from '../components/AttributionCapture';
+import { ClickTrackAnalytics } from '../components/ClickTrackAnalytics';
 import { ConsentDefaults, GoogleTagManager } from '../components/Analytics';
 import { buildJsonLd } from '../components/content';
 import { isIndexable } from '../components/indexing';
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ConsentDefaults />
       </head>
       <body>
+        <ClickTrackAnalytics />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
